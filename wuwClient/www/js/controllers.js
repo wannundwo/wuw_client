@@ -17,5 +17,12 @@ angular.module('wuw.controllers', [])
 .controller('HomeCtrl', function($scope) {
 })
 
-.controller('OptionsCtrl', function($scope) {
+.controller('SettingsCtrl', function($scope, Settings) {
+    $scope.settings = {};
+    $scope.settings.apiUrl = Settings.getSetting('apiUrl');
+
+    $scope.save = function() {
+        Settings.setSetting('apiUrl', $scope.settings.apiUrl);
+    }
+
 });
