@@ -1,0 +1,9 @@
+<ion-view view-title="Deadlines">
+    <ion-content>
+        <ion-list>
+            <ion-item class="" ng-repeat="deadline in deadlines" type="item-text-wrap" href="#/tab/deadline/{{deadline.id}}">
+                <h2>{{deadline.title}}</h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
