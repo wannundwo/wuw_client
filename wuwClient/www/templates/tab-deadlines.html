@@ -1,4 +1,7 @@
 <ion-view view-title="Deadlines">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-ios-plus-outline" href="#/tab/createDeadline" />
+    </ion-nav-buttons>
     <ion-content>
         <ion-list>
             <ion-item class="" ng-repeat="deadline in deadlines" type="item-text-wrap" href="#/tab/deadline/{{deadline.id}}">

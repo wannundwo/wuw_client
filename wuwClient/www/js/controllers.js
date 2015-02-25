@@ -8,6 +8,12 @@ angular.module('wuw.controllers', [])
     $scope.deadline = Deadlines.get($stateParams.deadlineId);
 })
 
+.controller('CreateDeadlineCtrl', function($scope, Deadlines) {
+})
+
+.controller('HomeCtrl', function($scope) {
+})
+
 .controller('HomeCtrl', function($scope) {
 })
 
