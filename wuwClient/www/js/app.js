@@ -11,7 +11,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services'])
   $ionicPlatform.ready(function() {
     // predifined settings
     if (typeof Settings.getSetting('apiUrl') === 'undefined') {
-        Settings.setSetting('apiUrl', 'http://localhost:8088/api/v0/')
+        Settings.setSetting('apiUrl', 'http://localhost:8088/api/v0')
     }
 
 

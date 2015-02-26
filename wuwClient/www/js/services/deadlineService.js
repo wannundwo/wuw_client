@@ -1,23 +1,55 @@
 angular.module('wuw.services')
 
-.factory('Deadlines', function() {
+.factory('Deadlines', function($http, $q, Settings) {
 
-    var deadlines = [
-        {id: 0, title: "Mathe AB1", content: "text"},
-        {id: 1, title: "Mathe AB2", content: "text"},
-        {id: 2, title: "Mathe AB3", content: "text"},
-        {id: 3, title: "Mathe AB4", content: "text"}
-    ];
+    var apiUrl = Settings.getSetting('apiUrl');
+    console.log(apiUrl);
+    var deadlines = [];
+
+    var add = function(newDeadline) {
+        var deferred = $q.defer();
+        $http({
+            url: apiUrl + '/deadlines',
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            data: newDeadline
+        })
+        .then(function(response) {
+            deferred.resolve(response);
+            newDeadline._id = response.data.id;
+            console.log(newDeadline);
+            deadlines.push(newDeadline);
+        },
+        function(response) {
+            deferred.reject(response);
+        });
+        return deferred.promise;
+    };
+
+    var get = function(id) {
+        for (var i = 0; i < deadlines.length; i++) {
+            if (deadlines[i]._id == id) {
+                return deadlines[i];
+            }
+        }
+    };
+
+    var all = function() {
+        var deferred = $q.defer();
+        $http.get(apiUrl + '/deadlines').
+        success(function(data, status, headers, config) {
+            deadlines = data;
+            deferred.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+            deferred.reject(data);
+        });
+        return deferred.promise;
+    };
 
     return {
-        all: function() {
-            return deadlines;
-        },
-        get: function(id) {
-            return deadlines[id];
-        },
-        add: function(newDeadline) {
-
-        }
+        all: all,
+        get: get,
+        add: add
     }
 })
