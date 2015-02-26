@@ -15,6 +15,9 @@ angular.module('wuw.services', [])
         },
         get: function(id) {
             return deadlines[id];
+        },
+        add: function(newDeadline) {
+
         }
     }
 })

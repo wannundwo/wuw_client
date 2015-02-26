@@ -3,16 +3,21 @@
         <div class="list">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Titel</span>
-                <input type="text" placeholder="DSA Blatt 4">
+                <input type="text" ng-model="deadline.title" placeholder="DSA Blatt 4">
             </label>
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Text</span>
-                <input type="text" placeholder="wichtig für die Klausur!">
+                <span class="input-label">Info</span>
+                <input type="text" ng-model="deadline.info" placeholder="wichtig für die Klausur!">
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Abgabetermin</span>
-                <input type="date" placeholder="01.02.2015">
+                <input type="date" ng-model="deadline.deadline" placeholder="01.02.2015">
             </label>
+            <ion-item>
+                <button class="button button-outline button-positive col col-center" ng-click="save()">
+                    <span ng-bind-html="savingIcon | rawHtml"></span> Save to Server
+                </button>
+            </ion-item>
         </div>
     </ion-content>
 </ion-view>
