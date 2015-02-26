@@ -27,6 +27,12 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services'])
   });
 })
 
+.filter('rawHtml', ['$sce', function($sce){
+  return function(val) {
+    return $sce.trustAsHtml(val);
+  };
+}])
+
 .config(function($stateProvider, $urlRouterProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
