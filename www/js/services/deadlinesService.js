@@ -3,13 +3,12 @@ angular.module('wuw.services')
 .factory('Deadlines', function($http, $q, Settings) {
 
     var apiUrl = Settings.getSetting('apiUrl');
-    console.log(apiUrl);
     var deadlines = [];
 
     var add = function(newDeadline) {
         var deferred = $q.defer();
         $http({
-            url: apiUrl + '/deadlines',
+            url: Settings.getSetting("apiUrl") + '/deadlines',
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             data: newDeadline
@@ -36,7 +35,7 @@ angular.module('wuw.services')
 
     var all = function() {
         var deferred = $q.defer();
-        $http.get(apiUrl + '/deadlines').
+        $http.get(Settings.getSetting("apiUrl") + '/deadlines').
         success(function(data, status, headers, config) {
             deadlines = data;
             deferred.resolve(data);
