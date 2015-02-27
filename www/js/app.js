@@ -84,7 +84,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services'])
         views: {
             'tab-deadlines': {
             templateUrl: 'templates/tab-create-deadline.html',
-            controller: 'CreateDeadlineCtrl'
+            controller: 'DeadlinesCreateCtrl'
         }
       }
     })

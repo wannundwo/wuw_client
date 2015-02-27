@@ -19,11 +19,11 @@ angular.module('wuw.controllers')
 
 })
 
-.controller('DeadlineDetailCtrl', function($scope, $stateParams, Deadlines) {
+.controller('DeadlinesDetailCtrl', function($scope, $stateParams, Deadlines) {
     $scope.deadline = Deadlines.get($stateParams.deadlineId);
 })
 
-.controller('CreateDeadlineCtrl', function($scope, $state, Deadlines, $timeout, Settings, $http) {
+.controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, $timeout, Settings, $http) {
     $scope.savingIcon = '<i class="icon ion-android-done"></i>';
     $scope.savingText = 'Save Deadline';
     $scope.deadline = {};
