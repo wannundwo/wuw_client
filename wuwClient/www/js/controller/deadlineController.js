@@ -1,10 +1,22 @@
 angular.module('wuw.controllers')
 
 .controller('DeadlinesCtrl', function($scope, Deadlines) {
-    console.log("hello");
-    Deadlines.all().then(function(deadlines){
-        $scope.deadlines = deadlines;
-    });
+
+    $scope.loadDeadlines = function() {
+        Deadlines.all().then(function(deadlines){
+            $scope.deadlines = deadlines;
+        }).finally(function () {
+            $scope.$broadcast('scroll.refreshComplete');
+        })
+    };
+
+    $scope.doRefresh = function() {
+        $scope.loadDeadlines()
+    };
+
+    // initial loading of deadlines
+    $scope.loadDeadlines();
+
 })
 
 .controller('DeadlineDetailCtrl', function($scope, $stateParams, Deadlines) {
