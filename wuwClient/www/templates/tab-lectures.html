@@ -1,0 +1,16 @@
+<ion-view view-title="Lectures">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-ios-refresh-empty" ng-click="doRefresh()"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item class="" ng-repeat="lecture in lectures" type="item-text-wrap" href="#/tab/lectures/{{lecture._id}}">
+                <h2>{{lecture.fullLectureName}}</h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
