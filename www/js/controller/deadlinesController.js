@@ -39,7 +39,7 @@ angular.module('wuw.controllers')
             $scope.savingText = 'Deadline saved!';
             setTimeout(function() {
                 $state.go("tab.deadlines", {location: "replace"});
-            }, 1000);
+            }, 750);
         }, function(res){
             // failure
         });
