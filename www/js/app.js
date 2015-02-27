@@ -71,11 +71,11 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services'])
       }
     })
     .state('tab.deadline-detail', {
-        url: '/deadline/:deadlineId',
+        url: '/deadlines/:deadlineId',
         views: {
             'tab-deadlines': {
             templateUrl: 'templates/tab-deadline-detail.html',
-            controller: 'DeadlineDetailCtrl'
+            controller: 'DeadlinesDetailCtrl'
         }
       }
     })
