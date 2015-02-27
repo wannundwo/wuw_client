@@ -8,9 +8,18 @@
             on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-            <ion-item class="" ng-repeat="lecture in lectures" type="item-text-wrap" href="#/tab/lectures/{{lecture._id}}">
-                <h2><b>{{lecture.fullLectureName}}</b> in <b>{{lecture.room}}</b></h2>
-                <h3>{{lecture.startTime}}</h3>
+            
+            <!-- group the lectures by its date -->
+            <div ng-repeat="(key, value) in lectures | groupBy: 'date'">
+                <div class="item item-divider" >
+                    {{key}}
+                </div>
+                <ion-item class="item-text-wrap" ng-repeat="lecture in value" href="#/tab/lectures/{{lecture._id}}">
+                    <h2><b>{{lecture.fullLectureName}}</b> in <b>{{lecture.room}}</b></h2>
+                <h3>{{lecture.date}}</h3>
+                </ion-item>  
+            </div>
+            
             </ion-item>
         </ion-list>
     </ion-content>
