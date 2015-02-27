@@ -89,6 +89,25 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services'])
       }
     })
 
+    .state('tab.lectures', {
+        url: '/lectures',
+        views: {
+            'tab-lectures': {
+            templateUrl: 'templates/tab-lectures.html',
+            controller: 'LecturesCtrl'
+        }
+      }
+    })
+    .state('tab.lectures-detail', {
+        url: '/lectures/:lectureId',
+        views: {
+            'tab-lectures': {
+            templateUrl: 'templates/tab-lectures-detail.html',
+            controller: 'LecturesDetailCtrl'
+        }
+      }
+    })
+
     .state('tab.settings', {
         url: '/settings',
         views: {

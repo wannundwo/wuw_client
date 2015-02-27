@@ -52,4 +52,4 @@ angular.module('wuw.services')
         get: get,
         add: add
     }
-})
+});
