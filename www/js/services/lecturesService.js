@@ -4,8 +4,6 @@ angular.module("wuw.services")
 
 .factory("Lectures", function($http, $q, Settings) {
 
-    var apiUrl = Settings.getSetting("apiUrl");
-    console.log(apiUrl);
     var lectures = [];
 
     var get = function(id) {
@@ -18,7 +16,7 @@ angular.module("wuw.services")
 
     var all = function() {
         var deferred = $q.defer();
-        $http.get(apiUrl + "/lectures").
+        $http.get(Settings.getSetting("apiUrl") + "/lectures").
         success(function(data, status, headers, config) {
             lectures = data;
             deferred.resolve(data);
