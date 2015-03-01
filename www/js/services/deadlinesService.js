@@ -1,8 +1,6 @@
 angular.module('wuw.services')
 
 .factory('Deadlines', function($http, $q, Settings) {
-
-    var apiUrl = Settings.getSetting('apiUrl');
     var deadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
 
     // add a new deadline (to server and locally)
