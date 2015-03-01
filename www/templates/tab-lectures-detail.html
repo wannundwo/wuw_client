@@ -1,14 +1,32 @@
 <ion-view view-title="{{lecture.fullLectureName}}">
     <ion-content>
         <ion-list>
-            <ion-item>
-                shortLectureName: {{lecture.shortLectureName}}<br>
-                fullLectureName: {{lecture.fullLectureName}}<br>
-                Room: {{lecture.room}}<br>
-                startTime: {{lecture.startTime}}<br>
-                endTime: {{lecture.endTime}}<br>
-                group: {{lecture.group}}
-            </ion-item>
+            <div class="list card">
+                <div class="item item-text-wrap">
+                    <p>shortLecturename:</p>
+                    <div class="cardFont">{{lecture.shortLectureName}}</div>
+                </div>
+                <div class="item item-text-wrap">
+                    <p>fullLectureName:</p>
+                    <div class="cardFont">{{lecture.fullLectureName}}</div>
+                </div>
+                <div class="item item-text-wrap">
+                    <p>Room:</p>
+                    <div class="cardFont">{{lecture.room}}</div>
+                </div>
+                <div class="item item-text-wrap">
+                    <p>startTime:</p>
+                    <div class="cardFont">{{lecture.startTime}}</div>
+                </div>
+                <div class="item item-text-wrap">
+                    <p>endTime:</p>
+                    <div class="cardFont">{{lecture.endTime}}</div>
+                </div>
+                <div class="item item-text-wrap">
+                    <p>group:</p>
+                    <div class="cardFont">{{lecture.group}}</div>
+                </div>
+            </div>
         </ion-list>
     </ion-content>
 </ion-view>
