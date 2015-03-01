@@ -3,7 +3,6 @@
 angular.module("wuw.controllers")
 
 .controller("LecturesCtrl", function($scope, Lectures) {
-
     $scope.loadLectures = function() {
         $scope.lectures = [];
         Lectures.all().then(function(lectures){

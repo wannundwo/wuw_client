@@ -1,7 +1,6 @@
 angular.module('wuw.controllers')
 
 .controller('DeadlinesCtrl', function($scope, Deadlines, Settings) {
-
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
             $scope.deadlines = deadlines;
@@ -20,7 +19,6 @@ angular.module('wuw.controllers')
 
 .controller('DeadlinesDetailCtrl', function($scope, $stateParams, Deadlines) {
     $scope.deadline = Deadlines.get($stateParams.deadlineId);
-
     $scope.saveDeadline = function() {
         Deadlines.save($scope.deadline);
     }

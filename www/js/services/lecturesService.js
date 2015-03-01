@@ -3,7 +3,6 @@
 angular.module("wuw.services")
 
 .factory("Lectures", function($http, $q, Settings) {
-
     var lectures = [];
 
     var get = function(id) {
