@@ -1,4 +1,11 @@
 {
   "name": "wuwClient",
-  "app_id": "ad048256"
+  "app_id": "ad048256",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "11.40.277.1"
+    }
+  ]
 }
