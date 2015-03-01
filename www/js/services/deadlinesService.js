@@ -3,8 +3,9 @@ angular.module('wuw.services')
 .factory('Deadlines', function($http, $q, Settings) {
 
     var apiUrl = Settings.getSetting('apiUrl');
-    var deadlines = [];
+    var deadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
 
+    // add a new deadline (to server and locally)
     var add = function(newDeadline) {
         var deferred = $q.defer();
         $http({
@@ -16,8 +17,8 @@ angular.module('wuw.services')
         .then(function(response) {
             deferred.resolve(response);
             newDeadline._id = response.data.id;
-            console.log(newDeadline);
             deadlines.push(newDeadline);
+            Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
         },
         function(response) {
             deferred.reject(response);
@@ -25,6 +26,7 @@ angular.module('wuw.services')
         return deferred.promise;
     };
 
+    // return the deadline to a given id
     var get = function(id) {
         for (var i = 0; i < deadlines.length; i++) {
             if (deadlines[i]._id == id) {
@@ -33,12 +35,39 @@ angular.module('wuw.services')
         }
     };
 
+    // load all deadlines from the server and merge it with the local deadlines.
     var all = function() {
         var deferred = $q.defer();
+        var localDeadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
+        var mergedDeadlines = [];
+
         $http.get(Settings.getSetting("apiUrl") + '/deadlines').
         success(function(data, status, headers, config) {
-            deadlines = data;
-            deferred.resolve(data);
+
+            // iterate over each received deadline and merge it with the local deadlines
+            for (var i = 0; i < data.length; i++) {
+                var currDeadline = data[i];
+                var mergedDeadline = null;
+                for (var j = 0; j < localDeadlines.length; j++) {
+                    currLocalDeadline = localDeadlines[j];
+                    if (currLocalDeadline._id === currDeadline._id) {
+                        mergedDeadline = {};
+                        mergedDeadline._id = currDeadline._id;
+                        mergedDeadline.info = currLocalDeadline.info;
+                        mergedDeadline.deadline = currDeadline.deadline;
+                        mergedDeadline.done = currLocalDeadline.done;
+                    }
+                }
+
+                // if this deadline is not in our local deadlines, it is a new one
+                if (!mergedDeadline) {
+                    mergedDeadline = currDeadline;
+                }
+                mergedDeadlines.push(mergedDeadline);
+            }
+            deadlines = mergedDeadlines;
+            Settings.setSetting('localDeadlines', JSON.stringify(mergedDeadlines));
+            deferred.resolve(mergedDeadlines);
         }).
         error(function(data, status, headers, config) {
             deferred.reject(data);
@@ -46,9 +75,23 @@ angular.module('wuw.services')
         return deferred.promise;
     };
 
+    // save the changes for a deadline locally
+    var save = function(deadline) {
+        // search for this deadline and save its changes
+        for (var i = 0; i < deadlines.length; i++) {
+            if (deadlines[i]._id === deadline._id) {
+                deadlines[i].done = deadline.done;
+                Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
+                break;
+            }
+        }
+        Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
+    };
+
     return {
         all: all,
         get: get,
-        add: add
+        add: add,
+        save: save
     }
 });

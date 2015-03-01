@@ -34,3 +34,17 @@
     transform: rotate(360deg);
   }
 }
+
+
+.smallCheckbox {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.noLeftPadding {
+    padding-left: 0px;
+}
+
+.cardPaddings {
+    padding: 10px;
+}

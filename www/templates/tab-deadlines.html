@@ -8,9 +8,15 @@
             on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-            <ion-item class="" ng-repeat="deadline in deadlines" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
-                <h2>{{deadline.info}} am <b>{{deadline.deadline}}</b></h2>
-            </ion-item>
+            <div ng-repeat="(key, value) in deadlines | groupBy: 'done' | toArray:true | orderBy:'done':reverse">
+                <div class="item item-divider" >
+                    <span ng-if="key === 1">Done</span>
+                    <span ng-if="key !== 1">Undone</span>
+                </div>
+                <ion-item ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
+                    <h2>{{deadline.info}} am <b>{{deadline.deadline}}</b></h2>
+                </ion-item>
+            </div>
         </ion-list>
     </ion-content>
 </ion-view>
