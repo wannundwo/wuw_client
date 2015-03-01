@@ -25,14 +25,17 @@ angular.module('wuw.controllers')
 
 })
 
-.controller('DeadlinesDetailCtrl', function($scope, $stateParams, Deadlines) {
+.controller('DeadlinesDetailCtrl', function($scope, $stateParams, $state, Deadlines) {
     $scope.deadline = Deadlines.get($stateParams.deadlineId);
     $scope.saveDeadline = function() {
         Deadlines.save($scope.deadline);
+        setTimeout(function() {
+            $state.go("tab.deadlines", {location: "replace"});
+        }, 750);
     }
 })
 
-.controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, $timeout, Settings, $http) {
+.controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, Settings) {
     $scope.savingIcon = '<i class="icon ion-android-done"></i>';
     $scope.savingText = 'Save Deadline';
     $scope.deadline = {};
