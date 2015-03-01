@@ -55,13 +55,14 @@ angular.module('wuw.services')
                         mergedDeadline._id = currDeadline._id;
                         mergedDeadline.info = currLocalDeadline.info;
                         mergedDeadline.deadline = currDeadline.deadline;
-                        mergedDeadline.done = currLocalDeadline.done;
+                        mergedDeadline.done = currLocalDeadline.done || false;
                     }
                 }
 
                 // if this deadline is not in our local deadlines, it is a new one
                 if (!mergedDeadline) {
                     mergedDeadline = currDeadline;
+                    mergedDeadline.done = false;
                 }
                 mergedDeadlines.push(mergedDeadline);
             }
@@ -81,7 +82,6 @@ angular.module('wuw.services')
         for (var i = 0; i < deadlines.length; i++) {
             if (deadlines[i]._id === deadline._id) {
                 deadlines[i].done = deadline.done;
-                Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
                 break;
             }
         }
