@@ -6,6 +6,7 @@ angular.module('wuw.services')
     // add a new deadline (to server and locally)
     var add = function(newDeadline) {
         var deferred = $q.defer();
+        newDeadline.done = false;
         $http({
             url: Settings.getSetting("apiUrl") + '/deadlines',
             method: "POST",
