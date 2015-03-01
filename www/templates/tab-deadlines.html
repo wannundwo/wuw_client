@@ -1,4 +1,4 @@
-<ion-view view-title="Deadlines">
+<ion-view view-title="Deadlines" cache-view="false">
     <ion-nav-buttons side="secondary">
         <a class="button button-icon icon ion-ios-plus-outline" href="#/tab/createDeadline"></a>
     </ion-nav-buttons>
@@ -8,10 +8,10 @@
             on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-            <div ng-repeat="(key, value) in deadlines | groupBy: 'done' | toArray:true | orderBy:'done':reverse">
+            <div ng-repeat="(key, value) in deadlines | groupBy: 'done'">
                 <div class="item item-divider" >
-                    <span ng-if="key === 1">Done</span>
-                    <span ng-if="key !== 1">Undone</span>
+                    <span ng-if="key === 'false'">Unfinished</span>
+                    <span ng-if="key === 'true'">Done</span>
                 </div>
                 <ion-item ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
                     <h2>{{deadline.info}} am <b>{{deadline.deadline}}</b></h2>

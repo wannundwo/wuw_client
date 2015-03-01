@@ -20,7 +20,6 @@ angular.module('wuw.controllers')
 
 .controller('DeadlinesDetailCtrl', function($scope, $stateParams, Deadlines) {
     $scope.deadline = Deadlines.get($stateParams.deadlineId);
-    $scope.markAsDoneText = "Mark as Done (only for you)";
 
     $scope.saveDeadline = function() {
         Deadlines.save($scope.deadline);
