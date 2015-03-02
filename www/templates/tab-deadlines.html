@@ -10,8 +10,8 @@
         <ion-list>
             <div ng-repeat="(key, value) in deadlines | groupBy: 'done'">
                 <div class="item item-divider" >
-                    <span ng-if="key === 'false'">Unfinished</span>
-                    <span ng-if="key === 'true'">Done</span>
+                    <span ng-if="key === 'false'">Unfinished ({{value.length}})</span>
+                    <span ng-if="key === 'true'">Done ({{value.length}})</span>
                 </div>
                 <ion-item ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
                     <h2>{{deadline.info}} am <b>{{deadline.deadline}}</b></h2>
