@@ -2,7 +2,7 @@
  * Copyright 2014 Drifty Co.
  * http://drifty.com/
  *
- * Ionic, v1.0.0-beta.14-nightly-1093
+ * Ionic, v1.0.0-rc.0-nightly-1120
  * A powerful HTML5 mobile app framework.
  * http://ionicframework.com/
  *
@@ -3460,6 +3460,9 @@ a.subdued {
 .bar .back-button.hide, .bar .buttons .hide {
   display: none; }
 
+.nav-bar-tabs-top .bar {
+  background-image: none; }
+
 /**
  * Tabs
  * --------------------------------------------------
@@ -4507,6 +4510,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
     -moz-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column; }
+  .popup-container input, .popup-container textarea {
+    width: 100%; }
 
 .popup-head {
   padding: 15px 10px;
@@ -5633,11 +5638,11 @@ input, button, select, textarea {
     -webkit-border-radius: 0;
     border-radius: 0;
     -webkit-box-flex: 1;
-    -webkit-flex: 1 0 220px;
+    -webkit-flex: 1 220px;
     -moz-box-flex: 1;
-    -moz-flex: 1 0 220px;
-    -ms-flex: 1 0 220px;
-    flex: 1 0 220px;
+    -moz-flex: 1 220px;
+    -ms-flex: 1 220px;
+    flex: 1 220px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -5721,12 +5726,6 @@ input, button, select, textarea {
   margin-left: 10.66667px; }
 
 .input-label {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 100px;
-  -moz-box-flex: 1;
-  -moz-flex: 1 0 100px;
-  -ms-flex: 1 0 100px;
-  flex: 1 0 100px;
   display: table;
   padding: 7px 10px 7px 0px;
   max-width: 200px;
@@ -7414,7 +7413,9 @@ a.button {
   position: relative; }
 
 .collection-repeat-after-container {
-  z-index: 0; }
+  z-index: 0;
+  display: block;
+  /* when scrolling horizontally, make sure the after container doesn't take up 100% width */ }
   .collection-repeat-after-container.horizontal {
     display: inline-block; }
 
