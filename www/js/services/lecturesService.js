@@ -18,6 +18,14 @@ angular.module("wuw.services")
         $http.get(Settings.getSetting("apiUrl") + "/lectures").
         success(function(data, status, headers, config) {
             lectures = data;
+
+            // add datefield to every lecutre (used for grouping)
+            lectures.forEach(function(lecture) {
+                lecture.date = new Date(lecture.startTime).getDate() + "."
+                      + (new Date(lecture.startTime).getMonth() + 1) + "." 
+                      + new Date(lecture.startTime).getFullYear();
+            });
+
             deferred.resolve(data);
         }).
         error(function(data, status, headers, config) {

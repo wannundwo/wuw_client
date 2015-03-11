@@ -6,9 +6,6 @@ angular.module("wuw.controllers")
     $scope.loadLectures = function() {
         $scope.lectures = [];
         Lectures.all().then(function(lectures){
-            lectures.forEach(function(lecture) {
-                lecture.date = new Date(lecture.startTime).getDate() + "." + new Date(lecture.startTime).getMonth()+1 + "." + new Date(lecture.startTime).getFullYear();
-            });
             $scope.lectures = lectures;
         }).finally(function () {
             $scope.$broadcast("scroll.refreshComplete");
