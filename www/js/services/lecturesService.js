@@ -21,9 +21,8 @@ angular.module("wuw.services")
 
             // add datefield to every lecutre (used for grouping)
             lectures.forEach(function(lecture) {
-                lecture.date = new Date(lecture.startTime).getDate() + "."
-                      + (new Date(lecture.startTime).getMonth() + 1) + "." 
-                      + new Date(lecture.startTime).getFullYear();
+                var d = new Date(lecture.startTime).setHours(0);
+                lecture.date = new Date(d).setMinutes(0);
             });
 
             deferred.resolve(data);

@@ -5,15 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'angular.filter'])
+angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters', 'angular.filter'])
 
 .run(function($ionicPlatform, Settings) {
   $ionicPlatform.ready(function() {
-    // predifined settings
+    // predefined settings
     if (typeof Settings.getSetting('apiUrl') === 'undefined') {
         Settings.setSetting('apiUrl', 'http://wuw.benleb.de:8088/api/v0')
     }
-
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -27,11 +26,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'angular.filt
   });
 })
 
-.filter('rawHtml', ['$sce', function($sce){
-  return function(val) {
-    return $sce.trustAsHtml(val);
-  };
-}])
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 
