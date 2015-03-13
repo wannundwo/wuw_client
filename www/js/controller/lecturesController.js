@@ -16,8 +16,11 @@ angular.module("wuw.controllers")
         $scope.loadLectures();
     };
 
-    // initial loading of lectures
-    $scope.loadLectures();
+    // get lectures from cache, and if the cache is older then 10 seconds load from the API
+    $scope.lectures = Lectures.fromCache();
+    if (Lectures.secondsSinceCache() > 10) {
+      $scope.loadLectures();
+    }
 })
 
 .controller("LecturesDetailCtrl", function($scope, $stateParams, Lectures) {

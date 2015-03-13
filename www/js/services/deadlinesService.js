@@ -67,6 +67,7 @@ angular.module('wuw.services')
             }
             deadlines = mergedDeadlines;
             Settings.setSetting('localDeadlines', JSON.stringify(mergedDeadlines));
+            Settings.setSetting('localDeadlinesCacheTime', new Date().getTime());
             deferred.resolve(mergedDeadlines);
         }).
         error(function(data, status, headers, config) {
@@ -87,10 +88,25 @@ angular.module('wuw.services')
         Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
     };
 
+    var secondsSinceCache = function() {
+      var cacheTime = Settings.getSetting('localDeadlinesCacheTime');
+      if (typeof cacheTime === 'undefined') {
+        return Math.pow(2,32) - 1; // highest integer in JS
+      }
+      var diff = new Date().getTime() - cacheTime;
+      return Math.round(diff / 1000);
+    }
+
+    var fromCache = function() {
+        return deadlines;
+    }
+
     return {
         all: all,
         get: get,
         add: add,
-        save: save
+        save: save,
+        fromCache: fromCache,
+        secondsSinceCache: secondsSinceCache
     }
 });

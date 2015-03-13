@@ -13,16 +13,11 @@ angular.module('wuw.controllers')
         $scope.loadDeadlines()
     };
 
-    // load deadlines from cache
-    var localDeadlinesString = Settings.getSetting('localDeadlines');
-    if (typeof localDeadlinesString == 'undefined') {
-        // no local deadlines, go and get them!
-        $scope.doRefresh();
-    } else {
-        $scope.deadlines = JSON.parse(localDeadlinesString || '[]');
+    // get deadlines from cache, and if the cache is older then 10 seconds load from the API
+    $scope.deadlines = Deadlines.fromCache();
+    if (Deadlines.secondsSinceCache() > 10) {
+      $scope.loadDeadlines();
     }
-
-
 })
 
 .controller('DeadlinesDetailCtrl', function($scope, $stateParams, $state, Deadlines) {
