@@ -2,7 +2,7 @@
 
 angular.module("wuw.controllers")
 
-.controller("LecturesCtrl", function($scope, Lectures) {
+.controller("LecturesCtrl", function($scope, Lectures, Settings) {
     $scope.loadLectures = function() {
         $scope.lectures = [];
         Lectures.all().then(function(lectures){
@@ -15,6 +15,10 @@ angular.module("wuw.controllers")
     $scope.doRefresh = function() {
         $scope.loadLectures();
     };
+
+    $scope.isMyCourse = function(lecture) {
+      return lecture.group.indexOf(Settings.getSetting('course')) == 0;
+    }
 
     // get lectures from cache, and if the cache is older then 10 seconds load from the API
     $scope.lectures = Lectures.fromCache();

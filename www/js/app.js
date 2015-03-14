@@ -13,6 +13,9 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
     if (typeof Settings.getSetting('apiUrl') === 'undefined') {
         Settings.setSetting('apiUrl', 'http://wuw.benleb.de:8088/api/v0')
     }
+    if (typeof Settings.getSetting('course') === 'undefined') {
+        Settings.setSetting('course', 'IF')
+    }
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
