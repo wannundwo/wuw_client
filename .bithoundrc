@@ -4,6 +4,7 @@
     "Icon.sketch/**",
     "resources/**",
     "scss/**",
-    "www/lib/**"
+    "www/lib/**",
+    "*.js"
   ]
 }
