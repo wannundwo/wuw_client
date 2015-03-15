@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('wuw.services')
 
 // super simple service to store the users settings in local storage
@@ -10,5 +12,5 @@ angular.module('wuw.services')
     getSetting: function(key) {
       return $window.localStorage['wuw_'+key];
     }
-  }
-})
+  };
+});
