@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('wuw.controllers')
 
 .controller('DeadlinesCtrl', function($scope, Deadlines, Settings) {
@@ -6,11 +8,11 @@ angular.module('wuw.controllers')
             $scope.deadlines = deadlines;
         }).finally(function () {
             $scope.$broadcast('scroll.refreshComplete');
-        })
+        });
     };
 
     $scope.doRefresh = function() {
-        $scope.loadDeadlines()
+        $scope.loadDeadlines();
     };
 
     // get deadlines from cache, and if the cache is older then 10 seconds load from the API
@@ -27,7 +29,7 @@ angular.module('wuw.controllers')
         setTimeout(function() {
             $state.go("tab.deadlines", {location: "replace"});
         }, 750);
-    }
+    };
 })
 
 .controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, Settings) {
@@ -50,5 +52,5 @@ angular.module('wuw.controllers')
         }, function(res){
             // failure
         });
-    }
-})
+    };
+});

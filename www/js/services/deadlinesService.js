@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('wuw.services')
 
 .factory('Deadlines', function($http, $q, Settings) {
@@ -28,7 +30,7 @@ angular.module('wuw.services')
     // return the deadline to a given id
     var get = function(id) {
         for (var i = 0; i < deadlines.length; i++) {
-            if (deadlines[i]._id == id) {
+            if (deadlines[i]._id === id) {
                 return deadlines[i];
             }
         }
@@ -46,6 +48,7 @@ angular.module('wuw.services')
             // iterate over each received deadline and merge it with the local deadlines
             for (var i = 0; i < data.length; i++) {
                 var currDeadline = data[i];
+                var currLocalDeadline = null;
                 var mergedDeadline = null;
                 for (var j = 0; j < localDeadlines.length; j++) {
                     currLocalDeadline = localDeadlines[j];
@@ -95,11 +98,11 @@ angular.module('wuw.services')
       }
       var diff = new Date().getTime() - cacheTime;
       return Math.round(diff / 1000);
-    }
+    };
 
     var fromCache = function() {
         return deadlines;
-    }
+    };
 
     return {
         all: all,
@@ -108,5 +111,5 @@ angular.module('wuw.services')
         save: save,
         fromCache: fromCache,
         secondsSinceCache: secondsSinceCache
-    }
+    };
 });
