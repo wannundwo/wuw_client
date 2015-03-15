@@ -47,10 +47,36 @@ angular.module("wuw.services")
       return Math.round(diff / 1000);
     };
 
+    var getCurrentLecture = function() {
+      var now = new Date().getTime();
+      for (var i = 0; i < lectures.length; i++) {
+        var start = new Date(lectures[i].startTime).getTime();
+        var end   = new Date(lectures[i].endTime).getTime();
+        if (start < now && now < end) {
+          return lectures[i];
+        }
+      }
+    };
+
+    var getNextLecture = function() {
+      var nextLecture;
+      var nextLectureDistance = 18446744073709552000;
+      for (var i = 0; i < lectures.length; i++) {
+        var lectureDistance = new Date(lectures[i].startTime).getTime();
+        if (lectureDistance < nextLectureDistance) {
+          nextLectureDistance = lectureDistance;
+          nextLecture = lectures[i];
+        }
+      }
+      return nextLecture;
+    };
+
     return {
         all: all,
         get: get,
         fromCache: fromCache,
-        secondsSinceCache: secondsSinceCache
+        secondsSinceCache: secondsSinceCache,
+        getCurrentLecture: getCurrentLecture,
+        getNextLecture: getNextLecture
     };
 });
