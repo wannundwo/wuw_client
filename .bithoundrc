@@ -6,7 +6,6 @@
     "resources/*",
     "scss/*",
     "www/lib/*",
-    "hooks/*",
-    "*.js"
+    "hooks/*"
   ]
 }
