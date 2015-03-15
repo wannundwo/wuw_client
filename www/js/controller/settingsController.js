@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('wuw.controllers')
 
 .controller('SettingsCtrl', function($scope, Settings) {
@@ -7,6 +9,6 @@ angular.module('wuw.controllers')
 
     $scope.save = function() {
         Settings.setSetting('apiUrl', $scope.settings.apiUrl);
-    }
+    };
 
 });

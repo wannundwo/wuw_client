@@ -16,8 +16,8 @@ angular.module("wuw.controllers")
     };
 
     $scope.isMyCourse = function(lecture) {
-      return lecture.group.indexOf(Settings.getSetting('course')) == 0;
-    }
+      return lecture.group.indexOf(Settings.getSetting('course')) === 0;
+    };
 
     // get lectures from cache, and if the cache is older then 10 seconds load from the API
     $scope.lectures = Lectures.fromCache();

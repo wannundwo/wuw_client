@@ -1,1 +1,1 @@
-angular.module('wuw.controllers', []) // this is the module definition
+angular.module('wuw.controllers', []); // this is the module definition
