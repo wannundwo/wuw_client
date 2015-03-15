@@ -1,10 +1,9 @@
 {
   "ignore": [
-    "hooks/*",
-    "Icon.sketch/*",
-    "node_modules/*",
-    "resources/*",
-    "scss/*",
-    "hooks/*"
+    "hooks/**",
+    "Icon.sketch/**",
+    "resources/**",
+    "scss/**",
+    "www/lib/**"
   ]
 }
