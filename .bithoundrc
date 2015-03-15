@@ -5,6 +5,6 @@
     "resources/**",
     "scss/**",
     "www/lib/**",
-    "*.js"
+    "gulpfile.js"
   ]
 }
