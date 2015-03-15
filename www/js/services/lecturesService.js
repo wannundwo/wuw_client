@@ -7,7 +7,7 @@ angular.module("wuw.services")
 
     var get = function(id) {
         for (var i = 0; i < lectures.length; i++) {
-            if (lectures[i]._id == id) {
+            if (lectures[i]._id === id) {
                 return lectures[i];
             }
         }
