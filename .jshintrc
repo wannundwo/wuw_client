@@ -90,6 +90,8 @@
         "angular": true,
         "window": true,
         "cordova": true,
-        "StatusBar": true
+        "StatusBar": true,
+        "describe": true,
+        "it": true
     }
 }
