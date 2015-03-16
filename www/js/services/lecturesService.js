@@ -62,8 +62,8 @@ angular.module("wuw.services")
       var nextLecture;
       var nextLectureDistance = 18446744073709552000;
       for (var i = 0; i < lectures.length; i++) {
-        var lectureDistance = new Date(lectures[i].startTime).getTime();
-        if (lectureDistance < nextLectureDistance) {
+        var lectureDistance = new Date(lectures[i].startTime).getTime() - new Date().getTime();
+        if (lectureDistance < nextLectureDistance && lectureDistance > 0) {
           nextLectureDistance = lectureDistance;
           nextLecture = lectures[i];
         }
