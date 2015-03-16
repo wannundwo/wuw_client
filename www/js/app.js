@@ -49,8 +49,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
     })
 
     // Each tab has its own nav history stack:
-
-
     .state('tab.home', {
         url: '/home',
         views: {

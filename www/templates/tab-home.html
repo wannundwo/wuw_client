@@ -1,23 +1,32 @@
 <ion-view view-title="Home">
     <ion-content>
         <ion-list>
-          <div class="list card">
-            <div class="item item-divider">Current Lecture</div>
-              <div class="item item-body">
-                <div ng-if="currLecture">
-                  <b>{{currLecture.shortLectureName}}</b> in <b>{{currLecture.room}}</b>
-                  {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
-                </div>
-                <div ng-if="!currLecture">
-                  Currently no Lecture.
-                </div>
+          <ion-item ng-if="loading">
+            <div class="center">
+                <ion-spinner></ion-spinner>
               </div>
             </div>
+          </ion-item>
+
+          <div ng-if="nextLecture">
             <div class="list card">
-              <div class="item item-divider">Next Lecture</div>
+              <div class="item item-divider">Current Lecture</div>
                 <div class="item item-body">
-                    <b>{{nextLecture.shortLectureName}}</b> in <b>{{nextLecture.room}}</b>
-                    {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
+                  <div ng-if="currLecture">
+                    <b>{{currLecture.shortLectureName}}</b> in <b>{{currLecture.room}}</b>
+                    {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
+                  </div>
+                  <div ng-if="!currLecture">
+                    Currently no Lecture.
+                  </div>
+                </div>
+              </div>
+              <div class="list card">
+                <div class="item item-divider">Next Lecture</div>
+                  <div class="item item-body">
+                      <b>{{nextLecture.shortLectureName}}</b> in <b>{{nextLecture.room}}</b>
+                      {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
+                  </div>
                 </div>
               </div>
             </div>

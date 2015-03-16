@@ -72,6 +72,7 @@ angular.module("wuw.services")
     };
 
     return {
+        lectures: lectures,
         all: all,
         get: get,
         fromCache: fromCache,
