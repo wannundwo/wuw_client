@@ -19,11 +19,14 @@ angular.module("wuw.controllers")
       return lecture.group.indexOf(Settings.getSetting('course')) === 0;
     };
 
-    // get lectures from cache, and if the cache is older then 10 seconds load from the API
-    $scope.lectures = Lectures.fromCache();
-    if (Lectures.secondsSinceCache() > 10) {
-      $scope.loadLectures();
-    }
+    $scope.$on('$ionicView.enter', function(){
+      // get lectures from cache, and if the cache is older then 10 seconds load from the API
+      $scope.lectures = Lectures.fromCache();
+      if (Lectures.secondsSinceCache() > 10) {
+        $scope.loadLectures();
+      }
+    });
+
 })
 
 .controller("LecturesDetailCtrl", function($scope, $stateParams, Lectures) {

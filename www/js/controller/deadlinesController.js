@@ -3,6 +3,9 @@
 angular.module('wuw.controllers')
 
 .controller('DeadlinesCtrl', function($scope, Deadlines, Settings) {
+
+
+
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
             $scope.deadlines = deadlines;
@@ -15,11 +18,15 @@ angular.module('wuw.controllers')
         $scope.loadDeadlines();
     };
 
-    // get deadlines from cache, and if the cache is older then 10 seconds load from the API
-    $scope.deadlines = Deadlines.fromCache();
-    if (Deadlines.secondsSinceCache() > 10) {
-      $scope.loadDeadlines();
-    }
+    $scope.$on('$ionicView.enter', function(){
+      // get deadlines from cache, and if the cache is older then 10 seconds load from the API
+      $scope.deadlines = Deadlines.fromCache();
+      if (Deadlines.secondsSinceCache() > 10) {
+        $scope.loadDeadlines();
+      }
+    });
+
+
 })
 
 .controller('DeadlinesDetailCtrl', function($scope, $stateParams, $state, Deadlines) {
