@@ -4,8 +4,6 @@ angular.module('wuw.controllers')
 
 .controller('DeadlinesCtrl', function($scope, Deadlines, Settings) {
 
-
-
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
             $scope.deadlines = deadlines;
@@ -18,6 +16,10 @@ angular.module('wuw.controllers')
         $scope.loadDeadlines();
     };
 
+    $scope.isNotRemoved = function(deadline) {
+      return !deadline.removed;
+    };
+
     $scope.$on('$ionicView.enter', function(){
       // get deadlines from cache, and if the cache is older then 10 seconds load from the API
       $scope.deadlines = Deadlines.fromCache();
@@ -26,10 +28,10 @@ angular.module('wuw.controllers')
       }
     });
 
-
 })
 
-.controller('DeadlinesDetailCtrl', function($scope, $stateParams, $state, Deadlines) {
+.controller('DeadlinesDetailCtrl', function($scope, $stateParams, $ionicPopup, $state, Deadlines) {
+
     $scope.deadline = Deadlines.get($stateParams.deadlineId);
     $scope.saveDeadline = function() {
         Deadlines.save($scope.deadline);
@@ -37,6 +39,22 @@ angular.module('wuw.controllers')
             $state.go("tab.deadlines", {location: "replace"});
         }, 750);
     };
+
+    $scope.deleteDeadline = function() {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Really delete this deadline?',
+        template: ''
+      });
+      confirmPopup.then(function(res) {
+        if(res) {
+          Deadlines.remove($scope.deadline);
+          setTimeout(function() {
+              $state.go("tab.deadlines", {location: "replace"});
+          }, 750);
+        }
+      });
+    };
+
 })
 
 .controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, Settings) {

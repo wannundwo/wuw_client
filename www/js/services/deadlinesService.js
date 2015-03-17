@@ -57,6 +57,7 @@ angular.module('wuw.services')
                         mergedDeadline._id = currDeadline._id;
                         mergedDeadline.info = currLocalDeadline.info;
                         mergedDeadline.deadline = currDeadline.deadline;
+                        mergedDeadline.removed = currLocalDeadline.removed || false;
                         mergedDeadline.done = currLocalDeadline.done || false;
                     }
                 }
@@ -91,6 +92,17 @@ angular.module('wuw.services')
         Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
     };
 
+    // marks a deadline as deleted
+    var remove = function(deadline) {
+      for (var i = 0; i < deadlines.length; i++) {
+          if (deadlines[i]._id === deadline._id) {
+              deadlines[i].removed = true;
+              break;
+          }
+      }
+      Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
+    };
+
     var secondsSinceCache = function() {
       var cacheTime = Settings.getSetting('localDeadlinesCacheTime');
       if (typeof cacheTime === 'undefined') {
@@ -101,7 +113,7 @@ angular.module('wuw.services')
     };
 
     var fromCache = function() {
-        return deadlines;
+        return JSON.parse(Settings.getSetting('localDeadlines') || '[]');
     };
 
     return {
@@ -109,6 +121,7 @@ angular.module('wuw.services')
         get: get,
         add: add,
         save: save,
+        remove: remove,
         fromCache: fromCache,
         secondsSinceCache: secondsSinceCache
     };

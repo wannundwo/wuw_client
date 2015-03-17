@@ -8,7 +8,7 @@
             on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-            <div ng-repeat="(key, value) in deadlines | groupBy: 'done'">
+            <div ng-repeat="(key, value) in deadlines | filter:isNotRemoved | groupBy: 'done'">
                 <div class="item item-divider" >
                     <span ng-if="key === 'false'">Unfinished ({{value.length}})</span>
                     <span ng-if="key === 'true'">Done ({{value.length}})</span>
