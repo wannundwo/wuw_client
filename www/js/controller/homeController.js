@@ -15,7 +15,7 @@ angular.module('wuw.controllers')
     });
   };
 
-  $scope.$on('$ionicView.loaded', function(){
+  $scope.$on('$ionicView.enter', function(){
     $scope.currLecture = Lectures.getCurrentLecture();
     $scope.nextLecture = Lectures.getNextLecture();
     reload();
