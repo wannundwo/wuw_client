@@ -4,6 +4,7 @@ angular.module('wuw.controllers')
 
 .controller('SettingsCtrl', function($scope, Settings) {
     $scope.settings = {};
+    $scope.settings.version = Settings.getSetting('version');
     $scope.settings.apiUrl = Settings.getSetting('apiUrl');
     $scope.settings.course  = Settings.getSetting('course');
 
