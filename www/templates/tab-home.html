@@ -5,13 +5,6 @@
           on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-          <ion-item ng-if="loading">
-            <div class="center">
-                <ion-spinner></ion-spinner>
-              </div>
-            </div>
-          </ion-item>
-
           <div ng-if="nextLecture">
             <div class="list card">
               <div class="item item-divider">Current Lecture</div>
@@ -34,6 +27,13 @@
               </div>
             </div>
           </div>
+
+          <ion-item ng-if="loading">
+            <div class="center">
+                <ion-spinner></ion-spinner>
+              </div>
+            </div>
+          </ion-item>
 
         </ion-list>
     </ion-content>
