@@ -8,3 +8,7 @@
 4. View the App in Browser: `ionic serve`
 5. Install Android SDK if you want to test on your own device (http://developer.android.com/sdk/index.html), then run `ionic run android`
 6. For iOS you need a Mac and Xcode, then you can run `ionic run ios`
+
+## Tests
+1. `npm install`
+2. `npm test`
