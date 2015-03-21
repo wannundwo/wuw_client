@@ -1,4 +1,5 @@
 #This is the wuw client.
+[![Build Status](https://travis-ci.org/wannundwo/wuw_client.svg?branch=master)](https://travis-ci.org/wannundwo/wuw_client)
 [![bitHound Score](https://www.bithound.io/github/wannundwo/wuw_client/badges/score.svg)](https://www.bithound.io/github/wannundwo/wuw_client)
 
 ## How to get it up and running
