@@ -20,9 +20,10 @@ angular.module("wuw.controllers")
     };
 
     $scope.isUpcoming = function(lecture) {
-      if(Date.parse(lecture.startTime) >= Date.now()) {
+      if (Date.parse(lecture.endTime) >= Date.now()) {
         return true;
       }
+      return false;
     };
 
     $scope.$on('$ionicView.enter', function(){
