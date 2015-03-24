@@ -34,6 +34,27 @@ angular.module("wuw.services")
         return deferred.promise;
     };
 
+    var upcoming = function() {
+        var deferred = $q.defer();
+        $http.get(Settings.getSetting("apiUrl") + "/upcomingLectures").
+        success(function(data, status, headers, config) {
+
+            // add datefield to every lecutre (used for grouping)
+            data.forEach(function(lecture) {
+                var d = new Date(lecture.startTime).setHours(0);
+                lecture.date = new Date(d).setMinutes(0);
+            });
+            Settings.setSetting('lecturesCache', JSON.stringify(data));
+            Settings.setSetting('lecturesCacheTime', new Date().getTime());
+            lectures = data;
+            deferred.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+            deferred.reject(data);
+        });
+        return deferred.promise;
+    };
+
     var fromCache = function() {
       return lectures;
     };
@@ -74,6 +95,7 @@ angular.module("wuw.services")
     return {
         lectures: lectures,
         all: all,
+        upcoming: upcoming,
         get: get,
         fromCache: fromCache,
         secondsSinceCache: secondsSinceCache,
