@@ -3,7 +3,7 @@
 [![bitHound Score](https://www.bithound.io/github/wannundwo/wuw_client/badges/score.svg)](https://www.bithound.io/github/wannundwo/wuw_client)
 
 ## Install & Updates
-For Android, please grab here an APK: https://github.com/wannundwo/wuw_client/releases
+For Android, please grab an APK here: https://github.com/wannundwo/wuw_client/releases
 
 ## Develop Environment
 1. Install Node.js (https://nodejs.org/)
