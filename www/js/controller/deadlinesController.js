@@ -33,6 +33,7 @@ angular.module('wuw.controllers')
 .controller('DeadlinesDetailCtrl', function($scope, $stateParams, $ionicPopup, $state, Deadlines) {
 
     $scope.deadline = Deadlines.get($stateParams.deadlineId);
+
     $scope.saveDeadline = function() {
         Deadlines.save($scope.deadline);
         setTimeout(function() {
@@ -57,7 +58,10 @@ angular.module('wuw.controllers')
 
 })
 
-.controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, Settings) {
+.controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, Settings, Lectures) {
+    $scope.lectureTitles = Lectures.getAllLectureTitles();
+    console.log($scope.lectureTitles);
+
     $scope.savingIcon = '<i class="icon ion-android-done"></i>';
     $scope.savingText = 'Save Deadline';
     $scope.deadline = {};
