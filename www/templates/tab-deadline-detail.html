@@ -7,8 +7,8 @@
                     <div class="cardFont">{{deadline.info}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>Info:</p>
-                    <div class="cardFont">{{deadline.info}}</div>
+                    <p>Deadline:</p>
+                    <div class="cardFont">{{deadline.deadline | date: 'EEE, dd.MM.yyyy'}}</div>
                 </div>
                 <div class="item item-text-wrap noLeftPadding">
                     <ion-checkbox class="smallCheckbox" ng-model="deadline.done">
