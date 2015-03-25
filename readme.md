@@ -5,7 +5,7 @@
 ## Install & Updates
 For Android, please grab an APK here: https://github.com/wannundwo/wuw_client/releases
 
-## Develop Environment
+## Development Environment
 1. Install Node.js (https://nodejs.org/)
 2. Install Cordova (https://cordova.apache.org/docs/en/4.0.0/guide_cli_index.md.html)
 3. Install Ionic (http://ionicframework.com/getting-started/)
