@@ -68,6 +68,19 @@ angular.module("wuw.services")
       return Math.round(diff / 1000);
     };
 
+    var getAllLectureTitles = function() {
+        var lectureTitles = [];
+        for (var i = 0; i < lectures.length; i++) {
+            var lectureTitle = lectures[i].shortLectureName;
+
+            // check if the lectureTitle is new
+            if (lectureTitles.indexOf(lectureTitle) < 0) {
+                lectureTitles.push(lectureTitle);
+            }
+        }
+        return lectureTitles;
+    };
+
     var getCurrentLecture = function() {
       var now = new Date().getTime();
       for (var i = 0; i < lectures.length; i++) {
@@ -98,6 +111,7 @@ angular.module("wuw.services")
         upcoming: upcoming,
         get: get,
         fromCache: fromCache,
+        getAllLectureTitles: getAllLectureTitles,
         secondsSinceCache: secondsSinceCache,
         getCurrentLecture: getCurrentLecture,
         getNextLecture: getNextLecture
