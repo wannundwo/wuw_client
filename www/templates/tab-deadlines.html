@@ -13,8 +13,13 @@
                     <span ng-if="key === 'false'">Unfinished ({{value.length}})</span>
                     <span ng-if="key === 'true'">Done ({{value.length}})</span>
                 </div>
-                <ion-item ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
-                    <h2>{{deadline.info}} due on <b>{{deadline.deadline | date: 'EEE, dd.MM.yyyy'}}</b></h2>
+                <ion-item class="item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
+                    <h2>
+                        <b>{{deadline.info}}</b> in <b>{{deadline.group}}</b>
+                        <div>
+                            due on <b>{{deadline.deadline | date: 'EEE, dd.MM.yyyy'}}</b>
+                        </div>
+                    </h2>
                 </ion-item>
             </div>
         </ion-list>

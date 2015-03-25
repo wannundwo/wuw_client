@@ -56,6 +56,7 @@ angular.module('wuw.services')
                         mergedDeadline = {};
                         mergedDeadline._id = currDeadline._id;
                         mergedDeadline.info = currLocalDeadline.info;
+                        mergedDeadline.group = currLocalDeadline.group;
                         mergedDeadline.deadline = currDeadline.deadline;
                         mergedDeadline.removed = currLocalDeadline.removed || false;
                         mergedDeadline.done = currLocalDeadline.done || false;
