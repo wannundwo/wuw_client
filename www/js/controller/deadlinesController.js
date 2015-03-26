@@ -58,7 +58,9 @@ angular.module('wuw.controllers')
 
 })
 
-.controller('DeadlinesCreateCtrl', function($scope, $state, Deadlines, Settings, Lectures) {
+.controller('DeadlinesCreateCtrl', function($scope, $state, $ionicPopup, Deadlines, Settings, Lectures) {
+    $scope.forms = {};
+
     $scope.lectureTitles = Lectures.getAllLectureTitles();
     console.log($scope.lectureTitles);
 
@@ -67,6 +69,15 @@ angular.module('wuw.controllers')
     $scope.deadline = {};
 
     $scope.save = function() {
+
+        if ($scope.forms.deadlineForm.$valid === false) {
+            $ionicPopup.alert({
+                title: 'Error!',
+                template: 'Please fill out all fields!'
+            });
+            return;
+        }
+
         $scope.savingIcon = '<i class="icon spin ion-load-b"></i>';
         $scope.savingText = 'saving...';
 
