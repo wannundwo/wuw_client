@@ -3,6 +3,7 @@
 angular.module("wuw.controllers")
 
 .controller("LecturesCtrl", function($scope, Lectures, Settings) {
+
     $scope.loadLectures = function() {
         Lectures.upcoming().then(function(lectures){
             $scope.lectures = lectures;
@@ -16,14 +17,16 @@ angular.module("wuw.controllers")
     };
 
     $scope.isMyCourse = function(lecture) {
-      return lecture.group.indexOf(Settings.getSetting('course')) === 0;
+        // TODO: improve this
+        // actually, we doesn't need this anymore, hurray!
+        return lecture.groups.join().indexOf(Settings.getSetting('course')) === 0;
     };
 
     $scope.isUpcoming = function(lecture) {
-      if (Date.parse(lecture.endTime) >= Date.now()) {
-        return true;
-      }
-      return false;
+        if (Date.parse(lecture.endTime) >= Date.now()) {
+            return true;
+        }
+        return false;
     };
 
     $scope.$on('$ionicView.enter', function(){
@@ -33,7 +36,6 @@ angular.module("wuw.controllers")
         $scope.loadLectures();
       }
     });
-
 })
 
 .controller("LecturesDetailCtrl", function($scope, $stateParams, Lectures) {

@@ -3,28 +3,24 @@
         <ion-list>
             <div class="list card">
                 <div class="item item-text-wrap">
-                    <p>shortLecturename:</p>
-                    <div class="cardFont">{{lecture.shortLectureName}}</div>
+                    <p>Lecture Name:</p>
+                    <div class="cardFont">{{lecture.lectureName}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>fullLectureName:</p>
-                    <div class="cardFont">{{lecture.fullLectureName}}</div>
+                    <p>Room(s):</p>
+                    <div class="cardFont">{{lecture.rooms | join: ', '}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>Room:</p>
-                    <div class="cardFont">{{lecture.room}}</div>
-                </div>
-                <div class="item item-text-wrap">
-                    <p>startTime:</p>
+                    <p>Start Time:</p>
                     <div class="cardFont">{{lecture.startTime | date:'EEE, dd.MM.yyyy HH:mm'}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>endTime:</p>
+                    <p>EndT ime:</p>
                     <div class="cardFont">{{lecture.endTime | date:'EEE, dd.MM.yyyy HH:mm'}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>group:</p>
-                    <div class="cardFont">{{lecture.group}}</div>
+                    <p>Group(s):</p>
+                    <div class="cardFont">{{lecture.groups | join: ', '}}</div>
                 </div>
             </div>
         </ion-list>
