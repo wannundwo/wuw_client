@@ -71,7 +71,7 @@ angular.module("wuw.services")
     var getAllLectureTitles = function() {
         var lectureTitles = [];
         for (var i = 0; i < lectures.length; i++) {
-            var lectureTitle = lectures[i].shortLectureName;
+            var lectureTitle = lectures[i].lectureName;
 
             // check if the lectureTitle is new
             if (lectureTitles.indexOf(lectureTitle) < 0) {

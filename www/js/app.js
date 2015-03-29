@@ -11,14 +11,18 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
 
 .run(function($ionicPlatform, Settings) {
 
-  // predefined settings
-  Settings.setSetting('version', 'v0.0.5');
-  if (typeof Settings.getSetting('apiUrl') === 'undefined') {
-      Settings.setSetting('apiUrl', 'http://wuw.benleb.de:8088/api/v0');
-  }
-  if (typeof Settings.getSetting('course') === 'undefined') {
-      Settings.setSetting('course', 'IF');
-  }
+    // predefined settings
+    Settings.setSetting('version', 'v0.0.5');
+    if (typeof Settings.getSetting('apiUrl') === 'undefined') {
+        Settings.setSetting('apiUrl', 'http://wuw.benleb.de:8088/api/v0');
+    }
+    if (typeof Settings.getSetting('course') === 'undefined') {
+        Settings.setSetting('course', 'IF');
+    }
+    if (typeof Settings.getSetting('uuid') === "undefined") {
+        // we simply use the current milli seconds as uuid
+        Settings.setSetting('uuid', new Date().getTime());
+    }
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
