@@ -9,6 +9,9 @@ angular.module('wuw.services')
     var add = function(newDeadline) {
         var deferred = $q.defer();
         newDeadline.done = false;
+        newDeadline.uuid = Settings.getSetting('uuid');
+
+        // post the deadline to the API
         $http({
             url: Settings.getSetting("apiUrl") + '/deadlines',
             method: "POST",
