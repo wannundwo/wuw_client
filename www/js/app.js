@@ -12,7 +12,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
 .run(function($ionicPlatform, Settings) {
 
     // predefined settings
-    Settings.setSetting('version', 'v0.0.5');
+    Settings.setSetting('version', 'v0.1.0');
     if (typeof Settings.getSetting('apiUrl') === 'undefined') {
         Settings.setSetting('apiUrl', 'http://wuw.benleb.de:8088/api/v0');
     }
