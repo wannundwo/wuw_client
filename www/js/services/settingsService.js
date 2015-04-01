@@ -7,10 +7,10 @@ angular.module('wuw.services')
 .service('Settings', function($window) {
   return {
     setSetting: function(key, value) {
-      $window.localStorage['wuw_'+key] = value;
+        $window.localStorage['wuw_'+key] = value;
     },
     getSetting: function(key) {
-      return $window.localStorage['wuw_'+key];
+        return $window.localStorage['wuw_'+key];
     }
   };
 });

@@ -1,7 +1,5 @@
 "use strict";
 
-// Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -12,29 +10,25 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
 .run(function($ionicPlatform, Settings) {
 
     // predefined settings
-    Settings.setSetting('version', 'v0.1.0');
+    Settings.setSetting('version', 'v0.0.4');
     if (typeof Settings.getSetting('apiUrl') === 'undefined') {
         Settings.setSetting('apiUrl', 'http://wuw.benleb.de:8088/api/v0');
     }
     if (typeof Settings.getSetting('course') === 'undefined') {
         Settings.setSetting('course', 'IF');
     }
-    if (typeof Settings.getSetting('uuid') === "undefined") {
-        // we simply use the current milli seconds as uuid
-        Settings.setSetting('uuid', new Date().getTime());
-    }
 
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+    });
 })
 
 

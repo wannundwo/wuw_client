@@ -56,16 +56,16 @@ angular.module("wuw.services")
     };
 
     var fromCache = function() {
-      return lectures;
+        return lectures;
     };
 
     var secondsSinceCache = function() {
-      var cacheTime = Settings.getSetting('lecturesCacheTime');
-      if (typeof cacheTime === 'undefined') {
-        return Math.pow(2,32) - 1; // highest integer in JS
-      }
-      var diff = new Date().getTime() - cacheTime;
-      return Math.round(diff / 1000);
+        var cacheTime = Settings.getSetting('lecturesCacheTime');
+        if (typeof cacheTime === 'undefined') {
+            return Math.pow(2,32) - 1; // highest integer in JS
+        }
+        var diff = new Date().getTime() - cacheTime;
+        return Math.round(diff / 1000);
     };
 
     var getAllLectureTitles = function() {
@@ -82,27 +82,27 @@ angular.module("wuw.services")
     };
 
     var getCurrentLecture = function() {
-      var now = new Date().getTime();
-      for (var i = 0; i < lectures.length; i++) {
-        var start = new Date(lectures[i].startTime).getTime();
-        var end   = new Date(lectures[i].endTime).getTime();
-        if (start < now && now < end) {
-          return lectures[i];
+        var now = new Date().getTime();
+        for (var i = 0; i < lectures.length; i++) {
+            var start = new Date(lectures[i].startTime).getTime();
+            var end   = new Date(lectures[i].endTime).getTime();
+            if (start < now && now < end) {
+                return lectures[i];
+            }
         }
-      }
     };
 
     var getNextLecture = function() {
-      var nextLecture;
-      var nextLectureDistance = 18446744073709552000;
-      for (var i = 0; i < lectures.length; i++) {
-        var lectureDistance = new Date(lectures[i].startTime).getTime() - new Date().getTime();
-        if (lectureDistance < nextLectureDistance && lectureDistance > 0) {
-          nextLectureDistance = lectureDistance;
-          nextLecture = lectures[i];
+        var nextLecture;
+        var nextLectureDistance = 18446744073709552000;
+        for (var i = 0; i < lectures.length; i++) {
+            var lectureDistance = new Date(lectures[i].startTime).getTime() - new Date().getTime();
+            if (lectureDistance < nextLectureDistance && lectureDistance > 0) {
+                nextLectureDistance = lectureDistance;
+                nextLecture = lectures[i];
+            }
         }
-      }
-      return nextLecture;
+        return nextLecture;
     };
 
     return {
