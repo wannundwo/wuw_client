@@ -9,9 +9,6 @@ angular.module('wuw.services')
     var add = function(newDeadline) {
         var deferred = $q.defer();
         newDeadline.done = false;
-        newDeadline.uuid = Settings.getSetting('uuid');
-
-        // post the deadline to the API
         $http({
             url: Settings.getSetting("apiUrl") + '/deadlines',
             method: "POST",
@@ -59,7 +56,6 @@ angular.module('wuw.services')
                         mergedDeadline = {};
                         mergedDeadline._id = currDeadline._id;
                         mergedDeadline.info = currLocalDeadline.info;
-                        mergedDeadline.group = currLocalDeadline.group;
                         mergedDeadline.deadline = currDeadline.deadline;
                         mergedDeadline.removed = currLocalDeadline.removed || false;
                         mergedDeadline.done = currLocalDeadline.done || false;
@@ -98,22 +94,22 @@ angular.module('wuw.services')
 
     // marks a deadline as deleted
     var remove = function(deadline) {
-      for (var i = 0; i < deadlines.length; i++) {
-          if (deadlines[i]._id === deadline._id) {
-              deadlines[i].removed = true;
-              break;
-          }
-      }
-      Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
+        for (var i = 0; i < deadlines.length; i++) {
+            if (deadlines[i]._id === deadline._id) {
+                deadlines[i].removed = true;
+                break;
+            }
+        }
+        Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
     };
 
     var secondsSinceCache = function() {
-      var cacheTime = Settings.getSetting('localDeadlinesCacheTime');
-      if (typeof cacheTime === 'undefined') {
-        return Math.pow(2,32) - 1; // highest integer in JS
-      }
-      var diff = new Date().getTime() - cacheTime;
-      return Math.round(diff / 1000);
+        var cacheTime = Settings.getSetting('localDeadlinesCacheTime');
+        if (typeof cacheTime === 'undefined') {
+            return Math.pow(2,32) - 1; // highest integer in JS
+        }
+        var diff = new Date().getTime() - cacheTime;
+        return Math.round(diff / 1000);
     };
 
     var fromCache = function() {
