@@ -1,3 +1,5 @@
+/*jshint bitwise: false*/
+
 "use strict";
 
 angular.module("wuw.services")
@@ -18,10 +20,11 @@ angular.module("wuw.services")
         $http.get(Settings.getSetting("apiUrl") + "/lectures").
         success(function(data, status, headers, config) {
 
-            // add datefield to every lecutre (used for grouping)
+            // add a date & color field to every lecutre (used for grouping & optical separating)
             data.forEach(function(lecture) {
                 var d = new Date(lecture.startTime).setHours(0);
                 lecture.date = new Date(d).setMinutes(0);
+                lecture.color = stringToColor(lecture.lectureName);
             });
             Settings.setSetting('lecturesCache', JSON.stringify(data));
             Settings.setSetting('lecturesCacheTime', new Date().getTime());
@@ -103,6 +106,22 @@ angular.module("wuw.services")
             }
         }
         return nextLecture;
+    };
+
+    // create a color for str (eg. a lecture name)
+    var stringToColor = function(str) {
+        var hash = 0;
+        var color = '#';
+        // str to hash
+        for (var i = 0; i < str.length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        // hash to hex
+        for (var j = 0; j < 3; j++) {
+            var value = (hash >> (j * 8)) & 0xFF;
+            color += ('00' + value.toString(16)).substr(-2);
+        }
+        return color;
     };
 
     return {
