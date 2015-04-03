@@ -1,0 +1,38 @@
+{
+    "global": {
+        "home": "Home",
+        "lectures": "Vorlesungen",
+        "deadlines": "Deadlines",
+        "settings": "Einstellungen",
+        "group": "Kurs",
+        "semGroup": "Semester",
+        "info": "Info",
+        "save": "speichern",
+        "pullToRefresh": "Ziehen zum aktualisieren..."
+    },
+    "home": {
+        "current": "Momentan läuft",
+        "next": "als nächstes kommt",
+        "noLecture": "keine Vorlesung"
+    },
+    "lectures": {
+        "rooms": "Raum/Räume",
+        "startTime": "Beginnt am",
+        "endTime": "Endet am"
+    },
+    "deadlines": {
+        "deadline": "Deadline",
+        "todo": "Zu erledigen",
+        "done": "Erledigt",
+        "to": "bis",
+        "date": "Abgabetermin",
+        "delete": "löschen",
+        "create": "Deadline anlegen",
+        "exampleInfo": "Buch XY in Bib ausleihen"
+    },
+    "settings": {
+        "version": "Version",
+        "apiUrl": "API URL",
+        "semGroupHelp": "Bitte hier deine Semestergruppe und/oder einzelne Kurse auswählen"
+    }
+}

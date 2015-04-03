@@ -1,0 +1,38 @@
+{
+    "global": {
+        "home": "Home",
+        "lectures": "Lectures",
+        "deadlines": "Deadlines",
+        "settings": "Settings",
+        "group": "Course",
+        "semGroup": "Group",
+        "info": "Info",
+        "save": "save",
+        "pullToRefresh": "Pull to refresh..."
+    },
+    "home": {
+        "current": "Current lecture",
+        "next": "Next lecture",
+        "noLecture": "No lecture"
+    },
+    "lectures": {
+        "rooms": "Room(s)",
+        "startTime": "Starts at",
+        "endTime": "Ends at"
+    },
+    "deadlines": {
+        "deadline": "Deadline",
+        "todo": "Todo",
+        "done": "Done",
+        "to": "by",
+        "date": "Deadline date",
+        "delete": "delete",
+        "create": "Create Deadline",
+        "exampleInfo": "get Book XY from Lib"
+    },
+    "settings": {
+        "version": "Version",
+        "apiUrl": "API URL",
+        "semGroupHelp": "Please choose you Group and/or single Courses here"
+    }
+}

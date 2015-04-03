@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters', 'angular.filter'])
+angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters', 'angular.filter', 'pascalprecht.translate'])
 
 .run(function($ionicPlatform, Settings) {
 
@@ -30,7 +30,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -115,4 +115,12 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/home');
+
+    // load translation
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'lang/locale-',
+        suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('de_DE');
+    $translateProvider.fallbackLanguage('en_US');
 });
