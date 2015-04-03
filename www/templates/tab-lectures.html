@@ -1,10 +1,10 @@
-<ion-view view-title="Lectures">
+<ion-view view-title="{{'global.lectures' | translate}}">
     <ion-nav-buttons side="secondary">
         <a class="button button-icon icon ion-ios-refresh-empty" ng-click="doRefresh()"></a>
     </ion-nav-buttons>
     <ion-content>
         <ion-refresher
-            pulling-text="Pull to refresh..."
+            pulling-text="{{'global.pullToRefresh' | translate}}"
             on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>

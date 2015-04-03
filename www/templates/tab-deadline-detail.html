@@ -3,32 +3,32 @@
         <ion-list>
             <div class="list card">
                 <div class="item item-text-wrap">
-                    <p>Info:</p>
+                    <p>{{'global.info' | translate}}:</p>
                     <div class="cardFont">{{deadline.info}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>Group:</p>
+                    <p>{{'global.group' | translate}}:</p>
                     <div class="cardFont">{{deadline.group}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>Deadline:</p>
+                    <p>{{'deadlines.deadline' | translate}}:</p>
                     <div class="cardFont">{{deadline.deadline | date: 'EEE, dd.MM.yyyy'}}</div>
                 </div>
                 <div class="item item-text-wrap noLeftPadding">
                     <ion-checkbox class="smallCheckbox" ng-model="deadline.done">
-                        Done
+                        {{'deadlines.done' | translate}}
                     </ion-checkbox>
                 </div>
             </div>
             <div class="cardPaddings">
                 <button class="button button-outline button-positive col col-center" ng-click="saveDeadline()">
-                    Save
+                    {{'global.save' | translate}}
                 </button>
             </div>
 
             <div class="cardPaddings">
                 <button class="button button-outline button-assertive col col-center" ng-click="deleteDeadline()">
-                    Delete
+                    {{'deadlines.delete' | translate}}
                 </button>
             </div>
         </ion-list>

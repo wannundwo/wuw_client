@@ -1,26 +1,26 @@
-<ion-view view-title="Home">
+<ion-view view-title="{{'global.home' | translate}}">
     <ion-content>
         <ion-refresher
-          pulling-text="Pull to refresh..."
+          pulling-text="{{'global.pullToRefresh' | translate}}"
           on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
           <div ng-if="nextLecture">
             <div class="list card">
-              <div class="item item-divider">Current Lecture</div>
+              <div class="item item-divider">{{'home.current' | translate}}</div>
               <div class="item item-body">
                 <div ng-if="currLecture">
                   <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
                   {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
                 </div>
                 <div ng-if="!currLecture">
-                  Currently no Lecture.
+                  {{'home.noLecture' | translate}}
                 </div>
               </div>
             </div>
 
             <div class="list card">
-              <div class="item item-divider">Next Lecture</div>
+              <div class="item item-divider">{{'home.next' | translate}}</div>
               <div class="item item-body">
                   <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
                   {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}

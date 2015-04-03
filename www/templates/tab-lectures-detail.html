@@ -3,23 +3,23 @@
         <ion-list>
             <div class="list card">
                 <div class="item item-text-wrap">
-                    <p>Lecture Name:</p>
+                    <p>{{'global.group' | translate}}:</p>
                     <div class="cardFont">{{lecture.lectureName}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>Room(s):</p>
+                    <p>{{'lectures.rooms' | translate}}:</p>
                     <div class="cardFont">{{lecture.rooms | join: ', '}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>Start Time:</p>
+                    <p>{{'lectures.startTime' | translate}}:</p>
                     <div class="cardFont">{{lecture.startTime | date:'EEE, dd.MM.yyyy HH:mm'}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>EndT ime:</p>
+                    <p>{{'lectures.endTime' | translate}}:</p>
                     <div class="cardFont">{{lecture.endTime | date:'EEE, dd.MM.yyyy HH:mm'}}</div>
                 </div>
                 <div class="item item-text-wrap">
-                    <p>Group(s):</p>
+                    <p>{{'global.semGroup' | translate}}:</p>
                     <div class="cardFont">{{lecture.groups | join: ', '}}</div>
                 </div>
             </div>
