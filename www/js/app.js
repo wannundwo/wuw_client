@@ -7,7 +7,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
     // predefined settings
     Settings.setSetting('version', 'v0.1.0');
     if (typeof Settings.getSetting('apiUrl') === 'undefined') {
-        Settings.setSetting('apiUrl', 'http://wuw.benleb.de:8088/api/v0');
+        Settings.setSetting('apiUrl', 'https://wuw.benleb.de:8088/api/v0');
     }
     if (typeof Settings.getSetting('course') === 'undefined') {
         Settings.setSetting('course', 'IF');
