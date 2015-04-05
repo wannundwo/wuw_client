@@ -21,7 +21,7 @@
 
             <div class="list card">
               <div class="item item-divider">{{'home.next' | translate}}</div>
-              <div style="border-left: 10px solid {{nextLecture.color}};" class="lectureItem item item-body">
+              <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
                   <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
                   {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
               </div>
