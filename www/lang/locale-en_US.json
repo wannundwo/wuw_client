@@ -8,7 +8,8 @@
         "semGroup": "Group",
         "info": "Info",
         "save": "save",
-        "pullToRefresh": "Pull to refresh..."
+        "pullToRefresh": "Pull to refresh...",
+        "error": "Error"
     },
     "home": {
         "current": "Current lecture",
@@ -18,7 +19,8 @@
     "lectures": {
         "rooms": "Room(s)",
         "startTime": "Starts at",
-        "endTime": "Ends at"
+        "endTime": "Ends at",
+        "cantload": "Can't load Lectures. Please make sure that you are connected to the internet."
     },
     "deadlines": {
         "deadline": "Deadline",
@@ -28,7 +30,8 @@
         "date": "Deadline date",
         "delete": "delete",
         "create": "Create Deadline",
-        "exampleInfo": "get Book XY from Lib"
+        "exampleInfo": "get Book XY from Lib",
+        "cantload": "Can't load Deadlines. Please make sure that you are connected to the internet."
     },
     "settings": {
         "version": "Version",

@@ -17,8 +17,8 @@ angular.module("wuw.services")
 
     var all = function() {
         var deferred = $q.defer();
-        $http.get(Settings.getSetting("apiUrl") + "/lectures").
-        success(function(data, status, headers, config) {
+        $http.get(Settings.getSetting("apiUrl") + "/lectures")
+        .success(function(data, status, headers, config) {
 
             // add a date & color field to every lecutre (used for grouping & optical separating)
             data.forEach(function(lecture) {
@@ -29,8 +29,8 @@ angular.module("wuw.services")
             Settings.setSetting('lecturesCacheTime', new Date().getTime());
             lectures = data;
             deferred.resolve(data);
-        }).
-        error(function(data, status, headers, config) {
+        })
+        .error(function(data, status, headers, config) {
             deferred.reject(data);
         });
         return deferred.promise;

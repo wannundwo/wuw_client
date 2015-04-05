@@ -8,7 +8,8 @@
         "semGroup": "Semester",
         "info": "Info",
         "save": "speichern",
-        "pullToRefresh": "Ziehen zum aktualisieren..."
+        "pullToRefresh": "Ziehen zum aktualisieren...",
+        "error": "Fehler"
     },
     "home": {
         "current": "Momentan läuft",
@@ -18,7 +19,8 @@
     "lectures": {
         "rooms": "Raum/Räume",
         "startTime": "Beginnt am",
-        "endTime": "Endet am"
+        "endTime": "Endet am",
+        "cantload": "Die Vorlesungen konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
     },
     "deadlines": {
         "deadline": "Deadline",
@@ -28,7 +30,8 @@
         "date": "Abgabetermin",
         "delete": "löschen",
         "create": "Deadline anlegen",
-        "exampleInfo": "Buch XY in Bib ausleihen"
+        "exampleInfo": "Buch XY in Bib ausleihen",
+        "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
     },
     "settings": {
         "version": "Version",

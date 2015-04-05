@@ -43,8 +43,8 @@ angular.module('wuw.services')
         var localDeadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
         var mergedDeadlines = [];
 
-        $http.get(Settings.getSetting("apiUrl") + '/deadlines').
-        success(function(data, status, headers, config) {
+        $http.get(Settings.getSetting("apiUrl") + '/deadlines')
+        .success(function(data, status, headers, config) {
 
             // iterate over each received deadline and merge it with the local deadlines
             for (var i = 0; i < data.length; i++) {
@@ -72,8 +72,8 @@ angular.module('wuw.services')
             Settings.setSetting('localDeadlines', JSON.stringify(mergedDeadlines));
             Settings.setSetting('localDeadlinesCacheTime', new Date().getTime());
             deferred.resolve(mergedDeadlines);
-        }).
-        error(function(data, status, headers, config) {
+        })
+        .error(function(data, status, headers, config) {
             deferred.reject(data);
         });
         return deferred.promise;

@@ -2,11 +2,17 @@
 
 angular.module('wuw.controllers')
 
-.controller('DeadlinesCtrl', function($scope, Deadlines, Settings) {
+.controller('DeadlinesCtrl', function($scope, $ionicPopup, $filter, Deadlines, Settings) {
 
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
             $scope.deadlines = deadlines;
+        }, function() {
+            // TODO: Display some nice, non-blocking, error message.
+            $ionicPopup.alert({
+                title: $filter('translate')('global.error'),
+                template: $filter('translate')('deadlines.cantload'),
+            });
         }).finally(function () {
             $scope.$broadcast('scroll.refreshComplete');
         });
