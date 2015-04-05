@@ -37,6 +37,7 @@ angular.module('wuw.services')
     };
 
     // load all deadlines from the server and merge it with the local deadlines.
+    // TODO: This needs some more work.
     var all = function() {
         var deferred = $q.defer();
         var localDeadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
@@ -53,11 +54,8 @@ angular.module('wuw.services')
                 for (var j = 0; j < localDeadlines.length; j++) {
                     currLocalDeadline = localDeadlines[j];
                     if (currLocalDeadline._id === currDeadline._id) {
-                        mergedDeadline = {};
-                        mergedDeadline._id = currDeadline._id;
+                        mergedDeadline = currDeadline;
                         mergedDeadline.info = currLocalDeadline.info;
-                        mergedDeadline.group = currDeadline.group;
-                        mergedDeadline.deadline = currDeadline.deadline;
                         mergedDeadline.removed = currLocalDeadline.removed || false;
                         mergedDeadline.done = currLocalDeadline.done || false;
                     }

@@ -43,11 +43,11 @@
     padding: 10px;
 }
 
-.lectureItem {
+.color-indicator {
 
 }
 
-.lectureItem:before {
+.color-indicator:before {
     content:"";
     position:absolute;
     border-top:1px solid #ddd;
