@@ -10,11 +10,13 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
     // predefined settings
     Settings.setSetting('version', versionNumber);
     Settings.setSetting('apiUrl', apiUrl);
+
     if (typeof Settings.getSetting('course') === 'undefined') {
         Settings.setSetting('course', 'IF');
     }
     if (typeof Settings.getSetting('uuid') === "undefined") {
-        // we simply use the current milli seconds as uuid
+        // We currently use, for simplity, just a timestamp as uuid.
+        // TODO: Use real uuid.
         Settings.setSetting('uuid', new Date().getTime());
     }
 
