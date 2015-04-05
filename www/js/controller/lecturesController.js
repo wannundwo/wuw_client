@@ -2,11 +2,17 @@
 
 angular.module("wuw.controllers")
 
-.controller("LecturesCtrl", function($scope, Lectures, Settings) {
+.controller("LecturesCtrl", function($scope, $ionicPopup, $filter, Lectures, Settings) {
 
     $scope.loadLectures = function() {
         Lectures.upcoming().then(function(lectures){
             $scope.lectures = lectures;
+        }, function() {
+            // TODO: Display some nice, non-blocking, error message.
+            $ionicPopup.alert({
+                title: $filter('translate')('global.error'),
+                template: $filter('translate')('lectures.cantload'),
+            });
         }).finally(function () {
             $scope.$broadcast("scroll.refreshComplete");
         });
