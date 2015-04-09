@@ -14,10 +14,8 @@
                 <div class="item item-divider">
                     {{key | date: 'EEE, dd.MM.yyyy'}}
                 </div>
-                <ion-item style="border-left: 10px solid {{lecture.color}};" class="color-indicator item-text-wrap" ng-repeat="lecture in value | filter:isMyCourse" href="#/tab/lectures/{{lecture._id}}">
-                <!--<ion-item class="lectureItem item-text-wrap" ng-repeat="lecture in value | filter:isMyCourse" href="#/tab/lectures/{{lecture._id}}">-->
+                <ion-item style="border-left: 10px solid {{lecture.color}};" class="color-indicator item-text-wrap" ng-repeat="lecture in value | filter:isMyCourse">
                     <h2>
-                        <!--<span style="color: {{lecture.color}}" class="ion-icon ion-record"></span>-->
                         <b>{{lecture.lectureName}}</b> in <b>{{lecture.rooms | join: ', '}}</b>
                     </h2>
                     <h3>{{lecture.startTime | date: 'HH:mm'}} - {{lecture.endTime | date: 'HH:mm'}}</h3>
