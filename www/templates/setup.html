@@ -1,0 +1,25 @@
+<ion-view view-title="Setup: select your Courses">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-positive" href="#/tab/createDeadline">Done</a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <div ng-repeat="group in groups">
+                <ion-item style="padding: 0;" class="item-checkbox" ng-class="{active: isGroupShown(group)}">
+                    <!--<i class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>-->
+                    <div style="width: 28px;" class="checkbox">
+                        <input style="width: 28px;" type="checkbox">
+                    </div>
+                    <div style="padding: 15px; padding-left: 50px;" ng-click="toggleGroup(group)">
+                        {{group._id}}
+                    </div>
+                </ion-item>
+                <ion-checkbox class="checkbox-inset item-accordion"
+                              ng-repeat="lecture in group.lectures"
+                              ng-show="isGroupShown(group)">
+                    {{lecture}}
+                </ion-checkbox>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

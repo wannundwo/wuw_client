@@ -4,7 +4,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
 
 .run(function($ionicPlatform, Settings) {
 
-    var apiUrl = "https://wuw.benleb.de:4342/api/v0";
+    var apiUrl = "https://wuw.benleb.de:4343/api/v0";
     var versionNumber = "0.2.0";
 
     // predefined settings
@@ -58,7 +58,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
         }
       }
     })
-
     .state('tab.deadlines', {
         url: '/deadlines',
         views: {
@@ -86,7 +85,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
         }
       }
     })
-
     .state('tab.lectures', {
         url: '/lectures',
         views: {
@@ -96,7 +94,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
         }
       }
     })
-
     .state('tab.settings', {
         url: '/settings',
         views: {
@@ -105,6 +102,11 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
             controller: 'SettingsCtrl'
         }
       }
+    })
+    .state('setup', {
+        url: '/setup',
+        templateUrl: 'templates/setup.html',
+        controller: 'SetupCtrl'
     });
 
     // if none of the above states are matched, use this as the fallback
