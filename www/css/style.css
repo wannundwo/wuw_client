@@ -61,3 +61,30 @@
   -ms-flex-align: center;
   align-items: center;
 }
+
+/*
+ * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
+ */
+.list .item.item-accordion {
+    line-height: 42px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.125s all linear;
+}
+.list .item.item-accordion.ng-hide {
+    line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}
+
+.checkbox-inset .checkbox {
+    padding-left: 40px;
+}
+
+.checkbox-inset .item-content {
+
+    padding-left: 25px;
+
+}
