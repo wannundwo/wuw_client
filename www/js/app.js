@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters', 'angular.filter', 'pascalprecht.translate'])
+angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage'])
 
 .run(function($ionicPlatform, Settings) {
 

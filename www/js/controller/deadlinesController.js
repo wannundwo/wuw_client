@@ -2,19 +2,22 @@
 
 angular.module('wuw.controllers')
 
-.controller('DeadlinesCtrl', function($scope, $ionicPopup, $filter, Deadlines, Settings) {
+.controller('DeadlinesCtrl', function($scope, $ionicPopup, $timeout, $filter, Deadlines, Settings) {
 
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
             $scope.deadlines = deadlines;
+            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
         }, function() {
-            // TODO: Display some nice, non-blocking, error message.
-            $ionicPopup.alert({
-                title: $filter('translate')('global.error'),
-                template: $filter('translate')('deadlines.cantload'),
-            });
+            // show the error message with some delay to prevent flickering
+            $timeout(function() {
+                $scope.$broadcast("czErrorMessage.show");
+            }, 300);
         }).finally(function () {
-            $scope.$broadcast('scroll.refreshComplete');
+            // remove the refresh spinner a little bit later to prevent flickering
+            $timeout(function() {
+                $scope.$broadcast("scroll.refreshComplete");
+            }, 400);
         });
     };
 

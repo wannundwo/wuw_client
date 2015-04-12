@@ -1,3 +1,36 @@
+.smallCheckbox {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.noLeftPadding {
+    padding-left: 0px;
+}
+
+.cardPaddings {
+    padding: 10px;
+}
+
+.color-indicator {
+
+}
+
+.color-indicator:before {
+    content:"";
+    position:absolute;
+    border-top:1px solid #ddd;
+    width:10px;
+    left:-10px;
+    top:-1px;
+}
+
+.error-message {
+  color: #FFF;
+  background-color: #C75754;
+  border-color: #AC2925;
+  font-size: 1em;
+}
+
 .center{
   display: -webkit-box;
   display: -moz-box;
@@ -27,31 +60,4 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-
-.smallCheckbox {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-.noLeftPadding {
-    padding-left: 0px;
-}
-
-.cardPaddings {
-    padding: 10px;
-}
-
-.color-indicator {
-
-}
-
-.color-indicator:before {
-    content:"";
-    position:absolute;
-    border-top:1px solid #ddd;
-    width:10px;
-    left:-10px;
-    top:-1px;
 }

@@ -8,6 +8,13 @@
             on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
+            <cz-error-message visible="error">
+                <div scroll="false" class="card">
+                    <div class="item item-text-wrap error-message">
+                        {{'deadlines.cantload' | translate}}
+                    </div>
+                </div>
+            </cz-error-message>
             <div ng-repeat="(key, value) in deadlines | filter:isNotRemoved | groupBy: 'done'">
                 <div class="item item-divider" >
                     <span ng-if="key === 'false'">{{'deadlines.todo' | translate}} ({{value.length}})</span>

@@ -1,0 +1,15 @@
+.czMessageBox {
+    max-height: 400px;
+    -webkit-transition: max-height 0.5s;
+    -moz-transition: max-height 0.5s;
+    -o-transition: max-height 0.5s;
+    transition: max-height 0.5s;
+}
+
+.czMessageBox-rollup {
+    max-height: 0px;
+}
+
+.czMessageBox-rolldown {
+    max-height: 400px;
+}

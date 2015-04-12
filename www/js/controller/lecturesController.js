@@ -2,19 +2,22 @@
 
 angular.module("wuw.controllers")
 
-.controller("LecturesCtrl", function($scope, $ionicPopup, $filter, Lectures, Settings) {
+.controller("LecturesCtrl", function($scope, $ionicPopup, $timeout, $filter, Lectures, Settings) {
 
     $scope.loadLectures = function() {
         Lectures.upcoming().then(function(lectures){
             $scope.lectures = lectures;
+            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
         }, function() {
-            // TODO: Display some nice, non-blocking, error message.
-            $ionicPopup.alert({
-                title: $filter('translate')('global.error'),
-                template: $filter('translate')('lectures.cantload'),
-            });
+            // show the error message with some delay to prevent flickering
+            $timeout(function() {
+                $scope.$broadcast("czErrorMessage.show");
+            }, 300);
         }).finally(function () {
-            $scope.$broadcast("scroll.refreshComplete");
+            // remove the refresh spinner a little bit later to prevent flickering
+            $timeout(function() {
+                $scope.$broadcast("scroll.refreshComplete");
+            }, 400);
         });
     };
 
