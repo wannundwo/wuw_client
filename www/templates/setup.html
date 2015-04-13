@@ -12,7 +12,7 @@
                     </div>
                     <div style="padding: 15px; padding-left: 50px;" ng-click="toggleGroup(group)">
                         {{group._id}}
-                        <i style="float: right" class="icon" ng-class="isGroupShown(group) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+                        <i style="float: right" class="icon" ng-class="group.shown ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
                     </div>
 
                 </ion-item>
