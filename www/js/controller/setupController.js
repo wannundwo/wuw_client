@@ -12,10 +12,10 @@ angular.module('wuw.controllers')
 
     $scope.toggleGroup = function(group) {
         console.log(group);
-        if ($scope.isGroupShown(group)) {
-            $scope.shownGroup = null;
+        if (group.shown) {
+            group.shown = false;
         } else {
-            $scope.shownGroup = group;
+            group.shown = true;
         }
     };
 
