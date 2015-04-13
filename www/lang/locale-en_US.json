@@ -27,7 +27,7 @@
         "todo": "Todo",
         "done": "Done",
         "to": "by",
-        "date": "Deadline date",
+        "date": "Due Date",
         "delete": "delete",
         "create": "Create Deadline",
         "exampleInfo": "get Book XY from Lib",
