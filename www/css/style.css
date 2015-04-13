@@ -66,10 +66,16 @@
  * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
  */
 .list .item.item-accordion {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+
     line-height: 42px;
     padding-top: 0;
     padding-bottom: 0;
-    transition: 0.3s all linear;
+    transition: 0.09s all linear;
 }
 .list .item.item-accordion.ng-hide {
     line-height: 0px;
