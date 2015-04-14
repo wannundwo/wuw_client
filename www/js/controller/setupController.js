@@ -23,4 +23,22 @@ angular.module('wuw.controllers')
         return $scope.shownGroup === group;
     };
 
+
+    /*
+        lecture: the clicked lecture
+        checked: true if the checkbox is checked
+        group: the group to which this lecture belongs
+    */
+    $scope.lectureChecked = function(lecture, checked) {
+        console.log(lecture, checked);
+    };
+
+    /*
+        group: the clicked group
+        checked: true if the checkbox is checked
+    */
+    $scope.groupChecked = function(group, checked) {
+        console.log(group, checked);
+    };
+
 });
