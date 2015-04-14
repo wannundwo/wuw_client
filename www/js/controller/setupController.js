@@ -2,12 +2,18 @@
 
 angular.module('wuw.controllers')
 
-.controller('SetupCtrl', function($scope, Groups) {
+.controller('SetupCtrl', function($scope, $ionicLoading, Groups) {
     console.log("setup says hello");
+
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner> <br> Loading available Lectures...'
+    });
     Groups.loadAllGroupsWithLectures().then(function(groups) {
         $scope.groups = groups;
     }, function() {
 
+    }).finally(function() {
+        $ionicLoading.hide();
     });
 
     $scope.toggleGroup = function(group) {
@@ -22,7 +28,6 @@ angular.module('wuw.controllers')
     $scope.isGroupShown = function(group) {
         return $scope.shownGroup === group;
     };
-
 
     /*
         lecture: the clicked lecture
