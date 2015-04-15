@@ -5,7 +5,7 @@
     <ion-content>
         <ion-list>
             <div ng-repeat="group in groups">
-                <ion-item style="padding: 0;" class="item-actived-background-transition item-checkbox">
+                <ion-item on-touch="onTouch($event)" on-release="onRelease($event)" style="padding: 0;" class="item-actived-background-transition item-checkbox">
 
                     <div ng-click="groupChecked(group, cb.groupChecked)" style="width: 28px;" class="checkbox">
                         <input ng-model="cb.groupChecked" style="width: 28px;" type="checkbox">

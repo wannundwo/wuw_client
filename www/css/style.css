@@ -104,11 +104,8 @@
             transition: 0 0.2s;*/
 }
 
-.item-actived-background-transition:active {
+.item-actived-background-transition-active {
     background-color: #D9D9D9;
-    -webkit-transition: none;
-       -moz-transition: none;
-        -ms-transition: none;
-         -o-transition: none;
-            transition: none;
+    -webkit-transition: background-color 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
 }
