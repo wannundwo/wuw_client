@@ -7,7 +7,7 @@
         "group": "Kurs",
         "semGroup": "Semester",
         "info": "Info",
-        "save": "speichern",
+        "save": "Speichern",
         "pullToRefresh": "Ziehen zum aktualisieren...",
         "error": "Fehler"
     },
@@ -27,7 +27,7 @@
         "todo": "Zu erledigen",
         "done": "Erledigt",
         "to": "bis",
-        "date": "Abgabetermin",
+        "date": "Termin",
         "delete": "löschen",
         "create": "Deadline anlegen",
         "exampleInfo": "Buch XY in Bib ausleihen",
