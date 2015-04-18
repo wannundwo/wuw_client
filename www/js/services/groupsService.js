@@ -6,6 +6,7 @@ angular.module('wuw.services')
 // before every key, we add the 'wuw_' prefix
 .service('Groups', function($window, $http, $q, Settings) {
 
+    // used in the setup
     var loadAllGroupsWithLectures = function() {
         var deferred = $q.defer();
         $http.get(Settings.getSetting("apiUrl") + "/groupLectures")

@@ -1,0 +1,53 @@
+/* Indeterminate Checkbox Directive CSS */
+.checkbox input:indeterminate:before, .checkbox input:indeterminate + .checkbox-icon:before {
+  background: #457DF2;
+  border-color: #457DF2;
+}
+
+.checkbox input:indeterminate:after, input:indeterminate + .checkbox-icon:after {
+  opacity: 1;
+}
+
+.checkbox input:indeterminate:after, .checkbox-icon:indeterminate:after {
+  -webkit-transition: opacity 0.05s ease-in-out;
+  transition: opacity 0.05s ease-in-out;
+  opacity: 1 !important;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  display: table;
+  width: 14px;
+  height: 6px;
+  border: 2px solid #B7CFFA;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  content: ' ';
+  opacity: 0;
+}
+
+.platform-android .checkbox input:indeterminate:after, .checkbox-icon:indeterminate:after {
+    -webkit-transition: opacity 0.05s ease-in-out;
+    transition: opacity 0.05s ease-in-out;
+    opacity: 1 !important;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    position: absolute;
+    top: 33%;
+    left: 25%;
+    display: table;
+    width: 14px;
+    height: 6px;
+    border: 2px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    content: ' ';
+    opacity: 0;
+}
+
+.platform-android .checkbox input:checked:after {
+    border-width: 2px;
+}
