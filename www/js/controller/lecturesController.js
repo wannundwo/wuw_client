@@ -26,9 +26,8 @@ angular.module("wuw.controllers")
     };
 
     $scope.isMyCourse = function(lecture) {
-        // TODO: improve this
-        // actually, we doesn't need this anymore, hurray!
-        return lecture.groups.join().indexOf(Settings.getSetting('course')) === 0;
+        // TODO: reimplement this after setup is implemented
+        return true;
     };
 
     $scope.isUpcoming = function(lecture) {
