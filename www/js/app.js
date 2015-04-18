@@ -33,7 +33,12 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.filters'
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $translateProvider) {
+.config(function($stateProvider, $urlRouterProvider, $translateProvider, $ionicConfigProvider) {
+
+    // enable native scrolling on Android
+    /* if (ionic.Platform.isAndroid()) {
+        $ionicConfigProvider.scrolling.jsScrolling(false);
+    } */
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
