@@ -8,7 +8,11 @@
                 <ion-item on-touch="onTouch($event)" on-release="onRelease($event)" style="padding: 0;" class="item-actived-background-transition item-checkbox">
 
                     <div ng-click="groupChecked(group, cb.groupChecked)" style="width: 28px;" class="checkbox">
-                        <input ng-model="cb.groupChecked" style="width: 28px;" type="checkbox">
+                        <input ng-model="cb.groupChecked"
+                               indeterminate-checkbox
+                               child-list="group.lectures"
+                               property="chosen"
+                               style="width: 28px;" type="checkbox">
                     </div>
                     <div style="padding: 15px; padding-left: 50px;" ng-click="toggleGroup(group)">
                         {{group._id}}
@@ -19,9 +23,9 @@
                 <ion-checkbox class="checkbox-inset item-accordion"
                               ng-repeat="lecture in group.lectures"
                               ng-show="group.shown"
-                              ng-model="cb.lectureChecked"
+                              ng-model="lecture.chosen"
                               ng-click="lectureChecked(lecture, cb.lectureChecked)">
-                    {{lecture}}
+                    {{lecture.lectureName}}
                 </ion-checkbox>
             </div>
         </ion-list>

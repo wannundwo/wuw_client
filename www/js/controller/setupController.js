@@ -10,9 +10,19 @@ angular.module('wuw.controllers')
     });
 
     Groups.loadAllGroupsWithLectures().then(function(groups) {
+        // make this data useable for ngModel
+        for (var i = 0; i < groups.length; i++) {
+            groups[i].allChosen = false;
+            for(var j = 0; j < groups[i].lectures.length; j++) {
+                var lectureName = groups[i].lectures[j];
+                groups[i].lectures[j] = {};
+                groups[i].lectures[j].lectureName = lectureName;
+                groups[i].lectures[j].chosen = false;
+            }
+        }
         $scope.groups = groups;
     }, function() {
-
+        // TODO: error handling
     }).finally(function() {
         $ionicLoading.hide();
     });
