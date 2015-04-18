@@ -88,6 +88,7 @@
         "process": true,
         "require": true,
         "angular": true,
+        "ionic": true,
         "window": true,
         "beforeEach": true,
         "inject": true,
