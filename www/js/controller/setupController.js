@@ -2,11 +2,11 @@
 
 angular.module('wuw.controllers')
 
-.controller('SetupCtrl', function($scope, $timeout, $ionicLoading, Groups) {
+.controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, Groups, Settings) {
     console.log("setup says hello");
 
     $ionicLoading.show({
-      template: '<ion-spinner></ion-spinner> <br> Loading available Lectures...'
+      template: 'Loading available Lectures...'
     });
 
     Groups.loadAllGroupsWithLectures().then(function(groups) {
@@ -27,6 +27,29 @@ angular.module('wuw.controllers')
         $ionicLoading.hide();
     });
 
+    $scope.saveSetup = function() {
+        // receive all groups where something is checked
+        // TODO: Some ngModel magic could make this easier.
+        var selectedGroups = [];
+        var selectedLectures = [];
+        for (var i = 0; i < $scope.groups.length; i++) {
+            var newGroup = true;
+            for (var j = 0; j < $scope.groups[i].lectures.length; j++) {
+                if ($scope.groups[i].lectures[j].chosen) {
+                    if (newGroup) {
+                        selectedGroups.push($scope.groups[i]._id);
+                        newGroup = false;
+                    }
+                    selectedLectures.push($scope.groups[i].lectures[j].lectureName);
+                }
+            }
+        }
+
+        Settings.setSetting("selectedGroups", JSON.stringify(selectedGroups));
+        Settings.setSetting("selectedLectures", JSON.stringify(selectedLectures));
+        $state.go("tab.home", {location: "replace"});
+    };
+
     $scope.onTouch = function($event) {
         var el = angular.element($event.target);
         el.addClass("item-actived-background-transition-active");
@@ -34,43 +57,6 @@ angular.module('wuw.controllers')
         $timeout(function() {
             el.removeClass("item-actived-background-transition-active");
         }, 200);
-    };
-
-    $scope.onRelease = function($event) {
-        var el = angular.element($event.target);
-        //
-    };
-
-
-
-    $scope.toggleGroup = function(group) {
-        console.log(group);
-        if (group.shown) {
-            group.shown = false;
-        } else {
-            group.shown = true;
-        }
-    };
-
-    $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-    };
-
-    /*
-        lecture: the clicked lecture
-        checked: true if the checkbox is checked
-        group: the group to which this lecture belongs
-    */
-    $scope.lectureChecked = function(lecture, checked) {
-        console.log(lecture, checked);
-    };
-
-    /*
-        group: the clicked group
-        checked: true if the checkbox is checked
-    */
-    $scope.groupChecked = function(group, checked) {
-        console.log(group, checked);
     };
 
 });

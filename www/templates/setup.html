@@ -1,20 +1,20 @@
 <ion-view view-title="Setup: select your Courses">
     <ion-nav-buttons side="secondary">
-        <a class="button button-positive" href="#/tab/home">Done</a>
+        <button ng-click="saveSetup()" class="button button-positive">Done</button>
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
             <div ng-repeat="group in groups">
                 <ion-item on-touch="onTouch($event)" on-release="onRelease($event)" style="padding: 0;" class="item-actived-background-transition item-checkbox">
 
-                    <div ng-click="groupChecked(group, cb.groupChecked)" style="width: 28px;" class="checkbox">
-                        <input ng-model="cb.groupChecked"
+                    <div style="width: 28px;" class="checkbox">
+                        <input ng-model="group.allChosen"
                                indeterminate-checkbox
                                child-list="group.lectures"
                                property="chosen"
                                style="width: 28px;" type="checkbox">
                     </div>
-                    <div style="padding: 15px; padding-left: 50px;" ng-click="toggleGroup(group)">
+                    <div style="padding: 15px; padding-left: 50px;" ng-click="group.shown = !group.shown;">
                         {{group._id}}
                         <i style="float: right" class="icon" ng-class="group.shown ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
                     </div>
@@ -23,8 +23,8 @@
                 <ion-checkbox class="checkbox-inset item-accordion"
                               ng-repeat="lecture in group.lectures"
                               ng-show="group.shown"
-                              ng-model="lecture.chosen"
-                              ng-click="lectureChecked(lecture, cb.lectureChecked)">
+                              ng-model="lecture.chosen">
+
                     {{lecture.lectureName}}
                 </ion-checkbox>
             </div>
