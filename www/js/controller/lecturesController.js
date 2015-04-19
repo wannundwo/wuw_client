@@ -5,7 +5,7 @@ angular.module("wuw.controllers")
 .controller("LecturesCtrl", function($scope, $ionicPopup, $timeout, $filter, Lectures, Settings) {
 
     $scope.loadLectures = function() {
-        Lectures.upcoming().then(function(lectures){
+        Lectures.lecturesForGroups().then(function(lectures){
             $scope.lectures = lectures;
             $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
         }, function() {

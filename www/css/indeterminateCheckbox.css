@@ -29,8 +29,8 @@
 }
 
 .platform-android .checkbox input:indeterminate:after, .checkbox-icon:indeterminate:after {
-    -webkit-transition: opacity 0.05s ease-in-out;
-    transition: opacity 0.05s ease-in-out;
+    -webkit-transition: opacity 0.0s ease-in-out;
+    transition: opacity 0.0s ease-in-out;
     opacity: 1 !important;
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);

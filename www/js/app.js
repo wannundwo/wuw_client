@@ -2,7 +2,9 @@
 
 angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage'])
 
-.run(function($ionicPlatform, Settings) {
+.run(function($ionicPlatform, $state, $rootScope, Settings) {
+
+    console.log("run");
 
     var apiUrl = "https://wuw.benleb.de:4343/api/v0";
     var versionNumber = "0.2.0";
@@ -44,6 +46,11 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
+
+    var otherwise = "/tab/home";
+    if (typeof window.localStorage.wuw_selectedGroups === "undefined") {
+        otherwise = "/setup";
+    }
 
     $stateProvider
     // setup an abstract state for the tabs directive
@@ -115,7 +122,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/home');
+    $urlRouterProvider.otherwise(otherwise);
 
     // load translation
     $translateProvider.useStaticFilesLoader({
