@@ -3,7 +3,6 @@
 angular.module('wuw.controllers')
 
 .controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, Groups, Settings) {
-    console.log("setup says hello");
 
     $ionicLoading.show({
       template: 'Loading available Lectures...'
