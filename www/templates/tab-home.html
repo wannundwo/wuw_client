@@ -7,6 +7,7 @@
         <ion-list>
 
           <div ng-if="currLecture || nextLecture">
+
             <div class="list card">
               <div class="item item-divider">{{'home.current' | translate}}</div>
               <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
@@ -26,7 +27,11 @@
                   <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
                   {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
               </div>
+              <div ng-if="!nextLecture">
+                {{'home.noLecture' | translate}}
+              </div>
             </div>
+
           </div>
 
           <ion-item ng-if="loading">

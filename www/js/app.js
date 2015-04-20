@@ -3,9 +3,7 @@
 angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage'])
 
 .run(function($ionicPlatform, $state, $rootScope, Settings) {
-
-    console.log("run");
-
+    
     var apiUrl = "https://wuw.benleb.de:4343/api/v0";
     var versionNumber = "0.2.0";
 
