@@ -5,7 +5,8 @@
           on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-          <div ng-if="nextLecture">
+
+          <div ng-if="currLecture || nextLecture">
             <div class="list card">
               <div class="item item-divider">{{'home.current' | translate}}</div>
               <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
