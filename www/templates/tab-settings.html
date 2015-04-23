@@ -3,28 +3,31 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
-            <label class="item">
+            <ion-item>
                 {{'settings.version' | translate}}: v{{settings.version}}
-            </label>
+            </ion-item>
+
             <label class="item item-input item-stacked-label" ng-hide="false">
                 <span class="input-label">{{'settings.apiUrl' | translate}}</span>
                 <input type="text" ng-model="settings.apiUrl">
             </label>
-            <label class="item item-input item-stacked-label">
+
+
+            <ion-item>
                 <span class="input-label">{{'global.semGroup' | translate}}</span>
-                <div class="item-text-wrap"><p>{{'settings.semGroupHelp' | translate}}</p></div>
-                <input type="text" ng-model="settings.course">
-            </label>
+                <div class="item-text-wrap">
+                    <p>{{'settings.semGroupHelp' | translate}}</p>
+                </div>
+
+                <a class="button button-outline button-block button-positive" href="#/setup">
+                    Setup
+                </a>
+            </ion-item>
+
             <ion-item>
                 <button class="button button-outline button-block button-positive" ng-click="save()">
                     {{'global.save' | translate}}
                 </button>
-            </ion-item>
-
-            <ion-item>
-                <a class="button button-outline button-block button-positive" href="#/setup">
-                    Setup
-                </a>
             </ion-item>
 
         </ion-list>
