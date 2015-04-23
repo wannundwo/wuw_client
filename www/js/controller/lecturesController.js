@@ -25,19 +25,6 @@ angular.module("wuw.controllers")
         $scope.loadLectures();
     };
 
-    $scope.isMyCourse = function(lecture) {
-        // TODO: reimplement this after setup is implemented
-        return true;
-    };
-
-    $scope.isUpcoming = function(lecture) {
-        return true;
-        /*if (Date.parse(lecture.endTime) >= Date.now()) {
-            return true;
-        }
-        return false;*/
-    };
-
     $scope.$on('$ionicView.enter', function(){
         // get lectures from cache, and if the cache is older then 10 seconds load from the API
         $scope.lectures = Lectures.fromCache();

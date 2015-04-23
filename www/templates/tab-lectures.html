@@ -17,11 +17,11 @@
             </cz-error-message>
 
             <!-- group the lectures by its date -->
-            <div ng-repeat="(key, value) in lectures | filter:isUpcoming | groupBy: 'date'">
+            <div ng-repeat="(key, value) in lectures | groupBy: 'date'">
                 <div class="item item-divider">
                     {{key | date: 'EEE, dd.MM.yyyy'}}
                 </div>
-                <ion-item style="border-left: 10px solid {{lecture.color}};" class="color-indicator item-text-wrap" ng-repeat="lecture in value | filter:isMyCourse">
+                <ion-item style="border-left: 10px solid {{lecture.color}};" class="color-indicator item-text-wrap" ng-repeat="lecture in value">
                     <h2>
                         <b>{{lecture.lectureName}}</b> in <b>{{lecture.rooms | join: ', '}}</b>
                     </h2>
