@@ -46,6 +46,8 @@ angular.module('wuw.controllers')
 
         Settings.setSetting("selectedGroups", JSON.stringify(selectedGroups));
         Settings.setSetting("selectedLectures", JSON.stringify(selectedLectures));
+        Settings.setSetting("localDeadlines", "");
+        Settings.setSetting("localDeadlines", "");
         $state.go("tab.home", {location: "replace"});
     };
 
