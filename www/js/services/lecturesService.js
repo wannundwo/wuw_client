@@ -20,11 +20,14 @@ angular.module("wuw.services")
         $http.get(Settings.getSetting("apiUrl") + "/lectures")
         .success(function(data, status, headers, config) {
 
-            // add a date & color field to every lecutre (used for grouping & optical separating)
-            data.forEach(function(lecture) {
+            for (var i = 0; i < data.length; i++) {
+                var lecture = data[i];
+
+                // add datefield to every lecutre (used for grouping)
                 var d = new Date(lecture.startTime).setHours(0);
                 lecture.date = new Date(d).setMinutes(0);
-            });
+            }
+
             Settings.setSetting('lecturesCache', JSON.stringify(data));
             Settings.setSetting('lecturesCacheTime', new Date().getTime());
             lectures = data;
@@ -59,21 +62,39 @@ angular.module("wuw.services")
 
     var lecturesForGroups = function() {
         var deferred = $q.defer();
+        var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
 
         $http.post(Settings.getSetting("apiUrl") + "/LecturesForGroups", {
             "groups": Settings.getSetting("selectedGroups")
         }).
         success(function(data, status, headers, config) {
+            var filteredLectures = [];
 
-            // add datefield to every lecutre (used for grouping)
-            data.forEach(function(lecture) {
+            for (var i = 0; i < data.length; i++) {
+                var lecture = data[i];
+                var occursInSelectedLectures = false;
+                console.log(lecture.groups);
+
+                // check if this lectures is in one of the users selected groups
+                for (var k = 0; k < selectedLectures.length; k++) {
+                    if (lecture.lectureName === selectedLectures[k]) {
+                        occursInSelectedLectures = true;
+                    }
+                }
+
+                // add datefield to every lecutre (useable for grouping)
                 var d = new Date(lecture.startTime).setHours(0);
                 lecture.date = new Date(d).setMinutes(0);
-            });
-            Settings.setSetting('lecturesCache', JSON.stringify(data));
+
+                if (occursInSelectedLectures) {
+                    filteredLectures.push(lecture);
+                }
+            }
+
+            Settings.setSetting('lecturesCache', JSON.stringify(filteredLectures));
             Settings.setSetting('lecturesCacheTime', new Date().getTime());
-            lectures = data;
-            deferred.resolve(data);
+            lectures = filteredLectures;
+            deferred.resolve(filteredLectures);
         }).
         error(function(data, status, headers, config) {
             deferred.reject(data);
