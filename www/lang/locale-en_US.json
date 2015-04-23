@@ -36,6 +36,10 @@
     "settings": {
         "version": "Version",
         "apiUrl": "API URL",
-        "semGroupHelp": "Please choose you Group and/or single Courses here"
+        "semGroupHelp": "Please choose you Semester and/or single Courses here.",
+        "selectSemesterAndGroups" : "Select Courses"
+    },
+    "setup": {
+        "title": "Select Semester and Courses"
     }
 }
