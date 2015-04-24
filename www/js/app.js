@@ -3,7 +3,7 @@
 angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage'])
 
 .run(function($ionicPlatform, $state, $rootScope, Settings) {
-    
+
     var apiUrl = "https://wuw.benleb.de:4343/api/v0";
     var versionNumber = "0.2.0";
 
@@ -11,9 +11,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     Settings.setSetting('version', versionNumber);
     Settings.setSetting('apiUrl', apiUrl);
 
-    if (typeof Settings.getSetting('course') === 'undefined') {
-        Settings.setSetting('course', 'IF');
-    }
     if (typeof Settings.getSetting('uuid') === "undefined") {
         // We currently use, for simplity, just a timestamp as uuid.
         // TODO: Use real uuid.
@@ -36,9 +33,9 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 .config(function($stateProvider, $urlRouterProvider, $translateProvider, $ionicConfigProvider) {
 
     // enable native scrolling on Android
-    /* if (ionic.Platform.isAndroid()) {
+    if (ionic.Platform.isAndroid()) {
         $ionicConfigProvider.scrolling.jsScrolling(false);
-    } */
+    }
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
