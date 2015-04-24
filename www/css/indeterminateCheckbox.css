@@ -28,6 +28,24 @@
   opacity: 0;
 }
 
+/* Adnroid Style for the Checkboxes */
+.platform-android .group-checkbox:before {
+    border-radius: 2px;
+    width: 72%;
+    height: 72%;
+    margin-top: 14%;
+    margin-left: 14%;
+    border-width: 2px;
+}
+
+.platform-android .group-checkbox:after {
+    border-width: 2px;
+    top: 19%;
+    left: 25%;
+    width: 13px;
+    height: 7px;
+}
+
 .platform-android .checkbox input:indeterminate:after, .checkbox-icon:indeterminate:after {
     -webkit-transition: opacity 0.0s ease-in-out;
     transition: opacity 0.0s ease-in-out;
