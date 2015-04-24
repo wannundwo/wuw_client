@@ -43,14 +43,4 @@ angular.module('wuw.controllers')
         Settings.setSetting("localDeadlines", "");
         $state.go("tab.home", {location: "replace"});
     };
-
-    $scope.onTouch = function($event) {
-        var el = angular.element($event.target);
-        el.addClass("item-actived-background-transition-active");
-
-        $timeout(function() {
-            el.removeClass("item-actived-background-transition-active");
-        }, 200);
-    };
-
 });
