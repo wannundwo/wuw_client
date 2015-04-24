@@ -31,6 +31,7 @@
         "delete": "löschen",
         "create": "Deadline anlegen",
         "exampleInfo": "Buch XY in Bib ausleihen",
+        "noDeadlines": "Zur Zeit gibt es keine Abgaben.",
         "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
     },
     "settings": {

@@ -31,6 +31,7 @@
         "delete": "delete",
         "create": "Create Deadline",
         "exampleInfo": "get Book XY from Lib",
+        "noDeadlines": "Currently no Deadlines listed",
         "cantload": "Can't load Deadlines. Please make sure that you are connected to the internet."
     },
     "settings": {
