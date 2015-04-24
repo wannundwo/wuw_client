@@ -6,7 +6,7 @@ angular.module('wuw.services')
     // used in the setup
     var loadAllGroupsWithLectures = function() {
         var deferred = $q.defer();
-        $http.get(Settings.getSetting("apiUrl") + "/groupLectures")
+        $http.get(Settings.getSetting("apiUrl") + "/groups/lectures")
         .success(function(data, status, headers, config) {
 
             // merges the selected groups and lectures into the received data
