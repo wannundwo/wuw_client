@@ -11,7 +11,7 @@ angular.module("wuw.services")
         var deferred = $q.defer();
         var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
 
-        $http.post(Settings.getSetting("apiUrl") + "/LecturesForGroups", {
+        $http.post(Settings.getSetting("apiUrl") + "/lectures/groups", {
             "groups": Settings.getSetting("selectedGroups")
         }).
         success(function(data, status, headers, config) {
