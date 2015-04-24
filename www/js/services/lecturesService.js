@@ -7,6 +7,7 @@ angular.module("wuw.services")
 .factory("Lectures", function($http, $q, Settings) {
     var lectures = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
 
+    // TODO: unused?
     var get = function(id) {
         for (var i = 0; i < lectures.length; i++) {
             if (lectures[i]._id === id) {
@@ -15,6 +16,7 @@ angular.module("wuw.services")
         }
     };
 
+    // TODO: unused?
     var all = function() {
         var deferred = $q.defer();
         $http.get(Settings.getSetting("apiUrl") + "/lectures")
@@ -39,6 +41,7 @@ angular.module("wuw.services")
         return deferred.promise;
     };
 
+    // TODO: unused?
     var upcoming = function() {
         var deferred = $q.defer();
         $http.get(Settings.getSetting("apiUrl") + "/upcomingLectures").
@@ -73,11 +76,10 @@ angular.module("wuw.services")
             for (var i = 0; i < data.length; i++) {
                 var lecture = data[i];
                 var occursInSelectedLectures = false;
-                console.log(lecture.groups);
 
                 // check if this lectures is in one of the users selected groups
                 for (var k = 0; k < selectedLectures.length; k++) {
-                    if (lecture.lectureName === selectedLectures[k]) {
+                    if (lecture.lectureName === selectedLectures[k].lectureName) {
                         occursInSelectedLectures = true;
                     }
                 }

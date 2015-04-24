@@ -2,23 +2,13 @@
 
 angular.module('wuw.controllers')
 
-.controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, Groups, Settings) {
+.controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, Setup, Settings) {
 
     $ionicLoading.show({
       template: 'Loading available Lectures...'
     });
 
-    Groups.loadAllGroupsWithLectures().then(function(groups) {
-        // make this data useable for ngModel
-        for (var i = 0; i < groups.length; i++) {
-            groups[i].allChosen = false;
-            for(var j = 0; j < groups[i].lectures.length; j++) {
-                var lectureName = groups[i].lectures[j];
-                groups[i].lectures[j] = {};
-                groups[i].lectures[j].lectureName = lectureName;
-                groups[i].lectures[j].chosen = false;
-            }
-        }
+    Setup.loadAllGroupsWithLectures().then(function(groups) {
         $scope.groups = groups;
     }, function() {
         // TODO: error handling
@@ -39,7 +29,10 @@ angular.module('wuw.controllers')
                         selectedGroups.push($scope.groups[i]._id);
                         newGroup = false;
                     }
-                    selectedLectures.push($scope.groups[i].lectures[j].lectureName);
+                    selectedLectures.push({
+                        lectureName: $scope.groups[i].lectures[j].lectureName,
+                        groupName: $scope.groups[i]._id
+                    });
                 }
             }
         }
