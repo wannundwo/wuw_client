@@ -5,44 +5,36 @@
           on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-
-          <div ng-if="currLecture || nextLecture">
-
             <div class="list card">
-              <div class="item item-divider">{{'home.current' | translate}}</div>
-              <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
-                <div ng-if="currLecture">
-                  <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
-                  {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
+                <div class="item item-divider">{{'home.current' | translate}}</div>
+                    <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
+                        <div ng-if="currLecture">
+                            <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
+                            {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
+                        </div>
+                    <div ng-if="!currLecture">
+                        {{'home.noLecture' | translate}}
+                    </div>
                 </div>
-                <div ng-if="!currLecture">
-                  {{'home.noLecture' | translate}}
-                </div>
-              </div>
             </div>
-
             <div class="list card">
-              <div class="item item-divider">{{'home.next' | translate}}</div>
-              <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
-                  <div ng-if="nextLecture">
-                      <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
-                      {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
-                  </div>
-                  <div ng-if="!nextLecture">
-                    {{'home.noLecture' | translate}}
-                  </div>
-              </div>
+                <div class="item item-divider">{{'home.next' | translate}}</div>
+                    <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
+                        <div ng-if="nextLecture">
+                            <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
+                            {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
+                        </div>
+                    <div ng-if="!nextLecture">
+                        {{'home.noLecture' | translate}}
+                    </div>
+                </div>
             </div>
-
-          </div>
-
           <ion-item ng-if="loading">
             <div class="center">
                 <ion-spinner></ion-spinner>
               </div>
             </div>
           </ion-item>
-
         </ion-list>
     </ion-content>
 </ion-view>
