@@ -22,12 +22,12 @@
                     {{key | date: 'EEE, dd.MM.yyyy'}}
                 </div>
                 <ion-item style="border-left: 10px solid {{dish.color}};" class="color-indicator item-text-wrap" ng-repeat="dish in value">
-                    <h3>{{dish.category}}</h3>
-                    <h2>
+                    <h3 class="float-left">{{dish.category}}</h3> <b class="float-right">{{dish.priceInternal | number: 2}}€ / {{dish.priceExternal | number: 2}}€</b>
+                    <h2 class="clear-float">
                         <b>{{dish.dishName}}</b>
                     </h2>
-                    <h4>Allerg: {{dish.allergens | join: ', '}}</h4>
-                    <h4>Add: {{dish.additives | join: ', '}}</h4>
+                    <h4 ng-show="dish.allergens.length !== 0">Allergene: {{dish.allergens | join: ', '}}</h4>
+                    <h4 ng-show="dish.additives.length !== 0">Zusätze: {{dish.additives | join: ', '}}</h4>
                 </ion-item>
             </div>
 
