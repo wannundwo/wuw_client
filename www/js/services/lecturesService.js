@@ -15,8 +15,15 @@ angular.module("wuw.services")
             "groups": Settings.getSetting("selectedGroups")
         }).
         success(function(data, status, headers, config) {
-            var filteredLectures = [];
 
+            // if the user hasn't selected lectures, we give him all.
+            if (selectedLectures.length === 0) {
+                lectures = data;
+                deferred.resolve(data);
+                return;
+            }
+
+            var filteredLectures = [];
             for (var i = 0; i < data.length; i++) {
                 var lecture = data[i];
                 var occursInSelectedLectures = false;
@@ -32,7 +39,7 @@ angular.module("wuw.services")
                 var d = new Date(lecture.startTime).setHours(0);
                 lecture.date = new Date(d).setMinutes(0);
 
-                if (occursInSelectedLectures || selectedLectures.length === 0) {
+                if (occursInSelectedLectures) {
                     filteredLectures.push(lecture);
                 }
             }
