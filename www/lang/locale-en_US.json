@@ -46,6 +46,6 @@
         "selectSemesterAndGroups" : "Select Courses"
     },
     "setup": {
-        "title": "Select Semester and Courses"
+        "title": "Select Courses"
     }
 }
