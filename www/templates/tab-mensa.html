@@ -1,0 +1,37 @@
+<ion-view view-title="{{'global.mensa' | translate}}">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-ios-refresh-empty" ng-click="doRefresh()"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+            pulling-text="{{'global.pullToRefresh' | translate}}"
+            on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <cz-error-message visible="errorVisible">
+                <div scroll="false" class="card">
+                    <div class="item item-text-wrap error-message">
+                        {{'dishes.cantload' | translate}}
+                    </div>
+                </div>
+            </cz-error-message>
+
+            <!-- group the dishes by its date -->
+            <div ng-repeat="(key, value) in dishes | groupBy: 'date'">
+                <div class="item item-divider">
+                    {{key | date: 'EEE, dd.MM.yyyy'}}
+                </div>
+                <ion-item style="border-left: 10px solid {{dish.color}};" class="color-indicator item-text-wrap" ng-repeat="dish in value">
+                    <h3 class="float-left">{{dish.category}}</h3> <b class="float-right">{{dish.priceInternal | number: 2}}€ / {{dish.priceExternal | number: 2}}€</b>
+                    <h2 class="clear-float">
+                        <b>{{dish.dishName}}</b>
+                    </h2>
+                    <h4 ng-show="dish.allergens.length !== 0">Allergene: {{dish.allergens | join: ', '}}</h4>
+                    <h4 ng-show="dish.additives.length !== 0">Zusätze: {{dish.additives | join: ', '}}</h4>
+                </ion-item>
+            </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
