@@ -9,7 +9,10 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 
     // predefined settings
     Settings.setSetting('version', versionNumber);
-    Settings.setSetting('apiUrl', apiUrl);
+
+    if (typeof Settings.getSetting('apiUrl') === "undefined") {
+        Settings.setSetting('apiUrl', apiUrl);
+    }
 
     if (typeof Settings.getSetting('uuid') === "undefined") {
         // We currently use, for simplity, just a timestamp as uuid.
