@@ -1,0 +1,48 @@
+/*jshint bitwise: false*/
+
+"use strict";
+
+angular.module("wuw.services")
+
+.factory("Dishes", function($http, $q, Settings) {
+    var dishes = JSON.parse(Settings.getSetting('dishesCache') || '[]');
+
+    var getDishes = function() {
+        var deferred = $q.defer();
+        var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
+
+        $http.get(Settings.getSetting("apiUrl") + "/dishes")
+        .success(function(data, status, headers, config) {
+            var filteredDishes = data;
+
+            Settings.setSetting('dishesCache', JSON.stringify(filteredDishes));
+            Settings.setSetting('dishesCacheTime', new Date().getTime());
+            dishes = filteredDishes;
+            deferred.resolve(filteredDishes);
+        }).
+        error(function(data, status, headers, config) {
+            deferred.reject(data);
+        });
+        return deferred.promise;
+    };
+
+    var fromCache = function() {
+        return dishes;
+    };
+
+    var secondsSinceCache = function() {
+        var cacheTime = Settings.getSetting('dishesCacheTime');
+        if (typeof cacheTime === 'undefined') {
+            return Math.pow(2,32) - 1; // highest integer in JS
+        }
+        var diff = new Date().getTime() - cacheTime;
+        return Math.round(diff / 1000);
+    };
+
+    return {
+        dishes: dishes,
+        getDishes: getDishes,
+        fromCache: fromCache,
+        secondsSinceCache: secondsSinceCache
+    };
+});

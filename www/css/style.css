@@ -31,6 +31,16 @@
     font-size: 1em;
 }
 
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.clear-float {
+    clear: both;
+}
+
 .center{
     display: -webkit-box;
     display: -moz-box;
