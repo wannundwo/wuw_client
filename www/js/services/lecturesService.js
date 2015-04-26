@@ -32,7 +32,7 @@ angular.module("wuw.services")
                 var d = new Date(lecture.startTime).setHours(0);
                 lecture.date = new Date(d).setMinutes(0);
 
-                if (occursInSelectedLectures) {
+                if (occursInSelectedLectures || selectedLectures.length === 0) {
                     filteredLectures.push(lecture);
                 }
             }
