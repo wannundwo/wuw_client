@@ -65,6 +65,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
+
     .state('tab.deadlines', {
         url: '/deadlines',
         views: {
@@ -92,6 +93,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
+
     .state('tab.lectures', {
         url: '/lectures',
         views: {
@@ -101,6 +103,17 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
+
+    .state('tab.mensa', {
+        url: '/mensa',
+        views: {
+            'tab-mensa': {
+            templateUrl: 'templates/tab-mensa.html',
+            controller: 'MensaCtrl'
+        }
+      }
+    })
+
     .state('tab.settings', {
         url: '/settings',
         views: {
@@ -110,6 +123,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
+
     .state('setup', {
         url: '/setup',
         templateUrl: 'templates/setup.html',

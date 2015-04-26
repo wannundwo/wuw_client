@@ -3,6 +3,7 @@
         "home": "Home",
         "lectures": "Vorlesungen",
         "deadlines": "Deadlines",
+        "mensa": "Mensa",
         "settings": "Einstellungen",
         "group": "Kurs",
         "semGroup": "Semester und Kurse",
@@ -33,6 +34,9 @@
         "exampleInfo": "Buch XY in Bib ausleihen",
         "noDeadlines": "Zur Zeit gibt es keine Abgaben.",
         "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
+    },
+    "mensa": {
+        "cantload": "Die Gerichte konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
     },
     "settings": {
         "version": "Version",
