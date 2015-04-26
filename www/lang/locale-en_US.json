@@ -10,7 +10,8 @@
         "info": "Info",
         "save": "save",
         "pullToRefresh": "Pull to refresh...",
-        "error": "Error"
+        "error": "Error",
+        "done": "Done"
     },
     "home": {
         "current": "Current lecture",

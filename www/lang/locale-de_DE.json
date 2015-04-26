@@ -10,7 +10,8 @@
         "info": "Info",
         "save": "Speichern",
         "pullToRefresh": "Ziehen zum aktualisieren...",
-        "error": "Fehler"
+        "error": "Fehler",
+        "done": "Fertig"
     },
     "home": {
         "current": "Momentan läuft",
