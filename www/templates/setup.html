@@ -4,11 +4,18 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
+
             <ion-item class="item-text-wrap">
-                <p>
-                    {{'setup.info' | translate}}
-                </p>
+                <p> {{'setup.info' | translate}} </p>
             </ion-item>
+
+            <ion-item ng-if="showErrorMessage">
+                {{'setup.error' | translate}}
+                <button class="button button-outline button-block button-positive" ng-click="load()">
+                    {{'setup.error' | translate}}
+                </button>
+            </ion-item>
+
             <div ng-repeat="group in groups">
                 <ion-item style="padding: 0;" class="item-actived-background-transition item-checkbox">
 
