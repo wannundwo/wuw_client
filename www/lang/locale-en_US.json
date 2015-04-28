@@ -47,6 +47,8 @@
     },
     "setup": {
         "title": "Select Courses",
+        "error": "Error",
+        "refresh": "Retry",
         "info": "Choose the lectures, which you want to see in your timetable. Tap on an Semester to look at the course in it."
     }
 }

@@ -4,17 +4,20 @@ angular.module('wuw.controllers')
 
 .controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, Setup, Settings) {
 
-    $ionicLoading.show({
-      template: 'Loading available Lectures...'
-    });
+    $scope.load = function() {
+        $scope.showErrorMessage = false;
+        $ionicLoading.show({
+            template: 'Loading available Lectures...'
+        });
 
-    Setup.loadAllGroupsWithLectures().then(function(groups) {
-        $scope.groups = groups;
-    }, function() {
-        // TODO: error handling
-    }).finally(function() {
-        $ionicLoading.hide();
-    });
+        Setup.loadAllGroupsWithLectures().then(function(groups) {
+            $scope.groups = groups;
+        }, function() {
+            $scope.showErrorMessage = true;
+        }).finally(function() {
+            $ionicLoading.hide();
+        });
+    };
 
     $scope.saveSetup = function() {
         // receive all groups where something is checked
@@ -43,4 +46,7 @@ angular.module('wuw.controllers')
         Settings.setSetting("localDeadlines", "");
         $state.go("tab.home", {location: "replace"});
     };
+
+    $scope.load();
+
 });
