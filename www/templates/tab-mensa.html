@@ -26,8 +26,10 @@
                     <h2 class="clear-float">
                         <b>{{dish.dishName}}</b>
                     </h2>
-                    <p ng-show="dish.allergens.length !== 0">Allergene: {{dish.allergens | join: ', '}}</p>
-                    <p ng-show="dish.additives.length !== 0">Zusätze: {{dish.additives | join: ', '}}</p>
+                    <div class="dishes-allergens-additives">
+                        <p ng-show="dish.allergens.length !== 0">Allergene: {{dish.allergens | join: ', '}}</p>
+                        <p ng-show="dish.additives.length !== 0">Zusätze: {{dish.additives | join: ', '}}</p>
+                    </div>
                 </ion-item>
             </div>
 
