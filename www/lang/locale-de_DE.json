@@ -48,7 +48,7 @@
     "setup": {
         "title": "Kurse wählen",
         "error": "Fehler",
-        "refresh": "Erneut laden",
+        "retry": "Erneut laden",
         "info": "Wähle deine Vorlesungen, welche dann in deinem Stundenplan angezeigt werden. Berühre ein Semester, um die Kurse darin zu sehen."
     }
 }
