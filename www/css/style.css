@@ -119,3 +119,11 @@
     -webkit-transition: background-color 200ms ease-in-out;
     transition: background-color 200ms ease-in-out;
 }
+
+
+/************ MENSA **************/
+.dishes-allergens-additives p {
+    line-height: 1.2;
+    font-size: 12px;
+    margin-top: 5px;
+}
