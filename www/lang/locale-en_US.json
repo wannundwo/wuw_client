@@ -50,6 +50,7 @@
         "title": "Select Courses",
         "error": "Error",
         "retry": "Retry",
+        "loading": "Loading available courses...",
         "info": "Choose the lectures, which you want to see in your timetable. Tap on an Semester to look at the course in it."
     }
 }

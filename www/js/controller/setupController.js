@@ -7,7 +7,7 @@ angular.module('wuw.controllers')
     $scope.load = function() {
         $scope.showErrorMessage = false;
         $ionicLoading.show({
-            template: 'Loading available Lectures...'
+            template: "{{'setup.loading' | translate}}"
         });
 
         Setup.loadAllGroupsWithLectures().then(function(groups) {
@@ -50,5 +50,8 @@ angular.module('wuw.controllers')
             $state.go("tab.home", {location: "replace"});
         }
     };
-    $scope.load();
+    
+    $scope.$on('$ionicView.enter', function(){
+        $scope.load();
+    });
 });
