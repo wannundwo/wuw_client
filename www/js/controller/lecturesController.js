@@ -8,11 +8,13 @@ angular.module("wuw.controllers")
         Lectures.lecturesForGroups().then(function(lectures){
             $scope.lectures = lectures;
             $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
-        }, function() {
-            // show the error message with some delay to prevent flickering
-            $timeout(function() {
-                $scope.$broadcast("czErrorMessage.show");
-            }, 300);
+        }, function(error) {
+            if (error === "httpFailed") {
+                // show the error message with some delay to prevent flickering
+                $timeout(function() {
+                    $scope.$broadcast("czErrorMessage.show");
+                }, 300);
+            }
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
@@ -26,6 +28,9 @@ angular.module("wuw.controllers")
     };
 
     $scope.$on('$ionicView.enter', function(){
+        // get the number of selected lectures, if its zero, we display a message to select courses
+        $scope.selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
+
         // get lectures from cache, and if the cache is older then 10 seconds load from the API
         $scope.lectures = Lectures.fromCache();
         if (Lectures.secondsSinceCache() > 10) {
