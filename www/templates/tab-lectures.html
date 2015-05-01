@@ -16,6 +16,13 @@
                 </div>
             </cz-error-message>
 
+            <ion-item ng-if="selectedLectures === 0" class="item-text-wrap">
+                {{'lectures.noCoursesSelectedMessage' | translate}}
+                <a class="button button-outline button-block button-positive" href="#/setup">
+                    {{'settings.selectSemesterAndGroups' | translate}}
+                </a>
+            </ion-item>
+
             <!-- group the lectures by its date -->
             <div ng-repeat="(key, value) in lectures | groupBy: 'date'">
                 <div class="item item-divider">

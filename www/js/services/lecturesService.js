@@ -11,17 +11,18 @@ angular.module("wuw.services")
         var deferred = $q.defer();
         var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
 
+        // if the user hasn't selected courses, reject the request
+        if (selectedLectures.length === 0) {
+            lectures = [];
+            Settings.setSetting('lecturesCache', '[]');
+            deferred.reject("noLecturesSelected");
+            return deferred.promise;
+        }
+
         $http.post(Settings.getSetting("apiUrl") + "/lectures/groups", {
             "groups": Settings.getSetting("selectedGroups")
         }).
         success(function(data, status, headers, config) {
-
-            // if the user hasn't selected lectures, we give him all.
-            if (selectedLectures.length === 0) {
-                lectures = data;
-                deferred.resolve(data);
-                return;
-            }
 
             var filteredLectures = [];
             for (var i = 0; i < data.length; i++) {
@@ -50,7 +51,7 @@ angular.module("wuw.services")
             deferred.resolve(filteredLectures);
         }).
         error(function(data, status, headers, config) {
-            deferred.reject(data);
+            deferred.reject("httpFailed");
         });
         return deferred.promise;
     };

@@ -22,7 +22,8 @@
         "rooms": "Raum/Räume",
         "startTime": "Beginnt am",
         "endTime": "Endet am",
-        "cantload": "Die Vorlesungen konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
+        "cantload": "Die Vorlesungen konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
+        "noCoursesSelectedMessage": "Um deinen Stundenplan anzuzeigen, musst du erst deine gewünschten Kurse auswählen."
     },
     "deadlines": {
         "deadline": "Deadline",
