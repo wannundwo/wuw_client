@@ -50,6 +50,7 @@
         "title": "Kurse wählen",
         "error": "Fehler",
         "retry": "Erneut laden",
+        "loading": "Kurse werden geladen...",
         "info": "Wähle deine Vorlesungen, welche dann in deinem Stundenplan angezeigt werden. Berühre ein Semester, um die Kurse darin zu sehen."
     }
 }
