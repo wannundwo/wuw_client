@@ -6,7 +6,7 @@ angular.module("wuw.services")
 
 .factory("Lectures", function($http, $q, Settings) {
     var lectures = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
-    var lecturesWeekly = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
+    var lecturesWeekly = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
     
     var lecturesThisWeek = function() {
         var deferred = $q.defer();
