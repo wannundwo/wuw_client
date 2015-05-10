@@ -105,7 +105,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
     
-    .state('tab.lectures-weekly', {
+    .state('tab.lecturesWeekly', {
         url: '/lecturesWeekly',
         views: {
             'tab-lectures': {

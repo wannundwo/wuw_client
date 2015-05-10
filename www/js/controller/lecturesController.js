@@ -2,7 +2,7 @@
 
 angular.module("wuw.controllers")
 
-.controller("LecturesCtrl", function($scope, $ionicPopup, $timeout, $filter, Lectures, Settings) {
+.controller("LecturesCtrl", function($scope, $state, $ionicHistory, $ionicPopup, $timeout, $filter, Lectures, Settings) {
     
     var date = new Date();
     var d = date.getDate();
@@ -53,6 +53,14 @@ angular.module("wuw.controllers")
 
     $scope.doRefresh = function() {
         $scope.loadLectures();
+    };
+    
+    $scope.switchToCalendar = function() {
+        $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            disableBack: true
+        });
+        $state.go("tab.lecturesWeekly", {location: "replace"});
     };
 
     $scope.$on('$ionicView.enter', function(){
