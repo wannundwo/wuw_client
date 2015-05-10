@@ -11,16 +11,17 @@ angular.module("wuw.controllers")
 
     /* config object */
     $scope.uiConfig = {
-      calendar: {
-        minTime: "08:00:00",
-        height: "9000",
-        editable: false,
-        defaultView: "agendaWeek",
-        header: false,
-        dayClick: $scope.alertEventOnClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize
-      }
+        calendar: {
+            weekends: false, //TODO: look if we have a lecture on saturday, then set it to corresponding value 
+            minTime: "08:00:00",
+            height: "9000",
+            editable: false,
+            defaultView: "agendaWeek",
+            header: false,
+            dayClick: $scope.alertEventOnClick,
+            eventDrop: $scope.alertOnDrop,
+            eventResize: $scope.alertOnResize
+        }
     };
     
     $scope.events = [];
