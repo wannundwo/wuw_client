@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage'])
+angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage', 'ui.calendar'])
 
 .run(function($ionicPlatform, $state, $rootScope, Settings) {
 
@@ -101,6 +101,16 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             'tab-lectures': {
             templateUrl: 'templates/tab-lectures.html',
             controller: 'LecturesCtrl'
+        }
+      }
+    })
+    
+    .state('tab.lectures-weekly', {
+        url: '/lecturesWeekly',
+        views: {
+            'tab-lectures': {
+            templateUrl: 'templates/tab-lectures-weekly.html',
+            controller: 'LecturesWeeklyCtrl'
         }
       }
     })

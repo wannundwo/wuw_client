@@ -1,0 +1,31 @@
+<ion-view view-title="{{'global.lectures' | translate}}">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-ios-refresh-empty" ng-click="doRefresh()"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+            pulling-text="{{'global.pullToRefresh' | translate}}"
+            on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-list>
+            <cz-error-message visible="errorVisible">
+                <div scroll="false" class="card">
+                    <div class="item item-text-wrap error-message">
+                        {{'lectures.cantload' | translate}}
+                    </div>
+                </div>
+            </cz-error-message>
+
+            <ion-item ng-if="selectedLectures === 0" class="item-text-wrap">
+                {{'lectures.noCoursesSelectedMessage' | translate}}
+                <a class="button button-outline button-block button-positive" href="#/setup">
+                    {{'settings.selectSemesterAndGroups' | translate}}
+                </a>
+            </ion-item>
+            
+            <div id="myCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar">
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

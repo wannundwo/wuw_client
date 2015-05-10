@@ -7,12 +7,16 @@
 
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
         <link href="lib/czErrorMessage/czErrorMessage.css" rel="stylesheet">
+        <link rel="stylesheet" href="lib/fullcalendar/fullcalendar.css">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/indeterminateCheckbox.css" rel="stylesheet">
 
         <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
         <link href="css/ionic.app.css" rel="stylesheet">
         -->
+
+        <!-- we have to load jquery before angular, for reasons... -->
+        <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
 
         <!-- ionic/angularjs js -->
         <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -35,6 +39,7 @@
         <script src="js/controller/controllers.js"></script>
         <script src="js/controller/homeController.js"></script>
         <script src="js/controller/lecturesController.js"></script>
+        <script src="js/controller/lecturesWeeklyController.js"></script>
         <script src="js/controller/deadlinesController.js"></script>
         <script src="js/controller/mensaController.js"></script>
         <script src="js/controller/settingsController.js"></script>
@@ -50,6 +55,12 @@
 
         <!-- directives -->
         <script src="js/directives/indeterminateCheckbox.js"></script>
+        
+        <script type="text/javascript" src="lib/moment/moment.js"></script>
+        <script type="text/javascript" src="lib/angular-ui-calendar/src/calendar.js"></script>
+        <script type="text/javascript" src="lib/fullcalendar/fullcalendar.js"></script>
+        <script type="text/javascript" src="lib/fullcalendar/gcal.js"></script>
+        
     </head>
     <body ng-app="wuw">
         <!--
