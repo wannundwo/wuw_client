@@ -53,7 +53,11 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     .state('tab', {
         url: "/tab",
         abstract: true,
-        templateUrl: "templates/tabs.html"
+        templateUrl: "templates/tabs.html",
+        controller: function($scope, Settings) {
+            $scope.lecturesUrl = Settings.getSetting("lecturesView") || "lecturesWeekly";
+            console.log($scope.lecturesUrl);
+        }
     })
 
     // Each tab has its own nav history stack:
@@ -95,12 +99,12 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
 
-    .state('tab.lectures', {
+    .state('tab.lecturesList', {
         url: '/lectures',
         views: {
             'tab-lectures': {
-            templateUrl: 'templates/tab-lectures.html',
-            controller: 'LecturesCtrl'
+            templateUrl: 'templates/tab-lectures-list.html',
+            controller: 'LecturesListCtrl'
         }
       }
     })

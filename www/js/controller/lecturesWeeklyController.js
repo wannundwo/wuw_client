@@ -30,6 +30,7 @@ angular.module("wuw.controllers")
     $scope.loadLectures = function() {
         Lectures.lecturesThisWeek().then(function(lectures){
             
+            // add full-calendar specific properties
             $scope.events.length = 0;
             for (var i = 0; i < lectures.length; i++) {
                 var l = {
@@ -64,11 +65,12 @@ angular.module("wuw.controllers")
     };
     
     $scope.switchToList = function() {
+        Settings.setSetting("lecturesView", "lecturesList");
         $ionicHistory.nextViewOptions({
             disableAnimate: true,
             disableBack: true
         });
-        $state.go("tab.lectures", {location: "replace"});
+        $state.go("tab.lecturesList", {location: "replace"});
     };
 
     $scope.$on('$ionicView.enter', function(){
@@ -76,9 +78,9 @@ angular.module("wuw.controllers")
         $scope.selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
 
         // get lectures from cache, and if the cache is older then 10 seconds load from the API
-        /*$scope.lectures = Lectures.fromCache();
-        if (Lectures.secondsSinceCache() > 10) {
+        $scope.lectures = Lectures.fromCache("weekly");
+        if (Lectures.secondsSinceCache("weekly") > 10) {
             $scope.loadLectures();
-        }*/
+        }
     });
 });
