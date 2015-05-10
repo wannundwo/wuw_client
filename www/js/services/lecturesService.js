@@ -6,6 +6,7 @@ angular.module("wuw.services")
 
 .factory("Lectures", function($http, $q, Settings) {
     var lectures = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
+    var lecturesWeekly = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
     
     var lecturesThisWeek = function() {
         var deferred = $q.defer();
@@ -45,9 +46,9 @@ angular.module("wuw.services")
                 }
             }
 
-            Settings.setSetting('lecturesThisWeekCache', JSON.stringify(filteredLectures));
-            Settings.setSetting('lecturesThisWeekCacheTime', new Date().getTime());
-            lectures = filteredLectures;
+            Settings.setSetting('lecturesWeeklyCache', JSON.stringify(filteredLectures));
+            Settings.setSetting('lecturesWeeklyCacheTime', new Date().getTime());
+            lecturesWeekly = filteredLectures;
             deferred.resolve(filteredLectures);
         }).
         error(function(data, status, headers, config) {
@@ -105,12 +106,19 @@ angular.module("wuw.services")
         return deferred.promise;
     };
 
-    var fromCache = function() {
+    var fromCache = function(mode) {
+        if (mode === "weekly") {
+            return lecturesWeekly;
+        } 
         return lectures;
     };
 
-    var secondsSinceCache = function() {
-        var cacheTime = Settings.getSetting('lecturesCacheTime');
+    var secondsSinceCache = function(mode) {
+        var cacheTime;
+        if (mode === "weekly") {
+            cacheTime = Settings.getSetting('lecturesWeeklyCacheTime');
+        }
+        cacheTime = Settings.getSetting('lecturesCacheTime');
         if (typeof cacheTime === 'undefined') {
             return Math.pow(2,32) - 1; // highest integer in JS
         }
