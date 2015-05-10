@@ -6,6 +6,55 @@ angular.module("wuw.services")
 
 .factory("Lectures", function($http, $q, Settings) {
     var lectures = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
+    
+    var lecturesThisWeek = function() {
+        var deferred = $q.defer();
+        var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
+
+        // if the user hasn't selected courses, reject the request
+        if (selectedLectures.length === 0) {
+            lectures = [];
+            Settings.setSetting('lecturesCache', '[]');
+            deferred.reject("noLecturesSelected");
+            return deferred.promise;
+        }
+
+        $http.post(Settings.getSetting("apiUrl") + "/lectures/weekly", {
+            "groups": Settings.getSetting("selectedGroups")
+        }).
+        success(function(data, status, headers, config) {
+
+            var filteredLectures = [];
+            for (var i = 0; i < data.length; i++) {
+                var lecture = data[i];
+                var occursInSelectedLectures = false;
+
+                // check if this lectures is in one of the users selected groups
+                for (var k = 0; k < selectedLectures.length; k++) {
+                    if (lecture.lectureName === selectedLectures[k].lectureName) {
+                        occursInSelectedLectures = true;
+                    }
+                }
+
+                // add datefield to every lecutre (useable for grouping)
+                var d = new Date(lecture.startTime).setHours(0);
+                lecture.date = new Date(d).setMinutes(0);
+
+                if (occursInSelectedLectures) {
+                    filteredLectures.push(lecture);
+                }
+            }
+
+            Settings.setSetting('lecturesThisWeekCache', JSON.stringify(filteredLectures));
+            Settings.setSetting('lecturesThisWeekCacheTime', new Date().getTime());
+            lectures = filteredLectures;
+            deferred.resolve(filteredLectures);
+        }).
+        error(function(data, status, headers, config) {
+            deferred.reject("httpFailed");
+        });
+        return deferred.promise;
+    };
 
     var lecturesForGroups = function() {
         var deferred = $q.defer();
@@ -109,6 +158,7 @@ angular.module("wuw.services")
     return {
         lectures: lectures,
         lecturesForGroups: lecturesForGroups,
+        lecturesThisWeek: lecturesThisWeek,
         fromCache: fromCache,
         getAllLectureTitles: getAllLectureTitles,
         secondsSinceCache: secondsSinceCache,
