@@ -12,6 +12,7 @@ angular.module("wuw.controllers")
     /* config object */
     $scope.uiConfig = {
         calendar: {
+            allDaySlot: false,
             weekends: false, //TODO: look if we have a lecture on saturday, then set it to corresponding value 
             minTime: "08:00:00",
             height: "9000",
