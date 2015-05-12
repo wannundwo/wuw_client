@@ -117,13 +117,17 @@ angular.module("wuw.services")
         var cacheTime;
         if (mode === "weekly") {
             cacheTime = Settings.getSetting('lecturesWeeklyCacheTime');
+        } else {
+            cacheTime = Settings.getSetting('lecturesCacheTime');    
         }
-        cacheTime = Settings.getSetting('lecturesCacheTime');
+        
         if (typeof cacheTime === 'undefined') {
             return Math.pow(2,32) - 1; // highest integer in JS
         }
+        
         var diff = new Date().getTime() - cacheTime;
-        return Math.round(diff / 1000);
+        var seconds = Math.round(diff / 1000);
+        return seconds;
     };
 
     var getAllLectureTitles = function() {
