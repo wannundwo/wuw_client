@@ -26,21 +26,17 @@ angular.module("wuw.controllers")
     $scope.loadLectures = function() {
         Lectures.lecturesThisWeek().then(function(lectures){
             
-            // add full-calendar specific properties
+            // this event assign works...
             $scope.events.length = 0;
             for (var i = 0; i < lectures.length; i++) {
-                var l = {
-                    title: lectures[i].lectureName,
-                    start: new Date(lectures[i].startTime),
-                    end: new Date(lectures[i].endTime),
-                    stick: true,
-                    allDay: false   
-                };
-                $scope.events.push(l);
+                $scope.events.push(lectures[i]);
             }
             
-            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
+            // ... this not, WTF? Needs further investigation
+            // $scope.events = lectures;
             
+            //hide an eventually shown error message
+            $scope.$broadcast("czErrorMessage.hide"); 
         }, function(error) {
             if (error === "httpFailed") {
                 // show the error message with some delay to prevent flickering
