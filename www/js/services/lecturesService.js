@@ -45,11 +45,24 @@ angular.module("wuw.services")
                     filteredLectures.push(lecture);
                 }
             }
+            
+            // add full-calendar specific properties
+            var fcPreparedLectures = [];
+            for (var j = 0; j < filteredLectures.length; j++) {
+                var l = {
+                    title: lectures[j].lectureName,
+                    start: new Date(lectures[j].startTime),
+                    end: new Date(lectures[j].endTime),
+                    stick: true,
+                    allDay: false   
+                };
+                fcPreparedLectures.push(l);
+            }
 
-            Settings.setSetting('lecturesWeeklyCache', JSON.stringify(filteredLectures));
+            Settings.setSetting('lecturesWeeklyCache', JSON.stringify(fcPreparedLectures));
             Settings.setSetting('lecturesWeeklyCacheTime', new Date().getTime());
-            lecturesWeekly = filteredLectures;
-            deferred.resolve(filteredLectures);
+            lecturesWeekly = fcPreparedLectures;
+            deferred.resolve(fcPreparedLectures);
         }).
         error(function(data, status, headers, config) {
             deferred.reject("httpFailed");
