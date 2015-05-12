@@ -56,7 +56,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         templateUrl: "templates/tabs.html",
         controller: function($scope, Settings) {
             $scope.lecturesUrl = Settings.getSetting("lecturesView") || "lecturesWeekly";
-            console.log($scope.lecturesUrl);
         }
     })
 
@@ -100,7 +99,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     })
 
     .state('tab.lecturesList', {
-        url: '/lectures',
+        url: '/lecturesList',
         views: {
             'tab-lectures': {
             templateUrl: 'templates/tab-lectures-list.html',
