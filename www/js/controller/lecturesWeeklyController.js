@@ -4,11 +4,9 @@ angular.module("wuw.controllers")
 
 .controller("LecturesWeeklyCtrl", function($scope, $ionicHistory, $state, $ionicPopup, $compile, $timeout, $filter, Lectures, Settings, uiCalendarConfig) {
     
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
+    $scope.events = [];
+    $scope.eventSource = [$scope.events];
+    
     /* config object */
     $scope.uiConfig = {
         calendar: {
@@ -24,9 +22,6 @@ angular.module("wuw.controllers")
             eventResize: $scope.alertOnResize
         }
     };
-    
-    $scope.events = [];
-    $scope.eventSource = [$scope.events];
 
     $scope.loadLectures = function() {
         Lectures.lecturesThisWeek().then(function(lectures){
