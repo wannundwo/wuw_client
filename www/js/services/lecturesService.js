@@ -15,7 +15,7 @@ angular.module("wuw.services")
         // if the user hasn't selected courses, reject the request
         if (selectedLectures.length === 0) {
             lectures = [];
-            Settings.setSetting('lecturesCache', '[]');
+            Settings.setSetting('lecturesWeeklyCache', '[]');
             deferred.reject("noLecturesSelected");
             return deferred.promise;
         }
@@ -120,10 +120,18 @@ angular.module("wuw.services")
     };
 
     var fromCache = function(mode) {
+        var cached;
         if (mode === "weekly") {
-            return lecturesWeekly;
+            cached = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
+            // convert the date-strings to real JS-Dates
+            for (var i = 0; i < cached.length; i++) {
+                cached[i].start = new Date(cached[i].start);
+                cached[i].end = new Date(cached[i].end);
+            }
+            return cached;
         } 
-        return lectures;
+        cached = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
+        return cached;
     };
 
     var secondsSinceCache = function(mode) {
