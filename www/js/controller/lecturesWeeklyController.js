@@ -17,9 +17,7 @@ angular.module("wuw.controllers")
             // use the fc-event-time div as popover position
             var target = clickEvent.currentTarget;
             var eventInner = target.childNodes[0];
-            var eventTime = eventInner.childNodes[0];    
-            var relocated = clickEvent;
-            relocated.currentTarget = eventTime;
+            var eventTime = eventInner.childNodes[0];
             $scope.popover.show(eventTime);
         }, ele[0], {});
     };
