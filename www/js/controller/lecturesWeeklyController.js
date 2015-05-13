@@ -2,31 +2,46 @@
 
 angular.module("wuw.controllers")
 
-.controller("LecturesWeeklyCtrl", function($scope, $ionicHistory, $state, $ionicPopup, $compile, $timeout, $filter, Lectures, Settings, uiCalendarConfig) {
+.controller("LecturesWeeklyCtrl", function($scope, $ionicHistory, $ionicPopover, $state, $ionicPopup, $compile, $timeout, $filter, Lectures, Settings, uiCalendarConfig) {
     
     $scope.events = [];
     $scope.eventSource = [$scope.events];
+    
+    $scope.eventAfterRender = function(event, ele, view) {
+        ionic.onGesture("tap", function(e) {
+            var fci = e.currentTarget._fci;
+            $scope.currEvent = $scope.events[fci];
+            $scope.popover.show(e);
+        }, ele[0], {});
+    };
     
     /* config object */
     $scope.uiConfig = {
         calendar: {
             allDaySlot: false,
+            disableResizing:true,
             weekends: false, //TODO: look if we have a lecture on saturday, then set it to corresponding value 
             minTime: "08:00:00",
             height: "9000",
             editable: false,
             defaultView: "agendaWeek",
             header: false,
-            dayClick: $scope.alertEventOnClick,
-            eventDrop: $scope.alertOnDrop,
-            eventResize: $scope.alertOnResize
+            eventAfterRender: $scope.eventAfterRender
         }
     };
     
-    $ionicPopover.fromTemplateUrl('templates/popover.html', {
-        scope: $scope,
-    }).then(function(popover) {
-        $scope.popover = popover;
+    var template =  '<ion-popover-view>' +
+                        '<ion-header-bar> '+
+                            '<h1 class="title">{{currEvent.title}}</h1>'+
+                        '</ion-header-bar> ' + 
+                        '<ion-content> '+
+                            'Rooms: {{currEvent.rooms | join:","}}'+
+                            'Start: {{currEvent.start}}'+
+                            'End: {{currEvent.end}}'+
+                        '</ion-content> ' + 
+                    '</ion-popover-view>';
+    $scope.popover = $ionicPopover.fromTemplate(template, {
+        scope: $scope
     });
     
     /*
