@@ -22,18 +22,26 @@ angular.module("wuw.controllers")
             eventResize: $scope.alertOnResize
         }
     };
+    
+    $ionicPopover.fromTemplateUrl('templates/popover.html', {
+        scope: $scope,
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+    
+    /*
+        used to assign events to the full calendar eventSource
+    */
+    var assignEvents = function(events) {
+        $scope.events.length = 0;
+        for (var i = 0; i < events.length; i++) {
+            $scope.events.push(events[i]);
+        }
+    };
 
     $scope.loadLectures = function() {
         Lectures.lecturesThisWeek().then(function(lectures){
-            
-            // this event assign works...
-            $scope.events.length = 0;
-            for (var i = 0; i < lectures.length; i++) {
-                $scope.events.push(lectures[i]);
-            }
-            
-            // ... this not, WTF? Needs further investigation
-            // $scope.events = lectures;
+            assignEvents(lectures);
             
             //hide an eventually shown error message
             $scope.$broadcast("czErrorMessage.hide"); 
@@ -70,7 +78,7 @@ angular.module("wuw.controllers")
         $scope.selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
 
         // get lectures from cache, and if the cache is older then 10 seconds load from the API
-        $scope.lectures = Lectures.fromCache("weekly");
+        assignEvents(Lectures.fromCache("weekly"));
         if (Lectures.secondsSinceCache("weekly") > 10) {
             $scope.loadLectures();
         }
