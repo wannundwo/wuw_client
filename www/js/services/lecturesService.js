@@ -50,9 +50,10 @@ angular.module("wuw.services")
             var fcPreparedLectures = [];
             for (var j = 0; j < filteredLectures.length; j++) {
                 var l = {
-                    title: lectures[j].lectureName,
-                    start: new Date(lectures[j].startTime),
-                    end: new Date(lectures[j].endTime),
+                    title: filteredLectures[j].lectureName,
+                    start: new Date(filteredLectures[j].startTime),
+                    end: new Date(filteredLectures[j].endTime),
+                    rooms: filteredLectures[j].rooms,
                     stick: true,
                     allDay: false   
                 };
