@@ -1,0 +1,10 @@
+<ion-popover-view>
+    <ion-header-bar>
+        <h1 class="title">{{currEvent.title}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        Rooms: {{currEvent.rooms | join:","}} <br>
+        Start: {{currEvent.start}} <br>
+        End: {{currEvent.end}}
+    </ion-content>
+</ion-popover-view>

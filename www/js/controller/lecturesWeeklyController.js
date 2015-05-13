@@ -8,10 +8,19 @@ angular.module("wuw.controllers")
     $scope.eventSource = [$scope.events];
     
     $scope.eventAfterRender = function(event, ele, view) {
-        ionic.onGesture("tap", function(e) {
-            var fci = e.currentTarget._fci;
+        ionic.onGesture("tap", function(clickEvent) {
+            
+            // find the clicked calendar event
+            var fci = clickEvent.currentTarget._fci;
             $scope.currEvent = $scope.events[fci];
-            $scope.popover.show(e);
+            
+            // use the fc-event-time div as popover position
+            var target = clickEvent.currentTarget;
+            var eventInner = target.childNodes[0];
+            var eventTime = eventInner.childNodes[0];    
+            var relocated = clickEvent;
+            relocated.currentTarget = eventTime;
+            $scope.popover.show(eventTime);
         }, ele[0], {});
     };
     
@@ -30,22 +39,15 @@ angular.module("wuw.controllers")
         }
     };
     
-    var template =  '<ion-popover-view>' +
-                        '<ion-header-bar> '+
-                            '<h1 class="title">{{currEvent.title}}</h1>'+
-                        '</ion-header-bar> ' + 
-                        '<ion-content> '+
-                            'Rooms: {{currEvent.rooms | join:","}}'+
-                            'Start: {{currEvent.start}}'+
-                            'End: {{currEvent.end}}'+
-                        '</ion-content> ' + 
-                    '</ion-popover-view>';
-    $scope.popover = $ionicPopover.fromTemplate(template, {
+    $ionicPopover.fromTemplateUrl('templates/lecturePopover.html', {
         scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
     });
     
     /*
         used to assign events to the full calendar eventSource
+        unfortunately: $scope.events = events; doesn't work
     */
     var assignEvents = function(events) {
         $scope.events.length = 0;
