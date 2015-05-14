@@ -4,7 +4,7 @@ angular.module('wuw.services')
 
 .factory('Users', function($http, $q, Settings) {
 
-    // add a new deadline (to server and locally)
+    // ping some info to my masters
     var ping = function() {
 
         var deferred = $q.defer();
