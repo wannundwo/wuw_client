@@ -5,7 +5,7 @@ angular.module('wuw.services')
 .factory('Users', function($http, $q, Settings) {
 
     // ping some info to my masters
-    var ping = function() {
+    var ping = function(appVersion) {
         if (ionic.Platform.isWebView()) {
             var deferred = $q.defer();
             $http({
@@ -13,6 +13,7 @@ angular.module('wuw.services')
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 data: {
+                    appVersion: appVersion,
                     deviceId: device.uuid,
                     platform: ionic.Platform.platform(),
                     platformVersion: ionic.Platform.version()

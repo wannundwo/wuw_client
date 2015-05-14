@@ -5,18 +5,11 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 .run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
     var apiUrl = "https://wuw.benleb.de:4342/api/v0";
-    var versionNumber = "0.3.0";
+    var versionNumber = "0.4.0";
 
     // predefined settings
     Settings.setSetting('version', versionNumber);
     Settings.setSetting('apiUrl', apiUrl);
-
-
-    if (typeof Settings.getSetting('uuid') === "undefined") {
-        // We currently use, for simplity, just a timestamp as uuid.
-        // TODO: Use real uuid.
-        Settings.setSetting('uuid', new Date().getTime());
-    }
 
     $ionicPlatform.ready(function() {
 
@@ -30,8 +23,12 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             StatusBar.styleDefault();
         }
 
+        if (window.cordova && typeof Settings.getSetting('uuid') === "undefined") {
+            Settings.setSetting('uuid', device.uuid);
+        }
+
         // ping home
-        Users.ping();
+        Users.ping(versionNumber);
     });
 })
 
