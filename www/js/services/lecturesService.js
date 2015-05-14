@@ -54,6 +54,7 @@ angular.module("wuw.services")
                     start: new Date(filteredLectures[j].startTime),
                     end: new Date(filteredLectures[j].endTime),
                     rooms: filteredLectures[j].rooms,
+                    docents: filteredLectures[j].docents,
                     stick: true,
                     allDay: false   
                 };

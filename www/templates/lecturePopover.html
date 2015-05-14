@@ -3,8 +3,11 @@
         <h1 class="title">{{currEvent.title}}</h1>
     </ion-header-bar>
     <ion-content>
-        Rooms: {{currEvent.rooms | join:","}} <br>
-        Start: {{currEvent.start}} <br>
-        End: {{currEvent.end}}
+        <ion-item class="item-text-wrap">
+            in  <b>{{currEvent.rooms | join: ", "}} </b>
+            von <b>{{currEvent.start | date: "hh:mm"}} </b>
+            bis <b>{{currEvent.end | date: "hh:mm"}} </b>
+            bei <b>{{currEvent.docents | join: ", "}} </b>
+        </ion-item>
     </ion-content>
 </ion-popover-view>
