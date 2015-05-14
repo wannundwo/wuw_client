@@ -7,9 +7,14 @@ angular.module("wuw.controllers")
     $scope.events = [];
     $scope.eventSource = [$scope.events];
     
+    /*
+        After the event was rendered on the calendar, we register an ionic tap-gesture,
+        so we get notified when the event was tapped / clicked. Then we can show an ionicPopover
+        and display some further information for this event.
+        The popovers template is in /templates/lecturePopover.html
+    */
     $scope.eventAfterRender = function(event, ele, view) {
         ionic.onGesture("tap", function(clickEvent) {
-            
             // find the clicked calendar event
             var fci = clickEvent.currentTarget._fci;
             $scope.currEvent = $scope.events[fci];
@@ -22,7 +27,10 @@ angular.module("wuw.controllers")
         }, ele[0], {});
     };
     
-    /* config object */
+    /* 
+        This is the configuration object for the calendar.
+        The various options are documented here: http://fullcalendar.io/docs/
+    */
     $scope.uiConfig = {
         calendar: {
             allDaySlot: false,
@@ -44,13 +52,15 @@ angular.module("wuw.controllers")
     });
     
     /*
-        used to assign events to the full calendar eventSource
-        unfortunately: $scope.events = events; doesn't work
+        Because the full-calendar two way binding sucks a little bit,
+        we can not simply say $scope.events = lectures;
+        Instead we reset the events array and push every lecture seperate.
+        This way, full-calendar gets notified about the data source changes.
     */
-    var assignEvents = function(events) {
+    var assignEvents = function(lectures) {
         $scope.events.length = 0;
-        for (var i = 0; i < events.length; i++) {
-            $scope.events.push(events[i]);
+        for (var i = 0; i < lectures.length; i++) {
+            $scope.events.push(lectures[i]);
         }
     };
 
@@ -78,6 +88,7 @@ angular.module("wuw.controllers")
     $scope.doRefresh = function() {
         $scope.loadLectures();
     };
+    
     
     $scope.switchToList = function() {
         Settings.setSetting("lecturesView", "lecturesList");
