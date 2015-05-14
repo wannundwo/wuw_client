@@ -23,30 +23,9 @@ angular.module("wuw.controllers")
             var target = clickEvent.currentTarget;
             var eventInner = target.childNodes[0];
             var eventTime = eventInner.childNodes[0];
-            
-            // we want the iOS popover style
-            if (!ionic.Platform.isIOS()) {
-                document.body.classList.remove('platform-android');
-                document.body.classList.add('platform-ios');
-            }
-            
             $scope.popover.show(eventTime);
         }, ele[0], {});
     };
-    
-    // remove the popover when we are done
-    $scope.$on('$destroy', function() {
-        $scope.popover.remove();
-    });
-    
-    // when popover gots hidden, change our style back
-    $scope.$on('popover.hidden', function() {
-        $scope.currEvent = {};
-        if (!ionic.Platform.isIOS()) {
-            document.body.classList.remove('platform-ios');
-            document.body.classList.add('platform-android');
-        }
-    });
     
     /* 
         This is the configuration object for the calendar.
