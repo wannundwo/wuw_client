@@ -25,7 +25,11 @@
       "id": "org.crosswalk.engine",
       "locator": "./engine/cordova-crosswalk-engine-c0.6.2"
     },
-    "cordova-plugin-device"
+    "cordova-plugin-device",
+    {
+      "id": "cordova-plugin-crosswalk-webview",
+      "locator": "./engine/cordova-crosswalk-engine-c0.7.1"
+    }
   ],
   "scripts": {
     "test": "./node_modules/.bin/karma start ./tests/my.conf.js --single-run"
