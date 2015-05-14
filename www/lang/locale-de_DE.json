@@ -11,7 +11,8 @@
         "save": "Speichern",
         "pullToRefresh": "Ziehen zum aktualisieren...",
         "error": "Fehler",
-        "done": "Fertig"
+        "done": "Fertig",
+        "close": "Schließen"
     },
     "home": {
         "current": "Momentan läuft",
