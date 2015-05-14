@@ -89,6 +89,7 @@
         "require": true,
         "angular": true,
         "ionic": true,
+        "device": true,
         "window": true,
         "beforeEach": true,
         "inject": true,
