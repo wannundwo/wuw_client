@@ -22,7 +22,7 @@
                     <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
                         <div ng-if="nextLecture">
                             <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
-                            {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
+                            {{nextLecture.startTime | date: 'EEEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
                         </div>
                     <div ng-if="!nextLecture">
                         {{'home.noLecture' | translate}}

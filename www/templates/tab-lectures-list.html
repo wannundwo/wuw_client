@@ -26,7 +26,7 @@
             <!-- group the lectures by its date -->
             <div ng-repeat="(key, value) in lectures | groupBy: 'date'">
                 <div class="item item-divider">
-                    {{key | date: 'EEE, dd.MM.yyyy'}}
+                    {{key | date: 'EEEE, dd.MM.yyyy'}}
                 </div>
                 <ion-item style="border-left: 10px solid {{lecture.color}};" class="color-indicator item-text-wrap" ng-repeat="lecture in value">
                     <h2>
