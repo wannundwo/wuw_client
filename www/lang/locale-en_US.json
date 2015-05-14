@@ -11,7 +11,8 @@
         "save": "save",
         "pullToRefresh": "Pull to refresh...",
         "error": "Error",
-        "done": "Done"
+        "done": "Done",
+        "close": "Close"
     },
     "home": {
         "current": "Current lecture",

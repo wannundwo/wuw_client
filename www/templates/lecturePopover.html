@@ -8,6 +8,10 @@
             von <b>{{currEvent.start | date: "hh:mm"}} </b>
             bis <b>{{currEvent.end | date: "hh:mm"}} </b>
             bei <b>{{currEvent.docents | join: ", "}} </b>
+            
+            <button class="button button-outline button-block button-positive" ng-click="popover.hide();">
+                {{'global.close' | translate}}
+            </button>
         </ion-item>
     </ion-content>
 </ion-popover-view>
