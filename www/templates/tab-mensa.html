@@ -19,7 +19,7 @@
             <!-- group the dishes by its date -->
             <div ng-repeat="(key, value) in dishes | groupBy: 'date'">
                 <div class="item item-divider">
-                    {{key | date: 'EEE, dd.MM.yyyy'}}
+                    {{key | date: 'EEEE, dd.MM.yyyy'}}
                 </div>
                 <ion-item style="border-left: 10px solid {{dish.color}};" class="color-indicator item-text-wrap" ng-repeat="dish in value">
                     <h3 class="float-left">{{dish.category}}</h3> <b class="float-right">{{dish.priceInternal | number: 2}}€ / {{dish.priceExternal | number: 2}}€</b>
