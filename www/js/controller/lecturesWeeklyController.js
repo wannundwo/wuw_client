@@ -14,9 +14,10 @@ angular.module("wuw.controllers")
         The popovers template is in /templates/lecturePopover.html
     */
     $scope.eventAfterRender = function(event, ele, view) {
+        ele.attr("data-fciId", event.fciId);
         ionic.onGesture("tap", function(clickEvent) {
             // find the clicked calendar event
-            var fci = clickEvent.currentTarget._fci;
+            var fci = parseInt(clickEvent.currentTarget.dataset.fciid);
             $scope.currEvent = $scope.events[fci];
             
             // use the fc-event-time div as popover position
