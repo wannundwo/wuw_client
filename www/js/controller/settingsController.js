@@ -10,5 +10,5 @@ angular.module('wuw.controllers')
 
     $scope.save = function() {
         Settings.setSetting('apiUrl', $scope.settings.apiUrl);
-    }
+    };
 });

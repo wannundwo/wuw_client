@@ -24,10 +24,13 @@ angular.module("wuw.controllers")
     $scope.doRefresh = function() {
         $scope.loadDishes();
     };
-
-    $scope.$on('$ionicView.enter', function(){
-        // get dishes from cache, and if the cache is older then 10 seconds load from the API
+    
+    $scope.$on('$ionicView.loaded', function(){
         $scope.dishes = Dishes.fromCache();
+    });
+
+    $scope.$on('$ionicView.afterEnter', function(){
+        // If the cache is older then 10 seconds, load new data from API.
         if (Dishes.secondsSinceCache() > 10) {
             $scope.loadDishes();
         }

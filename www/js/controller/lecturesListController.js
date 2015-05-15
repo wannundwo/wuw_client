@@ -35,13 +35,17 @@ angular.module("wuw.controllers")
         });
         $state.go("tab.lecturesWeekly", {location: "replace"});
     };
-
-    $scope.$on('$ionicView.enter', function(){
-        // get the number of selected lectures, if its zero, we display a message to select courses
-        $scope.selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
-
-        // get lectures from cache, and if the cache is older then 10 seconds load from the API
+    
+    $scope.$on('$ionicView.loaded', function(){
         $scope.lectures = Lectures.fromCache();
+    });
+    
+    $scope.$on('$ionicView.afterEnter', function(){
+        // get the number of selected lectures, if its zero, we display a message to select courses
+        // TODO: dont parse whole selectedLectures, just keep track of an integer which holds the number of selectedLectures.
+        $scope.selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
+        
+        // If the cache is older then 10 seconds, load new data from API.
         if (Lectures.secondsSinceCache() > 10) {
             $scope.loadLectures();
         }

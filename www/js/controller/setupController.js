@@ -51,7 +51,7 @@ angular.module('wuw.controllers')
         }
     };
     
-    $scope.$on('$ionicView.enter', function(){
+    $scope.$on('$ionicView.afterEnter', function(){
         $scope.load();
     });
 });
