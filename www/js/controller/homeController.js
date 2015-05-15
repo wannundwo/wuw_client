@@ -2,7 +2,7 @@
 
 angular.module('wuw.controllers')
 
-.controller('HomeCtrl', function($scope, $ionicLoading, Lectures) {
+.controller('HomeCtrl', function($scope, $timeout, $ionicLoading, Lectures) {
 
     // Called every time, the view gets entered.
     // Displays a loading spinner.
@@ -27,8 +27,11 @@ angular.module('wuw.controllers')
     };
 
     $scope.$on('$ionicView.afterEnter', function(){
-        reload();
-        $scope.currLecture = Lectures.getCurrentLecture();
-        $scope.nextLecture = Lectures.getNextLecture();
+        // wrap into $timeout, since getCurrentLecture() & getNextLecture() are blocking
+        $timeout(function() {
+            reload();
+            $scope.currLecture = Lectures.getCurrentLecture();
+            $scope.nextLecture = Lectures.getNextLecture();
+        }, 10);
     });
 });
