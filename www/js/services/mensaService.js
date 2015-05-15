@@ -9,7 +9,6 @@ angular.module("wuw.services")
 
     var getDishes = function() {
         var deferred = $q.defer();
-        var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
 
         $http.get(Settings.getSetting("apiUrl") + "/dishes")
         .success(function(data, status, headers, config) {
@@ -18,16 +17,20 @@ angular.module("wuw.services")
             Settings.setSetting('dishesCache', JSON.stringify(filteredDishes));
             Settings.setSetting('dishesCacheTime', new Date().getTime());
             dishes = filteredDishes;
-            deferred.resolve(filteredDishes);
+            deferred.resolve(filteredDishes.slice(0, 6));
         }).
         error(function(data, status, headers, config) {
             deferred.reject(data);
         });
         return deferred.promise;
     };
+    
+    var getMoreDishes = function(i) {
+        return dishes.slice(0, (6*i)+6);
+    };
 
     var fromCache = function() {
-        return dishes;
+        return dishes.slice(0, 6);
     };
 
     var secondsSinceCache = function() {
@@ -42,6 +45,7 @@ angular.module("wuw.services")
     return {
         dishes: dishes,
         getDishes: getDishes,
+        getMoreDishes: getMoreDishes,
         fromCache: fromCache,
         secondsSinceCache: secondsSinceCache
     };

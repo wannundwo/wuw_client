@@ -4,6 +4,8 @@ angular.module("wuw.controllers")
 
 .controller("MensaCtrl", function($scope, $ionicPopup, $timeout, $filter, Dishes, Settings) {
 
+    var moreCounter = 0;
+
     $scope.loadDishes = function() {
         Dishes.getDishes().then(function(dishes){
             $scope.dishes = dishes;
@@ -23,6 +25,15 @@ angular.module("wuw.controllers")
 
     $scope.doRefresh = function() {
         $scope.loadDishes();
+    };
+    
+    $scope.loadMore = function() {
+        $timeout(function(){
+            moreCounter++;
+            var moreDishes = Dishes.getMoreDishes(moreCounter);
+            $scope.dishes = moreDishes;
+            $scope.$broadcast('scroll.infiniteScrollComplete');    
+        }, 500);
     };
     
     $scope.$on('$ionicView.loaded', function(){
