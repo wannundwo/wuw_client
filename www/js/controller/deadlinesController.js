@@ -28,15 +28,17 @@ angular.module('wuw.controllers')
     $scope.isNotRemoved = function(deadline) {
       return !deadline.removed;
     };
-
-    $scope.$on('$ionicView.enter', function(){
-      // get deadlines from cache, and if the cache is older then 10 seconds load from the API
-      $scope.deadlines = Deadlines.fromCache();
-      if (Deadlines.secondsSinceCache() > 10) {
-        $scope.loadDeadlines();
-      }
+    
+    $scope.$on('$ionicView.loaded', function(){
+        $scope.deadlines = Deadlines.fromCache();
     });
 
+    $scope.$on('$ionicView.afterEnter', function(){
+        // If the cache is older then 10 seconds, load new data from API.
+        if (Deadlines.secondsSinceCache() > 10) {
+            $scope.loadDeadlines();
+        }
+    });
 })
 
 .controller('DeadlinesDetailCtrl', function($scope, $stateParams, $ionicPopup, $state, Deadlines) {

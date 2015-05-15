@@ -26,9 +26,9 @@ angular.module('wuw.controllers')
         });
     };
 
-    $scope.$on('$ionicView.enter', function(){
+    $scope.$on('$ionicView.afterEnter', function(){
+        reload();
         $scope.currLecture = Lectures.getCurrentLecture();
         $scope.nextLecture = Lectures.getNextLecture();
-        reload();
     });
 });
