@@ -32,7 +32,7 @@
         "done": "Erledigt",
         "to": "bis",
         "date": "Termin",
-        "delete": "löschen",
+        "delete": "Löschen",
         "create": "Deadline anlegen",
         "exampleInfo": "Buch XY in Bib ausleihen",
         "noDeadlines": "Zur Zeit gibt es keine Abgaben.",
