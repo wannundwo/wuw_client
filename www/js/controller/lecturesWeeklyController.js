@@ -46,10 +46,21 @@ angular.module("wuw.controllers")
         }
     };
     
+    /*
+        Create a popover from html template.
+    */
     $ionicPopover.fromTemplateUrl('templates/lecturePopover.html', {
         scope: $scope
     }).then(function(popover) {
         $scope.popover = popover;
+    });
+    
+    /*
+        Clear the currently clicked event when popover gets hidden.
+        This prevents flickering in the popover template.
+    */
+    $scope.$on('popover.hidden', function() {
+        $scope.currEvent = {};
     });
     
     /*
