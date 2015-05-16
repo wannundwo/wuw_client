@@ -123,6 +123,10 @@ angular.module("wuw.services")
         return deferred.promise;
     };
 
+    /*
+        Returns lectures from cache.
+        If mode is "weekly" we provide data for easy use in full calendar.
+    */
     var fromCache = function(mode) {
         var cached;
         if (mode === "weekly") {
@@ -138,6 +142,9 @@ angular.module("wuw.services")
         return cached;
     };
 
+    /*
+        Returns how many seconds has passed since we cached the lectures.
+    */
     var secondsSinceCache = function(mode) {
         var cacheTime;
         if (mode === "weekly") {
@@ -155,6 +162,9 @@ angular.module("wuw.services")
         return seconds;
     };
 
+    /*
+        Returns the title of all lectures in a distinct manner.
+    */
     var getAllLectureTitles = function() {
         var lectureTitles = [];
         for (var i = 0; i < lectures.length; i++) {
@@ -168,6 +178,9 @@ angular.module("wuw.services")
         return lectureTitles;
     };
 
+    /*
+        Returns the lecture which is currently running.
+    */
     var getCurrentLecture = function() {
         var now = new Date().getTime();
         for (var i = 0; i < lectures.length; i++) {
@@ -179,6 +192,9 @@ angular.module("wuw.services")
         }
     };
 
+    /*
+        Returns the Users next Lecture.
+    */
     var getNextLecture = function() {
         var nextLecture;
         var nextLectureDistance = 18446744073709552000;
@@ -191,6 +207,7 @@ angular.module("wuw.services")
         }
         return nextLecture;
     };
+    
     
     /*
         Returns how many lectures the user has selected.
