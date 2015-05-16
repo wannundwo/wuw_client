@@ -32,7 +32,7 @@
         "done": "Done",
         "to": "by",
         "date": "Due Date",
-        "delete": "delete",
+        "delete": "Delete",
         "create": "Create Deadline",
         "exampleInfo": "get Book XY from Lib",
         "noDeadlines": "Currently no Deadlines listed",
