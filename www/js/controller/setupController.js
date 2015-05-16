@@ -43,12 +43,17 @@ angular.module('wuw.controllers')
             Settings.setSetting("selectedGroups", JSON.stringify(selectedGroups));
             Settings.setSetting("selectedLectures", JSON.stringify(selectedLectures));
             Settings.setSetting("selectedLecturesLength", selectedLectures.length);
+            
+            // Clear the caches.
             Settings.setSetting("localDeadlines", "");
+            Settings.setSetting("lecturesCache", "");
+            Settings.setSetting("lecturesWeeklyCache", "");
         }
         catch(e) { }
         finally {
             // in any case, goto the home tab
             $state.go("tab.home", {location: "replace"});
+            location.reload();
         }
     };
     
