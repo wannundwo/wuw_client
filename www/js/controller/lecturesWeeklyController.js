@@ -2,7 +2,7 @@
 
 angular.module("wuw.controllers")
 
-.controller("LecturesWeeklyCtrl", function($scope, $ionicHistory, $ionicPopover, $state, $ionicPopup, $compile, $timeout, $filter, Lectures, Settings, uiCalendarConfig) {
+.controller("LecturesWeeklyCtrl", function($scope, $locale, $ionicHistory, $translate, $ionicPopover, $state, $ionicPopup, $compile, $timeout, $filter, Lectures, Settings, uiCalendarConfig) {
     
     $scope.events = [];
     $scope.eventSource = [$scope.events];
@@ -34,6 +34,9 @@ angular.module("wuw.controllers")
     */
     $scope.uiConfig = {
         calendar: {
+            timeFormat: $locale.DATETIME_FORMATS.shortTime,
+            axisFormat: $locale.DATETIME_FORMATS.shortTime,
+            columnFormat: "d. MMMM", // this is okay for every language
             allDaySlot: false,
             disableResizing:true,
             weekends: false, //TODO: look if we have a lecture on saturday, then set it to corresponding value 
