@@ -191,6 +191,20 @@ angular.module("wuw.services")
         }
         return nextLecture;
     };
+    
+    /*
+        Returns how many lectures the user has selected.
+    */
+    var getSelectedLecturesLength = function() {
+        var selectedLecturesLength = Settings.getSetting('selectedLecturesLength');
+        if (typeof selectedLecturesLength === "undefined") {
+            selectedLecturesLength = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
+            Settings.setSetting("selectedLecturesLength", selectedLecturesLength);
+            return selectedLecturesLength;
+        } else {
+            return parseInt(selectedLecturesLength);
+        }
+    };
 
     return {
         lectures: lectures,
@@ -200,6 +214,7 @@ angular.module("wuw.services")
         getAllLectureTitles: getAllLectureTitles,
         secondsSinceCache: secondsSinceCache,
         getCurrentLecture: getCurrentLecture,
-        getNextLecture: getNextLecture
+        getNextLecture: getNextLecture,
+        getSelectedLecturesLength: getSelectedLecturesLength
     };
 });
