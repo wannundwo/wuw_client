@@ -41,9 +41,8 @@ angular.module("wuw.controllers")
     });
     
     $scope.$on('$ionicView.afterEnter', function(){
-        // get the number of selected lectures, if its zero, we display a message to select courses
-        // TODO: dont parse whole selectedLectures, just keep track of an integer which holds the number of selectedLectures.
-        $scope.selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
+        // If the user hasn't selected any lectures, we give him an message on that.
+        $scope.selectedLectures = Lectures.getSelectedLecturesLength();
         
         // If the cache is older then 10 seconds, load new data from API.
         if (Lectures.secondsSinceCache() > 10) {
