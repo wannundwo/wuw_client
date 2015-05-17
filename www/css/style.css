@@ -72,29 +72,32 @@
     align-items: center;
 }
 
-/*
- * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
- */
-.list .item.item-accordion {
+/********* Accordion Animations *********/
+.item-accordion {
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
-
+    transition: 0.25s all linear;
+    
     line-height: 42px;
-    padding-top: 0;
-    padding-bottom: 0;
-    transition: 0.09s all linear;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
-.list .item.item-accordion.ng-hide {
+
+.item-accordion.ng-enter,
+.item-accordion.ng-leave.ng-leave-active {
     line-height: 0px;
 }
-.list .item.item-accordion.ng-hide-add,
-.list .item.item-accordion.ng-hide-remove {
-    display: block !important;
+
+.item-accordion.ng-leave,
+.item-accordion.ng-enter.ng-enter-active {
+    line-height: 42px;
 }
 
+
+/********* Inset Checkboxes *********/
 .checkbox-inset .checkbox {
     padding-left: 40px;
 }
@@ -103,6 +106,7 @@
     padding-left: 25px;
 }
 
+/* Depreacted? */
 .item-actived-background-transition {
     background-color: #ffffff;
     -webkit-transition: background-color 200ms ease-in-out;

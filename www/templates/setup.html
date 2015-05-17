@@ -37,8 +37,8 @@
 
                 </ion-item>
                 <ion-checkbox class="checkbox-inset item-accordion"
+                              ng-if="group.shown"
                               ng-repeat="lecture in group.lectures"
-                              ng-show="group.shown"
                               ng-model="lecture.chosen">
                     {{lecture.lectureName}}
                 </ion-checkbox>
