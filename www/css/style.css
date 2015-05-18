@@ -24,13 +24,6 @@
     top:-1px;
 }
 
-.error-message {
-    color: #FFF;
-    background-color: #C75754;
-    border-color: #AC2925;
-    font-size: 1em;
-}
-
 .float-left {
     float: left;
 }
@@ -131,3 +124,12 @@
     font-size: 12px;
     margin-top: 5px;
 }
+
+/************ Error Message **************/
+.error-message {
+    color: #FFF !important;
+    background-color: #C75754 !important;
+    border-color: #AC2925 !important;
+    font-size: 1em;
+}
+
