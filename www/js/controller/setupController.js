@@ -48,12 +48,17 @@ angular.module('wuw.controllers')
             Settings.setSetting("localDeadlines", "");
             Settings.setSetting("lecturesCache", "");
             Settings.setSetting("lecturesWeeklyCache", "");
+            
+            // Reset Cache Times
+            Settings.setSetting("dishesCacheTime", "0");
+            Settings.setSetting("lecturesCacheTime", "0");
+            Settings.setSetting("lecturesWeeklyCacheTime", "0");
+            Settings.setSetting("localDeadlinesCacheTime", "0");
         }
         catch(e) { }
         finally {
-            // in any case, goto the home tab
+            // TODO: if user came from lectures, take him back to lectures.
             $state.go("tab.home", {location: "replace"});
-            location.reload();
         }
     };
     
