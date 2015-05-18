@@ -7,6 +7,7 @@ angular.module("wuw.controllers")
     var moreCounter = 0;
 
     $scope.loadDishes = function() {
+        moreCounter = 0;
         Dishes.getDishes().then(function(dishes){
             $scope.dishes = dishes;
             $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
@@ -28,12 +29,10 @@ angular.module("wuw.controllers")
     };
     
     $scope.loadMore = function() {
-        $timeout(function(){
-            moreCounter++;
-            var moreDishes = Dishes.getMoreDishes(moreCounter);
-            $scope.dishes = moreDishes;
-            $scope.$broadcast('scroll.infiniteScrollComplete');    
-        }, 500);
+        moreCounter++;
+        var moreDishes = Dishes.getMoreDishes(moreCounter);
+        $scope.dishes = moreDishes;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
     };
     
     $scope.$on('$ionicView.loaded', function(){
