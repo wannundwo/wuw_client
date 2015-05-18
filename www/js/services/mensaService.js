@@ -6,6 +6,7 @@ angular.module("wuw.services")
 
 .factory("Dishes", function($http, $q, Settings) {
     var dishes = JSON.parse(Settings.getSetting('dishesCache') || '[]');
+    var numberOfDishes = 18;
 
     var getDishes = function() {
         var deferred = $q.defer();
@@ -26,11 +27,11 @@ angular.module("wuw.services")
     };
     
     var getMoreDishes = function(i) {
-        return dishes.slice(0, (6*i)+6);
+        return dishes.slice(0, (numberOfDishes * i) + numberOfDishes);
     };
 
     var fromCache = function() {
-        return dishes.slice(0, 6);
+        return dishes;
     };
 
     var secondsSinceCache = function() {
