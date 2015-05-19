@@ -65,7 +65,7 @@
     align-items: center;
 }
 
-/********* Accordion Animations *********/
+/********* Accordion Animations **********/
 .item-accordion {
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
@@ -90,7 +90,7 @@
 }
 
 
-/********* Inset Checkboxes *********/
+/********* Inset Checkboxes **************/
 .checkbox-inset .checkbox {
     padding-left: 40px;
 }
@@ -118,7 +118,7 @@
 }
 
 
-/************ MENSA **************/
+/************ MENSA **********************/
 .dishes-allergens-additives p {
     line-height: 1.2;
     font-size: 12px;
@@ -131,5 +131,10 @@
     background-color: #C75754 !important;
     border-color: #AC2925 !important;
     font-size: 1em;
+}
+
+/************ Calendar *******************/
+#myCalendar {
+    margin-top: -2px;
 }
 
