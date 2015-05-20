@@ -29,7 +29,7 @@
                         </input>
                     </div>
                     <div style="padding: 15px; padding-left: 50px;" ng-click="group.shown = !group.shown;">
-                        {{group._id}}
+                        {{::group._id}}
                         <i style="float: right; margin-top: 3px" class="icon"
                            ng-class="group.shown ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'">
                         </i>
@@ -40,7 +40,7 @@
                               ng-if="group.shown"
                               ng-repeat="lecture in group.lectures"
                               ng-model="lecture.chosen">
-                    {{lecture.lectureName}}
+                    {{::lecture.lectureName}}
                 </ion-checkbox>
             </div>
         </ion-list>
