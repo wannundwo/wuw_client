@@ -16,6 +16,7 @@ angular.module('wuw.controllers')
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
+                $scope.loading = false;
                 $scope.$broadcast("scroll.refreshComplete");
             }, 400);
         });
@@ -36,6 +37,7 @@ angular.module('wuw.controllers')
     $scope.$on('$ionicView.afterEnter', function(){
         // If the cache is older then 10 seconds, load new data from API.
         if (Deadlines.secondsSinceCache() > 10) {
+            $scope.loading = true;
             $scope.loadDeadlines();
         }
     });
