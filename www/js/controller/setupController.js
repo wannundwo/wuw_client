@@ -24,11 +24,17 @@ angular.module('wuw.controllers')
         try {
             var selectedGroups = [];
             var selectedLectures = [];
+            
+            // We now receive all selected groups and lectures.
+            // iterate over each group ...
             for (var i = 0; i < $scope.groups.length; i++) {
                 var newGroup = true;
+                
+                // ... and every lecture in that group
                 for (var j = 0; j < $scope.groups[i].lectures.length; j++) {
                     if ($scope.groups[i].lectures[j].chosen) {
-                        if (newGroup) { // make sure a group is added only once
+                        // make sure a group is added only once
+                        if (newGroup) { 
                             selectedGroups.push($scope.groups[i]._id);
                             newGroup = false;
                         }
