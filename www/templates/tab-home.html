@@ -1,4 +1,7 @@
 <ion-view view-title="{{'global.home' | translate}}">
+    <ion-nav-buttons side="secondary">
+        <ion-spinner ng-show="loading"></ion-spinner>
+    </ion-nav-buttons>
     <ion-content>
         <ion-refresher
           pulling-text="{{'global.pullToRefresh' | translate}}"
@@ -29,12 +32,6 @@
                     </div>
                 </div>
             </div>
-          <ion-item ng-if="loading">
-            <div class="center">
-                <ion-spinner></ion-spinner>
-              </div>
-            </div>
-          </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
