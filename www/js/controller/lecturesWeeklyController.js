@@ -6,6 +6,7 @@ angular.module("wuw.controllers")
     
     $scope.events = [];
     $scope.eventSource = [$scope.events];
+    var nexted = false;
     
     /*
         After the event was rendered on the calendar, we register an ionic tap-gesture,
@@ -119,6 +120,12 @@ angular.module("wuw.controllers")
     });
     
     $scope.$on('$ionicView.afterEnter', function(){
+        if (!nexted) {
+            $("#myCalendar2").fullCalendar("next");
+            $("#myCalendar3").fullCalendar("next").fullCalendar("next");
+            nexted = true;
+        }
+        
         // If the user hasn't selected any lectures, we give him an message on that.
         $scope.selectedLectures = Lectures.getSelectedLecturesLength();
 
