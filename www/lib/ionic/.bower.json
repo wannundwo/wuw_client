@@ -1,6 +1,6 @@
 {
   "name": "ionic",
-  "codename": "radium-raccoon",
+  "codename": "uranium-unicorn",
   "homepage": "https://github.com/driftyco/ionic",
   "authors": [
     "Max Lynch <max@drifty.com>",
@@ -33,11 +33,11 @@
     "angular-sanitize": "1.3.13",
     "angular-ui-router": "0.2.13"
   },
-  "_release": "6a7d59802b",
+  "_release": "e31f8e3833",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "6a7d59802b74094f89e37683953401e0e96742d3"
+    "commit": "e31f8e3833f57f587ba98168bd17f07f6cd6f41a"
   },
   "_source": "git://github.com/driftyco/ionic-bower.git",
   "_target": "master",
