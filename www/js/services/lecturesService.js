@@ -20,7 +20,7 @@ angular.module("wuw.services")
             return deferred.promise;
         }
 
-        $http.post(Settings.getSetting("apiUrl") + "/lectures/weekly", {
+        $http.post(Settings.getSetting("apiUrl") + "/lectures/upcoming", {
             "groups": Settings.getSetting("selectedGroups")
         }).
         success(function(data, status, headers, config) {
