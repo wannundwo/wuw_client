@@ -28,7 +28,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
 
         // ping home
-        Users.ping(versionNumber);
+        Users.ping();
     });
 })
 

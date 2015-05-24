@@ -2,7 +2,7 @@
 
 angular.module('wuw.controllers')
 
-.controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, Setup, Settings) {
+.controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, Setup, Settings, Users) {
 
     $scope.load = function() {
         $scope.showErrorMessage = false;
@@ -24,17 +24,17 @@ angular.module('wuw.controllers')
         try {
             var selectedGroups = [];
             var selectedLectures = [];
-            
+
             // We now receive all selected groups and lectures.
             // iterate over each group ...
             for (var i = 0; i < $scope.groups.length; i++) {
                 var newGroup = true;
-                
+
                 // ... and every lecture in that group
                 for (var j = 0; j < $scope.groups[i].lectures.length; j++) {
                     if ($scope.groups[i].lectures[j].chosen) {
                         // make sure a group is added only once
-                        if (newGroup) { 
+                        if (newGroup) {
                             selectedGroups.push($scope.groups[i]._id);
                             newGroup = false;
                         }
@@ -49,12 +49,13 @@ angular.module('wuw.controllers')
             Settings.setSetting("selectedGroups", JSON.stringify(selectedGroups));
             Settings.setSetting("selectedLectures", JSON.stringify(selectedLectures));
             Settings.setSetting("selectedLecturesLength", selectedLectures.length);
-            
+            Users.saveLectureSelection(selectedLectures);
+
             // Clear the caches.
             Settings.setSetting("localDeadlines", "");
             Settings.setSetting("lecturesCache", "");
             Settings.setSetting("lecturesWeeklyCache", "");
-            
+
             // Reset Cache Times
             Settings.setSetting("dishesCacheTime", "0");
             Settings.setSetting("lecturesCacheTime", "0");
@@ -67,7 +68,7 @@ angular.module('wuw.controllers')
             $state.go("tab.home", {location: "replace"});
         }
     };
-    
+
     $scope.$on('$ionicView.afterEnter', function(){
         $scope.load();
     });
