@@ -11,7 +11,7 @@
                         {{'global.group' | translate}}
                     </div>
                     <select ng-model="deadline.group" required="">
-                        <option ng-repeat="title in lectureTitles" value="{{title}}">{{title}}</option>
+                        <option ng-repeat="lecture in lectureTitles" value="{{lecture}}">{{lecture.lectureName}}</option>
                     </select>
                 </label>
                 <label class="item item-input item-stacked-label">
