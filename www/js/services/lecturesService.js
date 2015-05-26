@@ -166,16 +166,7 @@ angular.module("wuw.services")
         Returns the title of all lectures in a distinct manner.
     */
     var getAllLectureTitles = function() {
-        var lectureTitles = [];
-        for (var i = 0; i < lectures.length; i++) {
-            var lectureTitle = lectures[i].lectureName;
-
-            // check if the lectureTitle is new
-            if (lectureTitles.indexOf(lectureTitle) < 0) {
-                lectureTitles.push(lectureTitle);
-            }
-        }
-        return lectureTitles;
+        return JSON.parse(Settings.getSetting("selectedLectures"));
     };
 
     /*
