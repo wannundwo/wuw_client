@@ -9,6 +9,7 @@ angular.module('wuw.services')
     var add = function(newDeadline) {
         var deferred = $q.defer();
         newDeadline.done = false;
+        newDeadline.group = JSON.parse(newDeadline.group);
         $http({
             url: Settings.getSetting("apiUrl") + '/deadlines',
             method: "POST",
@@ -43,7 +44,7 @@ angular.module('wuw.services')
         var localDeadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
         var mergedDeadlines = [];
 
-        $http.get(Settings.getSetting("apiUrl") + '/deadlines')
+        $http.get(Settings.getSetting("apiUrl") + '/deadlines/user/' + Settings.getSetting('uuid'))
         .success(function(data, status, headers, config) {
 
             // iterate over each received deadline and merge it with the local deadlines
