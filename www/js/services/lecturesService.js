@@ -20,43 +20,26 @@ angular.module("wuw.services")
             return deferred.promise;
         }
 
-        $http.post(Settings.getSetting("apiUrl") + "/lectures/upcoming", {
-            "groups": Settings.getSetting("selectedGroups")
-        }).
-        success(function(data, status, headers, config) {
+        $http.get(Settings.getSetting("apiUrl") + "/lectures/user/" + Settings.getSetting('uuid'))
+        .success(function(data, status, headers, config) {
 
-            var filteredLectures = [];
+            // add datefield to every lecutre (useable for grouping)
             for (var i = 0; i < data.length; i++) {
-                var lecture = data[i];
-                var occursInSelectedLectures = false;
-
-                // check if this lectures is in one of the users selected groups
-                for (var k = 0; k < selectedLectures.length; k++) {
-                    if (lecture.lectureName === selectedLectures[k].lectureName) {
-                        occursInSelectedLectures = true;
-                    }
-                }
-
-                // add datefield to every lecutre (useable for grouping)
-                var d = new Date(lecture.startTime).setHours(0);
-                lecture.date = new Date(d).setMinutes(0);
-
-                if (occursInSelectedLectures) {
-                    filteredLectures.push(lecture);
-                }
+                var d = new Date(data[i].startTime).setHours(0);
+                data[i].date = new Date(d).setMinutes(0);
             }
             
             // add full-calendar specific properties
             var fcPreparedLectures = [];
-            for (var j = 0; j < filteredLectures.length; j++) {
+            for (var j = 0; j < data.length; j++) {
                 var l = {
                     fciId: j,
-                    title: filteredLectures[j].lectureName,
-                    start: new Date(filteredLectures[j].startTime),
-                    end: new Date(filteredLectures[j].endTime),
-                    rooms: filteredLectures[j].rooms,
-                    docents: filteredLectures[j].docents,
-                    color: filteredLectures[j].color,
+                    title: data[j].lectureName,
+                    start: new Date(data[j].startTime),
+                    end: new Date(data[j].endTime),
+                    rooms: data[j].rooms,
+                    docents: data[j].docents,
+                    color: data[j].color,
                     stick: true,
                     allDay: false   
                 };
@@ -86,36 +69,19 @@ angular.module("wuw.services")
             return deferred.promise;
         }
 
-        $http.post(Settings.getSetting("apiUrl") + "/lectures/groups", {
-            "groups": Settings.getSetting("selectedGroups")
-        }).
-        success(function(data, status, headers, config) {
-
-            var filteredLectures = [];
+        $http.get(Settings.getSetting("apiUrl") + "/lectures/user/" + Settings.getSetting('uuid'))
+        .success(function(data, status, headers, config) {
+            
+            // add datefield to every lecutre (useable for grouping)
             for (var i = 0; i < data.length; i++) {
-                var lecture = data[i];
-                var occursInSelectedLectures = false;
-
-                // check if this lectures is in one of the users selected groups
-                for (var k = 0; k < selectedLectures.length; k++) {
-                    if (lecture.lectureName === selectedLectures[k].lectureName) {
-                        occursInSelectedLectures = true;
-                    }
-                }
-
-                // add datefield to every lecutre (useable for grouping)
-                var d = new Date(lecture.startTime).setHours(0);
-                lecture.date = new Date(d).setMinutes(0);
-
-                if (occursInSelectedLectures) {
-                    filteredLectures.push(lecture);
-                }
+                var d = new Date(data[i].startTime).setHours(0);
+                data[i].date = new Date(d).setMinutes(0);
             }
 
-            Settings.setSetting('lecturesCache', JSON.stringify(filteredLectures));
+            Settings.setSetting('lecturesCache', JSON.stringify(data));
             Settings.setSetting('lecturesCacheTime', new Date().getTime());
-            lectures = filteredLectures;
-            deferred.resolve(filteredLectures);
+            lectures = data;
+            deferred.resolve(data);
         }).
         error(function(data, status, headers, config) {
             deferred.reject("httpFailed");
