@@ -28,7 +28,7 @@
                 </div>
                 <ion-item style="border-left: 10px solid {{deadline.color}};" class="color-indicator item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
                     <h2>
-                        <b>{{deadline.info}}</b> in <b>{{deadline.group}}</b>
+                        <b>{{deadline.info}}</b> in <b>{{deadline.group.lectureName}}</b>
                         <div>
                             {{'deadlines.to' | translate}} <b>{{deadline.deadline | date: 'EEEE, dd.MM.yyyy'}}</b>
                         </div>
