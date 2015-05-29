@@ -139,14 +139,16 @@ angular.module("wuw.services")
         Returns the lecture which is currently running.
     */
     var getCurrentLecture = function() {
+        var curLectures = [];
         var now = new Date().getTime();
         for (var i = 0; i < lectures.length; i++) {
             var start = new Date(lectures[i].startTime).getTime();
             var end   = new Date(lectures[i].endTime).getTime();
             if (start < now && now < end) {
-                return lectures[i];
+                curLectures.push(lectures[i]);
             }
         }
+        return curLectures;
     };
 
     /*
@@ -154,15 +156,21 @@ angular.module("wuw.services")
     */
     var getNextLecture = function() {
         var nextLecture;
+        var nextLectures = [];
         var nextLectureDistance = 18446744073709552000;
+        var now = new Date().getTime();
         for (var i = 0; i < lectures.length; i++) {
-            var lectureDistance = new Date(lectures[i].startTime).getTime() - new Date().getTime();
-            if (lectureDistance < nextLectureDistance && lectureDistance > 0) {
+            var lectureDistance = new Date(lectures[i].startTime).getTime() - now;
+            if (lectureDistance <= nextLectureDistance && lectureDistance > 0) {
+                if (lectureDistance < nextLectureDistance) {
+                    nextLectures = [];
+                }
                 nextLectureDistance = lectureDistance;
                 nextLecture = lectures[i];
+                nextLectures.push(lectures[i]);
             }
         }
-        return nextLecture;
+        return nextLectures;
     };
 
 
