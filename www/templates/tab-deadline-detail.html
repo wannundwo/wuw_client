@@ -15,15 +15,10 @@
                     <div class="cardFont">{{deadline.deadline | date: 'EEEE, dd.MM.yyyy'}}</div>
                 </div>
                 <div class="item item-text-wrap noLeftPadding">
-                    <ion-checkbox class="smallCheckbox" ng-model="deadline.done">
+                    <ion-checkbox class="smallCheckbox" ng-model="deadline.done" ng-change="saveDeadline()">
                         {{'deadlines.done' | translate}}
                     </ion-checkbox>
                 </div>
-            </div>
-            <div class="cardPaddings">
-                <button class="button button-outline button-positive col col-center" ng-click="saveDeadline()">
-                    {{'global.save' | translate}}
-                </button>
             </div>
 
             <div class="cardPaddings">
