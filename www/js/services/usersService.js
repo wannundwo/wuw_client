@@ -30,11 +30,11 @@ angular.module('wuw.services')
     };
 
     var saveLectureSelection = function(selectedLectures) {
-        if (ionic.Platform.isWebView()) {
+        //if (ionic.Platform.isWebView()) {
             var deferred = $q.defer();
             console.log(selectedLectures);
             $http({
-                url: Settings.getSetting("apiUrl") + '/users/' + "cfdd47557a0b56b3" + "/lectures",
+                url: Settings.getSetting("apiUrl") + '/users/' + Settings.getSetting('uuid') + "/lectures",
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 data: {
@@ -52,7 +52,7 @@ angular.module('wuw.services')
                 deferred.reject(response);
             });
             return deferred.promise;
-        }
+        //}
     };
 
     return {
