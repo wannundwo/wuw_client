@@ -20,7 +20,7 @@ angular.module("wuw.services")
             return deferred.promise;
         }
 
-        $http.get(Settings.getSetting("apiUrl") + "/lectures/user/" + Settings.getSetting('uuid'))
+        $http.get(Settings.getSetting("apiUrl") + "/lectures/users/" + Settings.getSetting('uuid'))
         .success(function(data, status, headers, config) {
 
             // add datefield to every lecutre (useable for grouping)
