@@ -5,7 +5,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 .run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
     var apiUrl = "https://wuw.benleb.de:4342/api/v0";
-    var versionNumber = "0.4.2";
+    var versionNumber = "0.4.3";
 
     // predefined settings
     Settings.setSetting('version', versionNumber);
