@@ -16,7 +16,7 @@
                         {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
                         <hr ng-if="$middle || $index == 0">
                     </div>
-                    <div ng-if="currLecture.length == 0">
+                    <div ng-if="currLectures.length == 0">
                         {{'home.noLecture' | translate}}
                     </div>
                 </div>
