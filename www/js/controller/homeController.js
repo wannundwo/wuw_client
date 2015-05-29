@@ -9,8 +9,8 @@ angular.module('wuw.controllers')
     var reload = function() {
         $scope.loading = true;
         Lectures.lecturesForGroups().then(function(lectures){
-            $scope.currLecture = Lectures.getCurrentLecture();
-            $scope.nextLecture = Lectures.getNextLecture();
+            $scope.currLectures = Lectures.getCurrentLecture();
+            $scope.nextLectures = Lectures.getNextLecture();
         }).finally(function () {
             $scope.loading = false;
         });
@@ -20,8 +20,8 @@ angular.module('wuw.controllers')
     // Doesnt matter if we got new lectures, update curr and next.
     $scope.doRefresh = function() {
         Lectures.lecturesForGroups().then(function(lectures){}).finally(function () {
-            $scope.currLecture = Lectures.getCurrentLecture();
-            $scope.nextLecture = Lectures.getNextLecture();
+            $scope.currLectures = Lectures.getCurrentLecture();
+            $scope.nextLectures = Lectures.getNextLecture();
             $scope.$broadcast("scroll.refreshComplete");
         });
     };
@@ -30,8 +30,8 @@ angular.module('wuw.controllers')
         // wrap into $timeout, since getCurrentLecture() & getNextLecture() are blocking
         $timeout(function() {
             reload();
-            $scope.currLecture = Lectures.getCurrentLecture();
-            $scope.nextLecture = Lectures.getNextLecture();
+            $scope.currLectures = Lectures.getCurrentLecture();
+            $scope.nextLectures = Lectures.getNextLecture();
         }, 10);
     });
 });

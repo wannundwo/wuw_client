@@ -10,24 +10,26 @@
         <ion-list>
             <div class="list card">
                 <div class="item item-divider">{{'home.current' | translate}}</div>
-                    <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
-                        <div ng-if="currLecture">
-                            <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
-                            {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
-                        </div>
-                    <div ng-if="!currLecture">
+                <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
+                    <div ng-repeat="currLecture in currLectures" ng-if="currLecture">
+                        <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
+                        {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
+                        <hr ng-if="$middle || $index == 0">
+                    </div>
+                    <div ng-if="currLecture.length == 0">
                         {{'home.noLecture' | translate}}
                     </div>
                 </div>
             </div>
             <div class="list card">
                 <div class="item item-divider">{{'home.next' | translate}}</div>
-                    <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
-                        <div ng-if="nextLecture">
-                            <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
-                            {{nextLecture.startTime | date: 'EEEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
-                        </div>
-                    <div ng-if="!nextLecture">
+                <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
+                    <div ng-repeat="nextLecture in nextLectures" ng-if="nextLecture">
+                        <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
+                        {{nextLecture.startTime | date: 'EEEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
+                        <hr ng-if="$middle || $index == 0">
+                    </div>
+                    <div ng-if="nextLectures.length == 0">
                         {{'home.noLecture' | translate}}
                     </div>
                 </div>
