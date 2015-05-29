@@ -30,7 +30,7 @@ angular.module('wuw.services')
     };
 
     var saveLectureSelection = function(selectedLectures) {
-        //if (ionic.Platform.isWebView()) {
+        if (ionic.Platform.isWebView()) {
             var deferred = $q.defer();
             console.log(selectedLectures);
             $http({
@@ -52,7 +52,7 @@ angular.module('wuw.services')
                 deferred.reject(response);
             });
             return deferred.promise;
-        //}
+        }
     };
 
     return {
