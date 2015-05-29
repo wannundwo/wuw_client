@@ -14,7 +14,7 @@ angular.module('wuw.services')
                 headers: {'Content-Type': 'application/json'},
                 data: {
                     appVersion: Settings.getSetting('version'),
-                    deviceId: device.uuid,
+                    deviceId: "cfdd47557a0b56b3", //device.uuid,
                     platform: ionic.Platform.platform(),
                     platformVersion: ionic.Platform.version()
                 }
@@ -34,12 +34,12 @@ angular.module('wuw.services')
             var deferred = $q.defer();
             console.log(selectedLectures);
             $http({
-                url: Settings.getSetting("apiUrl") + '/users/' + device.uuid + "/lectures",
+                url: Settings.getSetting("apiUrl") + '/users/' + "cfdd47557a0b56b3" + "/lectures",
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 data: {
                     appVersion: Settings.getSetting('version'),
-                    deviceId: device.uuid,
+                    deviceId: "cfdd47557a0b56b3", //device.uuid,
                     platform: ionic.Platform.platform(),
                     platformVersion: ionic.Platform.version(),
                     selectedLectures: selectedLectures

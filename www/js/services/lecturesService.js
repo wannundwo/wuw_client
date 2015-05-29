@@ -7,7 +7,7 @@ angular.module("wuw.services")
 .factory("Lectures", function($http, $q, Settings) {
     var lectures = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
     var lecturesWeekly = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
-    
+
     var lecturesThisWeek = function() {
         var deferred = $q.defer();
         var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
@@ -28,7 +28,7 @@ angular.module("wuw.services")
                 var d = new Date(data[i].startTime).setHours(0);
                 data[i].date = new Date(d).setMinutes(0);
             }
-            
+
             // add full-calendar specific properties
             var fcPreparedLectures = [];
             for (var j = 0; j < data.length; j++) {
@@ -41,7 +41,7 @@ angular.module("wuw.services")
                     docents: data[j].docents,
                     color: data[j].color,
                     stick: true,
-                    allDay: false   
+                    allDay: false
                 };
                 fcPreparedLectures.push(l);
             }
@@ -69,9 +69,9 @@ angular.module("wuw.services")
             return deferred.promise;
         }
 
-        $http.get(Settings.getSetting("apiUrl") + "/lectures/user/" + Settings.getSetting('uuid'))
+        $http.get(Settings.getSetting("apiUrl") + "/lectures/users/" + Settings.getSetting('uuid'))
         .success(function(data, status, headers, config) {
-            
+
             // add datefield to every lecutre (useable for grouping)
             for (var i = 0; i < data.length; i++) {
                 var d = new Date(data[i].startTime).setHours(0);
@@ -103,7 +103,7 @@ angular.module("wuw.services")
                 cached[i].end = new Date(cached[i].end);
             }
             return cached;
-        } 
+        }
         cached = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
         return cached;
     };
@@ -116,13 +116,13 @@ angular.module("wuw.services")
         if (mode === "weekly") {
             cacheTime = Settings.getSetting('lecturesWeeklyCacheTime');
         } else {
-            cacheTime = Settings.getSetting('lecturesCacheTime');    
+            cacheTime = Settings.getSetting('lecturesCacheTime');
         }
-        
+
         if (typeof cacheTime === 'undefined') {
             return Math.pow(2,32) - 1; // highest integer in JS
         }
-        
+
         var diff = new Date().getTime() - cacheTime;
         var seconds = Math.round(diff / 1000);
         return seconds;
@@ -164,8 +164,8 @@ angular.module("wuw.services")
         }
         return nextLecture;
     };
-    
-    
+
+
     /*
         Returns how many lectures the user has selected.
     */
