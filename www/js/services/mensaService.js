@@ -18,14 +18,14 @@ angular.module("wuw.services")
             Settings.setSetting('dishesCache', JSON.stringify(filteredDishes));
             Settings.setSetting('dishesCacheTime', new Date().getTime());
             dishes = filteredDishes;
-            deferred.resolve(filteredDishes.slice(0, 6));
+            deferred.resolve(filteredDishes);
         }).
         error(function(data, status, headers, config) {
             deferred.reject(data);
         });
         return deferred.promise;
     };
-    
+
     var getMoreDishes = function(i) {
         return dishes.slice(0, (numberOfDishes * i) + numberOfDishes);
     };
