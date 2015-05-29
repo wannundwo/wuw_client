@@ -14,7 +14,7 @@ angular.module('wuw.services')
                 headers: {'Content-Type': 'application/json'},
                 data: {
                     appVersion: Settings.getSetting('version'),
-                    deviceId: "cfdd47557a0b56b3", //device.uuid,
+                    deviceId: Settings.getSetting('uuid'),
                     platform: ionic.Platform.platform(),
                     platformVersion: ionic.Platform.version()
                 }
@@ -39,7 +39,7 @@ angular.module('wuw.services')
                 headers: {'Content-Type': 'application/json'},
                 data: {
                     appVersion: Settings.getSetting('version'),
-                    deviceId: "cfdd47557a0b56b3", //device.uuid,
+                    deviceId: Settings.getSetting('uuid'),
                     platform: ionic.Platform.platform(),
                     platformVersion: ionic.Platform.version(),
                     selectedLectures: selectedLectures
