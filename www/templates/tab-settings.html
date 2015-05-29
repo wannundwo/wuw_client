@@ -9,7 +9,7 @@
 
             <label class="item item-input item-stacked-label" ng-hide="false">
                 <span class="input-label">{{'settings.apiUrl' | translate}}</span>
-                <input type="text" ng-model="settings.apiUrl">
+                <input type="text" ng-model="settings.apiUrl" ng-blur="save()">
             </label>
 
 
@@ -22,12 +22,6 @@
                 <a class="button button-outline button-block button-positive" href="#/setup">
                     {{'settings.selectSemesterAndGroups' | translate}}
                 </a>
-            </ion-item>
-
-            <ion-item>
-                <button class="button button-outline button-block button-positive" ng-click="save()">
-                    {{'global.save' | translate}}
-                </button>
             </ion-item>
 
         </ion-list>
