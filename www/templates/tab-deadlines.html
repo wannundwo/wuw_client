@@ -33,6 +33,9 @@
                             {{'deadlines.to' | translate}} <b>{{deadline.deadline | date: 'EEEE, dd.MM.yyyy'}}</b>
                         </div>
                     </h2>
+                    <ion-option-button class="button-balanced" ng-click="doneToggle(deadline)" ng-if="!deadline.done">Done</ion-option-button>
+                    <ion-option-button class="button-energized" ng-click="doneToggle(deadline)" ng-if="deadline.done">Undone</ion-option-button>
+                    <ion-option-button class="button-assertive" ng-click="deleteDeadlineLocal(deadline)">Delete</ion-option-button>
                 </ion-item>
             </div>
         </ion-list>

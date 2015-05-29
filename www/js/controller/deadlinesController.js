@@ -2,7 +2,7 @@
 
 angular.module('wuw.controllers')
 
-.controller('DeadlinesCtrl', function($scope, $ionicPopup, $timeout, $filter, Deadlines, Settings) {
+.controller('DeadlinesCtrl', function($scope, $state, $ionicPopup, $timeout, $filter, Deadlines, Settings) {
 
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
@@ -29,7 +29,26 @@ angular.module('wuw.controllers')
     $scope.isNotRemoved = function(deadline) {
       return !deadline.removed;
     };
-    
+
+    $scope.doneToggle = function(deadline) {
+        deadline.done = !deadline.done;
+    };
+
+    $scope.deleteDeadlineLocal = function(deadline) {
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Really delete this deadline?',
+            template: ''
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                Deadlines.remove(deadline);
+                setTimeout(function() {
+                    $state.go("tab.deadlines", {location: "replace"});
+                }, 750);
+            }
+        });
+    };
+
     $scope.$on('$ionicView.loaded', function(){
         $scope.deadlines = Deadlines.fromCache();
     });
