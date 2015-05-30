@@ -10,29 +10,23 @@
         <ion-list>
             <div class="list card">
                 <div class="item item-divider">{{'home.current' | translate}}</div>
-                <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
-                    <div ng-repeat="currLecture in currLectures" ng-if="currLecture">
-                        <hr ng-if="!$first">
+                <div style="border-left: 10px solid {{currLecture.color}};" ng-repeat="currLecture in currLectures" class="lectureItem item item-body">
                         <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
                         {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
-                    </div>
-                    <div ng-if="currLectures.length == 0">
-                        {{'home.noLecture' | translate}}
-                    </div>
+                    
+                </div>
+                <div ng-if="currLectures.length == 0" class="lectureItem item item-body">
+                    {{'home.noLecture' | translate}}
                 </div>
             </div>
             <div class="list card">
                 <div class="item item-divider">{{'home.next' | translate}}</div>
-                <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
-                    <div ng-repeat="nextLecture in nextLectures" ng-if="nextLecture">
-                        <hr ng-if="!$first">
+                <div style="border-left: 10px solid {{nextLecture.color}};" ng-repeat="nextLecture in nextLectures" class="item item-body">
                         <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
                         {{nextLecture.startTime | date: 'EEEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
-                        
-                    </div>
-                    <div ng-if="nextLectures.length == 0">
-                        {{'home.noLecture' | translate}}
-                    </div>
+                </div>
+                <div ng-if="nextLectures.length == 0" class="lectureItem item item-body">
+                    {{'home.noLecture' | translate}}
                 </div>
             </div>
         </ion-list>
