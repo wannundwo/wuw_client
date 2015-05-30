@@ -30,7 +30,7 @@ angular.module('wuw.services')
     };
 
     var saveLectureSelection = function(selectedLectures) {
-        if (ionic.Platform.isWebView()) {
+        if (Settings.getSetting('uuid')) {
             var deferred = $q.defer();
             console.log(selectedLectures);
             $http({
