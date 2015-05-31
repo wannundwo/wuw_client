@@ -5,34 +5,10 @@ angular.module('wuw.services')
 .factory('Users', function($http, $q, Settings) {
 
     // ping some info to my masters
-    var ping = function() {
-        if (ionic.Platform.isWebView()) {
-            var deferred = $q.defer();
-            $http({
-                url: Settings.getSetting("apiUrl") + '/users',
-                method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                data: {
-                    appVersion: Settings.getSetting('version'),
-                    deviceId: Settings.getSetting('uuid'),
-                    platform: ionic.Platform.platform(),
-                    platformVersion: ionic.Platform.version()
-                }
-            })
-            .then(function(response) {
-                deferred.resolve(response);
-            },
-            function(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }
-    };
-
-    var saveLectureSelection = function(selectedLectures) {
+    var ping = function(selectedLectures) {
         if (Settings.getSetting('uuid')) {
             var deferred = $q.defer();
-            console.log(selectedLectures);
+
             $http({
                 url: Settings.getSetting("apiUrl") + '/users/' + Settings.getSetting('uuid') + "/lectures",
                 method: "POST",
@@ -42,7 +18,7 @@ angular.module('wuw.services')
                     deviceId: Settings.getSetting('uuid'),
                     platform: ionic.Platform.platform(),
                     platformVersion: ionic.Platform.version(),
-                    selectedLectures: selectedLectures
+                    selectedLectures: Settings.getSetting('selectedLectures')
                 }
             })
             .then(function(response) {
@@ -57,6 +33,5 @@ angular.module('wuw.services')
 
     return {
         ping: ping,
-        saveLectureSelection: saveLectureSelection
     };
 });
