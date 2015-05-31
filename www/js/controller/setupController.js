@@ -49,7 +49,7 @@ angular.module('wuw.controllers')
             Settings.setSetting("selectedGroups", JSON.stringify(selectedGroups));
             Settings.setSetting("selectedLectures", JSON.stringify(selectedLectures));
             Settings.setSetting("selectedLecturesLength", selectedLectures.length);
-            Users.saveLectureSelection(selectedLectures);
+            Users.ping(selectedLectures);
 
             // Clear the caches.
             Settings.setSetting("localDeadlines", "");
