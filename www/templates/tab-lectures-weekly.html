@@ -28,15 +28,17 @@
             on-refresh="doRefresh()">
         </ion-refresher>
         
-        <ion-slide-box>
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
             <ion-slide>
-                <div id="myCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
+                <div ng-if="visibles[0]" id="myCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
             </ion-slide>
             <ion-slide>
-                <div id="myCalendar2" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar2"></div>
+                <ion-item ng-if="!visibles[1]">swipe to show next week</ion-item>
+                <div ng-if="visibles[1]" id="myCalendar2" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar2"></div>
             </ion-slide>
             <ion-slide>
-                <div id="myCalendar3" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
+                <ion-item ng-if="!visibles[2]">swipe to show next week</ion-item>
+                <div ng-if="visibles[2]" id="myCalendar3" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
             </ion-slide>
         </ion-slide-box>
         
