@@ -102,6 +102,11 @@ angular.module("wuw.controllers")
         });
     };
 
+    $scope.visibles = [true, false, false];
+    $scope.slideHasChanged = function($index) {
+        $scope.visibles[$index] = true;
+    };
+
     $scope.doRefresh = function() {
         $scope.loadLectures();
     };
