@@ -1,6 +1,6 @@
 <ion-view view-title="{{'global.lectures' | translate}}">
     <ion-nav-buttons side="secondary">
-        <ion-spinner ng-show="loading"></ion-spinner>
+        <!-- <ion-spinner ng-show="loading"></ion-spinner> -->
         <a class="button button-icon icon ion-ios-paper-outline" ng-click="switchToList()"></a>
     </ion-nav-buttons>
     <ion-content class="">
@@ -11,12 +11,12 @@
                 </div>
             </div>
         </cz-error-message>
-        
+
         <!-- :( -->
         <ion-item collection-repeat="item in []">
             {{item}}
         </ion-item>
-        
+
         <ion-item ng-if="selectedLectures === 0" class="item-text-wrap">
             {{'lectures.noCoursesSelectedMessage' | translate}}
             <a class="button button-outline button-block button-positive" href="#/setup">
@@ -27,7 +27,7 @@
             pulling-text="{{'global.pullToRefresh' | translate}}"
             on-refresh="doRefresh()">
         </ion-refresher>
-        
+
         <ion-slide-box on-slide-changed="slideHasChanged($index)">
             <ion-slide>
                 <div ng-if="visibles[0]" id="myCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
@@ -41,7 +41,6 @@
                 <div ng-if="visibles[2]" id="myCalendar3" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
             </ion-slide>
         </ion-slide-box>
-        
+
     </ion-content>
 </ion-view>
-
