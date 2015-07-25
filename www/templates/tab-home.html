@@ -1,6 +1,6 @@
 <ion-view view-title="{{'global.home' | translate}}">
     <ion-nav-buttons side="secondary">
-        <ion-spinner ng-show="loading"></ion-spinner>
+        <!-- <ion-spinner ng-show="loading"></ion-spinner> -->
     </ion-nav-buttons>
     <ion-content>
         <ion-refresher
@@ -13,7 +13,7 @@
                 <div style="border-left: 10px solid {{currLecture.color}};" ng-repeat="currLecture in currLectures" class="lectureItem item item-body">
                         <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
                         {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
-                    
+
                 </div>
                 <div ng-if="currLectures.length == 0" class="lectureItem item item-body">
                     {{'home.noLecture' | translate}}
