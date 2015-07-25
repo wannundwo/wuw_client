@@ -55,7 +55,7 @@ angular.module('wuw.controllers')
 
     $scope.$on('$ionicView.afterEnter', function(){
         // If the cache is older then 'cacheDeadline' seconds, load new data from API.
-        if (Deadlines.secondsSinceCache() > Settings.setSetting('cacheDeadline')) {
+        if (Deadlines.secondsSinceCache() > Settings.getSetting('cacheDeadline')) {
             $scope.loading = true;
             $scope.loadDeadlines();
         }

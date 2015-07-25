@@ -41,7 +41,7 @@ angular.module("wuw.controllers")
 
     $scope.$on('$ionicView.afterEnter', function(){
         // If the cache is older then 'cacheMensa' seconds, load new data from API.
-        if (Dishes.secondsSinceCache() > Settings.setSetting('cacheMensa')) {
+        if (Dishes.secondsSinceCache() > Settings.getSetting('cacheMensa')) {
             $scope.loadDishes();
         }
     });

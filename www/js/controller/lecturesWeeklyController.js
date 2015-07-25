@@ -135,7 +135,7 @@ angular.module("wuw.controllers")
         $scope.selectedLectures = Lectures.getSelectedLecturesLength();
 
         // If the cache is older then 'cacheLectures' seconds, load new data from API.
-        if (Lectures.secondsSinceCache("weekly") > Settings.setSetting('cacheLectures')) {
+        if (Lectures.secondsSinceCache("weekly") > Settings.getSetting('cacheLectures')) {
             $scope.loading = true;
             $scope.loadLectures();
         }
