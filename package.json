@@ -29,7 +29,10 @@
     {
       "id": "cordova-plugin-crosswalk-webview",
       "locator": "./engine/cordova-crosswalk-engine-c0.7.1"
-    }
+    },
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen"
   ],
   "scripts": {
     "test": "./node_modules/.bin/karma start ./tests/my.conf.js --single-run"

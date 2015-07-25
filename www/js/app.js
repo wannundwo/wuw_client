@@ -10,6 +10,9 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     // predefined settings
     Settings.setSetting('version', versionNumber);
     Settings.setSetting('apiUrl', apiUrl);
+    Settings.setSetting('cacheDeadline', 300);
+    Settings.setSetting('cacheLectures', 300);
+    Settings.setSetting('cacheMensa', 86400);
 
     $ionicPlatform.ready(function() {
 
