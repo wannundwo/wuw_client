@@ -27,7 +27,7 @@ angular.module("wuw.controllers")
     $scope.doRefresh = function() {
         $scope.loadLectures();
     };
-    
+
     $scope.switchToCalendar = function() {
         Settings.setSetting("lecturesView", "lecturesWeekly");
         $ionicHistory.nextViewOptions({
@@ -36,17 +36,17 @@ angular.module("wuw.controllers")
         });
         $state.go("tab.lecturesWeekly", {location: "replace"});
     };
-    
+
     $scope.$on('$ionicView.loaded', function(){
         $scope.lectures = Lectures.fromCache();
     });
-    
+
     $scope.$on('$ionicView.afterEnter', function(){
         // If the user hasn't selected any lectures, we give him an message on that.
         $scope.selectedLectures = Lectures.getSelectedLecturesLength();
-        
-        // If the cache is older then 10 seconds, load new data from API.
-        if (Lectures.secondsSinceCache() > 10) {
+
+        // If the cache is older then 'cacheLectures' seconds, load new data from API.
+        if (Lectures.secondsSinceCache() > Settings.setSetting('cacheLectures')) {
             $scope.loading = true;
             $scope.loadLectures();
         }

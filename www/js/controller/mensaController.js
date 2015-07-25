@@ -27,21 +27,21 @@ angular.module("wuw.controllers")
     $scope.doRefresh = function() {
         $scope.loadDishes();
     };
-    
+
     $scope.loadMore = function() {
         moreCounter++;
         var moreDishes = Dishes.getMoreDishes(moreCounter);
         $scope.dishes = moreDishes;
         $scope.$broadcast('scroll.infiniteScrollComplete');
     };
-    
+
     $scope.$on('$ionicView.loaded', function(){
         $scope.dishes = Dishes.fromCache();
     });
 
     $scope.$on('$ionicView.afterEnter', function(){
-        // If the cache is older then 10 seconds, load new data from API.
-        if (Dishes.secondsSinceCache() > 10) {
+        // If the cache is older then 'cacheMensa' seconds, load new data from API.
+        if (Dishes.secondsSinceCache() > Settings.setSetting('cacheMensa')) {
             $scope.loadDishes();
         }
     });
