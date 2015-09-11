@@ -4,15 +4,14 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
-
-
     <!-- Home Tab -->
     <ion-tab title="Home" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/home">
         <ion-nav-view name="tab-home"></ion-nav-view>
     </ion-tab>
 
     <!-- Lectures Tab -->
-    <ion-tab title="Lectures" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="#/tab/{{lecturesUrl}}">
+    <!--<ion-tab title="Lectures" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="#/tab/{{lecturesUrl}}">-->
+    <ion-tab title="Lectures" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="#/tab/lecturesList">
         <ion-nav-view name="tab-lectures"></ion-nav-view>
     </ion-tab>
 
@@ -29,6 +28,16 @@ navigation history that also transitions its views in and out.
     <!-- Settings Tab -->
     <ion-tab title="Settings" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/settings">
         <ion-nav-view name="tab-settings"></ion-nav-view>
+    </ion-tab>
+
+    <!-- News Tab (is hidden, we just need the ion-nav-view)-->
+    <ion-tab hidden="true" title="News" href="#/tab/news">
+        <ion-nav-view name="tab-news"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Event Tab (is hidden, we just need the ion-nav-view)-->
+    <ion-tab hidden="true" title="Events" href="#/tab/events">
+        <ion-nav-view name="tab-events"></ion-nav-view>
     </ion-tab>
 
 </ion-tabs>
