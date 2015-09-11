@@ -142,16 +142,24 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
 
-    .state('news', {
+    .state('tab.news', {
         url: '/news',
-        templateUrl: 'templates/news.html',
-        controller: 'NewsCtrl'
+        views: {
+            'tab-news': {
+            templateUrl: 'templates/news.html',
+            controller: 'NewsCtrl'
+        }
+      }
     })
 
-    .state('events', {
+    .state('tab.events', {
         url: '/events',
-        templateUrl: 'templates/events.html',
-        controller: 'EventsCtrl'
+        views: {
+            'tab-events': {
+            templateUrl: 'templates/events.html',
+            controller: 'EventsCtrl'
+        }
+      }
     })
 
     .state('setup', {
