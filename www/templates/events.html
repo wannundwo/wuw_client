@@ -3,14 +3,15 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
-            <ion-item ng-repeat="item in events" class="item-text-wrap">
+            <ion-item ng-click="openEvent('{{item.url}}')" ng-repeat="item in events" class="item-text-wrap">
                 <h2 class="clear-float">
                     <b>{{item.title}}</b>
+                </h2>
                     <p>{{item.startTime | date:'dd.MM.yyyy hh:mm'}} Uhr - {{item.endTime | date:'dd.MM.yyyy hh:mm'}} Uhr</p>
                     <p>{{item.location}}</p>
                     <p>{{item.descr}}</p>
                     <div ng-bind-html="item.text"></div>
-                </h2>
+
             </ion-item>
         </ion-list>
     </ion-content>

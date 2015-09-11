@@ -8,5 +8,10 @@ angular.module('wuw.controllers')
             $scope.events = events;
         });
     }
+
+    $scope.openEvent = function(url) {
+        window.open(url, '_blank', 'location=yes');
+    }
+
     $scope.loadEvents();
 });
