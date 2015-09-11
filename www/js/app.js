@@ -4,7 +4,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 
 .run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
-    var apiUrl = "https://wuw.benleb.de:4342/api/v0";
+    var apiUrl = "http://dmz26.rz.hft-stuttgart.de:4342/api/v0";
     var versionNumber = "0.4.3";
 
     // predefined settings
@@ -138,6 +138,26 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             'tab-settings': {
             templateUrl: 'templates/tab-settings.html',
             controller: 'SettingsCtrl'
+        }
+      }
+    })
+
+    .state('tab.news', {
+        url: '/news',
+        views: {
+            'tab-news': {
+            templateUrl: 'templates/news.html',
+            controller: 'NewsCtrl'
+        }
+      }
+    })
+
+    .state('tab.events', {
+        url: '/events',
+        views: {
+            'tab-events': {
+            templateUrl: 'templates/events.html',
+            controller: 'EventsCtrl'
         }
       }
     })
