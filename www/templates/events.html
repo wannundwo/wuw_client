@@ -1,0 +1,17 @@
+<ion-view view-title="Events">
+    <ion-nav-buttons side="secondary">
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in events" class="item-text-wrap">
+                <h2 class="clear-float">
+                    <b>{{item.title}}</b>
+                    <p>{{item.startTime | date:'dd.MM.yyyy hh:mm'}} Uhr - {{item.endTime | date:'dd.MM.yyyy hh:mm'}} Uhr</p>
+                    <p>{{item.location}}</p>
+                    <p>{{item.descr}}</p>
+                    <div ng-bind-html="item.text"></div>
+                </h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
