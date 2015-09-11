@@ -3,7 +3,7 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
-            <ion-item ng-repeat="item in news" class="item-text-wrap">
+            <ion-item ng-click="openNews('{{item.url}}')" ng-repeat="item in news" class="item-text-wrap">
                 <h2 class="clear-float">
                     <b>{{item.title}}</b>
                     <p>{{item.descr}}</p>
