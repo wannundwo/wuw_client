@@ -67,15 +67,13 @@
         <!-- <script type="text/javascript" src="lib/fullcalendar/fullcalendar.js"></script> -->
     </head>
     <body ng-app="wuw">
-        <ion-side-menus>
+        <ion-side-menus enable-menu-with-back-views="false">
             <ion-side-menu-content ng-controller="NavCtrl">
                 <ion-nav-bar class="bar-positive">
-                    <ion-nav-back-button class="button-icon ion-arrow-left-c">
-                    </ion-nav-back-button>
+                    <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
                     <ion-nav-buttons side="left">
-                        <button class="button button-icon button-clear ion-navicon" ng-click="showMenu()">
-                        </button>
-                    </ion-nav-buttons>
+                        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+                    </ion-nav-buttons
                 </ion-nav-bar>
                 <ion-nav-view animation=""></ion-nav-view>
             </ion-side-menu-content>
@@ -107,7 +105,6 @@
                         <ion-item class="item-icon-left" menu-close href="#/tab/settings">
                             <i class="icon ion-ios-gear-outline"></i> Settings
                         </ion-item>
-
                     </ul>
                 </ion-content>
             </ion-side-menu>

@@ -32,6 +32,7 @@ angular.module('wuw.controllers')
 
     $scope.doneToggle = function(deadline) {
         deadline.done = !deadline.done;
+        Deadlines.save(deadline);
     };
 
     $scope.deleteDeadlineLocal = function(deadline) {
@@ -40,11 +41,9 @@ angular.module('wuw.controllers')
             template: ''
         });
         confirmPopup.then(function(res) {
-            if(res) {
-                Deadlines.remove(deadline);
-                setTimeout(function() {
-                    $state.go("tab.deadlines", {location: "replace"});
-                }, 750);
+            if (res) {
+                deadline.removed = true;
+                Deadlines.save(deadline);
             }
         });
     };
@@ -62,45 +61,14 @@ angular.module('wuw.controllers')
     });
 })
 
-.controller('DeadlinesDetailCtrl', function($scope, $stateParams, $ionicPopup, $state, Deadlines) {
-
-    $scope.deadline = Deadlines.get($stateParams.deadlineId);
-
-    $scope.saveDeadline = function() {
-        Deadlines.save($scope.deadline);
-        setTimeout(function() {
-            $state.go("tab.deadlines", {location: "replace"});
-        }, 750);
-    };
-
-    $scope.deleteDeadline = function() {
-        var confirmPopup = $ionicPopup.confirm({
-            title: 'Really delete this deadline?',
-            template: ''
-        });
-        confirmPopup.then(function(res) {
-            if(res) {
-                Deadlines.remove($scope.deadline);
-                setTimeout(function() {
-                    $state.go("tab.deadlines", {location: "replace"});
-                }, 750);
-            }
-        });
-    };
-})
-
-.controller('DeadlinesCreateCtrl', function($scope, $state, $ionicPopup, Deadlines, Settings, Lectures) {
+.controller('DeadlinesCreateCtrl', function($scope, $state, $ionicPopup, $ionicHistory, Deadlines, Settings, Lectures) {
     $scope.forms = {};
-
-    $scope.lectureTitles = Lectures.getAllLectureTitles();
-    console.log($scope.lectureTitles);
 
     $scope.savingIcon = '<i class="icon ion-android-done"></i>';
     $scope.savingText = 'Save Deadline';
     $scope.deadline = {};
 
     $scope.save = function() {
-
         if ($scope.forms.deadlineForm.$valid === false) {
             $ionicPopup.alert({
                 title: 'Error!',
@@ -114,14 +82,66 @@ angular.module('wuw.controllers')
 
         console.log(JSON.stringify($scope.deadline));
         Deadlines.add($scope.deadline).then(function(res){
-            // success
+            // success, change to loading icon to a "save-success" icon
             $scope.savingIcon = '<i class="icon ion-android-cloud-done"></i>';
             $scope.savingText = 'Deadline saved!';
+
+            // after the deadline is saved to the server,
+            // go back to deadlines overview without displaying a back button
             setTimeout(function() {
-                $state.go("tab.deadlines", {location: "replace"});
+                $ionicHistory.nextViewOptions({
+                    disableBack: true
+                });
+                $state.go("tab.deadlines");
             }, 750);
         }, function(res){
-            // failure
+            // TODO: handle if the lecture could not be created
         });
     };
-});
+
+    // is executed every time the view gets entered
+    $scope.$on('$ionicView.afterEnter', function(){
+        $scope.lectureTitles = Lectures.getAllLectureTitles();
+    });
+})
+
+/*
+ * Add this directive to an ion-item to show the options-buttons on a click.
+ */
+.directive('clickForOptions', ['$ionicGesture', function($ionicGesture) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            $ionicGesture.on('tap', function(e){
+
+                // Grab the content
+                var content = element[0].querySelector('.item-content');
+
+                // Grab the buttons and their width
+                var buttons = element[0].querySelector('.item-options');
+
+                if (!buttons) {
+                    console.log('There are no option buttons');
+                    return;
+                }
+                var buttonsWidth = buttons.offsetWidth;
+
+                ionic.requestAnimationFrame(function() {
+                    content.style[ionic.CSS.TRANSITION] = 'all ease-out .25s';
+
+                    if (!buttons.classList.contains('invisible')) {
+                        console.log('close');
+                        content.style[ionic.CSS.TRANSFORM] = '';
+                        setTimeout(function() {
+                            buttons.classList.add('invisible');
+                        }, 250);
+                    } else {
+                        buttons.classList.remove('invisible');
+                        content.style[ionic.CSS.TRANSFORM] = 'translate3d(-' + buttonsWidth + 'px, 0, 0)';
+                    }
+                });
+
+            }, element);
+        }
+    };
+}])

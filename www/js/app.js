@@ -86,20 +86,11 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
-    .state('tab.deadline-detail', {
-        url: '/deadlines/:deadlineId',
-        views: {
-            'tab-deadlines': {
-            templateUrl: 'templates/tab-deadline-detail.html',
-            controller: 'DeadlinesDetailCtrl'
-        }
-      }
-    })
     .state('tab.deadline-create', {
         url: '/createDeadline',
         views: {
             'tab-deadlines': {
-            templateUrl: 'templates/tab-create-deadline.html',
+            templateUrl: 'templates/tab-deadline-create.html',
             controller: 'DeadlinesCreateCtrl'
         }
       }
