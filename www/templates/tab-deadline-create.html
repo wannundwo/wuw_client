@@ -2,9 +2,9 @@
     <ion-content>
         <div class="list">
             <form name="forms.deadlineForm" novalidate> <!-- for turning of browser validation, we use agnulars validation -->
-                <label class="item item-input item-stacked-label">
+                <label class="item item-input">
                     <span class="input-label">{{'global.info' | translate}}</span>
-                    <input type="text" ng-model="deadline.info" required="" placeholder="{{'deadlines.exampleInfo' | translate}}">
+                    <input type="text" ng-model="deadline.info" required="">
                 </label>
                 <label class="item item-input item-select">
                     <div class="input-label">
@@ -14,9 +14,9 @@
                         <option ng-repeat="lecture in lectureTitles" value="{{lecture}}">{{lecture.lectureName}}</option>
                     </select>
                 </label>
-                <label class="item item-input item-stacked-label">
+                <label class="item item-input">
                     <span class="input-label">{{'deadlines.date' | translate}}</span>
-                    <input type="date" ng-model="deadline.deadline" required="" placeholder="01.02.2015">
+                    <input type="date" ng-model="deadline.deadline" required="">
                 </label>
                 <ion-item>
                     <button class="button button-outline button-positive col col-center" ng-click="save()">
