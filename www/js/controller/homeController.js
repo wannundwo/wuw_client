@@ -8,7 +8,7 @@ angular.module('wuw.controllers')
     // Displays a loading spinner.
     var reload = function() {
         $scope.loading = true;
-        Lectures.lecturesForGroups().then(function(lectures){
+        Lectures.lecturesForUser().then(function(lectures){
             $scope.currLectures = Lectures.getCurrentLecture();
             $scope.nextLectures = Lectures.getNextLecture();
         }).finally(function () {
@@ -19,7 +19,7 @@ angular.module('wuw.controllers')
     // Called by pull to refresh.
     // Doesnt matter if we got new lectures, update curr and next.
     $scope.doRefresh = function() {
-        Lectures.lecturesForGroups().then(function(lectures){}).finally(function () {
+        Lectures.lecturesForUser().then(function(lectures){}).finally(function () {
             $scope.currLectures = Lectures.getCurrentLecture();
             $scope.nextLectures = Lectures.getNextLecture();
             $scope.$broadcast("scroll.refreshComplete");
