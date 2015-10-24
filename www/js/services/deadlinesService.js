@@ -5,11 +5,14 @@ angular.module('wuw.services')
 .factory('Deadlines', function($http, $q, Settings) {
     var deadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
 
-    // add a new deadline (to server and locally)
+    /*
+     * Sends a new deadline to the server
+     */
     var add = function(newDeadline) {
         var deferred = $q.defer();
         newDeadline.done = false;
         newDeadline.group = JSON.parse(newDeadline.group);
+        newDeadline.uuid = Settings.getSetting('uuid');
         $http({
             url: Settings.getSetting("apiUrl") + '/deadlines',
             method: "POST",
@@ -28,7 +31,9 @@ angular.module('wuw.services')
         return deferred.promise;
     };
 
-    // return the deadline to a given id
+    /*
+     * Return the deadline to the given id.
+     */
     var get = function(id) {
         for (var i = 0; i < deadlines.length; i++) {
             if (deadlines[i]._id === id) {
@@ -37,8 +42,10 @@ angular.module('wuw.services')
         }
     };
 
-    // load all deadlines from the server and merge it with the local deadlines.
-    // TODO: This needs some more work.
+    /*
+     * Loads the users deadlines from server and merge it with local deadlines,
+     * respecting deleted & done status.
+     */
     var all = function() {
         var deferred = $q.defer();
         var localDeadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
@@ -66,8 +73,13 @@ angular.module('wuw.services')
                 if (!mergedDeadline) {
                     mergedDeadline = currDeadline;
                     mergedDeadline.done = false;
+                    mergedDeadline.removed = false;
                 }
-                mergedDeadlines.push(mergedDeadline);
+
+                // if the deadline is not deleted, add it to our deadlines array
+                if (mergedDeadline.done == false) {
+                    mergedDeadlines.push(mergedDeadline);
+                }
             }
             deadlines = mergedDeadlines;
             Settings.setSetting('localDeadlines', JSON.stringify(mergedDeadlines));
@@ -80,29 +92,22 @@ angular.module('wuw.services')
         return deferred.promise;
     };
 
-    // save the changes for a deadline locally
+    /*
+     * Saves a deadline locally
+     */
     var save = function(deadline) {
-        // search for this deadline and save its changes
         for (var i = 0; i < deadlines.length; i++) {
             if (deadlines[i]._id === deadline._id) {
-                deadlines[i].done = deadline.done;
+                deadlines[i] = deadline;
                 break;
             }
         }
         Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
     };
 
-    // marks a deadline as deleted
-    var remove = function(deadline) {
-        for (var i = 0; i < deadlines.length; i++) {
-            if (deadlines[i]._id === deadline._id) {
-                deadlines[i].removed = true;
-                break;
-            }
-        }
-        Settings.setSetting('localDeadlines', JSON.stringify(deadlines));
-    };
-
+    /*
+     * Return the the age of the cache in seconds
+     */
     var secondsSinceCache = function() {
         var cacheTime = Settings.getSetting('localDeadlinesCacheTime');
         if (typeof cacheTime === 'undefined') {
@@ -112,6 +117,9 @@ angular.module('wuw.services')
         return Math.round(diff / 1000);
     };
 
+    /*
+     * Get the users deadlines from cache
+     */
     var fromCache = function() {
         return JSON.parse(Settings.getSetting('localDeadlines') || '[]');
     };
@@ -121,7 +129,6 @@ angular.module('wuw.services')
         get: get,
         add: add,
         save: save,
-        remove: remove,
         fromCache: fromCache,
         secondsSinceCache: secondsSinceCache
     };

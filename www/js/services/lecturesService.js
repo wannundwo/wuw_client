@@ -97,8 +97,8 @@ angular.module("wuw.services")
     };
 
     /*
-        Returns lectures from cache.
-        If mode is "weekly" we provide data for easy use in full calendar.
+     * Returns lectures from cache.
+     * If mode is "weekly" we provide data for easy use in full calendar.
     */
     var fromCache = function(mode) {
         var cached;
@@ -116,8 +116,8 @@ angular.module("wuw.services")
     };
 
     /*
-        Returns how many seconds has passed since we cached the lectures.
-    */
+     *Returns how many seconds has passed since we cached the lectures.
+     */
     var secondsSinceCache = function(mode) {
         var cacheTime;
         if (mode === "weekly") {
@@ -136,15 +136,16 @@ angular.module("wuw.services")
     };
 
     /*
-        Returns the title of all lectures in a distinct manner.
-    */
+     * Returns the title of all lectures in a distinct manner.
+     */
     var getAllLectureTitles = function() {
         return JSON.parse(Settings.getSetting("selectedLectures"));
     };
 
     /*
-        Returns the lecture which is currently running.
-    */
+     * Returns the lecture which is currently running.
+     * We use this to select a lecture when creating a deadline
+     */
     var getCurrentLecture = function() {
         var curLectures = [];
         var now = new Date().getTime();
@@ -159,8 +160,8 @@ angular.module("wuw.services")
     };
 
     /*
-        Returns the Users next Lecture.
-    */
+     * Returns the users next lectures in an array.
+     */
     var getNextLecture = function() {
         var nextLecture;
         var nextLectures = [];
@@ -180,10 +181,9 @@ angular.module("wuw.services")
         return nextLectures;
     };
 
-
     /*
-        Returns how many lectures the user has selected.
-    */
+     * Returns how many lectures the user has selected.
+     */
     var getSelectedLecturesLength = function() {
         var selectedLecturesLength = Settings.getSetting('selectedLecturesLength');
         if (typeof selectedLecturesLength === "undefined") {
