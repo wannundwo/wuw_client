@@ -42,6 +42,9 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         $ionicConfigProvider.scrolling.jsScrolling(false);
     }
 
+    // tabs bottom
+    $ionicConfigProvider.tabs.position('bottom');
+
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
