@@ -6,8 +6,12 @@ angular.module("wuw.services")
 
 .factory("Lectures", function($http, $q, Settings) {
     var lectures = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
-    var lecturesWeekly = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
+    // var lecturesWeekly = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
 
+    /*
+     * Returns the lecture for the current week
+     * with extra data for displaying in the calendar with.
+     */
     var lecturesThisWeek = function() {
         var deferred = $q.defer();
         var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
@@ -57,7 +61,10 @@ angular.module("wuw.services")
         return deferred.promise;
     };
 
-    var lecturesForGroups = function() {
+    /*
+     * Return lectures of the current user for the use in the lectures-listview
+     */
+    var lecturesForUser = function() {
         var deferred = $q.defer();
         var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
 
@@ -190,7 +197,7 @@ angular.module("wuw.services")
 
     return {
         lectures: lectures,
-        lecturesForGroups: lecturesForGroups,
+        lecturesForUser: lecturesForUser,
         lecturesThisWeek: lecturesThisWeek,
         fromCache: fromCache,
         getAllLectureTitles: getAllLectureTitles,
