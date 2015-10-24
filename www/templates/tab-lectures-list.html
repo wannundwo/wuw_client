@@ -31,9 +31,15 @@
                 </div>
                 <ion-item style="border-left: 10px solid {{lecture.color}};" class="color-indicator item-text-wrap" ng-repeat="lecture in value">
                     <h2>
-                        <b>{{lecture.lectureName}}</b> in <b>{{lecture.rooms | join: ', '}}</b>
+                        <b>{{lecture.lectureName}}</b>
                     </h2>
-                    <h3>{{lecture.startTime | date: 'HH:mm'}} - {{lecture.endTime | date: 'HH:mm'}}</h3>
+                    <p>
+                        <b>{{lecture.startTime | date: 'HH:mm'}} - {{lecture.endTime | date: 'HH:mm'}}</b>
+                        <span ng-if="lecture.rooms">
+                            in
+                            <b>{{lecture.rooms | join: ', '}}</b>
+                        </span>
+                    </p>
                 </ion-item>
             </div>
 
