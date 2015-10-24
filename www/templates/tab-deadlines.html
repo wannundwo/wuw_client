@@ -26,7 +26,9 @@
                     <span ng-if="key === 'false'">{{'deadlines.todo' | translate}} ({{value.length}})</span>
                     <span ng-if="key === 'true'">{{'deadlines.done' | translate}} ({{value.length}})</span>
                 </div>
-                <ion-item style="border-left: 10px solid {{deadline.color}};" class="color-indicator item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
+                <ion-item click-for-options style="border-left: 10px solid {{deadline.color}};"
+                  class="color-indicator item-text-wrap"
+                  ng-repeat="deadline in value | orderBy:'deadline'">
                     <h2>
                         <b>{{deadline.info}}</b> in <b>{{deadline.group.lectureName}}</b>
                         <div>
