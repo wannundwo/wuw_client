@@ -11,50 +11,18 @@ angular.module('wuw.directives', [])
         scope: true,
         require: '?ngModel',
         link: function(scope, element, attrs, modelCtrl) {
-            var childList = attrs.childList;
-            var property = attrs.property;
-
-            // Bind the click event to update children
-            element.bind('click', function() {
-                scope.$apply(function () {
-                    var isChecked = element.prop('checked');
-
-                    // Set each child's selected property to the checkbox's checked property
-                    angular.forEach(scope.$eval(childList), function(child) {
-                        child[property] = isChecked;
-                    });
-                });
-            });
-
-            // Watch the children for changes
-            scope.$watch(childList, function(newValue) {
-                var hasChecked = false;
-                var hasUnchecked = false;
-
-                // Loop through the children
-                angular.forEach(newValue, function(child) {
-                    if (child[property]) {
-                        hasChecked = true;
-                    } else {
-                        hasUnchecked = true;
-                    }
-                });
-
-                // Determine which state to put the checkbox in
-                if (hasChecked && hasUnchecked) {
+            attrs.$observe('state', function(newValue){
+                if (attrs.state === "indeterminate") {
                     element.prop('checked', false);
                     element.prop('indeterminate', true);
-                    if (modelCtrl) {
-                        modelCtrl.$setViewValue(false);
-                    }
-                } else {
-                    element.prop('checked', hasChecked);
+                } else if (attrs.state === "checked") {
+                    element.prop('checked', true);
                     element.prop('indeterminate', false);
-                    if (modelCtrl) {
-                        modelCtrl.$setViewValue(hasChecked);
-                    }
+                } else {
+                    element.prop('checked', false);
+                    element.prop('indeterminate', false);
                 }
-            }, true);
+            });
         }
     };
 }]);
