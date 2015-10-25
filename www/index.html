@@ -6,9 +6,8 @@
         <title></title>
 
         <link href="lib/czErrorMessage/czErrorMessage.css" rel="stylesheet">
-        <link rel="stylesheet" href="lib/fullcalendar/fullcalendar.css">
-        <link href="css/style.css" rel="stylesheet">
         <link href="css/indeterminateCheckbox.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
 
         <!-- compiled css output -->
         <link href="css/ionic.app.css" rel="stylesheet">
@@ -39,7 +38,6 @@
         <script src="js/controller/controllers.js"></script>
         <script src="js/controller/homeController.js"></script>
         <script src="js/controller/lecturesListController.js"></script>
-        <script src="js/controller/lecturesWeeklyController.js"></script>
         <script src="js/controller/deadlinesController.js"></script>
         <script src="js/controller/mensaController.js"></script>
         <script src="js/controller/settingsController.js"></script>
@@ -67,15 +65,25 @@
         <!-- <script type="text/javascript" src="lib/fullcalendar/fullcalendar.js"></script> -->
     </head>
     <body ng-app="wuw">
+
+        <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+            <ion-nav-buttons side="left">
+
+            </ion-nav-buttons>
+            <ion-nav-view name="view-setup"></ion-nav-view>
+        </ion-nav-bar>
+
         <ion-side-menus enable-menu-with-back-views="false">
             <ion-side-menu-content ng-controller="NavCtrl">
                 <ion-nav-bar class="bar-positive">
                     <ion-nav-back-button class="button-icon ion-arrow-left-c"></ion-nav-back-button>
                     <ion-nav-buttons side="left">
                         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-                    </ion-nav-buttons
+                    </ion-nav-buttons>
                 </ion-nav-bar>
                 <ion-nav-view animation=""></ion-nav-view>
+
             </ion-side-menu-content>
 
             <ion-side-menu side="left">
