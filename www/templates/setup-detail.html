@@ -1,0 +1,9 @@
+<ion-view view-title="{{'setup.chooselectures' | translate}}">
+    <ion-content>
+        <ion-list>
+            <ion-checkbox ng-repeat="lecture in lectures" ng-click="lectureToggled()" ng-model="lecture.selectedByUser">
+                {{lecture.lectureName}}
+            </ion-checkbox>
+        </ion-list>
+    </ion-content>
+</ion-view>

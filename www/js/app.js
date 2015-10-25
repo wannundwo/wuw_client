@@ -132,8 +132,26 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             'tab-settings': {
             templateUrl: 'templates/tab-settings.html',
             controller: 'SettingsCtrl'
+            }
         }
-      }
+    })
+    .state('setup', {
+        url: '/setup',
+        views: {
+            'view-setup': {
+                templateUrl: 'templates/setup-low-perf.html',
+                controller: 'SetupCtrl'
+            }
+        }
+    })
+    .state('setupDetail', {
+        url: '/setupDetail/:group',
+        views: {
+            'view-setup': {
+                templateUrl: 'templates/setup-detail.html',
+                controller: 'SetupDetailCtrl'
+            }
+        }
     })
 
     .state('tab.news', {
@@ -156,11 +174,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
 
-    .state('setup', {
-        url: '/setup',
-        templateUrl: 'templates/setup.html',
-        controller: 'SetupCtrl'
-    });
+
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(otherwise);
