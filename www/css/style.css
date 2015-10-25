@@ -73,7 +73,7 @@
     -o-transform: translateZ(0);
     transform: translateZ(0);
     transition: 0.25s all linear;
-    
+
     line-height: 42px;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -137,4 +137,3 @@
 #myCalendar {
     margin-top: -2px;
 }
-
