@@ -28,11 +28,6 @@ angular.module('wuw.controllers')
     // Called every time the before view gets enteed
     $scope.$on('$ionicView.beforeEnter', function(){
 
-        // If there is no selection object, whe first need it to load on setup page
-        if (Setup.selection.length === 0) {
-            $ionicHistory.nextViewOptions({ disableBack: true, disableAnimate: true });
-            $state.go('setup');
-        }
         // Find the currently selected group
         $scope.selection = Setup.selection;
         for (var i = 0; i < Setup.selection.length; i++) {
