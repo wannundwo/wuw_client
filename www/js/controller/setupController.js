@@ -34,6 +34,7 @@ angular.module('wuw.controllers')
         }
 
         // Set the selectionState for the group
+        Setup.selection[$scope.groupIndex].touched = true;
         if (c == Setup.selection[$scope.groupIndex].lectures.length) {
             Setup.selection[$scope.groupIndex].selectionState = 'checked';
         } else if (c > 0) {
