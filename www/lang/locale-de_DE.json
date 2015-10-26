@@ -13,7 +13,8 @@
         "error": "Fehler",
         "done": "Fertig",
         "close": "Schließen",
-        "back": "Zurück"
+        "back": "Zurück",
+        "add": "Neu"
     },
     "home": {
         "current": "Momentan läuft",
