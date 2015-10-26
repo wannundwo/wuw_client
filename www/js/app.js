@@ -1,11 +1,11 @@
 "use strict";
 
-angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage'])
+angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage', 'ngIOS9UIWebViewPatch'])
 
 .run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
     var apiUrl = "http://dmz26.rz.hft-stuttgart.de:4342/api/v0";
-    var versionNumber = "0.5.0";
+    var versionNumber = "0.5.1";
 
     // predefined settings
     Settings.setSetting('version', versionNumber);
