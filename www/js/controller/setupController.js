@@ -4,6 +4,24 @@ angular.module('wuw.controllers')
 
 .controller('SetupDetailCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, Setup, Settings, Users) {
 
+    // Called every time the before view gets enteed
+    $scope.$on('$ionicView.beforeEnter', function(){
+
+        // If there is no selection object, whe first need it to load on setup page
+        if (Setup.selection.length === 0) {
+            $ionicHistory.nextViewOptions({ disableBack: true, disableAnimate: true });
+            $state.go('setup');
+        }
+        // Find the currently selected group
+        $scope.selection = Setup.selection;
+        for (var i = 0; i < Setup.selection.length; i++) {
+            if (Setup.selection[i]._id === $stateParams.group) {
+                $scope.groupIndex = i;
+                $scope.lectures = Setup.selection[i].lectures;
+            }
+        }
+    });
+
     // Called when a lectures get checked/unchecked
     $scope.lectureToggled = function(groupIndex) {
         // Count the current amount of selected lectures
@@ -23,40 +41,27 @@ angular.module('wuw.controllers')
             Setup.selection[$scope.groupIndex].selectionState = 'none';
         }
         Setup.selection[$scope.groupIndex].lecturesSelectedByUser = c;
-    }
-
-    // Called every time the before view gets enteed
-    $scope.$on('$ionicView.beforeEnter', function(){
-
-        // Find the currently selected group
-        $scope.selection = Setup.selection;
-        for (var i = 0; i < Setup.selection.length; i++) {
-            if (Setup.selection[i]._id === $stateParams.group) {
-                $scope.groupIndex = i;
-                $scope.lectures = Setup.selection[i].lectures;
-            }
-        }
-    });
+    };
 })
 .controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, $ionicHistory, Setup, Settings, Users) {
 
     // Called when a group get checked/unchecked
-    $scope.groupCheckboxClicked = function(index) {
-        var state = Setup.selection[index].selectionState;
+    $scope.groupCheckboxClicked = function(group) {
+        var state = group.selectionState;
         if (state === true) {
-            Setup.selection[index].selectionState = 'checked';
             // check all lectures in this group
-            for (var i = 0; i < Setup.selection[index].lectures.length; i++) {
-                Setup.selection[index].lectures[i].selectedByUser = true;
+            group.selectionState = 'checked';
+            for (var i = 0; i < group.lectures.length; i++) {
+                group.lectures[i].selectedByUser = true;
             }
-            Setup.selection[index].lecturesSelectedByUser = Setup.selection[index].lectures.length;
+            group.lecturesSelectedByUser = group.lectures.length;
         } else {
-            Setup.selection[index].selectionState = 'none';
             // uncheck all lectures in this group
-            for (var i = 0; i < Setup.selection[index].lectures.length; i++) {
-                Setup.selection[index].lectures[i].selectedByUser = false;
+            group.selectionState = 'none';
+            for (var i = 0; i < group.lectures.length; i++) {
+                group.lectures[i].selectedByUser = false;
             }
-            Setup.selection[index].lecturesSelectedByUser = 0;
+            group.lecturesSelectedByUser = 0;
         }
     }
 
