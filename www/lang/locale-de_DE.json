@@ -12,7 +12,8 @@
         "pullToRefresh": "Ziehen zum aktualisieren...",
         "error": "Fehler",
         "done": "Fertig",
-        "close": "Schließen"
+        "close": "Schließen",
+        "back": "Zurück"
     },
     "home": {
         "current": "Momentan läuft",
