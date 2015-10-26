@@ -1,4 +1,5 @@
-<ion-view view-title="{{'setup.chooselectures' | translate}}">
+<ion-view>
+    <ion-nav-title>{{group._id}}</ion-nav-title>
     <ion-content>
         <ion-list>
             <ion-checkbox ng-repeat="lecture in lectures" ng-click="lectureToggled()" ng-model="lecture.selectedByUser">
