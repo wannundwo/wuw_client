@@ -16,19 +16,22 @@
                 </button>
             </ion-item>
 
-            <ion-item style="padding: 0;" class="item-checkbox setup-item" ng-repeat="group in groups | orderBy:'selectionState'">
+            <ion-item style="padding: 0;" class="item-checkbox setup-item" ng-repeat="group in groups | orderBy:['selectionState', '_id']">
                     <div style="width: 1px; margin-top: -13px; padding: 0;" class="checkbox">
                         <input ng-model="group.selectionState"
                                indeterminate-checkbox
                                state="{{group.selectionState}}"
                                class="group-checkbox"
                                style="width: 28px;" type="checkbox"
-                               ng-click="groupCheckboxClicked($index)">
+                               ng-click="groupCheckboxClicked(group)">
                         </input>
                     </div>
                     <a style="padding: 0 !important;" class="item-content" href="#/setupDetail/{{group._id}}">
                         <div style="padding: 15px; padding-left: 50px;">
-                            {{group._id}}
+                            <p>
+                                <b>{{::group._id}}</b>
+                                {{::group.lectures.length}} Vorlesungen<span ng-if="group.lecturesSelectedByUser > 0">, davon {{group.lecturesSelectedByUser}} gewählt</span>
+                            </p>
                         </div>
                     </a>
             </ion-item>
