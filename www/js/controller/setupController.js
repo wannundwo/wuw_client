@@ -17,6 +17,7 @@ angular.module('wuw.controllers')
         for (var i = 0; i < Setup.selection.length; i++) {
             if (Setup.selection[i]._id === $stateParams.group) {
                 $scope.groupIndex = i;
+                $scope.group = Setup.selection[i];
                 $scope.lectures = Setup.selection[i].lectures;
             }
         }

@@ -12,7 +12,8 @@
         "pullToRefresh": "Pull to refresh...",
         "error": "Error",
         "done": "Done",
-        "close": "Close"
+        "close": "Close",
+        "back": "Back"
     },
     "home": {
         "current": "Current lecture",
