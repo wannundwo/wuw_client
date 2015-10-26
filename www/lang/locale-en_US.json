@@ -13,7 +13,8 @@
         "error": "Error",
         "done": "Done",
         "close": "Close",
-        "back": "Back"
+        "back": "Back",
+        "add": "Add"
     },
     "home": {
         "current": "Current lecture",

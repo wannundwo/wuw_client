@@ -18,8 +18,10 @@ angular.module('wuw.services')
                 var group = data[i];
                 if (group.lecturesSelectedByUser == group.lectures.length) {
                     data[i].selectionState = 'checked';
+                    data[i].touched = true;
                 } else if (data[i].lecturesSelectedByUser > 0) {
                     data[i].selectionState = 'indeterminate';
+                    data[i].touched = true;
                 } else {
                     data[i].selectionState = 'none';
                 }
