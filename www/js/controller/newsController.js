@@ -11,7 +11,7 @@ angular.module('wuw.controllers')
 
     $scope.openNews = function(url) {
         url = 'http://www.hft-stuttgart.de/' + url;
-        window.open(url, '_blank', 'location=yes');
+        window.open(url, '_system', 'location=yes');
     }
 
     $scope.loadNews();
