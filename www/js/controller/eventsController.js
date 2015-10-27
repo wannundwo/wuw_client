@@ -10,8 +10,10 @@ angular.module('wuw.controllers')
     }
 
     $scope.openEvent = function(url) {
-        url = 'http://www.hft-stuttgart.de/' + url;
-        window.open(url, '_blank', 'location=yes');
+        if (url) {
+            window.open(url, '_system', 'location=yes');
+        }
+
     }
 
     $scope.loadEvents();
