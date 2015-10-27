@@ -1,3 +1,56 @@
+/*** HFT Style ***/
+.bar.bar-dark {
+    background-color: #CC3300 !important;
+    background-image: linear-gradient(0deg, #CC3300, #CC3300 50%, transparent 50%) !important;
+}
+
+.bar.bar-positive {
+    background: #F0773C !important;
+}
+
+.sidemenu-items i {
+    color: #CC3300 !important;
+}
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activated {
+    color: #F0773C !important;
+}
+
+.checkbox input:indeterminate:before, .checkbox input:checked:before{
+    background: #F0773C !important;
+    border-color: #F0773C !important;
+}
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+    background: #F0773C !important;
+    border-color: #F0773C !important;
+}
+
+.button.button-positive {
+    border-color: #F0773C !important;
+    background: #F0773C !important;
+    color: #fff !important;
+}
+
+.button.button-positive .activated {
+    border-color: #F0773C !important;
+    background: #F0773C !important;
+    color: #ddd !important;
+}
+
+.indicator-circle {
+    border-radius: 7px;
+    min-width:  15px;
+    min-height: 15px;
+    margin-right: 10px;
+}
+
+.bar .spinner {
+    stroke: #fff !important;
+}
+
+/*** Style for our special Checkboxes ***/
+
 .smallCheckbox {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -9,19 +62,6 @@
 
 .cardPaddings {
     padding: 10px;
-}
-
-.color-indicator {
-
-}
-
-.color-indicator:before {
-    content:"";
-    position:absolute;
-    border-top:1px solid #ddd;
-    width:10px;
-    left:-10px;
-    top:-1px;
 }
 
 .float-left {
