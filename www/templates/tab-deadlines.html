@@ -28,15 +28,24 @@
                     <span ng-if="key === 'false'">{{'deadlines.todo' | translate}} ({{value.length}})</span>
                     <span ng-if="key === 'true'">{{'deadlines.done' | translate}} ({{value.length}})</span>
                 </div>
-                <ion-item click-for-options style="border-left: 10px solid {{deadline.color}};"
-                  class="color-indicator item-text-wrap"
-                  ng-repeat="deadline in value | orderBy:'deadline'">
-                    <h2>
-                        <b>{{deadline.info}}</b> in <b>{{deadline.group.lectureName}}</b>
-                        <div>
-                            {{'deadlines.to' | translate}} <b>{{deadline.deadline | date: 'EEEE, dd.MM.yyyy'}}</b>
-                        </div>
-                    </h2>
+
+                <ion-item click-for-options class="color-indicator item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'">
+                    <table>
+                        <tr>
+                            <td style="vertical-align:middle">
+                                <div style="background-color: {{deadline.color}}" class="indicator-circle"></div>
+                            </td>
+                            <td>
+                                <h2>
+                                    <b>{{deadline.info}}</b> in <b>{{deadline.group.lectureName}}</b>
+                                    <div>
+                                        {{'deadlines.to' | translate}} <b>{{deadline.deadline | date: 'EEEE, dd.MM.yyyy'}}</b>
+                                    </div>
+                                </h2>
+                            </td>
+                        </tr>
+                    </table>
+
                     <ion-option-button class="button-balanced" ng-click="doneToggle(deadline)" ng-if="!deadline.done">Done</ion-option-button>
                     <ion-option-button class="button-energized" ng-click="doneToggle(deadline)" ng-if="deadline.done">Undone</ion-option-button>
                     <ion-option-button class="button-assertive" ng-click="deleteDeadlineLocal(deadline)">Delete</ion-option-button>
