@@ -1,7 +1,7 @@
 <ion-view view-title="{{'setup.title' | translate}}">
     <ion-nav-buttons side="secondary">
-        <button ng-click="saveSetup()" class="button button-positive">
-            <i class="icon ion-checkmark"></i>
+        <button ng-click="saveSetup()" class="button button-clear">
+            <i class="icon ion-ios-checkmark-empty"></i>
             {{'global.done' | translate}}
         </button>
     </ion-nav-buttons>
@@ -19,7 +19,7 @@
                 </button>
             </ion-item>
 
-            <ion-item style="padding: 0;" class="item-checkbox setup-item" ng-repeat="group in groups | orderBy:['touched', '_id']">
+            <ion-item style="padding: 0;" class="item-checkbox setup-item" ng-repeat="group in groups">
                     <div style="width: 1px; margin-top: -13px; padding: 0;" class="checkbox">
                         <input ng-model="group.selectionState"
                                indeterminate-checkbox
