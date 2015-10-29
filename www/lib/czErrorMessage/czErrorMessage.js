@@ -2,10 +2,10 @@
 
 angular.module('wuw.czErrorMessage', [])
 
-.controller('czErrorMessageCtrl', ['$scope', '$ionicSlideBoxDelegate', '$timeout', function($scope, $ionicSlideBoxDelegate, $timeout) {
+.controller('czErrorMessageCtrl', ['$scope', '$ionicSlideBoxDelegate', '$ionicSideMenuDelegate', '$timeout', function($scope, $ionicSlideBoxDelegate, $ionicSideMenuDelegate, $timeout) {
 
     var el;
-    
+
     this.init = function(element) {
         el = angular.element(element);
         $scope.hide(); // the error message is hidden by default
@@ -36,6 +36,15 @@ angular.module('wuw.czErrorMessage', [])
             $scope.hide();
         }
     };
+
+    // When sliding the error messag away, don't influence the side menu
+    $scope.$on('$ionicView.enter', function(){
+        $ionicSideMenuDelegate.canDragContent(false);
+    });
+
+    $scope.$on('$ionicView.leave', function(){
+        $ionicSideMenuDelegate.canDragContent(true);
+    });
 }])
 
 .directive('czErrorMessage', function () {
