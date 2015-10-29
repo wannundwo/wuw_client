@@ -37,14 +37,13 @@ angular.module('wuw.czErrorMessage', [])
         }
     };
 
-    // When sliding the error messag away, don't influence the side menu
-    $scope.$on('$ionicView.enter', function(){
+    $scope.onTouch = function() {
         $ionicSideMenuDelegate.canDragContent(false);
-    });
+    }
 
-    $scope.$on('$ionicView.leave', function(){
+    $scope.onRelease = function() {
         $ionicSideMenuDelegate.canDragContent(true);
-    });
+    }
 }])
 
 .directive('czErrorMessage', function () {
@@ -52,7 +51,7 @@ angular.module('wuw.czErrorMessage', [])
         restrict: 'E',
         controller: 'czErrorMessageCtrl',
         template:
-                    '<ion-slide-box class="czMessageBox czMessageBox-rollup" show-pager="false" on-slide-changed="slideHasChanged($index)">' +
+                    '<ion-slide-box on-touch="onTouch()" on-release="onRelease()" class="czMessageBox czMessageBox-rollup" show-pager="false" on-slide-changed="slideHasChanged($index)">' +
                         '<ion-slide>' +
                             '<br>' +
                         '</ion-slide>' +
