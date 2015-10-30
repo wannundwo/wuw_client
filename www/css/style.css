@@ -51,6 +51,15 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     stroke: #fff !important;
 }
 
+/*** Hide Tabs when Keyboard is open ***/
+.keyboard-open .tabs{
+    display:none;
+}
+
+.keyboard-open .has-tabs{
+    bottom:0;
+}
+
 /*** Style for our special Checkboxes ***/
 
 .smallCheckbox {
