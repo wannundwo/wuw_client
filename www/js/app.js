@@ -21,9 +21,14 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
+
         if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
+            if (ionic.Platform.isIOS()) {
+                StatusBar.styleDefault();
+            } else if (ionic.Platform.isAndroid()) {
+                StatusBar.backgroundColorByHexString("#e15b0f");
+            }
+
         }
 
         if (window.cordova && typeof Settings.getSetting('uuid') === "undefined") {
@@ -40,10 +45,9 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     // enable native scrolling on Android
     if (ionic.Platform.isAndroid()) {
         $ionicConfigProvider.scrolling.jsScrolling(false);
+        $ionicConfigProvider.tabs.position('bottom');
+        $ionicConfigProvider.tabs.style('standard');
     }
-
-    // tabs bottom
-    $ionicConfigProvider.tabs.position('bottom');
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
