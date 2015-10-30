@@ -26,11 +26,6 @@
       "locator": "./engine/cordova-crosswalk-engine-c0.6.2"
     },
     "cordova-plugin-device",
-    {
-      "id": "cordova-plugin-crosswalk-webview",
-      "locator": "./engine/cordova-crosswalk-engine-c0.7.1"
-    },
-    "cordova-plugin-crosswalk-webview",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar"
@@ -39,7 +34,7 @@
     "test": "./node_modules/.bin/karma start ./tests/my.conf.js --single-run"
   },
   "cordovaPlatforms": [
-    "android",
-    "ios"
+    "ios",
+    "android"
   ]
 }
