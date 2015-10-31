@@ -51,6 +51,33 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     stroke: #fff !important;
 }
 
+/*** additional styles for translucent status bar ***/
+.platform-android5 .bar {
+    height: 68px !important;
+    padding-top: 25px !important;
+}
+
+.platform-android5 .bar .title {
+    height: 68px !important;
+    padding-top: 25px !important;
+}
+
+.platform-android5 ion-content {
+    padding-top: 25px !important;
+}
+
+.platform-android5 .bar .secondary-buttons {
+    padding-top: 25px !important;
+}
+
+.platform-android5 .bar .left-buttons {
+    padding-top: 5px !important;
+}
+
+.platform-android5 .bar .back-button {
+    padding-top: 5px !important;
+}
+
 /*** Hide Tabs when Keyboard is open ***/
 .keyboard-open .tabs{
     display:none;
