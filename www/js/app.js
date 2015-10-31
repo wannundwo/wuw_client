@@ -4,7 +4,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 
 .run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
-    var apiUrl = "http://dmz26.rz.hft-stuttgart.de:4342/api/v0";
+    var apiUrl = "https://app.hft-stuttgart.de:4342/api/v0";
     var versionNumber = "0.5.1";
 
     // predefined settings
@@ -22,11 +22,16 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
 
-        if (window.StatusBar) {
+        if (window.StatusBar && window.StatusBarManager) {
             if (ionic.Platform.isIOS()) {
-                StatusBar.styleDefault();
+
             } else if (ionic.Platform.isAndroid()) {
                 StatusBar.backgroundColorByHexString("#e15b0f");
+
+                if (ionic.Platform.version() >= 5) {
+                    StatusBarManager.setTranslucent();
+                    StatusBar.show();
+                }
             }
 
         }
@@ -177,9 +182,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
-
-
-
+    
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(otherwise);
 
