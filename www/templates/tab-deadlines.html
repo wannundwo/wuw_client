@@ -1,9 +1,10 @@
 <ion-view view-title="{{'global.deadlines' | translate}}">
     <ion-nav-buttons side="secondary">
         <ion-spinner ng-show="loading"></ion-spinner>
-        <a class="button button-icon icon ion-ios-plus-outline" href="#/tab/createDeadline">
+        <button ng-click="go('tab.deadline-create')" class="button button-clear">
+            <i class="icon ion-ios-plus-outline"></i>
             {{'global.add' | translate}}
-        </a>
+        </button>
     </ion-nav-buttons>
     <ion-content>
         <ion-refresher

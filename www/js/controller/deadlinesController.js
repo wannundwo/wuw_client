@@ -59,6 +59,10 @@ angular.module('wuw.controllers')
             $scope.loadDeadlines();
         }
     });
+
+    $scope.go = function(state) {
+        $state.go(state);
+    };
 })
 
 .controller('DeadlinesCreateCtrl', function($scope, $state, $ionicPopup, $ionicHistory, Deadlines, Settings, Lectures) {
