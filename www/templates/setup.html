@@ -1,6 +1,9 @@
 <ion-view view-title="{{'setup.title' | translate}}">
     <ion-nav-buttons side="secondary">
-        <button ng-click="saveSetup()" class="button button-positive">{{'global.done' | translate}}</button>
+        <button ng-click="saveSetup()" class="button button-clear">
+            <i class="icon ion-ios-checkmark-empty"></i>
+            {{'global.done' | translate}}
+        </button>
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
@@ -16,33 +19,25 @@
                 </button>
             </ion-item>
 
-            <div ng-repeat="group in groups">
-                <ion-item style="padding: 0;" class="item-actived-background-transition item-checkbox">
-
+            <ion-item style="padding: 0;" class="item-checkbox setup-item" ng-repeat="group in groups">
                     <div style="width: 1px; margin-top: -13px; padding: 0;" class="checkbox">
-                        <input ng-model="group.allChosen"
+                        <input ng-model="group.selectionState"
                                indeterminate-checkbox
-                               child-list="group.lectures"
-                               property="chosen"
+                               state="{{group.selectionState}}"
                                class="group-checkbox"
-                               style="width: 28px;" type="checkbox">
+                               style="width: 28px;" type="checkbox"
+                               ng-click="groupCheckboxClicked(group)">
                         </input>
                     </div>
-                    <div style="padding: 15px; padding-left: 50px;" ng-click="group.shown = !group.shown;">
-                        {{::group._id}}
-                        <i style="float: right; margin-top: 3px" class="icon"
-                           ng-class="group.shown ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'">
-                        </i>
-                    </div>
-
-                </ion-item>
-                <ion-checkbox class="checkbox-inset item-accordion"
-                              ng-if="group.shown"
-                              ng-repeat="lecture in group.lectures"
-                              ng-model="lecture.chosen">
-                    {{::lecture.lectureName}}
-                </ion-checkbox>
-            </div>
+                    <a style="padding: 0 !important;" class="item-content" href="#/setupDetail/{{group._id}}">
+                        <div style="padding: 15px; padding-left: 50px;">
+                            <p>
+                                <b>{{::group._id}}</b>
+                                {{::group.lectures.length}} Vorlesungen<span ng-if="group.lecturesSelectedByUser > 0">, davon {{group.lecturesSelectedByUser}} gewählt</span>
+                            </p>
+                        </div>
+                    </a>
+            </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

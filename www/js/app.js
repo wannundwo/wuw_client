@@ -148,7 +148,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         url: '/setup',
         views: {
             'view-setup': {
-                templateUrl: 'templates/setup-low-perf.html',
+                templateUrl: 'templates/setup.html',
                 controller: 'SetupCtrl'
             }
         }
@@ -182,7 +182,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
-    
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(otherwise);
 
