@@ -183,6 +183,16 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
 
+    .state('tab.printers', {
+        url: '/printers',
+        views: {
+            'tab-printers': {
+            templateUrl: 'templates/printers.html',
+            controller: 'PrintersCtrl'
+        }
+      }
+    })
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(otherwise);
 

@@ -51,6 +51,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     stroke: #fff !important;
 }
 
+.platform-android .spinner svg {
+    stroke: #F27731;
+}
+
 /*** additional styles for translucent status bar ***/
 .platform-android5 .bar {
     height: 68px !important;
