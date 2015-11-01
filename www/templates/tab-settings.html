@@ -3,15 +3,6 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
-            <ion-item>
-                {{'settings.version' | translate}}: v{{settings.version}}
-            </ion-item>
-
-            <label class="item item-input item-stacked-label" ng-hide="false">
-                <span class="input-label">{{'settings.apiUrl' | translate}}</span>
-                <input type="text" ng-model="settings.apiUrl" ng-blur="save()">
-            </label>
-
 
             <ion-item>
                 <span class="input-label">{{'global.semGroup' | translate}}</span>
@@ -22,6 +13,15 @@
                 <a class="button button-block button-positive" href="#/setup">
                     {{'settings.selectSemesterAndGroups' | translate}}
                 </a>
+            </ion-item>
+
+            <label class="item item-input item-stacked-label hidden-feature" ng-hide="false">
+                <span class="input-label">{{'settings.apiUrl' | translate}}</span>
+                <input type="text" ng-model="settings.apiUrl" ng-blur="save()">
+            </label>
+
+            <ion-item>
+                {{'settings.version' | translate}}: {{settings.version}}
             </ion-item>
 
         </ion-list>
