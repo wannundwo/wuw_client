@@ -5,6 +5,7 @@ angular.module("wuw.controllers")
 .controller("MensaCtrl", function($scope, $ionicPopup, $timeout, $filter, Dishes, Settings) {
 
     var moreCounter = 0;
+    $scope.infoVisible = false;
 
     $scope.loadDishes = function() {
         moreCounter = 0;
@@ -34,6 +35,10 @@ angular.module("wuw.controllers")
         $scope.dishes = moreDishes;
         $scope.$broadcast('scroll.infiniteScrollComplete');
     };
+
+    $scope.toggleInfoVisible = function() {
+        $scope.infoVisible = !$scope.infoVisible;
+    }
 
     $scope.$on('$ionicView.loaded', function(){
         $scope.dishes = Dishes.fromCache();
