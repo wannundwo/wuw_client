@@ -87,6 +87,11 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     bottom:0;
 }
 
+/*** Hidden Features ***/
+.hidden-feature {
+    display: none !important;
+}
+
 /*** Style for our special Checkboxes ***/
 
 .smallCheckbox {
