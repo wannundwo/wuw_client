@@ -1,0 +1,20 @@
+<ion-view view-title="Free Rooms">
+    <ion-nav-buttons side="secondary">
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+            pulling-text="{{'global.pullToRefresh' | translate}}"
+            on-refresh="loadFreeRooms()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item ng-show="initialLoading" style="test-align: center;">
+                <div style="margin: 0 auto; width:28px">
+                    <ion-spinner></ion-spinner>
+                </div>
+            </ion-item>
+            <ion-item ng-repeat="room in freeRooms">
+                {{room}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
