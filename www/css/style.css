@@ -56,29 +56,29 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 }
 
 /*** additional styles for translucent status bar ***/
-.platform-android5 .bar {
+.platform-android5 .bar, .platform-android6 .bar {
     height: 68px !important;
     padding-top: 25px !important;
 }
 
-.platform-android5 .bar .title {
+.platform-android5 .bar .title, .platform-android6 .bar .title {
     height: 68px !important;
     padding-top: 25px !important;
 }
 
-.platform-android5 ion-content {
+.platform-android5 ion-content, .platform-android6 ion-content {
     padding-top: 25px !important;
 }
 
-.platform-android5 .bar .secondary-buttons {
+.platform-android5 .bar .secondary-buttons, .platform-android6 .bar .secondary-buttons {
     padding-top: 25px !important;
 }
 
-.platform-android5 .bar .left-buttons {
+.platform-android5 .bar .left-buttons, .platform-android6 .bar .left-buttons {
     padding-top: 5px !important;
 }
 
-.platform-android5 .bar .back-button {
+.platform-android5 .bar .back-button, .platform-android6 .bar .back-button {
     padding-top: 5px !important;
 }
 
