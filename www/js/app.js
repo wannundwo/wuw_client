@@ -167,31 +167,41 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         url: '/news',
         views: {
             'tab-news': {
-            templateUrl: 'templates/news.html',
-            controller: 'NewsCtrl'
+                templateUrl: 'templates/news.html',
+                controller: 'NewsCtrl'
+            }
         }
-      }
     })
 
     .state('tab.events', {
         url: '/events',
         views: {
             'tab-events': {
-            templateUrl: 'templates/events.html',
-            controller: 'EventsCtrl'
+                templateUrl: 'templates/events.html',
+                controller: 'EventsCtrl'
+            }
         }
-      }
     })
 
     .state('tab.printers', {
         url: '/printers',
         views: {
             'tab-printers': {
-            templateUrl: 'templates/printers.html',
-            controller: 'PrintersCtrl'
+                templateUrl: 'templates/printers.html',
+                controller: 'PrintersCtrl'
+            }
         }
-      }
     })
+
+    .state('tab.freeRooms', {
+        url: '/freeRooms',
+        views: {
+            'tab-freeRooms': {
+                templateUrl: 'templates/freeRooms.html',
+                controller: 'FreeRoomsCtrl'
+            }
+        }
+    });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(otherwise);
