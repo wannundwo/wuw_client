@@ -32,8 +32,10 @@
                 <ion-item class="item-text-wrap" style="" ng-repeat="lecture in value">
                     <table>
                         <tr>
-                            <td class="lecture-list-item-circle" style="background-color: {{lecture.color}}" >
-                                {{lecture.lectureName | limitTo: 1}}
+                            <td class="lecture-list-item-circle">
+                                <div style="background-color: {{lecture.color}}" class="circle-with-content">
+                                    {{lecture.lectureName | limitTo: 1}}
+                                </div>
                             </td>
                             <td class="lecture-list-item-details">
                                 <h2>
