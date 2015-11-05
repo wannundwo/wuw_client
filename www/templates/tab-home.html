@@ -13,8 +13,10 @@
                 <div ng-repeat="currLecture in currLectures" class="lectureItem item item-body">
                         <table>
                             <tr class="lecture-list-item">
-                                <td class="lecture-list-item-circle" style="background-color: {{currLecture.color}}">
-                                    {{currLecture.lectureName | limitTo: 1}}
+                                <td class="lecture-list-item-circle">
+                                    <div style="background-color: {{currLecture.color}}" class="circle-with-content">
+                                        {{currLecture.lectureName | limitTo: 1}}
+                                    </div>
                                 </td>
                                 <td class="lecture-list-item-details">
                                     <b>{{currLecture.lectureName}}</b>
@@ -38,8 +40,10 @@
                 <div ng-repeat="nextLecture in nextLectures" class="item item-body">
                     <table>
                         <tr class="lecture-list-item">
-                            <td class="lecture-list-item-circle" style="background-color: {{nextLecture.color}}">
-                                {{nextLecture.lectureName | limitTo: 1}}
+                            <td class="lecture-list-item-circle">
+                                <div style="background-color: {{nextLecture.color}}" class="circle-with-content">
+                                    {{nextLecture.lectureName | limitTo: 1}}
+                                </div>
                             </td>
                             <td class="lecture-list-item-details">
                                 <b>{{nextLecture.lectureName}}</b>

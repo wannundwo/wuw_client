@@ -29,13 +29,15 @@
                     <span ng-if="key === 'true'">{{'deadlines.done' | translate}} ({{value.length}})</span>
                 </div>
 
-                <ion-item click-for-options class="color-indicator item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'">
+                <ion-item click-for-options class="item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'">
                     <table>
                         <tr>
-                            <td style="vertical-align:middle">
-                                <div style="background-color: {{deadline.color}}" class="indicator-circle"></div>
+                            <td class="deadline-list-item-circle">
+                                <div style="background-color: {{deadline.color}}" class="circle-with-content">
+                                    {{deadline.group.lectureName | limitTo: 1}}
+                                </div>
                             </td>
-                            <td>
+                            <td class="deadline-list-item-details">
                                 <h2>
                                     <b>{{deadline.info}}</b> in <b>{{deadline.group.lectureName}}</b>
                                     <div>
