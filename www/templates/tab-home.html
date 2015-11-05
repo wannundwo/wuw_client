@@ -12,11 +12,11 @@
                 <div class="item item-divider">{{'home.current' | translate}}</div>
                 <div ng-repeat="currLecture in currLectures" class="lectureItem item item-body">
                         <table>
-                            <tr>
-                                <td style="vertical-align:middle">
-                                    <div style="background-color: {{currLecture.color}}" class="indicator-circle"></div>
+                            <tr class="lecture-list-item">
+                                <td class="lecture-list-item-circle" style="background-color: {{currLecture.color}}">
+                                    {{currLecture.lectureName | limitTo: 1}}
                                 </td>
-                                <td>
+                                <td class="lecture-list-item-details">
                                     <b>{{currLecture.lectureName}}</b>
                                     <p style="margin: 0;">
                                         <b>{{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}</b>
@@ -37,11 +37,11 @@
                 <div class="item item-divider">{{'home.next' | translate}}</div>
                 <div ng-repeat="nextLecture in nextLectures" class="item item-body">
                     <table>
-                        <tr>
-                            <td style="vertical-align:middle">
-                                <div style="background-color: {{nextLecture.color}}" class="indicator-circle"></div>
+                        <tr class="lecture-list-item">
+                            <td class="lecture-list-item-circle" style="background-color: {{nextLecture.color}}">
+                                {{nextLecture.lectureName | limitTo: 1}}
                             </td>
-                            <td>
+                            <td class="lecture-list-item-details">
                                 <b>{{nextLecture.lectureName}}</b>
                                 <p style="margin: 0;">
                                     <b>{{nextLecture.startTime | date: 'HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}</b>

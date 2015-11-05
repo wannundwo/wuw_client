@@ -29,13 +29,13 @@
                 <div class="item item-divider">
                     {{key | date: 'EEEE, dd.MM.yyyy'}}
                 </div>
-                <ion-item style="" class="color-indicator item-text-wrap" ng-repeat="lecture in value">
+                <ion-item class="item-text-wrap" style="" ng-repeat="lecture in value">
                     <table>
                         <tr>
-                            <td style="vertical-align:middle">
-                                <div style="background-color: {{lecture.color}}" class="indicator-circle"></div>
+                            <td class="lecture-list-item-circle" style="background-color: {{lecture.color}}" >
+                                {{lecture.lectureName | limitTo: 1}}
                             </td>
-                            <td>
+                            <td class="lecture-list-item-details">
                                 <h2>
                                     <b>{{lecture.lectureName}}</b>
                                 </h2>
