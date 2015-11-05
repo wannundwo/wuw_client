@@ -40,11 +40,18 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     color: #ddd !important;
 }
 
-.indicator-circle {
-    border-radius: 7px;
-    min-width:  15px;
-    min-height: 15px;
+.lecture-list-item-circle {
+    border-radius: 21px;
+    min-width:  42px;
+    min-height: 40px;
     margin-right: 10px;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+}
+
+.lecture-list-item-details {
+    padding-left: 15px;
 }
 
 .bar .spinner {
