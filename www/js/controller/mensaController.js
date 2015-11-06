@@ -37,8 +37,11 @@ angular.module("wuw.controllers")
     };
 
     $scope.toggleInfoVisible = function() {
-        $scope.infoVisible = !$scope.infoVisible;
-    }
+        var alertPopup = $ionicPopup.alert({
+            title: 'Mesa Informationen',
+            template: 'Die Mensa befindet sich in der Holzgartenstraße 11 und hat Montag - Freitag von 11:15 - 14:15 Uhr geöffnet.'
+        });
+    };
 
     $scope.$on('$ionicView.loaded', function(){
         $scope.dishes = Dishes.fromCache();
