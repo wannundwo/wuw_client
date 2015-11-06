@@ -17,12 +17,6 @@
                 </div>
             </cz-error-message>
 
-            <ion-item ng-if="infoVisible" class="item-text-wrap">
-                <p>
-                    Die Mensa befindet sich in der Holzgartenstraße 11 und hat Montag - Freitag von 11:15 - 14:15 Uhr geöffnet.
-                </p>
-            </ion-item>
-
             <!-- group the dishes by its date -->
             <div ng-repeat="(key, value) in dishes | groupBy: 'date'">
                 <div class="item item-divider">
