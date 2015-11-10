@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.wannundwo.wuwclient" version="0.5.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>wuwClient</name>
+<widget id="de.hft-stuttgart.app" version="0.5.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>HFT App</name>
     <description>
-        WuW Client
+        HFT App
     </description>
-    <author email="hi@wannundwo" href="http://github.com/wannundwo">
-      Wann und Wo Team
+    <author email="app@hft-stuttgart.de" href="www.hft-stuttgart.de">
+        HFT App Team
     </author>
     <content src="index.html" />
     <access origin="*" />
