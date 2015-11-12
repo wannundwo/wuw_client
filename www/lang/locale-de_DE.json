@@ -2,8 +2,12 @@
     "global": {
         "home": "Home",
         "lectures": "Vorlesungen",
-        "deadlines": "Deadlines",
+        "deadlines": "Abgaben",
         "mensa": "Mensa",
+        "news": "Neuigkeiten",
+        "events": "Veranstaltungen",
+        "printers": "Drucker",
+        "freeRooms": "Freie Räume",
         "settings": "Einstellungen",
         "group": "Kurs",
         "semGroup": "Semester und Kurse",
@@ -56,5 +60,8 @@
         "loading": "Kurse werden geladen...",
         "info": "Wähle deine Vorlesungen, welche dann in deinem Stundenplan angezeigt werden. Berühre ein Semester, um die Kurse darin zu sehen.",
         "chooselectures": "Vorlesungen wählen"
+    },
+    "printers": {
+        "inRoom": "in Raum"
     }
 }

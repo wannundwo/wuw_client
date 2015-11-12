@@ -1,4 +1,4 @@
-<ion-view view-title="Printers">
+<ion-view view-title="{{'global.printers' | translate}}">
     <ion-nav-buttons side="secondary">
     </ion-nav-buttons>
     <ion-content>
@@ -14,9 +14,9 @@
             </ion-item>
             <ion-item ng-repeat="printer in printers">
                 <h3 class="float-left">
-                    <b>{{printer.Modell}}</b> in Raum <b>{{printer.Raum}}</b>
+                    <b>{{printer.Modell}}</b> {{'printers.inRoom' | translate}} <b>{{printer.Raum}}</b>
                 </h3><br>
-                
+
                 <div class="row noPadding">
                     <div class="col noPadding">
                         <p>Format: {{printer.Format}}</p>
