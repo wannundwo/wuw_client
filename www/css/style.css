@@ -124,6 +124,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding-left: 0px;
 }
 
+.noPadding {
+    padding: 0px !important;
+}
+
 .cardPaddings {
     padding: 10px;
 }

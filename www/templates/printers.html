@@ -16,11 +16,19 @@
                 <h3 class="float-left">
                     <b>{{printer.Modell}}</b> in Raum <b>{{printer.Raum}}</b>
                 </h3><br>
-                <p>
-                    Format: {{printer.Format}} <span style="margin-right: 15px;"></span>
-                    Duplex: {{printer.Duplex}} <span style="margin-right: 15px;"></span>
-                    Farbe: {{printer.Farbe}}<span style="margin-right: 15px;"></span>
-                </p>
+                
+                <div class="row noPadding">
+                    <div class="col noPadding">
+                        <p>Format: {{printer.Format}}</p>
+                    </div>
+                    <div class="col noPadding">
+                        <p>Duplex: {{printer.Duplex}}</p>
+                    </div>
+                    <div class="col noPadding">
+                        <p>Farbe: {{printer.Farbe}}</p>
+                    </div>
+                </div>
+
             </ion-item>
         </ion-list>
     </ion-content>
