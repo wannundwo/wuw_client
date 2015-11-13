@@ -38,8 +38,8 @@ angular.module("wuw.controllers")
 
     $scope.toggleInfoVisible = function() {
         var alertPopup = $ionicPopup.alert({
-            title: 'Mesa Informationen',
-            template: 'Die Mensa befindet sich in der Holzgartenstraße 11 und hat Montag - Freitag von 11:15 - 14:15 Uhr geöffnet.'
+            title: $filter('translate')('mensa.infoTitle'),
+            template: $filter('translate')('mensa.infoText')
         });
     };
 

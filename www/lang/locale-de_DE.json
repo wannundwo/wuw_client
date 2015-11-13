@@ -45,7 +45,9 @@
         "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
     },
     "mensa": {
-        "cantload": "Die Gerichte konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
+        "cantload": "Die Gerichte konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
+        "infoTitle": "Mensa Informationen",
+        "infoText": "Die Mensa befindet sich in der Holzgartenstraße 11 und hat Montag - Freitag von 11:15 - 14:15 Uhr geöffnet."
     },
     "settings": {
         "version": "Version",
