@@ -21,8 +21,8 @@
                                 <td class="lecture-list-item-details">
                                     <b>{{currLecture.lectureName}}</b>
                                     <p style="margin: 0;">
-                                        {{currLecture.startTime | date: 'dd.MM.yyyy'}}
                                         <b>
+                                            {{currLecture.startTime | date: 'dd.MM.yyyy'}}
                                             {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
                                         </b>
                                         <span ng-if="currLecture.rooms.length > 0">
@@ -51,8 +51,8 @@
                             <td class="lecture-list-item-details">
                                 <b>{{nextLecture.lectureName}}</b>
                                 <p style="margin: 0;">
-                                    {{nextLecture.startTime | date: 'dd.MM.yyyy'}}
                                     <b>
+                                        {{nextLecture.startTime | date: 'dd.MM.yyyy'}}
                                         {{nextLecture.startTime | date: 'HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
                                     </b>
                                     <span ng-if="nextLecture.rooms.length > 0">
