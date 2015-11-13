@@ -39,7 +39,7 @@
         "to": "bis",
         "date": "Termin",
         "delete": "Löschen",
-        "create": "Deadline anlegen",
+        "create": "Neue Abgabe",
         "exampleInfo": "Buch XY in Bib ausleihen",
         "noDeadlines": "Zur Zeit gibt es keine Abgaben.",
         "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
