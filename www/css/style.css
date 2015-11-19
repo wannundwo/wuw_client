@@ -71,7 +71,6 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     stroke: #fff !important;
 }
 
-
 /*** additional styles for translucent status bar ***/
 .platform-android5 .bar, .platform-android6 .bar {
     height: 68px !important;
@@ -128,6 +127,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding: 0px !important;
 }
 
+.no-margin {
+    margin: 0 !important;
+}
+
 .cardPaddings {
     padding: 10px;
 }
@@ -142,62 +145,6 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     clear: both;
 }
 
-.center{
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-direction: normal;
-    -moz-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
-/********* Accordion Animations **********/
-.item-accordion {
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
-    transition: 0.25s all linear;
-
-    line-height: 42px;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-.item-accordion.ng-enter,
-.item-accordion.ng-leave.ng-leave-active {
-    line-height: 0px;
-}
-
-.item-accordion.ng-leave,
-.item-accordion.ng-enter.ng-enter-active {
-    line-height: 42px;
-}
-
-
 /********* Inset Checkboxes **************/
 .checkbox-inset .checkbox {
     padding-left: 40px;
@@ -206,25 +153,6 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 .checkbox-inset .item-content {
     padding-left: 25px;
 }
-
-/* Depreacted? */
-.item-actived-background-transition {
-    background-color: #ffffff;
-    -webkit-transition: background-color 200ms ease-in-out;
-    transition: background-color 200ms ease-in-out;
-    /*-webkit-transition: 0 0.2s;
-      -moz-transition: 0s 0.2s;
-        -ms-transition: 0 0.2s;
-         -o-transition: 0 0.2s;
-            transition: 0 0.2s;*/
-}
-
-.item-actived-background-transition-active {
-    background-color: #D9D9D9;
-    -webkit-transition: background-color 200ms ease-in-out;
-    transition: background-color 200ms ease-in-out;
-}
-
 
 /************ MENSA **********************/
 .dishes-allergens-additives p {

@@ -19,10 +19,10 @@
                                     </div>
                                 </td>
                                 <td class="lecture-list-item-details">
+                                    <p class="no-margin"><b>{{currLecture.startTime | date: 'EEE dd.MM.yyyy'}}</b></p>
                                     <b>{{currLecture.lectureName}}</b>
-                                    <p style="margin: 0;">
+                                    <p class="no-margin">
                                         <b>
-                                            {{currLecture.startTime | date: 'dd.MM.yyyy'}}
                                             {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
                                         </b>
                                         <span ng-if="currLecture.rooms.length > 0">
@@ -49,10 +49,10 @@
                                 </div>
                             </td>
                             <td class="lecture-list-item-details">
+                                <p class="no-margin"><b>{{nextLecture.startTime | date: 'EEE dd.MM.yyyy'}}</b></p>
                                 <b>{{nextLecture.lectureName}}</b>
-                                <p style="margin: 0;">
+                                <p class="no-margin">
                                     <b>
-                                        {{nextLecture.startTime | date: 'dd.MM.yyyy'}}
                                         {{nextLecture.startTime | date: 'HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
                                     </b>
                                     <span ng-if="nextLecture.rooms.length > 0">
