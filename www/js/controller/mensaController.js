@@ -37,10 +37,19 @@ angular.module("wuw.controllers")
     };
 
     $scope.toggleInfoVisible = function() {
-        var alertPopup = $ionicPopup.alert({
-            title: $filter('translate')('mensa.infoTitle'),
-            template: $filter('translate')('mensa.infoText')
-        });
+        if (ionic.Platform.isIOS() && ionic.Platform.isWebView()) {
+            navigator.notification.alert(
+                $filter('translate')('mensa.infoText'),  // message
+                null,                                    // callback
+                $filter('translate')('mensa.infoTitle'), // title
+                $filter('translate')('global.done')      // buttonName
+            );
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: $filter('translate')('mensa.infoTitle'),
+                template: $filter('translate')('mensa.infoText')
+            });
+        }
     };
 
     $scope.$on('$ionicView.loaded', function(){
