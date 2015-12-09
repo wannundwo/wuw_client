@@ -15,14 +15,13 @@ angular.module('wuw.controllers')
             $scope.initialLoading = false;
             $scope.$broadcast("scroll.refreshComplete");
         });
-    }
+    };
 
     $scope.openEvent = function(url) {
         if (url) {
             window.open(url, '_system', 'location=yes');
         }
-
-    }
+    };
 
     $scope.loadEvents();
 });
