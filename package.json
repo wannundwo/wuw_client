@@ -30,6 +30,7 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-dialogs",
+    "cordova-plugin-inappbrowser"
   ],
   "scripts": {
     "test": "./node_modules/.bin/karma start ./tests/my.conf.js --single-run"
