@@ -24,10 +24,13 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 
         if (window.StatusBar && window.StatusBarManager) {
             if (ionic.Platform.isIOS()) {
-
+                // iOS specific settings
             } else if (ionic.Platform.isAndroid()) {
+                // Android specific settings
                 StatusBar.backgroundColorByHexString("#e15b0f");
 
+                // if we are running >= Android 5 activate the translucent status bar
+                // see http://www.martinadamko.sk/posts/translucent-bar-android-278 for further information
                 if (ionic.Platform.version() >= 5) {
                     StatusBarManager.setTranslucent();
                     StatusBar.show();
@@ -145,7 +148,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
     })
     .state('setup', {
-        url: '/setup',
+        url: '/setup?showBackButton',
         views: {
             'view-setup': {
                 templateUrl: 'templates/setup.html',
