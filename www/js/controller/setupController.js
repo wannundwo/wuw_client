@@ -6,7 +6,6 @@ angular.module('wuw.controllers')
 
     // Called every time the before view gets enteed
     $scope.$on('$ionicView.beforeEnter', function(){
-
         // If there is no selection object, whe first need it to load on setup page
         if (Setup.selection.length === 0) {
             $ionicHistory.nextViewOptions({ disableBack: true, disableAnimate: true });
@@ -34,7 +33,7 @@ angular.module('wuw.controllers')
         }
 
         // Set the selectionState for the group
-        if (c == Setup.selection[$scope.groupIndex].lectures.length) {
+        if (c === Setup.selection[$scope.groupIndex].lectures.length) {
             Setup.selection[$scope.groupIndex].selectionState = 'checked';
         } else if (c > 0) {
             Setup.selection[$scope.groupIndex].selectionState = 'indeterminate';
@@ -44,7 +43,14 @@ angular.module('wuw.controllers')
         Setup.selection[$scope.groupIndex].lecturesSelectedByUser = c;
     };
 })
-.controller('SetupCtrl', function($scope, $timeout, $state, $ionicLoading, $ionicHistory, Setup, Settings, Users) {
+.controller('SetupCtrl', function($scope, $timeout, $stateParams, $state, $ionicLoading, $ionicHistory, Setup, Settings, Users) {
+
+    // The setup view is shown either via the settings page, or on the app firsts execution.
+    // When its showed via settings, we want to display the back button,
+    // on the apps first execution we do not need the back button.
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $scope.showBackButton = $stateParams.showBackButton;
+    });
 
     // Called when a group get checked/unchecked
     $scope.groupCheckboxClicked = function(group) {
@@ -64,7 +70,7 @@ angular.module('wuw.controllers')
             }
             group.lecturesSelectedByUser = 0;
         }
-    }
+    };
 
     $scope.load = function() {
         $scope.showErrorMessage = false;
@@ -125,5 +131,9 @@ angular.module('wuw.controllers')
         // Return to home tab
         $ionicHistory.nextViewOptions({ disableBack: true });
         $state.go("tab.home", {location: "replace"});
+    };
+
+    $scope.goBack = function() {
+        $ionicHistory.goBack();
     };
 });

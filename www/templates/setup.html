@@ -1,4 +1,9 @@
 <ion-view view-title="{{'setup.title' | translate}}">
+    <ion-nav-buttons side="left">
+        <button ng-if="showBackButton" class="button back-button buttons button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-back"> Back</i>
+        </button>
+    </ion-nav-buttons>
     <ion-nav-buttons side="secondary">
         <button ng-click="saveSetup()" class="button button-clear">
             <i class="icon ion-ios-checkmark-outline"></i>
