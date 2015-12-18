@@ -54,11 +54,15 @@ angular.module('wuw.services')
         $http.get(Settings.getSetting("apiUrl") + '/deadlines/user/' + Settings.getSetting('uuid'))
         .success(function(data, status, headers, config) {
 
-            // iterate over each received deadline and merge it with the local deadlines
+            // Iterate over each received deadline and merge it with the local deadlines.
+            // This means when a deadline is already in the users local deadlines,
+            // we override the info-, removed- and done- properties with the local properties.
             for (var i = 0; i < data.length; i++) {
                 var currDeadline = data[i];
                 var currLocalDeadline = null;
                 var mergedDeadline = null;
+
+                // Search the current deadline in our local deadlines
                 for (var j = 0; j < localDeadlines.length; j++) {
                     currLocalDeadline = localDeadlines[j];
                     if (currLocalDeadline._id === currDeadline._id) {
@@ -77,10 +81,11 @@ angular.module('wuw.services')
                 }
 
                 // if the deadline is not deleted, add it to our deadlines array
-                if (mergedDeadline.done == false) {
+                if (mergedDeadline.deleted !== true) {
                     mergedDeadlines.push(mergedDeadline);
                 }
             }
+
             deadlines = mergedDeadlines;
             Settings.setSetting('localDeadlines', JSON.stringify(mergedDeadlines));
             Settings.setSetting('localDeadlinesCacheTime', new Date().getTime());
