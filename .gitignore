@@ -6,5 +6,6 @@ platforms/
 plugins/
 engine/
 sec/
+*.apk
 
 npm-debug.log
