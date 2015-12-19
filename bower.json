@@ -2,7 +2,7 @@
   "name": "wuwClient",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.0",
+    "ionic": "driftyco/ionic-bower#1.2.0",
     "angular-mocks": "~1.3.15"
   },
   "dependencies": {
@@ -10,9 +10,6 @@
     "angular-translate-loader-static-files": "~2.6.1",
     "angular-ui-calendar": "~0.8.1"
   },
-  "resolutions": {
-    "angular-animate": "1.4.3",
-    "angular-sanitize": "1.4.3",
-    "angular": "1.4.3"
+  "ignore": {
   }
 }
