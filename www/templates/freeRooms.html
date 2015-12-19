@@ -6,13 +6,16 @@
             pulling-text="{{'global.pullToRefresh' | translate}}"
             on-refresh="loadFreeRooms()">
         </ion-refresher>
-        <ion-list>
-            <ion-item ng-show="initialLoading" style="test-align: center;">
-                <div style="margin: 0 auto; width:28px">
-                    <ion-spinner></ion-spinner>
-                </div>
-            </ion-item>
-            <ion-item ng-repeat="room in freeRooms">
+        <!-- <ion-item ng-show="initialLoading" style="test-align: center;">
+            <div style="margin: 0 auto; width:28px">
+                <ion-spinner></ion-spinner>
+            </div>
+        </ion-item> -->
+        <ion-list ng-repeat="(key, value) in fRooms track by $index">
+            <div class="item item-divider" ng-show="value">
+                Bau {{key}}
+            </div>
+            <ion-item ng-repeat="room in value" ng-show="value">
                 {{room}}
             </ion-item>
         </ion-list>
