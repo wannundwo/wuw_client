@@ -18,7 +18,7 @@ angular.module('wuw.controllers')
             $scope.initialLoading = false;
             $scope.$broadcast("scroll.refreshComplete");
         });
-    }
+    };
 
     $scope.loadPrinters();
 });
