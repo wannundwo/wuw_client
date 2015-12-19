@@ -18,9 +18,13 @@
                     <b>{{item.title}}</b>
                 </h2>
                     <p>
-                        <span ng-if="item.hasTime">{{item.startTime | date:'dd.MM.yyyy HH:mm'}} Uhr</span>
-                        <span ng-if="!item.hasTime">{{item.startTime | date:'dd.MM.yyyy'}}</span>
-                        <span ng-if="item.endTime"> - {{item.endTime | date:'dd.MM.yyyy HH:mm'}} Uhr
+                        <!--  date -->
+                        <span ng-if="item.startTime">{{item.startTime | date:'dd.MM.yyyy'}}</span>
+                        <span ng-if="item.endTime"> - {{item.endTime | date:'dd.MM.yyyy'}}<br></span>
+
+                        <!-- time -->
+                        <span ng-if="item.hasTime">{{item.startTime | date:'HH:mm'}} Uhr</span>
+                        <span ng-if="item.endTime && item.hasTime"> - {{item.endTime | date:'HH:mm'}} Uhr
                     </p>
                     <p>{{item.location}}</p>
                     <p>{{item.descr}}</p>
