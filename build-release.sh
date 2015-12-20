@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 
 platform="$1"
+ionic_bin="ionic"
 
 ## output ( 1 red | 2 green | 3 yellow | 4 blue | 5 magenta | 6 cyan | 7 white | 9 default )
 logb() { echo -e " $(tput setaf "$1")\033[1m*\033[0m$(tput sgr 0) $2"; }
+
+add_platform() {
+    logb 7 "running '$ionic_bin platform add $platform'..."
+    $ionic_bin platform add $platform > /dev/null
+}
+
+build_release() {
+    logb 7 "running '$ionic_bin build --release $platform'..."
+    $ionic_bin build --release $platform > /dev/null
+}
 
 build_android () {
     keystore="sec/hft-app-release-key.keystore"
@@ -15,9 +26,11 @@ build_android () {
     echo; logb 7 "clean up..."
     rm -f $apk_unsigned $apk_release
 
+    ## add platform
+    add_platform
+
     ## build
-    logb 7 "running 'cordova build'..."
-    cordova build --release android > /dev/null
+    build_release
 
     ## sign
     logb 7 "running jarsigner..."
@@ -31,7 +44,20 @@ build_android () {
 }
 
 build_ios () {
-    logb 1 "todo"
+    xcode_file="platforms/ios/HFT App.xcodeproj"
+
+    ## cleanup
+    #echo; logb 7 "clean up..."
+    # TODO! what to clean up!?
+
+    ## add platform
+    add_platform
+
+    ## build
+    build_release
+
+    echo; logb 2 "successful build! opening $xcode_file in Xcode..."; echo
+    open "$xcode_file"
 }
 
 ## build for which platform
