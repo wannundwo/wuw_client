@@ -8,12 +8,12 @@ logb() { echo -e " $(tput setaf "$1")\033[1m*\033[0m$(tput sgr 0) $2"; }
 
 add_platform() {
     logb 7 "running '$ionic_bin platform add $platform'..."
-    $ionic_bin platform add $platform > /dev/null
+    $ionic_bin platform add $platform
 }
 
 build_release() {
     logb 7 "running '$ionic_bin build --release $platform'..."
-    $ionic_bin build --release $platform > /dev/null
+    $ionic_bin build --release $platform
 }
 
 build_android () {
@@ -34,21 +34,23 @@ build_android () {
 
     ## sign
     logb 7 "running jarsigner..."
-    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keystore $apk_unsigned $keyalias > /dev/null
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $keystore $apk_unsigned $keyalias
 
     ## alignment
     logb 7 "running zipalign..."
-    zipalign -v 4 $apk_unsigned $apk_release > /dev/null
+    zipalign -v 4 $apk_unsigned $apk_release
 
     echo; logb 2 "successful build! apk saved to $apk_release"; echo
 }
 
 build_ios () {
     xcode_file="platforms/ios/HFT App.xcodeproj"
+    xcode_target="HFT App"
+    xcode_buildcfg="Release"
 
     ## cleanup
-    #echo; logb 7 "clean up..."
-    # TODO! what to clean up!?
+    echo; logb 7 "clean up..."
+    xcodebuild -project "$xcode_file" -configuration "$xcode_buildcfg" -target "$xcode_target" clean
 
     ## add platform
     add_platform
@@ -56,7 +58,7 @@ build_ios () {
     ## build
     build_release
 
-    echo; logb 2 "successful build! opening $xcode_file in Xcode..."; echo
+    echo; logb 2 "successful build! opening '$xcode_file' in Xcode..."; echo
     open "$xcode_file"
 }
 
