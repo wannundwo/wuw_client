@@ -13,10 +13,20 @@
                 </div>
             </ion-item>
             <ion-item ng-click="openNews('{{item.url}}')" ng-repeat="item in news" class="item-text-wrap">
-                <h2 class="clear-float">
-                    <b>{{item.title}}</b>
-                    <p>{{item.descr}}</p>
-                </h2>
+
+                <div class="table">
+                    <div class="tr">
+                        <div class="td">
+                            <h2 class="clear-float">
+                                <b>{{item.title}}</b>
+                                <p>{{item.descr}}</p>
+                            </h2>
+                        </div>
+                        <div style="vertical-align: middle; width: 20px;" class="td">
+                            <i style="font-size: 1.5em" class="ion-icon ion-share"></i>
+                        </div>
+                    </div>
+
             </ion-item>
         </ion-list>
     </ion-content>

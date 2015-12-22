@@ -176,3 +176,22 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 #myCalendar {
     margin-top: -2px;
 }
+
+/************ div tables *****************/
+div.table {
+    width: 100%;
+    display: table;
+}
+
+div.tr {
+    display:table-row;
+}
+
+div.td {
+    display:table-cell;
+}
+
+/* prevents the gray background on pressed ion-item, apply condiotionally via ng-class */
+.prevent-activated{
+  background: #fff !important;
+}

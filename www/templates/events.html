@@ -12,23 +12,27 @@
                     <ion-spinner></ion-spinner>
                 </div>
             </ion-item>
-            <ion-item ng-click="openEvent('{{item.url}}')" ng-repeat="item in events" class="item-text-wrap">
-                    <p>{{item.contact}}</p>
-                <h2 class="clear-float">
-                    <b>{{item.title}}</b>
-                </h2>
-                    <p>
-                        <!--  date -->
-                        <span ng-if="item.startTime">{{item.startTime | date:'dd.MM.yyyy'}}</span>
-                        <span ng-if="item.endTime"> - {{item.endTime | date:'dd.MM.yyyy'}}<br></span>
-
-                        <!-- time -->
-                        <span ng-if="item.hasTime">{{item.startTime | date:'HH:mm'}} Uhr</span>
-                        <span ng-if="item.endTime && item.hasTime"> - {{item.endTime | date:'HH:mm'}} Uhr
-                    </p>
-                    <p>{{item.location}}</p>
-                    <p>{{item.descr}}</p>
-                    <div ng-bind-html="item.text"></div>
+            <ion-item ng-class="{'prevent-activated': !item.url}" ng-click="openEvent('{{item.url}}')" ng-repeat="item in events" class="item-text-wrap">
+                <div class="table">
+                    <div class="tr">
+                        <div class="td">
+                            <p>{{item.contact}}</p>
+                            <h2 class="clear-float">
+                                <b>{{item.title}}</b>
+                            </h2>
+                            <p>
+                                <!--  date -->
+                                <span ng-bind-html="item.dateString"></span>
+                            </p>
+                            <p>{{item.location}}</p>
+                            <p>{{item.descr}}</p>
+                            <div ng-bind-html="item.text"></div>
+                        </div>
+                        <div style="vertical-align: middle; width: 20px;" class="td">
+                            <i style="font-size: 1.5em" ng-if="item.url" class="ion-icon ion-share"></i>
+                        </div>
+                    </div>
+                </div>
             </ion-item>
         </ion-list>
     </ion-content>
