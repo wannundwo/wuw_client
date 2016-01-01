@@ -5993,9 +5993,6 @@ ion-slides {
   text-align: center; }
 
 .swiper-container {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -6008,10 +6005,6 @@ ion-slides {
   width: 100%;
   height: 100%;
   padding: 0; }
-
-.swiper-container {
-  width: 100%;
-  height: 100%; }
 
 .swiper-slide {
   width: 100%;
@@ -6403,8 +6396,6 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 
 .platform-ios input[type="datetime-local"], .platform-ios input[type="date"], .platform-ios input[type="month"], .platform-ios input[type="time"], .platform-ios input[type="week"], .platform-android input[type="datetime-local"], .platform-android input[type="date"], .platform-android input[type="month"], .platform-android input[type="time"], .platform-android input[type="week"] {
   padding-top: 8px; }
-.platform-ios textarea, .platform-android textarea {
-  text-indent: -3px; }
 
 .item-input input, .item-input textarea {
   width: 100%; }
