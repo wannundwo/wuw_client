@@ -3,19 +3,36 @@
 platform="$1"
 ionic_bin="ionic"
 
-## output ( 1 red | 2 green | 3 yellow | 4 blue | 5 magenta | 6 cyan | 7 white | 9 default )
-logb() { echo -e " $(tput setaf "$1")\033[1m*\033[0m$(tput sgr 0) $2"; }
+platforms=("ios" "android")
 
-add_platform() {
+
+## all platforms
+logb() {
+    # output ( 1 red | 2 green | 3 yellow | 4 blue | 5 magenta | 6 cyan | 7 white | 9 default )
+    echo -e " $(tput setaf "$1")\033[1m*\033[0m$(tput sgr 0) $2";
+}
+
+readd_platform() {
+    # remove...
+    logb 7 "running '$ionic_bin platform rm $platform' & deleting folder..."
+    $ionic_bin platform rm $platform
+    rm -rf platforms/$platform
+
+    #  ...and readd ionic platform
     logb 7 "running '$ionic_bin platform add $platform'..."
     $ionic_bin platform add $platform
 }
 
 build_release() {
+    # build release package
     logb 7 "running '$ionic_bin build --release $platform'..."
     $ionic_bin build --release $platform
 }
 
+join() { local IFS='|'; declare -a arr=("${!1}"); echo "${arr[*]}"; }
+
+
+## android
 build_android () {
     keystore="sec/hft-app-release-key.keystore"
     keyalias="hft-app-release-key"
@@ -27,7 +44,7 @@ build_android () {
     rm -f $apk_unsigned $apk_release
 
     ## add platform
-    add_platform
+    readd_platform
 
     ## build
     build_release
@@ -43,6 +60,8 @@ build_android () {
     echo; logb 2 "successful build! apk saved to $apk_release"; echo
 }
 
+
+## ios
 build_ios () {
     xcode_file="platforms/ios/HFT App.xcodeproj"
     xcode_target="HFT App"
@@ -53,7 +72,7 @@ build_ios () {
     xcodebuild -project "$xcode_file" -configuration "$xcode_buildcfg" -target "$xcode_target" clean
 
     ## add platform
-    add_platform
+    readd_platform
 
     ## build
     build_release
@@ -62,12 +81,11 @@ build_ios () {
     open "$xcode_file"
 }
 
-## build for which platform
-if [ "$platform" == "android" ]; then
-    build_android
-elif [ "$platform" == "ios" ]; then
-    build_ios
+
+## build
+if [[ "${platforms[@]}" =~ ${platform} ]]; then
+    build_${platform}
 else
-    echo; logb 7 "usage: $(basename "$0") <android|ios>"; echo;
+    echo; logb 7 "usage: $(basename "$0") <$(join platforms[*])>"; echo;
     exit 1
 fi
