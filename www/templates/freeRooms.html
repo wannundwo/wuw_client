@@ -11,11 +11,11 @@
                 <ion-spinner></ion-spinner>
             </div>
         </ion-item> -->
-        <ion-list ng-repeat="(key, value) in fRooms track by $index">
-            <div class="item item-divider" ng-show="value">
-                Bau {{key}}
+        <ion-list ng-repeat="(building, rooms) in fRooms track by $index" ng-show="rooms">
+            <div class="item item-divider">
+                Bau {{building}}
             </div>
-            <ion-item ng-repeat="room in value" ng-show="value">
+            <ion-item ng-repeat="room in rooms">
                 {{room}}
             </ion-item>
         </ion-list>
