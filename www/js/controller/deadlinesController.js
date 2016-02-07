@@ -48,6 +48,22 @@ angular.module('wuw.controllers')
         });
     };
 
+    $scope.toggleInfoVisible = function() {
+        if (ionic.Platform.isIOS() && ionic.Platform.isWebView()) {
+            navigator.notification.alert(
+                $filter('translate')('deadlines.infoText'),  // message
+                null,                                    // callback
+                $filter('translate')('deadlines.infoTitle'), // title
+                $filter('translate')('global.done')      // buttonName
+            );
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: $filter('translate')('deadlines.infoTitle'),
+                template: $filter('translate')('deadlines.infoText')
+            });
+        }
+    };
+
     $scope.$on('$ionicView.loaded', function(){
         $scope.deadlines = Deadlines.fromCache();
     });
