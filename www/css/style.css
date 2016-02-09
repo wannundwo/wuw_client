@@ -1,4 +1,8 @@
 /*** HFT Style ***/
+a.hft {
+    color: #F0773C !important;
+}
+
 .bar.bar-dark {
     background-color: #CC3300 !important;
     border-color: #CC3300 !important;
