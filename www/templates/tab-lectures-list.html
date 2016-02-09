@@ -24,6 +24,10 @@
                 </a>
             </ion-item>
 
+            <ion-item ng-if="lectures.length === 0">
+                {{'lectures.noLectures' | translate}}
+            </ion-item>
+
             <!-- group the lectures by its date -->
             <div ng-repeat="(key, value) in lectures | groupBy: 'date'">
                 <div class="item item-divider">
