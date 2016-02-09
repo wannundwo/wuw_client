@@ -39,7 +39,7 @@ angular.module("wuw.controllers")
     $scope.toggleInfoVisible = function() {
         if (ionic.Platform.isIOS() && ionic.Platform.isWebView()) {
             navigator.notification.alert(
-                $filter('translate')('mensa.infoText'),  // message
+                $filter('translate')('mensa.infoTextiOS'),  // message
                 null,                                    // callback
                 $filter('translate')('mensa.infoTitle'), // title
                 $filter('translate')('global.done')      // buttonName
