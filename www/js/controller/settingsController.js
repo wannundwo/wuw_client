@@ -11,4 +11,16 @@ angular.module('wuw.controllers')
     $scope.save = function() {
         Settings.setSetting('apiUrl', $scope.settings.apiUrl);
     };
+
+    $scope.openLink = function(url) {
+        if (url) {
+            window.open(url, '_system', 'location=yes');
+
+            // if(url.substring(0, 6) === "mailto") {
+            //     window.location.href = url;
+            // } else {
+            //     window.open(url, '_system', 'location=yes');
+            // }
+        }
+    };
 });
