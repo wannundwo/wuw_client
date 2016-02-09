@@ -44,12 +44,12 @@
         "noDeadlines": "Zur Zeit gibt es keine Abgaben.",
         "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
         "infoTitle": "Abgaben / Todos",
-        "infoText": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.<br/><br/>Abgaben die hinzugefügt werden, sind auch <b>für alle anderen des Kurses sichtbar</b>!<br/><br/>Wenn du etws als erledigt markierst oder löscht, passiert dies <b>nur auf deinem Gerät</b>.<br/><br/>Teste es! Abgaben die \"Test123\" heißen werden regelmäßig gelöscht."
+        "infoText": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.\n\nAbgaben die hinzugefügt werden, sind auch für alle anderen des Kurses sichtbar!\n\nWenn du etws als erledigt markierst oder löscht, passiert dies nur auf deinem Gerät.\n\nTeste es! Abgaben die \"Test123\" heißen werden regelmäßig gelöscht."
     },
     "mensa": {
         "cantload": "Die Gerichte konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
         "infoTitle": "Mensa I (Stuttgart-Mitte)",
-        "infoText": "Wo? <a href=\"geo:48.858370,2.294550?q=48.858370,2.294550(Candy Mountain)\"><b>Holzgartenstraße 11</b></a><br/><br/>Montag - Freitag, 11:15 - 14:15 Uhr"
+        "infoText": "Holzgartenstraße 11\nMontag - Freitag, 11:15 - 14:15 Uhr"
     },
     "settings": {
         "version": "Version",

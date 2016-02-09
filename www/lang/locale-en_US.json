@@ -44,12 +44,12 @@
         "noDeadlines": "Currently no Deadlines listed",
         "cantload": "Can't load deadlines. Please make sure that you are connected to the internet.",
         "infoTitle": "Deadlines / Todos",
-        "infoText": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.<br/><br/>Added items will be visible <b>for all others members of the course</b>!<br/><br/>Deleting something or mark as done will just happen <b>on your device</b>.<br/><br/>Try it! Deadlines named \"Test123\" will be deleted periodically."
+        "infoText": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.\n\nAdded items will be visible for all others members of the course!\n\nDeleting something or mark as done will just happen on your device.\n\nTry it! Deadlines named \"Test123\" will be deleted periodically."
     },
     "mensa": {
         "cantload": "Can't load dishes. Please make sure that you are connected to the internet.",
-        "infoTitle": "Mensa Information",
-        "infoText": "The Mensa is located in Holzgartenstraße 11, open from Monday - Friday from 11:15 - 14:15."
+        "infoTitle": "Mensa I (Stuttgart-Mitte)",
+        "infoText": "Holzgartenstraße 11\n\nMonday - Friday, 11:15 - 14:15"
     },
     "settings": {
         "version": "Version",
