@@ -52,8 +52,9 @@
         "infoText": "Holzgartenstraße 11\n\nMonday - Friday, 11:15 - 14:15"
     },
     "settings": {
-        "version": "Version",
+        "version": "App Version",
         "apiUrl": "API URL",
+        "about": "About",
         "semGroupHelp": "Please choose you Semester and/or single Courses here.",
         "selectSemesterAndGroups" : "Select Courses"
     },

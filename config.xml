@@ -10,6 +10,8 @@
     <content src="index.html" />
     <access origin="*" />
     <access origin="mailto:*" launch-external="yes"/>
+    <!-- <allow-navigation href="mailto:*" />
+    <allow-intent href="mailto:*" /> -->
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
