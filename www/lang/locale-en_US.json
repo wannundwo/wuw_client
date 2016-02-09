@@ -44,12 +44,14 @@
         "noDeadlines": "Currently no Deadlines listed",
         "cantload": "Can't load deadlines. Please make sure that you are connected to the internet.",
         "infoTitle": "Deadlines / Todos",
-        "infoText": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.\n\nAdded items will be visible for all others members of the course!\n\nDeleting something or mark as done will just happen on your device.\n\nTry it! Deadlines named \"Test123\" will be deleted periodically."
+        "infoText": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.<br /><br />Added items will be visible for all others members of the course!<br /><br />Deleting something or mark as done will just happen on your device.<br /><br />Try it! Deadlines named \"Test123\" will be deleted periodically.",
+        "infoTextiOS": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.\n\nAdded items will be visible for all others members of the course!\n\nDeleting something or mark as done will just happen on your device.\n\nTry it! Deadlines named \"Test123\" will be deleted periodically."
     },
     "mensa": {
         "cantload": "Can't load dishes. Please make sure that you are connected to the internet.",
         "infoTitle": "Mensa I (Stuttgart-Mitte)",
-        "infoText": "Holzgartenstraße 11\n\nMonday - Friday, 11:15 - 14:15"
+        "infoText": "Holzgartenstraße 11<br />Monday - Friday, 11:15 - 14:15",
+        "infoTextiOS": "Holzgartenstraße 11\nMonday - Friday, 11:15 - 14:15"
     },
     "settings": {
         "version": "App Version",
