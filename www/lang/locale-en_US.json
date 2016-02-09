@@ -30,6 +30,7 @@
         "startTime": "Starts at",
         "endTime": "Ends at",
         "cantload": "Can't load lectures. Please make sure that you are connected to the internet.",
+        "noLectures": "Currently no lectures are available",
         "noCoursesSelectedMessage": "You have no courses selected. Before we can display your timetable, please select your courses."
     },
     "deadlines": {
@@ -41,7 +42,7 @@
         "delete": "Delete",
         "create": "Create Deadline",
         "exampleInfo": "get Book XY from Lib",
-        "noDeadlines": "Currently no Deadlines listed",
+        "noDeadlines": "Currently no deadlines listed",
         "cantload": "Can't load deadlines. Please make sure that you are connected to the internet.",
         "infoTitle": "Deadlines / Todos",
         "infoText": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.<br /><br />Added items will be visible for all others members of the course!<br /><br />Deleting something or mark as done will just happen on your device.<br /><br />Try it! Deadlines named \"Test123\" will be deleted periodically.",
@@ -70,5 +71,8 @@
     },
     "printers": {
         "inRoom": "in room"
+    },
+    "news": {
+        "noNews": "Currently there are no news"
     }
 }
