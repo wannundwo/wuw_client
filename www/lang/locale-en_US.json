@@ -30,7 +30,7 @@
         "startTime": "Starts at",
         "endTime": "Ends at",
         "cantload": "Can't load lectures. Please make sure that you are connected to the internet.",
-        "noLectures": "Currently no lectures are available",
+        "noLectures": "Currently are no lectures available.",
         "noCoursesSelectedMessage": "You have no courses selected. Before we can display your timetable, please select your courses."
     },
     "deadlines": {
