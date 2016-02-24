@@ -45,8 +45,8 @@
         "noDeadlines": "Zur Zeit gibt es keine Abgaben.",
         "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
         "infoTitle": "Abgaben / Todos",
-        "infoText": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.<br /><br />Abgaben, die hinzugefügt werden, sind auch für alle anderen des Kurses sichtbar!<br /><br />Wenn du etwas als erledigt markierst oder löscht, passiert dies nur auf deinem Gerät.<br /><br />Teste es! Abgaben, die \"Test123\" heißen, werden regelmäßig gelöscht.",
-        "infoTextiOS": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.\n\nAbgaben, die hinzugefügt werden, sind auch für alle anderen des Kurses sichtbar!\n\nWenn du etwas als erledigt markierst oder löscht, passiert dies nur auf deinem Gerät.\n\nTeste es! Abgaben, die \"Test123\" heißen, werden regelmäßig gelöscht."
+        "infoText": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.<br /><br />Abgaben die hinzugefügt werden, sind auch für alle anderen des Kurses sichtbar!<br /><br />Wenn du etws als erledigt markierst oder löscht, passiert dies nur auf deinem Gerät.<br /><br />Teste es! Abgaben die \"Test123\" heißen werden regelmäßig gelöscht.",
+        "infoTextiOS": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.\n\nAbgaben die hinzugefügt werden, sind auch für alle anderen des Kurses sichtbar!\n\nWenn du etws als erledigt markierst oder löscht, passiert dies nur auf deinem Gerät.\n\nTeste es! Abgaben die \"Test123\" heißen werden regelmäßig gelöscht."
     },
     "mensa": {
         "cantload": "Die Gerichte konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
