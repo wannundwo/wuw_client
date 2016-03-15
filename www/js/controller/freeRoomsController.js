@@ -27,7 +27,6 @@ angular.module('wuw.controllers')
                     $scope.fRooms.push(roomObject);
                 }
             });
-            console.log($scope.fRooms);
         }, function(){
         }).finally(function(){
             $scope.initialLoading = false;
