@@ -20,12 +20,11 @@ angular.module('wuw.controllers')
 
                 // exclude room 1/113
                 if (r !== "1/113") {
-                    // if there isn't already an array for rooms of this building, create it
-                    if (typeof $scope.fRooms[building] === 'undefined') {
-                        $scope.fRooms[building] = [];
-                    }
-                    // add the room to this buildings array
-                    $scope.fRooms[building].push(r);
+                    var roomObject = {
+                        building: r.split('/')[0],
+                        room: r.split('/')[1]
+                    };
+                    $scope.fRooms.push(roomObject);
                 }
             });
             console.log($scope.fRooms);
