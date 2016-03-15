@@ -11,12 +11,12 @@
                 <ion-spinner></ion-spinner>
             </div>
         </ion-item> -->
-        <ion-list ng-repeat="(building, rooms) in fRooms track by $index" ng-show="rooms">
+        <ion-list ng-repeat="(building, rooms) in fRooms | groupBy: 'building'">
             <div class="item item-divider">
                 Bau {{building}}
             </div>
             <ion-item ng-repeat="room in rooms">
-                {{room}}
+                {{room.building}}/{{room.room}}
             </ion-item>
         </ion-list>
     </ion-content>
