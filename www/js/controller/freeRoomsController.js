@@ -12,18 +12,23 @@ angular.module('wuw.controllers')
         }
 
         $scope.fRooms = [];
-
         FreeRooms.loadFreeRooms().then(function(freeRooms){
+
+            // group the rooms by their building
             freeRooms.forEach(function(r) {
-                var split = r.split('/');
-                var building = split[0];
-                //var room = split[1];
-                if(r !== "1/113") {
-                    $scope.fRooms[building] = ( typeof $scope.fRooms[building] !== 'undefined' && $scope.fRooms[building] instanceof Array ) ? $scope.fRooms[building] : [];
+                var building = r.split('/')[0];
+
+                // exclude room 1/113
+                if (r !== "1/113") {
+                    // if there isn't already an array for rooms of this building, create it
+                    if (typeof $scope.fRooms[building] === 'undefined') {
+                        $scope.fRooms[building] = [];
+                    }
+                    // add the room to this buildings array
                     $scope.fRooms[building].push(r);
                 }
             });
-            $scope.freeRooms = freeRooms;
+            console.log($scope.fRooms);
         }, function(){
         }).finally(function(){
             $scope.initialLoading = false;
