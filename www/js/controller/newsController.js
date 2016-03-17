@@ -15,12 +15,12 @@ angular.module('wuw.controllers')
             $scope.initialLoading = false;
             $scope.$broadcast("scroll.refreshComplete");
         });
-    }
+    };
 
     $scope.openNews = function(url) {
         url = 'http://www.hft-stuttgart.de/' + url;
         window.open(url, '_system', 'location=yes');
-    }
+    };
 
     $scope.loadNews();
 });
