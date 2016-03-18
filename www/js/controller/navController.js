@@ -6,7 +6,7 @@ angular.module('wuw.controllers')
  * The navigation controller.
  */
 .controller('NavCtrl', function($scope, $ionicSideMenuDelegate) {
-    $scope.showMenu = function () {
+    $scope.showMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
 });
