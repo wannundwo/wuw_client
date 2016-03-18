@@ -1,7 +1,3 @@
-angular.module('wuw.controllers', []) // this is the module definition
+"use strict";
 
-.controller('NavCtrl', function($scope, $ionicSideMenuDelegate) {
-	$scope.showMenu = function () {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
-});
+angular.module('wuw.controllers', []); // this is the module definition
