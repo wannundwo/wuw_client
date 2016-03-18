@@ -2,10 +2,14 @@
 
 angular.module('wuw.controllers')
 
+/*
+ * The home controller.
+ */
 .controller('HomeCtrl', function($scope, $timeout, $ionicLoading, Lectures) {
 
-    // Called every time, the view gets entered.
-    // Displays a loading spinner.
+    /*
+     * Loads new lectures from the API, updates current and next lectures.
+     */
     var reload = function() {
         $scope.loading = true;
         Lectures.lecturesForUser().then(function(lectures){

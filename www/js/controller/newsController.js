@@ -2,6 +2,9 @@
 
 angular.module('wuw.controllers')
 
+/*
+ * The news controller
+ */
 .controller('NewsCtrl', function($scope, News) {
     $scope.loadNews = function() {
         if (!$scope.news) {

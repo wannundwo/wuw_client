@@ -2,6 +2,9 @@
 
 angular.module('wuw.controllers')
 
+/*
+ * The settings controller.
+ */
 .controller('SettingsCtrl', function($scope, Settings) {
     $scope.settings = {};
     $scope.settings.version = Settings.getSetting('version');

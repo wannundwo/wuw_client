@@ -2,6 +2,9 @@
 
 angular.module('wuw.controllers')
 
+/*
+ * The free rooms controller.
+ */
 .controller('FreeRoomsCtrl', function($scope, FreeRooms) {
     $scope.loadFreeRooms = function() {
 

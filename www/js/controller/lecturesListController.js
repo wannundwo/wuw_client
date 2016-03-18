@@ -2,6 +2,9 @@
 
 angular.module("wuw.controllers")
 
+/*
+ * Lectures list controller.
+ */
 .controller("LecturesListCtrl", function($scope, $state, $ionicHistory, $ionicPopup, $timeout, $filter, Lectures, Settings) {
 
     $scope.loadLectures = function() {
