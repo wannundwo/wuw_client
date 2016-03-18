@@ -38,7 +38,7 @@
                         <tr>
                             <td class="lecture-list-item-circle">
                                 <div style="background-color: {{lecture.color}}" class="circle-with-content">
-                                    {{lecture.lectureName | limitTo: 1}}
+                                    {{lecture.lectureName | limitTo: 1 | uppercase}}
                                 </div>
                             </td>
                             <td class="lecture-list-item-details">
@@ -57,8 +57,6 @@
                     </table>
                 </ion-item>
             </div>
-
-            </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
