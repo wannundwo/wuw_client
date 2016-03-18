@@ -11,6 +11,14 @@ angular.module('wuw.controllers')
         Events.getEvents().then(function(events){
             for (var i = 0; i < events.length; i++) {
                 var event = events[i];
+
+                /*
+                    Now follows the handling of the different date/time formats.
+                    Of course this logic could be written more efficient
+                    by using other condition-statements.
+                    For readability resons, we want to stick to the following notation.
+                */
+
                 var startDate = new Date(event.startTime);
                 var endDate = new Date(event.endTime);
                 var exactlySame = startDate.getTime() === endDate.getTime();

@@ -2,6 +2,9 @@
 
 angular.module('wuw.controllers')
 
+/*
+ * The printers controllers.
+ */
 .controller('PrintersCtrl', function($scope, Printers) {
     $scope.loadPrinters = function() {
 
@@ -13,7 +16,8 @@ angular.module('wuw.controllers')
 
         Printers.loadPrinters().then(function(printers){
             $scope.printers = printers;
-        }, function(){
+        }, function() {
+            // error handling
         }).finally(function(){
             $scope.initialLoading = false;
             $scope.$broadcast("scroll.refreshComplete");

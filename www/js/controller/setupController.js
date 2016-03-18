@@ -2,6 +2,11 @@
 
 angular.module('wuw.controllers')
 
+
+/*
+ * The setup controller.
+ * The "setup" is the process, where the user selects all his courses.
+ */
 .controller('SetupDetailCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, Setup, Settings, Users) {
 
     // Called every time the before view gets enteed

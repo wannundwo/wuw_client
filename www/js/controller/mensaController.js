@@ -2,6 +2,10 @@
 
 angular.module("wuw.controllers")
 
+
+/*
+ * The mensa controller.
+ */
 .controller("MensaCtrl", function($scope, $ionicPopup, $timeout, $filter, Dishes, Settings) {
 
     var moreCounter = 0;

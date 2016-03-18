@@ -2,6 +2,9 @@
 
 angular.module('wuw.controllers')
 
+/*
+ * The deadlines controller
+ */
 .controller('DeadlinesCtrl', function($scope, $state, $ionicPopup, $timeout, $filter, Deadlines, Settings) {
 
     $scope.loadDeadlines = function() {
@@ -48,13 +51,17 @@ angular.module('wuw.controllers')
         });
     };
 
+    /*
+     * Displays the deadlines info box. Because of design resons,
+     * on iOS native alert notification is displayed, on Android we display the default Ionic alert.
+     */
     $scope.toggleInfoVisible = function() {
         if (ionic.Platform.isIOS() && ionic.Platform.isWebView()) {
             navigator.notification.alert(
                 $filter('translate')('deadlines.infoTextiOS'),  // message
-                null,                                    // callback
-                $filter('translate')('deadlines.infoTitle'), // title
-                $filter('translate')('global.done')      // buttonName
+                null,                                           // callback
+                $filter('translate')('deadlines.infoTitle'),    // title
+                $filter('translate')('global.done')             // buttonName
             );
         } else {
             var alertPopup = $ionicPopup.alert({
@@ -160,8 +167,7 @@ angular.module('wuw.controllers')
                         content.style[ionic.CSS.TRANSFORM] = 'translate3d(-' + buttonsWidth + 'px, 0, 0)';
                     }
                 });
-
             }, element);
         }
     };
-}])
+}]);
