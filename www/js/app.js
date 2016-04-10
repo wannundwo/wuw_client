@@ -5,7 +5,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
 .run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
     var apiUrl = "https://app.hft-stuttgart.de:4342/api/v0";
-    var versionNumber = "0.6.1";
+    var versionNumber = "0.6.5";
 
     // predefined settings
     Settings.setSetting('version', versionNumber);
