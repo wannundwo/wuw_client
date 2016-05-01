@@ -36,6 +36,19 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             Settings.setSetting('uuid', device.uuid);
         }
 
+        var push = PushNotification.init({
+            ios: {
+                alert: "true",
+                badge: "true",
+                sound: "true"
+            }
+        });
+
+        push.on('registration', function(data) {
+            console.log(data.registrationId);
+            Settings.setSetting('pushToken', data.registrationId);
+        });
+
         // ping home
         Users.ping();
     });

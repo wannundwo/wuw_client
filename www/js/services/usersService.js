@@ -16,6 +16,7 @@ angular.module('wuw.services')
                 data: {
                     appVersion: Settings.getSetting('version'),
                     deviceId: Settings.getSetting('uuid'),
+                    pushToken: Settings.getSetting('pushToken'),
                     platform: ionic.Platform.platform(),
                     platformVersion: ionic.Platform.version(),
                     selectedLectures: Settings.getSetting('selectedLectures')

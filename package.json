@@ -24,18 +24,24 @@
       "id": "org.crosswalk.engine",
       "locator": "./engine/cordova-crosswalk-engine-c0.6.2"
     },
+    {
+      "variables": {
+        "SENDER_ID": "722709796555"
+      },
+      "locator": "phonegap-plugin-push"
+    },
     "cordova-plugin-device",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-dialogs",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "phonegap-plugin-push"
   ],
   "scripts": {
     "test": "./node_modules/.bin/karma start ./tests/my.conf.js --single-run"
   },
   "cordovaPlatforms": [
-    "android",
     "ios"
   ]
 }
