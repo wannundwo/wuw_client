@@ -37,6 +37,9 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
 
         var push = PushNotification.init({
+            android: {
+                senderID: "12345679"
+            },
             ios: {
                 alert: "true",
                 badge: "true",
