@@ -50,6 +50,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         push.on('registration', function(data) {
             console.log(data.registrationId);
             Settings.setSetting('pushToken', data.registrationId);
+            Users.ping();
         });
 
         // ping home
