@@ -31,6 +31,11 @@ angular.module("wuw.controllers")
         $scope.loadLectures();
     };
 
+    /*
+     * Navigates to the list view of the lectures and remembers this,
+     * so when the user opens the lectures tab again, he will automatically
+     * see the last choosen type of view.
+     */
     $scope.switchToCalendar = function() {
         Settings.setSetting("lecturesView", "lecturesWeekly");
         $ionicHistory.nextViewOptions({

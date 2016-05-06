@@ -146,8 +146,17 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 }
 
 /************ Calendar *******************/
-#myCalendar {
-    margin-top: -2px;
+.weekViewTable {
+    border: 1px solid black;
+}
+
+.weekViewTable td{
+    border: 1px solid black;
+    height: 16px;
+}
+
+.weekViewGroup {
+    border: 1px solid black;
 }
 
 /************ div tables *****************/
