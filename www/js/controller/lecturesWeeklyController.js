@@ -164,13 +164,25 @@ angular.module("wuw.controllers")
                 eventsSplitter.className += " row no-margin no-padding";
                 for (var i = 0; i < group.events.length; i++) {
                     var event = group.events[i];
+                    var groupStartMinutes = getMinutesOfDay(group.firstEvent.startTime);
+                    var groupEndMinutes = getMinutesOfDay(group.lastEvent.endTime);
+                    var eventStartMinutes = getMinutesOfDay(event.startTime);
                     var eventMinutes = getMinutesOfDay(event.endTime) - getMinutesOfDay(event.startTime);
+                    var eventEmptyMinutes = eventStartMinutes - groupStartMinutes;
                     var eventCol = document.createElement('div');
-                    eventCol.style.height = eventMinutes * pixelPerMinute + "px";
-                    
                     eventCol.style.wordWrap = "break-word";
                     eventCol.setAttribute('class', 'col weekViewEventCol no-padding no-margin');
-                    eventCol.innerHTML = "MEINNAMEISTHARRYPOTTER " + moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm");
+
+                    console.log(eventEmptyMinutes);
+                    constructSeperators(groupStartMinutes, eventEmptyMinutes, eventCol);
+
+                    // finally the actual event div
+                    var eventDiv = document.createElement('div');
+                    eventDiv.style.height = eventMinutes * pixelPerMinute + "px";
+                    eventDiv.innerHTML = "MEINNAMEISTHARRYPOTTER " + moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm");
+
+                    eventCol.appendChild(eventDiv);
+
                     eventsSplitter.appendChild(eventCol);
                 }
 
@@ -189,13 +201,13 @@ angular.module("wuw.controllers")
 
     /*
      * Constructs seperators for a specific column.
-     * emptyMinutes: the distance to the next event
+     * duration: the distance to the next event
      */
-    function constructSeperators(minutesCounter, emptyMinutes, column) {
+    function constructSeperators(minutesCounter, duration, column) {
         // check if distance to next event is large enough for placing a seperator
-        if (emptyMinutes < seperatorGran) {
+        if (duration < seperatorGran) {
             // distance to next event is not large enough to place a seperator, so just place a filler
-            var filler = getFiller(emptyMinutes);
+            var filler = getFiller(duration);
             column.appendChild(filler);
         } else {
             // place a seperator so that we are now at a even seperatorGran
@@ -203,22 +215,21 @@ angular.module("wuw.controllers")
             if (seperatorMinutes > 0 || minutesCounter === gridStart) {
                 var seperator = getSeperator(seperatorMinutes);
                 column.appendChild(seperator);
-                minutesCounter += seperatorMinutes
-                emptyMinutes = emptyMinutes - seperatorMinutes;
+                duration = duration - seperatorMinutes;
             }
 
             // fill the other "full" seperators
-            var neededSeperators = Math.floor((emptyMinutes) / seperatorGran);
+            var neededSeperators = Math.floor(duration / seperatorGran);
             for (var s = 0; s < neededSeperators; s++) {
                 var seperator = getSeperator(seperatorGran);
                 
                 column.appendChild(seperator);
-                emptyMinutes = emptyMinutes - seperatorGran;
+                duration = duration - seperatorGran;
             }
 
             // and a possible last filler
-            if (emptyMinutes > 0) {
-                var filler = getFiller(emptyMinutes);
+            if (duration > 0) {
+                var filler = getFiller(duration);
                 column.appendChild(filler);    
             }
         }
