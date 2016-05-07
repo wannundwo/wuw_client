@@ -103,6 +103,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding: 0px !important;
 }
 
+.no-padding {
+    padding: 0px !important;
+}
+
 .no-margin {
     margin: 0 !important;
 }
@@ -161,8 +165,15 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     background: #ED773C;
 }
 
+.weekViewDayHeaderCell {
+    font-size: 10px;
+    text-align: center; 
+}
+
 .weekViewTimeColumn {
-    margin-right: 10px;
+    font-size: 8px;
+    margin-left: 4px;
+    margin-right: 4px;
     color: #66666;
 }
 
@@ -179,6 +190,12 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     box-sizing: border-box;
     border-bottom: 1px solid #E6E5E6;
     border-right: 1px solid #E6E5E6;
+}
+
+.weekViewEventCol {
+    border: 1px solid black;
+    overflow: scroll;
+    font-size: 8px;
 }
 
 /************ div tables *****************/
