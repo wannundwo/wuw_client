@@ -162,7 +162,14 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 .weekViewGroup {
     box-sizing: border-box;
     /*border: 1px solid black;*/
-    background: #ED773C;
+}
+
+.weekViewEventColWithin .weekViewSep {
+    border-right: none;
+}
+
+.weekViewEventColWithin .weekViewFiller {
+    border-right: none;
 }
 
 .weekViewDayHeaderCell {
@@ -193,9 +200,17 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 }
 
 .weekViewEventCol {
-    border: 1px solid black;
     overflow: scroll;
     font-size: 8px;
+}
+
+.weekViewEvent {
+    box-sizing: border-box;
+    border-left: 3px solid #8D4723;
+    background: #ED773C;
+    color: #fff;
+    overflow: scroll;
+    line-height: normal;
 }
 
 /************ div tables *****************/
