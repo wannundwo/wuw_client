@@ -163,21 +163,13 @@ angular.module("wuw.controllers")
         // check if distance to next event is large enough for placing a seperator
         if (emptyMinutes < seperatorGran) {
             // distance to next event is not large enough to place a seperator, so just place a filler
-            var filler = document.createElement('div');
-            filler.style.height = emptyMinutes * pixelPerMinute + "px";
-            filler.style.overflow = "none";    
-            filler.className += " weekViewFiller";
+            var filler = getFiller(emptyMinutes);
             column.appendChild(filler);
-
         } else {
-            // we need seperators
-            // place seperator to next full seperatorGran
-            var seperator = document.createElement('div');
+            // place a seperator so that we are now at a even seperatorGran
             var seperatorMinutes = (minutesCounter % seperatorGran);
             if (seperatorMinutes > 0 || minutesCounter === gridStart) {
-                seperator.style.height = seperatorMinutes * pixelPerMinute + "px";
-                seperator.style.overflow = "none";    
-                seperator.className += " weekViewSep";
+                var seperator = getSeperator(seperatorMinutes);
                 column.appendChild(seperator);
                 minutesCounter += seperatorMinutes
                 emptyMinutes = emptyMinutes - seperatorMinutes;
@@ -186,21 +178,34 @@ angular.module("wuw.controllers")
             // fill the other "full" seperators
             var neededSeperators = Math.floor((emptyMinutes) / seperatorGran);
             for (var s = 0; s < neededSeperators; s++) {
-                var seperator = document.createElement('div');
-                seperator.style.height = seperatorGran * pixelPerMinute + "px";
-                seperator.style.overflow = "none";    
-                seperator.className += " weekViewSep";
+                var seperator = getSeperator(seperatorGran);
+                
                 column.appendChild(seperator);
                 emptyMinutes = emptyMinutes - seperatorGran;
             }
 
             // and a possible last filler
-            var filler = document.createElement('div');
-            filler.style.height = emptyMinutes * pixelPerMinute + "px";
-            filler.style.overflow = "none";    
-            filler.className += " weekViewFiller";
-            column.appendChild(filler);
+            if (emptyMinutes > 0) {
+                var filler = getFiller(emptyMinutes);
+                column.appendChild(filler);    
+            }
         }
+    }
+
+    function getFiller(minutes) {
+        var filler = document.createElement('div');
+        filler.style.height = minutes * pixelPerMinute + "px";
+        filler.style.overflow = "none";    
+        filler.className += " weekViewFiller";
+        return filler;
+    }
+
+    function getSeperator(minutes) {
+        var seperator = document.createElement('div');
+        seperator.style.height = minutes * pixelPerMinute + "px";
+        seperator.style.overflow = "none";    
+        seperator.className += " weekViewSep";
+        return seperator;
     }
 
     /*
