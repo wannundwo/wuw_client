@@ -32,7 +32,7 @@ angular.module("wuw.controllers")
             },
             {
                 title: "A3",
-                startTime: moment("2016-05-03T14:00:00+1000", moment.ISO_8601).toDate(),
+                startTime: moment("2016-05-03T13:30:00+1000", moment.ISO_8601).toDate(),
                 endTime: moment("2016-05-03T14:30:00+1000", moment.ISO_8601).toDate()
             }
         ],
@@ -159,7 +159,7 @@ angular.module("wuw.controllers")
 
                 eventGroupDiv.className += ' weekViewGroup';
 
-                // render the various events in the event group
+                // render the various overlapping events in the event group
                 var eventsSplitter = document.createElement('div')
                 eventsSplitter.className += " row no-margin no-padding";
                 for (var i = 0; i < group.events.length; i++) {
@@ -167,21 +167,31 @@ angular.module("wuw.controllers")
                     var groupStartMinutes = getMinutesOfDay(group.firstEvent.startTime);
                     var groupEndMinutes = getMinutesOfDay(group.lastEvent.endTime);
                     var eventStartMinutes = getMinutesOfDay(event.startTime);
+                    var eventEndMinutes = getMinutesOfDay(event.endTime);
                     var eventMinutes = getMinutesOfDay(event.endTime) - getMinutesOfDay(event.startTime);
+                    var minutesAfterEvent = groupEndMinutes - eventEndMinutes;
                     var eventEmptyMinutes = eventStartMinutes - groupStartMinutes;
                     var eventCol = document.createElement('div');
                     eventCol.style.wordWrap = "break-word";
-                    eventCol.setAttribute('class', 'col weekViewEventCol no-padding no-margin');
+                    if (i != group.events.length - 1) {
+                        eventCol.setAttribute('class', 'col weekViewEventCol weekViewEventColWithin no-padding no-margin');    
+                    } else {
+                        eventCol.setAttribute('class', 'col weekViewEventCol no-padding no-margin');    
+                    }
+                    
 
-                    console.log(eventEmptyMinutes);
+                    // construct preeceding seperators
                     constructSeperators(groupStartMinutes, eventEmptyMinutes, eventCol);
 
                     // finally the actual event div
                     var eventDiv = document.createElement('div');
+                    eventDiv.className += " weekViewEvent";
                     eventDiv.style.height = eventMinutes * pixelPerMinute + "px";
-                    eventDiv.innerHTML = "MEINNAMEISTHARRYPOTTER " + moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm");
-
+                    eventDiv.innerHTML = moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm") + "</br>EVENT TITLE";
                     eventCol.appendChild(eventDiv);
+
+                    // construct following seperators
+                    constructSeperators(eventEndMinutes, minutesAfterEvent, eventCol);
 
                     eventsSplitter.appendChild(eventCol);
                 }
