@@ -8,48 +8,60 @@ angular.module("wuw.controllers")
     var events = [
         [
             {
+
                 title: "M1",
-                startTime: new Date("2016-05-02T08:20:00+1000"),
-                endTime: new Date("2016-05-02T09:00:00+1000")
+                startTime: moment("2016-05-02T08:20:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-02T09:00:00+1000", moment.ISO_8601).toDate()
             },
             {
                 title: "M1",
-                startTime: new Date("2016-05-02T10:00:00+1000"),
-                endTime: new Date("2016-05-02T11:00:00+1000")
+                startTime: moment("2016-05-02T10:00:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-02T11:00:00+1000", moment.ISO_8601).toDate()
             }
         ],
         [
             {
                 title: "A1",
-                startTime: new Date("2016-05-03T12:00:00+1000"),
-                endTime: new Date("2016-05-03T15:30:00+1000")
+                startTime: moment("2016-05-03T12:00:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-03T15:30:00+1000", moment.ISO_8601).toDate()
             },
             {
                 title: "A2",
-                startTime: new Date("2016-05-03T12:30:00+1000"),
-                endTime: new Date("2016-05-03T14:00:00+1000")
+                startTime: moment("2016-05-03T12:30:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-03T14:00:00+1000", moment.ISO_8601).toDate()
             },
             {
                 title: "A3",
-                startTime: new Date("2016-05-03T14:00:00+1000"),
-                endTime: new Date("2016-05-03T14:30:00+1000")
+                startTime: moment("2016-05-03T14:00:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-03T14:30:00+1000", moment.ISO_8601).toDate()
             }
         ],
         [
             {
                 title: "B1",
-                startTime: new Date("2016-05-04T14:30:00+1000"),
-                endTime: new Date("2016-05-04T16:00:00+1000")
+                startTime: moment("2016-05-04T14:30:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate()
             },
             {
                 title: "B2",
-                startTime: new Date("2016-05-04T16:00:00+1000"),
-                endTime: new Date("2016-05-04T17:00:00+1000")
+                startTime: moment("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-04T17:00:00+1000", moment.ISO_8601).toDate()
             }
         ],
-        [],
-        []
-
+        [
+        {
+                title: "DO1",
+                startTime: moment("2016-05-05T10:00:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-05T11:00:00+1000", moment.ISO_8601).toDate()
+            }
+        ],
+        [
+            {
+                title: "F1",
+                startTime: moment("2016-05-06T10:00:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-06T11:00:00+1000", moment.ISO_8601).toDate()
+            }
+        ]
     ];
 
     var hiddenDayEndEvent = {}
@@ -71,15 +83,12 @@ angular.module("wuw.controllers")
     // at which amount of minutes of the day the grid ends
     var gridEnd = (24*60)-1; // 23:59
 
-    // how long a intervall in the time column is (in minutes)
-    var timeIntervall = 60;
-
     // monday in current week 
     var monday = getMonday(new Date());
 
     // height of a cell
     var cellHeight = 15;
-    var headerCellHeight = 40;
+    var headerCellHeight = 25;
 
     // we can scale the entire view with this value
     var pixelPerMinute = 1;
@@ -89,8 +98,10 @@ angular.module("wuw.controllers")
 
     var minutesInDay = 24 * 60;
 
-    var renderWeekView = function() {
+    function renderWeekView(){
         
+        console.log("renderWeekView()");
+
         /****** Time Column ******/
         var timeColumn = document.createElement('div');
         timeColumn.setAttribute('class', 'weekViewTimeColumn');
@@ -100,16 +111,17 @@ angular.module("wuw.controllers")
         timeColumn.appendChild(timeHeader);
         
         // render the hh:mm cells
-        for (var i = gridStart; i < minutesInDay; i += timeIntervall) {
+        for (var i = gridStart; i < minutesInDay; i += seperatorGran) {
             var minutes = i;
             var row = document.createElement('div');
             row.setAttribute('class', 'hhmmCell');
-            row.style.height = timeIntervall * pixelPerMinute + "px";
-            row.style.lineHeight = timeIntervall * pixelPerMinute + "px";
+            row.style.height = seperatorGran * pixelPerMinute + "px";
+            row.style.lineHeight = seperatorGran * pixelPerMinute + "px";
             row.innerHTML = minutesToTime(minutes);
             timeColumn.appendChild(row);
         }
         weekViewContainer.appendChild(timeColumn);
+        var dayColumnsTotalWidth = weekViewContainer.clientWidth - timeColumn.clientWidth;
 
         /****** Day Columns ******/
         for (var d = 0; d < days; d++) {
@@ -118,10 +130,12 @@ angular.module("wuw.controllers")
             // create the column for this day
             var dayColumn = document.createElement('div');
             dayColumn.setAttribute('class', 'col weekViewDayCol');
+            dayColumn.style.width = Math.floor((dayColumnsTotalWidth / days)) + "px";
             
             // render day header
             var dayHeader = document.createElement('div');
-            dayHeader.innerHTML = moment(currDay).format("ddd, DD.MM");
+            dayHeader.innerHTML = moment(currDay).format("ddd,<br/>DD.MM");
+            dayHeader.setAttribute('class', 'weekViewDayHeaderCell');
             dayHeader.style.height = (headerCellHeight + seperatorGran / 2) + "px";
             dayHeader.style.overflow = "none";    
             dayColumn.appendChild(dayHeader);
@@ -141,10 +155,28 @@ angular.module("wuw.controllers")
                 var eventGroupDistance = eventGroupMinutes * pixelPerMinute;
                 var eventGroupDiv = document.createElement('div');
                 eventGroupDiv.style.height = eventGroupDistance + "px";
-                eventGroupDiv.style.overflow = "none";    
-                eventGroupDiv.className += " weekViewGroup";
-                eventGroupDiv.innerHTML = moment(group.firstEvent.startTime).format("HH:mm")
-                                            + " - " + moment(group.firstEvent.endTime).format("HH:mm");
+                eventGroupDiv.style.overflow = 'scroll';    
+
+                eventGroupDiv.className += ' weekViewGroup';
+
+                // render the various events in the event group
+                var eventsSplitter = document.createElement('div')
+                eventsSplitter.className += " row no-margin no-padding";
+                for (var i = 0; i < group.events.length; i++) {
+                    var event = group.events[i];
+                    var eventMinutes = getMinutesOfDay(event.endTime) - getMinutesOfDay(event.startTime);
+                    var eventCol = document.createElement('div');
+                    eventCol.style.height = eventMinutes * pixelPerMinute + "px";
+                    
+                    eventCol.style.wordWrap = "break-word";
+                    eventCol.setAttribute('class', 'col weekViewEventCol no-padding no-margin');
+                    eventCol.innerHTML = "MEINNAMEISTHARRYPOTTER " + moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm");
+                    eventsSplitter.appendChild(eventCol);
+                }
+
+                eventGroupDiv.appendChild(eventsSplitter);
+
+                //eventGroupDiv.innerHTML = moment(group.firstEvent.startTime).format("HH:mm") + " - " + moment(group.firstEvent.endTime).format("HH:mm");
                 dayColumn.appendChild(eventGroupDiv);
                 minutesCounter = getMinutesOfDay(group.lastEvent.endTime);
 
@@ -192,6 +224,9 @@ angular.module("wuw.controllers")
         }
     }
 
+    /*
+     * Returns a filler div
+     */
     function getFiller(minutes) {
         var filler = document.createElement('div');
         filler.style.height = minutes * pixelPerMinute + "px";
@@ -200,6 +235,9 @@ angular.module("wuw.controllers")
         return filler;
     }
 
+    /*
+     * Returns a seperator div
+     */
     function getSeperator(minutes) {
         var seperator = document.createElement('div');
         seperator.style.height = minutes * pixelPerMinute + "px";
@@ -334,4 +372,8 @@ angular.module("wuw.controllers")
     };
 
     renderWeekView();
+    window.addEventListener("orientationchange", function() {
+        console.log("orientationchange");
+        renderWeekView();
+    });
 });
