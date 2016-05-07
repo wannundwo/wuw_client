@@ -147,16 +147,38 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 
 /************ Calendar *******************/
 
+.weekViewDayCol {
+    padding: 0 !important;
+}
+
+.weekViewSepCol {
+    padding: 0 !important;
+}
 
 .weekViewGroup {
     box-sizing: border-box;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     background: #ED773C;
+}
+
+.weekViewTimeColumn {
+    margin-right: 10px;
+    color: #66666;
+}
+
+.weekViewSepColumn {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.weekViewFiller {
+    border-right: 1px solid #E6E5E6;
 }
 
 .weekViewSep {
     box-sizing: border-box;
-    border-bottom: 1px dashed gray;
+    border-bottom: 1px solid #E6E5E6;
+    border-right: 1px solid #E6E5E6;
 }
 
 /************ div tables *****************/
