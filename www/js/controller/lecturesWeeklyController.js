@@ -72,7 +72,7 @@ angular.module("wuw.controllers")
     var gridEnd = (24*60)-1; // 23:59
 
     // how long a intervall in the time column is (in minutes)
-    var timeIntervall = 30;
+    var timeIntervall = 60;
 
     // monday in current week 
     var monday = getMonday(new Date());
@@ -85,7 +85,7 @@ angular.module("wuw.controllers")
     var pixelPerMinute = 1;
 
     // seperator distance (in minutes)
-    var seperatorGran = 30;
+    var seperatorGran = 60;
 
     var minutesInDay = 24 * 60;
 
@@ -93,18 +93,19 @@ angular.module("wuw.controllers")
         
         /****** Time Column ******/
         var timeColumn = document.createElement('div');
-        timeColumn.setAttribute('class', '');
+        timeColumn.setAttribute('class', 'weekViewTimeColumn');
         var timeHeader = document.createElement('div');
         timeHeader.innerHTML = "";
         timeHeader.style.height = headerCellHeight + "px";
         timeColumn.appendChild(timeHeader);
-
-        // render the cells with the time in it
+        
+        // render the hh:mm cells
         for (var i = gridStart; i < minutesInDay; i += timeIntervall) {
             var minutes = i;
             var row = document.createElement('div');
+            row.setAttribute('class', 'hhmmCell');
             row.style.height = timeIntervall * pixelPerMinute + "px";
-            row.style.lineHeight = headerCellHeight + "px";
+            row.style.lineHeight = timeIntervall * pixelPerMinute + "px";
             row.innerHTML = minutesToTime(minutes);
             timeColumn.appendChild(row);
         }
@@ -116,7 +117,7 @@ angular.module("wuw.controllers")
 
             // create the column for this day
             var dayColumn = document.createElement('div');
-            dayColumn.setAttribute('class', 'col');
+            dayColumn.setAttribute('class', 'col weekViewDayCol');
             
             // render day header
             var dayHeader = document.createElement('div');
@@ -160,11 +161,12 @@ angular.module("wuw.controllers")
      */
     function constructSeperators(minutesCounter, emptyMinutes, column) {
         // check if distance to next event is large enough for placing a seperator
-        if (emptyMinutes <= seperatorGran) {
+        if (emptyMinutes < seperatorGran) {
             // distance to next event is not large enough to place a seperator, so just place a filler
             var filler = document.createElement('div');
             filler.style.height = emptyMinutes * pixelPerMinute + "px";
             filler.style.overflow = "none";    
+            filler.className += " weekViewFiller";
             column.appendChild(filler);
 
         } else {
@@ -182,7 +184,7 @@ angular.module("wuw.controllers")
             }
 
             // fill the other "full" seperators
-            var neededSeperators = Math.floor((emptyMinutes-1) / seperatorGran);
+            var neededSeperators = Math.floor((emptyMinutes) / seperatorGran);
             for (var s = 0; s < neededSeperators; s++) {
                 var seperator = document.createElement('div');
                 seperator.style.height = seperatorGran * pixelPerMinute + "px";
@@ -196,6 +198,7 @@ angular.module("wuw.controllers")
             var filler = document.createElement('div');
             filler.style.height = emptyMinutes * pixelPerMinute + "px";
             filler.style.overflow = "none";    
+            filler.className += " weekViewFiller";
             column.appendChild(filler);
         }
     }
@@ -301,6 +304,13 @@ angular.module("wuw.controllers")
     function minutesToTime(m) {
         var hours = Math.floor(m / 60);          
         var minutes = m % 60;
+        if (hours.toString().length == 1) {
+            hours = "0" + hours;
+        }
+        if (minutes.toString().length == 1) {
+            minutes = "0" + minutes;
+        }
+        
         return hours + ":" + minutes;
     }
 
@@ -309,7 +319,7 @@ angular.module("wuw.controllers")
      * so when the user opens the lectures tab again, he will automatically
      * see the last choosen type of view.
      */
-    $scope.switchToListo = function() {
+    $scope.switchToList = function() {
         Settings.setSetting("lecturesView", "lecturesList");
         $ionicHistory.nextViewOptions({
             disableAnimate: true,
