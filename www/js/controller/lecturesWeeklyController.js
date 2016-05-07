@@ -52,46 +52,59 @@ angular.module("wuw.controllers")
 
     ];
 
+    var hiddenDayEndEvent = {}
+
     console.log(checkOverlapp(events[0], events[1])); // should be true
     console.log(checkOverlapp(events[2], events[3])); // should be false
 
+    var weekViewContainer = document.getElementById("weekViewContainer");
+
+    // the number of rendered days
+    var days = 5;
+
+    // grid granularity (in minutes)
+    var gridGran = 5;
+
+    // at which amount of minutes of the day the grid starts
+    var gridStart = 420; // 7am
+
+    // at which amount of minutes of the day the grid ends
+    var gridEnd = (24*60)-1; // 23:59
+
+    // how long a intervall in the time column is (in minutes)
+    var timeIntervall = 30;
+
+    // monday in current week 
+    var monday = getMonday(new Date());
+
+    // height of a cell
+    var cellHeight = 15;
+    var headerCellHeight = 40;
+
+    // we can scale the entire view with this value
+    var pixelPerMinute = 1;
+
+    // seperator distance (in minutes)
+    var seperatorGran = 30;
+
+    var minutesInDay = 24 * 60;
+
     var renderWeekView = function() {
-        var weekViewContainer = document.getElementById("weekViewContainer");
-
-        // the number of rendered days
-        var days = 5;
-
-        // grid granularity (in minutes)
-        var gridGran = 5;
-
-        // at which amount of minutes of the day the grid starts
-        var gridStart = 420; // 7am
-
-        // how long a intervall in the time column is (in minutes)
-        var timeIntervall = 30;
-
-        // monday in current week 
-        var monday = getMonday(new Date());
-
-        // height of a cell
-        var cellHeight = 15;
-        var headerCellHeight = 40;
-
-        var pixelPerMinute = 1;
-        var minutesInDay = 24 * 60;
         
         /****** Time Column ******/
         var timeColumn = document.createElement('div');
-        timeColumn.setAttribute('class', 'col');
+        timeColumn.setAttribute('class', '');
         var timeHeader = document.createElement('div');
-        timeHeader.innerHTML = "Time";
+        timeHeader.innerHTML = "";
         timeHeader.style.height = headerCellHeight + "px";
         timeColumn.appendChild(timeHeader);
 
+        // render the cells with the time in it
         for (var i = gridStart; i < minutesInDay; i += timeIntervall) {
             var minutes = i;
             var row = document.createElement('div');
             row.style.height = timeIntervall * pixelPerMinute + "px";
+            row.style.lineHeight = headerCellHeight + "px";
             row.innerHTML = minutesToTime(minutes);
             timeColumn.appendChild(row);
         }
@@ -108,8 +121,8 @@ angular.module("wuw.controllers")
             // render day header
             var dayHeader = document.createElement('div');
             dayHeader.innerHTML = moment(currDay).format("ddd, DD.MM");
-            dayHeader.style.height = headerCellHeight + "px";
-            dayHeader.style.overflow = "scroll";    
+            dayHeader.style.height = (headerCellHeight + seperatorGran / 2) + "px";
+            dayHeader.style.overflow = "none";    
             dayColumn.appendChild(dayHeader);
 
             // iterate through all the events in this day, this constructs the actual "event-boxes"
@@ -118,30 +131,72 @@ angular.module("wuw.controllers")
             for (var groupId in eventGroups) {
                 var group = eventGroups[groupId];
 
-                // build a div which fills the empty minutes
+                // construct seperators
                 var emptyMinutes = getMinutesOfDay(group.firstEvent.startTime) - minutesCounter;
-                var emptyDistance = emptyMinutes * pixelPerMinute;
-                var emptyFiller = document.createElement('div');
-                emptyFiller.style.height = emptyDistance + "px";
-                emptyFiller.style.overflow = "scroll";    
-                emptyFiller.innerHTML = "";
-                dayColumn.appendChild(emptyFiller);
+                constructSeperators(minutesCounter, emptyMinutes, dayColumn, seperatorGran);
 
                 // build the actual event group div
                 var eventGroupMinutes = getMinutesOfDay(group.lastEvent.endTime) - getMinutesOfDay(group.firstEvent.startTime);
                 var eventGroupDistance = eventGroupMinutes * pixelPerMinute;
                 var eventGroupDiv = document.createElement('div');
                 eventGroupDiv.style.height = eventGroupDistance + "px";
-                eventGroupDiv.style.overflow = "scroll";    
+                eventGroupDiv.style.overflow = "none";    
                 eventGroupDiv.className += " weekViewGroup";
                 eventGroupDiv.innerHTML = moment(group.firstEvent.startTime).format("HH:mm")
                                             + " - " + moment(group.firstEvent.endTime).format("HH:mm");
                 dayColumn.appendChild(eventGroupDiv);
-
                 minutesCounter = getMinutesOfDay(group.lastEvent.endTime);
 
             }
+            // construct seperators till end of day
+            constructSeperators(minutesCounter, gridEnd - minutesCounter, dayColumn)
             weekViewContainer.appendChild(dayColumn);
+        }
+    }
+
+    /*
+     * Constructs seperators for a specific column.
+     * emptyMinutes: the distance to the next event
+     */
+    function constructSeperators(minutesCounter, emptyMinutes, column) {
+        // check if distance to next event is large enough for placing a seperator
+        if (emptyMinutes <= seperatorGran) {
+            // distance to next event is not large enough to place a seperator, so just place a filler
+            var filler = document.createElement('div');
+            filler.style.height = emptyMinutes * pixelPerMinute + "px";
+            filler.style.overflow = "none";    
+            column.appendChild(filler);
+
+        } else {
+            // we need seperators
+            // place seperator to next full seperatorGran
+            var seperator = document.createElement('div');
+            var seperatorMinutes = (minutesCounter % seperatorGran);
+            if (seperatorMinutes > 0 || minutesCounter === gridStart) {
+                seperator.style.height = seperatorMinutes * pixelPerMinute + "px";
+                seperator.style.overflow = "none";    
+                seperator.className += " weekViewSep";
+                column.appendChild(seperator);
+                minutesCounter += seperatorMinutes
+                emptyMinutes = emptyMinutes - seperatorMinutes;
+            }
+
+            // fill the other "full" seperators
+            var neededSeperators = Math.floor((emptyMinutes-1) / seperatorGran);
+            for (var s = 0; s < neededSeperators; s++) {
+                var seperator = document.createElement('div');
+                seperator.style.height = seperatorGran * pixelPerMinute + "px";
+                seperator.style.overflow = "none";    
+                seperator.className += " weekViewSep";
+                column.appendChild(seperator);
+                emptyMinutes = emptyMinutes - seperatorGran;
+            }
+
+            // and a possible last filler
+            var filler = document.createElement('div');
+            filler.style.height = emptyMinutes * pixelPerMinute + "px";
+            filler.style.overflow = "none";    
+            column.appendChild(filler);
         }
     }
 
@@ -248,6 +303,20 @@ angular.module("wuw.controllers")
         var minutes = m % 60;
         return hours + ":" + minutes;
     }
+
+    /*
+     * Navigates to the list view of the lectures and remembers this,
+     * so when the user opens the lectures tab again, he will automatically
+     * see the last choosen type of view.
+     */
+    $scope.switchToListo = function() {
+        Settings.setSetting("lecturesView", "lecturesList");
+        $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            disableBack: true
+        });
+        $state.go("tab.lecturesList", {location: "replace"});
+    };
 
     renderWeekView();
 });
