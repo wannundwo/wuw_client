@@ -175,6 +175,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 .weekViewDayHeaderCell {
     font-size: 10px;
     text-align: center; 
+    line-height: normal;
 }
 
 .weekViewTimeColumn {
@@ -206,6 +207,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 
 .weekViewEvent {
     box-sizing: border-box;
+    border-top: 1px solid #fff;
     border-left: 3px solid #8D4723;
     background: #ED773C;
     color: #fff;

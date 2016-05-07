@@ -88,7 +88,7 @@ angular.module("wuw.controllers")
 
     // height of a cell
     var cellHeight = 15;
-    var headerCellHeight = 25;
+    var headerCellHeight = 0;
 
     // we can scale the entire view with this value
     var pixelPerMinute = 1;
@@ -107,7 +107,6 @@ angular.module("wuw.controllers")
         timeColumn.setAttribute('class', 'weekViewTimeColumn');
         var timeHeader = document.createElement('div');
         timeHeader.innerHTML = "";
-        timeHeader.style.height = headerCellHeight + "px";
         timeColumn.appendChild(timeHeader);
         
         // render the hh:mm cells
@@ -136,7 +135,7 @@ angular.module("wuw.controllers")
             var dayHeader = document.createElement('div');
             dayHeader.innerHTML = moment(currDay).format("ddd,<br/>DD.MM");
             dayHeader.setAttribute('class', 'weekViewDayHeaderCell');
-            dayHeader.style.height = (headerCellHeight + seperatorGran / 2) + "px";
+            dayHeader.style.height = seperatorGran / 2 + "px";
             dayHeader.style.overflow = "none";    
             dayColumn.appendChild(dayHeader);
 
@@ -173,12 +172,13 @@ angular.module("wuw.controllers")
                     var eventEmptyMinutes = eventStartMinutes - groupStartMinutes;
                     var eventCol = document.createElement('div');
                     eventCol.style.wordWrap = "break-word";
+                    
+                    // distinguish inner and outer column
                     if (i != group.events.length - 1) {
                         eventCol.setAttribute('class', 'col weekViewEventCol weekViewEventColWithin no-padding no-margin');    
                     } else {
                         eventCol.setAttribute('class', 'col weekViewEventCol no-padding no-margin');    
                     }
-                    
 
                     // construct preeceding seperators
                     constructSeperators(groupStartMinutes, eventEmptyMinutes, eventCol);
