@@ -48,7 +48,7 @@ angular.module('wuw.czWeekView', [])
         }
 
         // initialization
-        days = 5; // TODO: use dynamic amount of days based on events array length
+        days = events.length;
         monday = getMonday(new Date());
         pixelPerMinute = 1;
         seperatorGran = 60;

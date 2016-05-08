@@ -38,7 +38,7 @@ angular.module("wuw.controllers")
             lecture.endTime = moment.utc(lecture.endTime, moment.ISO_8601);
             lecture.title = lecture.lectureName;
             lecture.startTime = moment.utc(lecture.startTime, moment.ISO_8601);
-            if (lecture.isoWeekday > 5) {
+            if (lecture.startTime.isoWeekday() > 5) {
                 hasWeekendLectures = true;
             }
 
