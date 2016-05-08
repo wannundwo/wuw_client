@@ -1,5 +1,12 @@
 /************ Calendar *******************/
 
+.weekViewFullWidthSeperator {
+    border-top: 1px solid #E6E5E6;
+    position: absolute;
+    margin-left: 25px;
+    z-index: 9;
+}
+
 .weekViewDayCol {
     padding: 0 !important;
 }
@@ -64,6 +71,7 @@
 .weekViewEventCol {
     overflow: hidden;
     font-size: 8px;
+    z-index: 99;
 }
 
 .weekViewEvent {

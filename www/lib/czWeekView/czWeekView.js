@@ -82,6 +82,16 @@ angular.module('wuw.czWeekView', [])
             //row.style.lineHeight = seperatorGran * pixelPerMinute + "px";
             row.innerHTML = minutesToTime(minutes);
             timeColumn.appendChild(row);
+
+            // full width seperators
+            var fwSep = document.createElement('div');
+            fwSep.className += " weekViewFullWidthSeperator";
+            fwSep.style.width = weekViewContainer.clientWidth - timeColumn.clientWidth + "px";
+            fwSep.style.height = seperatorGran + "px";
+            fwSep.innerHTML = "";
+            fwSep.style.top = (minutes * pixelPerMinute)-gridStart + "px"
+            weekViewContainer.appendChild(fwSep);
+
         }
         weekViewContainer.appendChild(timeColumn);
         
@@ -123,6 +133,7 @@ angular.module('wuw.czWeekView', [])
                     isShiftedEventGroup = true;
                 }
                 constructSeperators(minutesCounter, emptyMinutes, dayColumn, isShiftedEventGroup);
+
 
                 // build the actual event group div
                 var eventGroupMinutes = getMinutesOfDay(group.lastEvent.endTime) - getMinutesOfDay(group.firstEvent.startTime);
@@ -175,7 +186,7 @@ angular.module('wuw.czWeekView', [])
 
                     // construct afterwards seperators
                     if (isShiftedEventGroup) {
-                        constructSeperatorsAfterwards(eventEndMinutes, minutesAfterEvent, eventCol, isShiftedEventGroup);    
+                        constructSeperators(eventEndMinutes, minutesAfterEvent, eventCol, isShiftedEventGroup);    
                     }
                     eventsSplitter.appendChild(eventCol);
                 }
@@ -184,7 +195,7 @@ angular.module('wuw.czWeekView', [])
                 minutesCounter = getMinutesOfDay(group.lastEvent.endTime);
             }
             // construct seperators till end of day
-            constructSeperatorsAfterwards(minutesCounter, gridEnd-minutesCounter, dayColumn)
+            constructSeperators(minutesCounter, gridEnd-minutesCounter, dayColumn)
             weekViewContainer.appendChild(dayColumn);
         }
     }
@@ -195,76 +206,8 @@ angular.module('wuw.czWeekView', [])
      */
     function constructSeperators(minutesCounter, duration, column, isShiftedEventGroup) {
         // check if distance to next event is large enough for placing a seperator
-        if (duration < seperatorGran) {
-            // distance to next event is not large enough to place a seperator, so just place a filler
-            if (isShiftedEventGroup) {
-                var sepertor = getSeperator(duration);
-                column.appendChild(sepertor);    
-            } else {
-                var filler = getFiller(duration);
-                column.appendChild(filler);    
-            }
-            
-        } else {
-            // place a seperator so that we are now at a even seperatorGran
-            var seperatorMinutes = (minutesCounter % seperatorGran);
-            if (seperatorMinutes > 0 || minutesCounter === gridStart) {
-                var seperator = getSeperator(seperatorMinutes);
-                column.appendChild(seperator);
-                duration = duration - seperatorMinutes;
-            }
-
-            // fill the other "full" seperators
-            var neededSeperators = Math.floor(duration / seperatorGran);
-            for (var s = 0; s < neededSeperators; s++) {
-                var seperator = getSeperator(seperatorGran);
-                
-                column.appendChild(seperator);
-                duration = duration - seperatorGran;
-            }
-
-            // and a possible last filler
-            if (duration > 0) {
-                var filler = getFiller(duration);
-                column.appendChild(filler);    
-            }
-        }
-    }
-
-    /*
-     * Constructs seperators after a event column
-     * duration: the distance to the next event
-     */
-    function constructSeperatorsAfterwards(minutesCounter, duration, column, isShiftedEventGroup) {
-        // check if distance to next event is large enough for placing a seperator
-        if (duration < seperatorGran) {
-            // event group ends in "duration" minutes
-            var filler = getSeperator(duration);
-            column.appendChild(filler);
-        } else {
-            // place a seperator so that we are now at a even seperatorGran
-            var seperatorMinutes = seperatorGran - (minutesCounter % seperatorGran);
-            if (seperatorMinutes > 0 || minutesCounter === gridStart) {
-                var seperator = getSeperator(seperatorMinutes);
-                column.appendChild(seperator);
-                duration = duration - seperatorMinutes;
-            }
-
-            // fill the other "full" seperators
-            var neededSeperators = Math.floor(duration / seperatorGran);
-            for (var s = 0; s < neededSeperators; s++) {
-                var seperator = getSeperator(seperatorGran);
-                
-                column.appendChild(seperator);
-                duration = duration - seperatorGran;
-            }
-
-            // and a possible last filler
-            if (duration > 0) {
-                var filler = getFiller(duration);
-                column.appendChild(filler);    
-            }
-        }
+        var filler = getFiller(duration);
+        column.appendChild(filler);    
     }
 
     /*
