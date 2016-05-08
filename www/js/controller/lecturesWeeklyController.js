@@ -22,6 +22,11 @@ angular.module("wuw.controllers")
         [
             {
                 title: "A1",
+                startTime: moment("2016-05-03T08:30:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-03T11:30:00+1000", moment.ISO_8601).toDate()
+            },
+            {
+                title: "A1",
                 startTime: moment("2016-05-03T12:00:00+1000", moment.ISO_8601).toDate(),
                 endTime: moment("2016-05-03T15:30:00+1000", moment.ISO_8601).toDate()
             },
@@ -64,11 +69,6 @@ angular.module("wuw.controllers")
         ]
     ];
 
-    var hiddenDayEndEvent = {}
-
-    console.log(checkOverlapp(events[0], events[1])); // should be true
-    console.log(checkOverlapp(events[2], events[3])); // should be false
-
     var weekViewContainer = document.getElementById("weekViewContainer");
 
     // the number of rendered days
@@ -96,8 +96,15 @@ angular.module("wuw.controllers")
     var minutesInDay = 24 * 60;
 
     function renderWeekView(){
-        
-        console.log("renderWeekView()");
+        // dynamic gridStart and gridEnd
+        var birds = getBirds(events);
+        gridStart = getMinutesOfDay(birds.earliestBird.startTime) 
+                    - (getMinutesOfDay(birds.earliestBird.startTime) % 60) 
+                    - 60;
+
+        gridEnd = getMinutesOfDay(birds.latestBird.endTime) 
+                    + (getMinutesOfDay(birds.latestBird.endTime) % 60) 
+                    + 30;
 
         /****** Time Column ******/
         var timeColumn = document.createElement('div');
@@ -107,7 +114,7 @@ angular.module("wuw.controllers")
         timeColumn.appendChild(timeHeader);
         
         // render the hh:mm cells
-        for (var i = gridStart; i < minutesInDay; i += seperatorGran) {
+        for (var i = gridStart; i < gridEnd; i += seperatorGran) {
             var minutes = i;
             var row = document.createElement('div');
             row.setAttribute('class', 'hhmmCell');
@@ -271,6 +278,39 @@ angular.module("wuw.controllers")
         var minutes = date.getHours() * 60;
         minutes += date.getMinutes();
         return minutes;
+    }
+
+    /*
+     * Returns the earliest and latest birds of all events.
+     */
+    function getBirds(events) {
+        var earliestBird;
+        var earliestBirdMinutes = 24*60;
+
+        var latestBird;
+        var latestBirdMinutes = 0;
+
+        for (var i = 0; i < events.length; i++) {
+            var day = events[i];
+            for (var j = 0; j < day.length; j++) {
+                var event = day[j];
+                var eventStartMinutes = getMinutesOfDay(event.startTime);
+                
+                // check if this event is earlier
+                if (eventStartMinutes < earliestBirdMinutes) {
+                    earliestBird = event;
+                    earliestBirdMinutes  = eventStartMinutes;
+                }
+
+                // check if this event is later
+                if (eventStartMinutes > latestBirdMinutes) {
+                    latestBird = event;
+                    latestBirdMinutes = eventStartMinutes;
+                }
+            }
+        }
+
+        return {earliestBird: earliestBird, latestBird: latestBird};
     }
 
     /*
