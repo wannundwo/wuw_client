@@ -4,127 +4,73 @@ angular.module('wuw.czWeekView', [])
 
 .controller('czWeekViewCtrl', ['$scope', '$ionicSlideBoxDelegate', '$ionicSideMenuDelegate', '$timeout', function($scope, $ionicSlideBoxDelegate, $ionicSideMenuDelegate, $timeout) {
     var el;
-    this.init = function(element) {
+
+    var events = $scope.events;
+
+    $scope.$watch('events', function(newEvents, oldEvents) {
+        console.log("new data");
+        if (newEvents) {
+            events = newEvents; 
+            renderWeekView();
+        }
+    }, true);
+
+    this.init = function(element, events) {
         el = angular.element(element);
         renderWeekView();
     };
 
-    // this list must be grouped by day and the events must be sorted!
-    var events = [
-        [
-            {
-                title: "M1",
-                startTime: moment.utc("2016-05-02T08:20:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-02T09:00:00+1000", moment.ISO_8601).toDate()
-            },
-            {
-                title: "M1",
-                startTime: moment.utc("2016-05-02T10:00:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-02T11:00:00+1000", moment.ISO_8601).toDate()
-            }
-        ],
-        [
-            {
-                title: "A1",
-                startTime: moment.utc("2016-05-03T08:30:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-03T11:30:00+1000", moment.ISO_8601).toDate()
-            },
-            {
-                title: "A1",
-                startTime: moment.utc("2016-05-03T12:00:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-03T15:30:00+1000", moment.ISO_8601).toDate()
-            },
-            {
-                title: "A2",
-                startTime: moment.utc("2016-05-03T12:30:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-03T14:00:00+1000", moment.ISO_8601).toDate()
-            },
-            {
-                title: "A3",
-                startTime: moment.utc("2016-05-03T13:30:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-03T18:30:00+1000", moment.ISO_8601).toDate()
-            }
-        ],
-        [
-            {
-                title: "B1",
-                startTime: moment.utc("2016-05-04T14:30:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate()
-            },
-            {
-                title: "B2",
-                startTime: moment.utc("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-04T17:00:00+1000", moment.ISO_8601).toDate()
-            }
-        ],
-        [
-            {
-                title: "DO1",
-                startTime: moment.utc("2016-05-05T10:00:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-05T11:00:00+1000", moment.ISO_8601).toDate()
-            }
-        ],
-        [
-            {
-                title: "F1",
-                startTime: moment.utc("2016-05-06T10:00:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-06T11:00:00+1000", moment.ISO_8601).toDate()
-            },
-            {
-                title: "A1",
-                startTime: moment.utc("2016-05-06T12:00:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-06T13:10:00+1000", moment.ISO_8601).toDate()
-            },
-            {
-                title: "A2",
-                startTime: moment.utc("2016-05-06T12:30:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment.utc("2016-05-06T14:00:00+1000", moment.ISO_8601).toDate()
-            }
-        ]
-    ];
-
     var weekViewContainer = document.getElementById("weekViewContainer");
+    var dayHeadersContainer = document.getElementById("weekViewDayHeaderContainer");
 
     // the number of rendered days
-    var days = 5;
+    var days;
     
     // at which amount of minutes of the day the grid starts
-    var gridStart = 420; // 7am
+    var gridStart;
 
     // at which amount of minutes of the day the grid ends
-    var gridEnd = (24*60)-1; // 23:59
+    var gridEnd;
 
     // monday in current week 
-    var monday = getMonday(new Date());
-
-    // height of a cell
-    var cellHeight = 15;
-    var headerCellHeight = 0;
+    var monday;
 
     // we can scale the entire view with this value
-    var pixelPerMinute = 1;
+    var pixelPerMinute;
 
     // seperator distance (in minutes)
-    var seperatorGran = 60;
+    var seperatorGran;
 
-    var minutesInDay = 24 * 60;
+    function renderWeekView() {
+        // if no events are given, abort the rendering
+        if (events.length === 0) {
+            return;
+        }
 
-    function renderWeekView(){
+        // initialization
+        days = 5; // TODO: use dynamic amount of days based on events array length
+        monday = getMonday(new Date());
+        pixelPerMinute = 1;
+        seperatorGran = 60;
+
+        // empty all the container divs
+        weekViewContainer.innerHTML = "";
+        dayHeadersContainer.innerHTML = "";
+
         // dynamic gridStart and gridEnd
         var birds = getBirds(events);
         gridStart = getMinutesOfDay(birds.earliestBird.startTime) 
-                    - (getMinutesOfDay(birds.earliestBird.startTime) % 60) 
-                    - 60;
+                - (getMinutesOfDay(birds.earliestBird.startTime) % 60) 
+                - 60;
 
         gridEnd = getMinutesOfDay(birds.latestBird.endTime) 
-                    + (getMinutesOfDay(birds.latestBird.endTime) % 60) 
-                    + 30;
+                + (getMinutesOfDay(birds.latestBird.endTime) % 60) 
+                + 30;    
 
         /****** Time Column ******/
         var timeColumn = document.createElement('div');
         timeColumn.setAttribute('class', 'weekViewTimeColumn');
         var timeHeader = document.createElement('div');
-        timeHeader.innerHTML = "";
         timeColumn.appendChild(timeHeader);
         
         // render the hh:mm cells
@@ -138,12 +84,13 @@ angular.module('wuw.czWeekView', [])
             timeColumn.appendChild(row);
         }
         weekViewContainer.appendChild(timeColumn);
+        
+        // calculate some widthes
         var dayColumnsTotalWidth = weekViewContainer.clientWidth - timeColumn.clientWidth;
-        var dayHeaderDiv = document.getElementById("weekViewDayHeaderContainer");
         var timeColumnOffsetDiv = document.createElement('div');
         timeColumnOffsetDiv.style.width = timeColumn.clientWidth +"px";
         timeColumnOffsetDiv.setAttribute('class', 'weekViewDayHeaderCell');
-        dayHeaderDiv.appendChild(timeColumnOffsetDiv);
+        dayHeadersContainer.appendChild(timeColumnOffsetDiv);
         
 
         /****** Day Columns ******/
@@ -157,10 +104,10 @@ angular.module('wuw.czWeekView', [])
             
             // render day header
             var dayHeader = document.createElement('div');
-            dayHeader.innerHTML = moment(currDay).format("ddd,<br/>DD.MM");
+            dayHeader.innerHTML = d + moment(currDay).format("ddd,<br/>DD.MM");
             dayHeader.setAttribute('class', 'col weekViewDayHeaderCell');
             dayHeader.style.overflow = "none";  
-            dayHeaderDiv.appendChild(dayHeader);
+            dayHeadersContainer.appendChild(dayHeader);
             
 
             // iterate through all the events in this day, this constructs the actual "event-boxes"
@@ -369,6 +316,10 @@ angular.module('wuw.czWeekView', [])
         var latestBird;
         var latestBirdMinutes = 0;
 
+        if (events.length === 0) {
+            return undefined;
+        }
+
         for (var i = 0; i < events.length; i++) {
             var day = events[i];
             for (var j = 0; j < day.length; j++) {
@@ -494,19 +445,7 @@ angular.module('wuw.czWeekView', [])
         return hours + ":" + minutes;
     }
 
-    /*
-     * Navigates to the list view of the lectures and remembers this,
-     * so when the user opens the lectures tab again, he will automatically
-     * see the last choosen type of view.
-     */
-    $scope.switchToList = function() {
-        Settings.setSetting("lecturesView", "lecturesList");
-        $ionicHistory.nextViewOptions({
-            disableAnimate: true,
-            disableBack: true
-        });
-        $state.go("tab.lecturesList", {location: "replace"});
-    };
+    
 }])
 
 .directive('czWeekView', function () {
@@ -521,6 +460,7 @@ angular.module('wuw.czWeekView', [])
                 '</ion-content>',
         transclude: true,
         scope: {
+            events: '='
         },
         link: function(scope, element, attrs, czWeekViewCtrl) {
             czWeekViewCtrl.init(element[0].children[0]);
