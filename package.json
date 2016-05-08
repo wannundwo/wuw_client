@@ -38,8 +38,7 @@
     "cordova-plugin-inappbrowser",
     "phonegap-plugin-push"
   ],
-  "scripts": {
-  },
+  "scripts": {},
   "cordovaPlatforms": [
     "ios"
   ]
