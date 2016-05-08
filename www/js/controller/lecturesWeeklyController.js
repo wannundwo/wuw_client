@@ -128,12 +128,18 @@ angular.module("wuw.controllers")
             var row = document.createElement('div');
             row.setAttribute('class', 'hhmmCell');
             row.style.height = seperatorGran * pixelPerMinute + "px";
-            row.style.lineHeight = seperatorGran * pixelPerMinute + "px";
+            //row.style.lineHeight = seperatorGran * pixelPerMinute + "px";
             row.innerHTML = minutesToTime(minutes);
             timeColumn.appendChild(row);
         }
         weekViewContainer.appendChild(timeColumn);
         var dayColumnsTotalWidth = weekViewContainer.clientWidth - timeColumn.clientWidth;
+        var dayHeaderDiv = document.getElementById("weekViewDayHeaderContainer");
+        var timeColumnOffsetDiv = document.createElement('div');
+        timeColumnOffsetDiv.style.width = timeColumn.clientWidth +"px";
+        timeColumnOffsetDiv.setAttribute('class', 'weekViewDayHeaderCell');
+        dayHeaderDiv.appendChild(timeColumnOffsetDiv);
+        
 
         /****** Day Columns ******/
         for (var d = 0; d < days; d++) {
@@ -147,10 +153,10 @@ angular.module("wuw.controllers")
             // render day header
             var dayHeader = document.createElement('div');
             dayHeader.innerHTML = moment(currDay).format("ddd,<br/>DD.MM");
-            dayHeader.setAttribute('class', 'weekViewDayHeaderCell');
-            dayHeader.style.height = seperatorGran / 2 + "px";
-            dayHeader.style.overflow = "none";    
-            dayColumn.appendChild(dayHeader);
+            dayHeader.setAttribute('class', 'col weekViewDayHeaderCell');
+            dayHeader.style.overflow = "none";  
+            dayHeaderDiv.appendChild(dayHeader);
+            
 
             // iterate through all the events in this day, this constructs the actual "event-boxes"
             var eventGroups = groupByOverlapping(events[d]);

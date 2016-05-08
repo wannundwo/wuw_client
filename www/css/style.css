@@ -172,13 +172,21 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     border-right: none;
 }
 
+#weekViewDayHeaderContainer {
+    border-bottom: 1px solid #E6E5E6;
+    background: #fff;
+}
+
 .weekViewDayHeaderCell {
     font-size: 10px;
     text-align: center; 
     line-height: normal;
+    background: #fff;
+    z-index: 999999;
 }
 
 .weekViewTimeColumn {
+    margin-top: -10px;
     font-size: 8px;
     margin-left: 4px;
     margin-right: 4px;
