@@ -36,7 +36,8 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-dialogs",
     "cordova-plugin-inappbrowser",
-    "phonegap-plugin-push"
+    "phonegap-plugin-push",
+    "phonegap-plugin-push@1.6.0"
   ],
   "scripts": {},
   "cordovaPlatforms": [
