@@ -207,10 +207,15 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
 
 .weekViewEvent {
     box-sizing: border-box;
+    padding-top: 1px;
+    overflow: hidden;
+}
+
+.weekViewEventContent {
+    height: 100%;
     border-left: 3px solid #8D4723;
     background: #ED773C;
     color: #fff;
-    overflow: hidden;
     line-height: normal;
 }
 

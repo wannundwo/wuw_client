@@ -8,7 +8,6 @@ angular.module("wuw.controllers")
     var events = [
         [
             {
-
                 title: "M1",
                 startTime: moment("2016-05-02T08:20:00+1000", moment.ISO_8601).toDate(),
                 endTime: moment("2016-05-02T09:00:00+1000", moment.ISO_8601).toDate()
@@ -54,7 +53,7 @@ angular.module("wuw.controllers")
             }
         ],
         [
-        {
+            {
                 title: "DO1",
                 startTime: moment("2016-05-05T10:00:00+1000", moment.ISO_8601).toDate(),
                 endTime: moment("2016-05-05T11:00:00+1000", moment.ISO_8601).toDate()
@@ -65,6 +64,16 @@ angular.module("wuw.controllers")
                 title: "F1",
                 startTime: moment("2016-05-06T10:00:00+1000", moment.ISO_8601).toDate(),
                 endTime: moment("2016-05-06T11:00:00+1000", moment.ISO_8601).toDate()
+            },
+            {
+                title: "A1",
+                startTime: moment("2016-05-06T12:00:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-06T13:10:00+1000", moment.ISO_8601).toDate()
+            },
+            {
+                title: "A2",
+                startTime: moment("2016-05-06T12:30:00+1000", moment.ISO_8601).toDate(),
+                endTime: moment("2016-05-06T14:00:00+1000", moment.ISO_8601).toDate()
             }
         ]
     ];
@@ -151,7 +160,12 @@ angular.module("wuw.controllers")
 
                 // construct seperators
                 var emptyMinutes = getMinutesOfDay(group.firstEvent.startTime) - minutesCounter;
-                constructSeperators(minutesCounter, emptyMinutes, dayColumn, seperatorGran);
+                var isShiftedEventGroup = false;
+                if (group.events.length > 1) {
+                    // TODO: detect real shift by comparing if all event startTimes in this event group are not equal to each other
+                    isShiftedEventGroup = true;
+                }
+                constructSeperators(minutesCounter, emptyMinutes, dayColumn, isShiftedEventGroup);
 
                 // build the actual event group div
                 var eventGroupMinutes = getMinutesOfDay(group.lastEvent.endTime) - getMinutesOfDay(group.firstEvent.startTime);
@@ -190,11 +204,21 @@ angular.module("wuw.controllers")
                     var eventDiv = document.createElement('div');
                     eventDiv.className += " weekViewEvent";
                     eventDiv.style.height = eventMinutes * pixelPerMinute + "px";
-                    eventDiv.innerHTML = moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm") + "</br>EVENT TITLE";
+
+                    // place text inside the eventContentDiv
+                    var eventContentDiv = document.createElement('div');
+                    eventContentDiv.className += " weekViewEventContent";
+                    eventContentDiv.innerHTML = moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm") + "</br>EVENT TITLE";
+                    eventDiv.appendChild(eventContentDiv);
+
+                    // add event to the column
                     eventCol.appendChild(eventDiv);
 
-                    // construct following seperators
-                    constructSeperators(eventEndMinutes, minutesAfterEvent, eventCol);
+                    // construct afterwards seperators
+                    if (isShiftedEventGroup) {
+                        constructSeperatorsAfterwards(eventEndMinutes, minutesAfterEvent, eventCol, isShiftedEventGroup);    
+                    }
+                    
 
                     eventsSplitter.appendChild(eventCol);
                 }
@@ -216,15 +240,57 @@ angular.module("wuw.controllers")
      * Constructs seperators for a specific column.
      * duration: the distance to the next event
      */
-    function constructSeperators(minutesCounter, duration, column) {
+    function constructSeperators(minutesCounter, duration, column, isShiftedEventGroup) {
         // check if distance to next event is large enough for placing a seperator
         if (duration < seperatorGran) {
             // distance to next event is not large enough to place a seperator, so just place a filler
-            var filler = getFiller(duration);
-            column.appendChild(filler);
+            if (isShiftedEventGroup) {
+                var sepertor = getSeperator(duration);
+                column.appendChild(sepertor);    
+            } else {
+                var filler = getFiller(duration);
+                column.appendChild(filler);    
+            }
+            
         } else {
             // place a seperator so that we are now at a even seperatorGran
             var seperatorMinutes = (minutesCounter % seperatorGran);
+            if (seperatorMinutes > 0 || minutesCounter === gridStart) {
+                var seperator = getSeperator(seperatorMinutes);
+                column.appendChild(seperator);
+                duration = duration - seperatorMinutes;
+            }
+
+            // fill the other "full" seperators
+            var neededSeperators = Math.floor(duration / seperatorGran);
+            for (var s = 0; s < neededSeperators; s++) {
+                var seperator = getSeperator(seperatorGran);
+                
+                column.appendChild(seperator);
+                duration = duration - seperatorGran;
+            }
+
+            // and a possible last filler
+            if (duration > 0) {
+                var filler = getFiller(duration);
+                column.appendChild(filler);    
+            }
+        }
+    }
+
+    /*
+     * Constructs seperators after a event column
+     * duration: the distance to the next event
+     */
+    function constructSeperatorsAfterwards(minutesCounter, duration, column, isShiftedEventGroup) {
+        // check if distance to next event is large enough for placing a seperator
+        if (duration < seperatorGran) {
+            // event group ends in "duration" minutes
+            var filler = getSeperator(duration);
+            column.appendChild(filler);
+        } else {
+            // place a seperator so that we are now at a even seperatorGran
+            var seperatorMinutes = seperatorGran - (minutesCounter % seperatorGran);
             if (seperatorMinutes > 0 || minutesCounter === gridStart) {
                 var seperator = getSeperator(seperatorMinutes);
                 column.appendChild(seperator);
@@ -429,8 +495,4 @@ angular.module("wuw.controllers")
     };
 
     renderWeekView();
-    window.addEventListener("orientationchange", function() {
-        console.log("orientationchange");
-       // renderWeekView();
-    });
 });
