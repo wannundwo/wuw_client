@@ -20,78 +20,124 @@ angular.module("wuw.controllers")
         $state.go("tab.lecturesList", {location: "replace"});
     };
 
-    $scope.events = [
-            [
-                {
-                    title: "M1",
-                    startTime: moment.utc("2016-05-02T08:20:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-02T09:00:00+1000", moment.ISO_8601).toDate()
-                },
-                {
-                    title: "M1",
-                    startTime: moment.utc("2016-05-02T10:00:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-02T11:00:00+1000", moment.ISO_8601).toDate()
+    $scope.$on('$ionicView.afterEnter', function(){
+        var cachedLectures = Lectures.fromCache();
+        var grouped = groupLecturesForWeek(cachedLectures);
+        var thisWeekIdentifier = moment().format('YYYY_WW');
+        $scope.events = grouped[thisWeekIdentifier];
+    });
+    
+    function groupLecturesForWeek(lectures) {
+        var grouped = {};
+        
+        // check for weekend lectures and build weeks arra
+        var hasWeekendLectures = false;
+        for (var i = 0; i < lectures.length; i++) {
+            var lecture = lectures[i];
+            lecture.startTime = moment.utc(lecture.startTime, moment.ISO_8601);
+            lecture.endTime = moment.utc(lecture.endTime, moment.ISO_8601);
+            lecture.title = lecture.lectureName;
+            lecture.startTime = moment.utc(lecture.startTime, moment.ISO_8601);
+            if (lecture.isoWeekday > 5) {
+                hasWeekendLectures = true;
+            }
+
+            var weekIdentifier = lecture.startTime.format('YYYY_WW');
+            if (!grouped[weekIdentifier]) {
+                grouped[weekIdentifier] = [];
+                var days = 5;
+                if (hasWeekendLectures) {
+                    days = 7;
                 }
-            ],
-            [
-                {
-                    title: "A1",
-                    startTime: moment.utc("2016-05-03T08:30:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-03T11:30:00+1000", moment.ISO_8601).toDate()
-                },
-                {
-                    title: "A1",
-                    startTime: moment.utc("2016-05-03T12:00:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-03T15:30:00+1000", moment.ISO_8601).toDate()
-                },
-                {
-                    title: "A2",
-                    startTime: moment.utc("2016-05-03T12:30:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-03T14:00:00+1000", moment.ISO_8601).toDate()
-                },
-                {
-                    title: "A3",
-                    startTime: moment.utc("2016-05-03T13:30:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-03T18:30:00+1000", moment.ISO_8601).toDate()
-                }
-            ],
-            [
-                {
-                    title: "B1",
-                    startTime: moment.utc("2016-05-04T14:30:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate()
-                },
-                {
-                    title: "B2",
-                    startTime: moment.utc("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-04T17:00:00+1000", moment.ISO_8601).toDate()
-                }
-            ],
-            [
-                {
-                    title: "DO1",
-                    startTime: moment.utc("2016-05-05T10:00:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-05T11:00:00+1000", moment.ISO_8601).toDate()
-                }
-            ],
-            [
-                {
-                    title: "F1",
-                    startTime: moment.utc("2016-05-06T10:00:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-06T11:00:00+1000", moment.ISO_8601).toDate()
-                },
-                {
-                    title: "A1",
-                    startTime: moment.utc("2016-05-06T12:00:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-06T13:10:00+1000", moment.ISO_8601).toDate()
-                },
-                {
-                    title: "A2",
-                    startTime: moment.utc("2016-05-06T12:30:00+1000", moment.ISO_8601).toDate(),
-                    endTime: moment.utc("2016-05-06T14:00:00+1000", moment.ISO_8601).toDate()
-                }
-            ]
-        ];
+
+                for (var j = 0; j < days; j++) {
+                    grouped[weekIdentifier].push([]);
+                } 
+            } else {
+                var dayNumber = lecture.startTime.isoWeekday()-1;
+                var utcHoursOffset = lecture.startTime.toDate().getTimezoneOffset()/60;
+                lecture.startTime = lecture.startTime.add(utcHoursOffset, "hours");
+                lecture.startTime = lecture.startTime.toDate();
+                lecture.endTime = lecture.endTime.add(utcHoursOffset, "hours");
+                lecture.endTime = lecture.endTime.utc().toDate();
+                grouped[weekIdentifier][dayNumber].push(lecture);
+            }
+        }
+        return grouped;
+    }
+
+    // $scope.events = [
+    //         [
+    //             {
+    //                 title: "M1",
+    //                 startTime: moment.utc("2016-05-02T08:20:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-02T09:00:00+1000", moment.ISO_8601).toDate()
+    //             },
+    //             {
+    //                 title: "M1",
+    //                 startTime: moment.utc("2016-05-02T10:00:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-02T11:00:00+1000", moment.ISO_8601).toDate()
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 title: "A1",
+    //                 startTime: moment.utc("2016-05-03T08:30:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-03T11:30:00+1000", moment.ISO_8601).toDate()
+    //             },
+    //             {
+    //                 title: "A1",
+    //                 startTime: moment.utc("2016-05-03T12:00:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-03T15:30:00+1000", moment.ISO_8601).toDate()
+    //             },
+    //             {
+    //                 title: "A2",
+    //                 startTime: moment.utc("2016-05-03T12:30:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-03T14:00:00+1000", moment.ISO_8601).toDate()
+    //             },
+    //             {
+    //                 title: "A3",
+    //                 startTime: moment.utc("2016-05-03T13:30:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-03T18:30:00+1000", moment.ISO_8601).toDate()
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 title: "B1",
+    //                 startTime: moment.utc("2016-05-04T14:30:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate()
+    //             },
+    //             {
+    //                 title: "B2",
+    //                 startTime: moment.utc("2016-05-04T16:00:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-04T17:00:00+1000", moment.ISO_8601).toDate()
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 title: "DO1",
+    //                 startTime: moment.utc("2016-05-05T10:00:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-05T11:00:00+1000", moment.ISO_8601).toDate()
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 title: "F1",
+    //                 startTime: moment.utc("2016-05-06T10:00:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-06T11:00:00+1000", moment.ISO_8601).toDate()
+    //             },
+    //             {
+    //                 title: "A1",
+    //                 startTime: moment.utc("2016-05-06T12:00:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-06T13:10:00+1000", moment.ISO_8601).toDate()
+    //             },
+    //             {
+    //                 title: "A2",
+    //                 startTime: moment.utc("2016-05-06T12:30:00+1000", moment.ISO_8601).toDate(),
+    //                 endTime: moment.utc("2016-05-06T14:00:00+1000", moment.ISO_8601).toDate()
+    //             }
+    //         ]
+    //     ];
 
 
      
