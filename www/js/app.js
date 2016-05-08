@@ -138,6 +138,16 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
 
+    .state('tab.grades', {
+        url: '/grades',
+        views: {
+            'tab-grades': {
+            templateUrl: 'templates/tab-grades.html',
+            controller: 'GradesCtrl'
+        }
+      }
+    })
+
     .state('tab.mensa', {
         url: '/mensa',
         views: {
