@@ -65,7 +65,7 @@ angular.module('wuw.czWeekView', [])
 
         gridEnd = getMinutesOfDay(birds.latestBird.endTime) 
                 + (getMinutesOfDay(birds.latestBird.endTime) % 60) 
-                + 30;    
+                + 60;    
 
         /****** Time Column ******/
         var timeColumn = document.createElement('div');
@@ -104,11 +104,10 @@ angular.module('wuw.czWeekView', [])
             
             // render day header
             var dayHeader = document.createElement('div');
-            dayHeader.innerHTML = d + moment(currDay).format("ddd,<br/>DD.MM");
+            dayHeader.innerHTML = moment(currDay).format("ddd,<br/>DD.MM");
             dayHeader.setAttribute('class', 'col weekViewDayHeaderCell');
             dayHeader.style.overflow = "none";  
             dayHeadersContainer.appendChild(dayHeader);
-            
 
             // iterate through all the events in this day, this constructs the actual "event-boxes"
             var eventGroups = groupByOverlapping(events[d]);
@@ -178,20 +177,14 @@ angular.module('wuw.czWeekView', [])
                     if (isShiftedEventGroup) {
                         constructSeperatorsAfterwards(eventEndMinutes, minutesAfterEvent, eventCol, isShiftedEventGroup);    
                     }
-                    
-
                     eventsSplitter.appendChild(eventCol);
                 }
-
                 eventGroupDiv.appendChild(eventsSplitter);
-
-                //eventGroupDiv.innerHTML = moment(group.firstEvent.startTime).format("HH:mm") + " - " + moment(group.firstEvent.endTime).format("HH:mm");
                 dayColumn.appendChild(eventGroupDiv);
                 minutesCounter = getMinutesOfDay(group.lastEvent.endTime);
-
             }
             // construct seperators till end of day
-            constructSeperators(minutesCounter, gridEnd - minutesCounter, dayColumn)
+            constructSeperatorsAfterwards(minutesCounter, gridEnd-minutesCounter, dayColumn)
             weekViewContainer.appendChild(dayColumn);
         }
     }
