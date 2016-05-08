@@ -39,7 +39,6 @@
     "phonegap-plugin-push"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/karma start ./tests/my.conf.js --single-run"
   },
   "cordovaPlatforms": [
     "ios"
