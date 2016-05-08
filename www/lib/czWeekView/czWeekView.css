@@ -1,0 +1,81 @@
+/************ Calendar *******************/
+
+.weekViewDayCol {
+    padding: 0 !important;
+}
+
+.weekViewSepCol {
+    padding: 0 !important;
+}
+
+.weekViewGroup {
+    box-sizing: border-box;
+    /*border: 1px solid black;*/
+}
+
+.weekViewEventColWithin .weekViewSep {
+    border-right: none;
+}
+
+.weekViewEventColWithin .weekViewFiller {
+    border-right: none;
+}
+
+#weekViewDayHeaderContainer {
+    border-bottom: 1px solid #E6E5E6;
+    background: #fff;
+}
+
+.weekViewDayHeaderCell {
+    font-size: 10px;
+    text-align: center; 
+    line-height: normal;
+    background: #fff;
+    z-index: 999999;
+}
+
+.weekViewTimeColumn {
+    margin-top: -10px;
+    font-size: 8px;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: #66666;
+}
+
+.hhmmCell {
+
+}
+
+.weekViewSepColumn {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.weekViewFiller {
+    border-right: 1px solid #E6E5E6;
+}
+
+.weekViewSep {
+    box-sizing: border-box;
+    border-bottom: 1px solid #E6E5E6;
+    border-right: 1px solid #E6E5E6;
+}
+
+.weekViewEventCol {
+    overflow: hidden;
+    font-size: 8px;
+}
+
+.weekViewEvent {
+    box-sizing: border-box;
+    padding-top: 1px;
+    overflow: hidden;
+}
+
+.weekViewEventContent {
+    height: 100%;
+    border-left: 3px solid #8D4723;
+    background: #ED773C;
+    color: #fff;
+    line-height: normal;
+}
