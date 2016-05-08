@@ -3,11 +3,7 @@
         <ion-spinner ng-show="loading"></ion-spinner>
         <a class="button button-icon icon ion-ios-paper-outline" ng-click="switchToList()"></a>
     </ion-nav-buttons>
-    
-    <ion-content class="">
-        <div id="weekViewDayHeaderContainer" class="row no-padding no-margin"></div>
-        <ion-content style="">
-            <div id="weekViewContainer" class="row no-padding no-margin">
-            </div>
-        </ion-content>
+    <ion-content>
+        <cz-week-view></cz-week-view>
+    </ion-content>
 </ion-view>
