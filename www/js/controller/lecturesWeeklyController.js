@@ -37,7 +37,7 @@ angular.module("wuw.controllers")
             {
                 title: "A3",
                 startTime: moment("2016-05-03T13:30:00+1000", moment.ISO_8601).toDate(),
-                endTime: moment("2016-05-03T14:30:00+1000", moment.ISO_8601).toDate()
+                endTime: moment("2016-05-03T18:30:00+1000", moment.ISO_8601).toDate()
             }
         ],
         [
@@ -361,6 +361,7 @@ angular.module("wuw.controllers")
             for (var j = 0; j < day.length; j++) {
                 var event = day[j];
                 var eventStartMinutes = getMinutesOfDay(event.startTime);
+                var eventEndMinutes = getMinutesOfDay(event.endTime);
                 
                 // check if this event is earlier
                 if (eventStartMinutes < earliestBirdMinutes) {
@@ -369,9 +370,9 @@ angular.module("wuw.controllers")
                 }
 
                 // check if this event is later
-                if (eventStartMinutes > latestBirdMinutes) {
+                if (eventEndMinutes > latestBirdMinutes) {
                     latestBird = event;
-                    latestBirdMinutes = eventStartMinutes;
+                    latestBirdMinutes = eventEndMinutes;
                 }
             }
         }
