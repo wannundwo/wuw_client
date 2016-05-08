@@ -73,10 +73,7 @@ angular.module("wuw.controllers")
 
     // the number of rendered days
     var days = 5;
-
-    // grid granularity (in minutes)
-    var gridGran = 5;
-
+    
     // at which amount of minutes of the day the grid starts
     var gridStart = 420; // 7am
 
@@ -154,7 +151,6 @@ angular.module("wuw.controllers")
                 var eventGroupDistance = eventGroupMinutes * pixelPerMinute;
                 var eventGroupDiv = document.createElement('div');
                 eventGroupDiv.style.height = eventGroupDistance + "px";
-                eventGroupDiv.style.overflow = 'scroll';    
 
                 eventGroupDiv.className += ' weekViewGroup';
 
@@ -395,6 +391,6 @@ angular.module("wuw.controllers")
     renderWeekView();
     window.addEventListener("orientationchange", function() {
         console.log("orientationchange");
-        renderWeekView();
+       // renderWeekView();
     });
 });
