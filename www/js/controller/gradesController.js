@@ -6,17 +6,23 @@ angular.module("wuw.controllers")
 /*
  * The mensa controller.
  */
-.controller("GradesCtrl", function($scope, $ionicPopup, $timeout, $filter, Grades, Dishes, Settings) {
+.controller("GradesCtrl", function($scope, $ionicPopup, $timeout, $filter, Grades, Settings) {
 
-    var moreCounter = 0;
-    $scope.infoVisible = false;
+    //$scope.infoVisible = false;
+
+    $scope.creds = {};
+    $scope.grades = [];
+    $scope.loading = false;
 
     $scope.get = function() {
 
-        var grades = Grades.getGrades().then(function(grades){
-            var rawGrades = JSON.parse(grades).ex.es;
+        $scope.loading = true;
 
+        var grades = Grades.getGrades($scope.creds.username, $scope.creds.password).then(function(grades){
+
+            var rawGrades = JSON.parse(grades).ex.es;
             $scope.grades = [];
+            $scope.loading = false;
 
             rawGrades.forEach(function(e, idx, arr) {
 
@@ -29,16 +35,17 @@ angular.module("wuw.controllers")
                 // format season
                 var season;
                 if(Number(e.e.semester.charAt(4)) === 1) {
-                    season = "SS" + e.e.semester.substring(2,4);
+                    season = "Sommersemester " + e.e.semester.substring(0,4);
                 } else if(Number(e.e.semester.charAt(4)) === 2) {
-                    season = "WS" + e.e.semester.substring(2,4) + "/" + (Number(e.e.semester.substring(2,4))+1);
+                    season = "Wintersemester " + e.e.semester.substring(0,4) + "/" + (Number(e.e.semester.substring(0,4))+1);
                 } else {
                     season = e.e.semester;
                 }
 
+                // build entry
                 var g = {
                     id: e.e.nummer,
-                    ects: e.e.bonus,
+                    ects: Number(e.e.bonus).toFixed(0),
                     date: e.e.datum,
                     grade: gradePassed,
                     season: season,
@@ -46,6 +53,8 @@ angular.module("wuw.controllers")
                     name: e.e.text,
                     attempt: e.e.versuch
                 };
+
+                // push to array
                 $scope.grades.push(g);
             });
 
@@ -65,7 +74,7 @@ angular.module("wuw.controllers")
     };
 
     $scope.$on('$ionicView.loaded', function(){
-        $scope.get();
+        //$scope.get();
     });
 
     // $scope.$on('$ionicView.afterEnter', function(){

@@ -142,7 +142,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         url: '/grades',
         views: {
             'tab-grades': {
-            templateUrl: 'templates/tab-grades.html',
+            templateUrl: 'templates/grades.html',
             controller: 'GradesCtrl'
         }
       }

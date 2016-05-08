@@ -130,6 +130,25 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding-left: 25px;
 }
 
+/************ GRADES **********************/
+.grade {
+    line-height: 1.1 !important;
+    font-size: 20px !important;
+    margin-top: 0px;
+}
+
+.grades span {
+    line-height: 1.2;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+ion-item.grades {
+    padding: 10px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
 /************ MENSA **********************/
 .dishes-allergens-additives p {
     line-height: 1.2;

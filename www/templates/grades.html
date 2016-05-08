@@ -1,0 +1,62 @@
+<ion-view view-title="{{'global.grades' | translate}}">
+    <ion-nav-buttons side="secondary">
+        <ion-spinner ng-show="loading"></ion-spinner>
+        <a class="button button-icon icon ion-ios-information-outline" ng-click="toggleInfoVisible()"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <!-- <ion-refresher
+            pulling-text="{{'global.pullToRefresh' | translate}}"
+            on-refresh="doRefresh()">
+        </ion-refresher> -->
+        <ion-list>
+            <cz-error-message visible="errorVisible">
+                <div scroll="false" class="card">
+                    <div class="item item-text-wrap error-message">
+                        {{'grades.cantload' | translate}}
+                    </div>
+                </div>
+            </cz-error-message>
+
+            <!-- form -->
+            <div class="list list-inset" ng-show="grades.length === 0">
+                <form name="forms.gradeForm" novalidate> <!-- for turning of browser validation, we use agnulars validation -->
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">HFT Username</span>
+                        <input ng-model="creds.username" type="text" placeholder="HFT Username">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">HFT Password</span>
+                        <input ng-model="creds.password" type="password" placeholder="HFT Password" autocomplete="off">
+                    </label>
+                    <button type="submit" class="button button-block button-positive" ng-click="get()">Go!</button>
+                </form>
+            </div>
+
+            <!-- group the grades by season-->
+            <div ng-show="grades !== 0" ng-repeat="(key, value) in grades | groupBy: 'season'">
+                <div class="item item-divider">{{key}}</div>
+                <ion-item class="item-text-wrap grades" ng-repeat="grade in value">
+                    <b class="float-left grade">{{grade.name}}</b> <b class="float-right grade">{{ grade.grade }}</b>
+                    <div class="grades clear-float">
+                        <span class="float-left" ng-show="grade.date">{{grade.date}}</span>
+                        <span class="float-right" ng-show="grade.ects != 0">{{grade.ects}} ECTS</span>
+                    </div>
+                    <p class="clear-float"></p>
+                </ion-item>
+
+                <!-- <ion-item class="item-text-wrap" ng-repeat="grade in value">
+                    <h3 class="float-left">{{grade.id}}</h3> <b class="float-right">{{ grade.grade }}</b>
+                    <h2 class="clear-float">
+                        <b>{{grade.name}}</b>
+                    </h2>
+                    <div class="dishes-allergens-additives">
+                        <p ng-show="dish.allergens.length !== 0">ECTS: {{grade.ects}} | Date: {{grade.date}} | Bestanden: {{grade.passed}}</p>
+                        <p ng-show="dish.additives.length !== 0">Attempt: {{grade.attempt}} | Season: {{grade.season}}</p>
+                    </div>
+                </ion-item> -->
+            </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
