@@ -20,10 +20,6 @@
     /*border: 1px solid black;*/
 }
 
-.weekViewEventColWithin .weekViewSep {
-    border-right: none;
-}
-
 .weekViewEventColWithin .weekViewFiller {
     border-right: none;
 }
@@ -49,22 +45,7 @@
     color: #66666;
 }
 
-.hhmmCell {
-
-}
-
-.weekViewSepColumn {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
 .weekViewFiller {
-    border-right: 1px solid #E6E5E6;
-}
-
-.weekViewSep {
-    box-sizing: border-box;
-    border-bottom: 1px solid #E6E5E6;
     border-right: 1px solid #E6E5E6;
 }
 

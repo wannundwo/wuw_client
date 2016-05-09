@@ -8,7 +8,7 @@ angular.module('wuw.czWeekView', [])
     var events = $scope.events;
 
     $scope.$watch('events', function(newEvents, oldEvents) {
-        console.log("new data");
+        console.log('new data');
         if (newEvents) {
             events = newEvents; 
             renderWeekView();
@@ -20,8 +20,8 @@ angular.module('wuw.czWeekView', [])
         renderWeekView();
     };
 
-    var weekViewContainer = document.getElementById("weekViewContainer");
-    var dayHeadersContainer = document.getElementById("weekViewDayHeaderContainer");
+    var weekViewContainer = document.getElementById('weekViewContainer');
+    var dayHeadersContainer = document.getElementById('weekViewDayHeaderContainer');
 
     // the number of rendered days
     var days;
@@ -54,8 +54,8 @@ angular.module('wuw.czWeekView', [])
         seperatorGran = 60;
 
         // empty all the container divs
-        weekViewContainer.innerHTML = "";
-        dayHeadersContainer.innerHTML = "";
+        weekViewContainer.innerHTML = '';
+        dayHeadersContainer.innerHTML = '';
 
         // dynamic gridStart and gridEnd
         var birds = getBirds(events);
@@ -78,18 +78,18 @@ angular.module('wuw.czWeekView', [])
             var minutes = i;
             var row = document.createElement('div');
             row.setAttribute('class', 'hhmmCell');
-            row.style.height = seperatorGran * pixelPerMinute + "px";
-            //row.style.lineHeight = seperatorGran * pixelPerMinute + "px";
+            row.style.height = seperatorGran * pixelPerMinute + 'px';
+            //row.style.lineHeight = seperatorGran * pixelPerMinute + 'px';
             row.innerHTML = minutesToTime(minutes);
             timeColumn.appendChild(row);
 
             // full width seperators
             var fwSep = document.createElement('div');
-            fwSep.className += " weekViewFullWidthSeperator";
-            fwSep.style.width = weekViewContainer.clientWidth - timeColumn.clientWidth + "px";
-            fwSep.style.height = seperatorGran + "px";
-            fwSep.innerHTML = "";
-            fwSep.style.top = (minutes * pixelPerMinute)-gridStart + "px"
+            fwSep.className += ' weekViewFullWidthSeperator';
+            fwSep.style.width = weekViewContainer.clientWidth - timeColumn.clientWidth + 'px';
+            fwSep.style.height = 5 + 'px';
+            fwSep.innerHTML = '';
+            fwSep.style.top = (minutes * pixelPerMinute)-gridStart + 'px'
             weekViewContainer.appendChild(fwSep);
 
         }
@@ -98,28 +98,28 @@ angular.module('wuw.czWeekView', [])
         // calculate some widthes
         var dayColumnsTotalWidth = weekViewContainer.clientWidth - timeColumn.clientWidth;
         var timeColumnOffsetDiv = document.createElement('div');
-        timeColumnOffsetDiv.style.width = timeColumn.clientWidth +"px";
+        timeColumnOffsetDiv.style.width = timeColumn.clientWidth +'px';
         timeColumnOffsetDiv.setAttribute('class', 'weekViewDayHeaderCell');
         dayHeadersContainer.appendChild(timeColumnOffsetDiv);
         
 
         /****** Day Columns ******/
         for (var d = 0; d < days; d++) {
-            var currDay = moment(monday).add(d, "days");
+            var currDay = moment(monday).add(d, 'days');
 
             // create the column for this day
             var dayColumn = document.createElement('div');
             dayColumn.setAttribute('class', 'col weekViewDayCol');
-            dayColumn.style.width = Math.floor((dayColumnsTotalWidth / days)) + "px";
+            dayColumn.style.width = Math.floor((dayColumnsTotalWidth / days)) + 'px';
             
             // render day header
             var dayHeader = document.createElement('div');
-            dayHeader.innerHTML = moment(currDay).format("ddd,<br/>DD.MM");
+            dayHeader.innerHTML = moment(currDay).format('ddd,<br/>DD.MM');
             dayHeader.setAttribute('class', 'col weekViewDayHeaderCell');
-            dayHeader.style.overflow = "none";  
+            dayHeader.style.overflow = 'none';  
             dayHeadersContainer.appendChild(dayHeader);
 
-            // iterate through all the events in this day, this constructs the actual "event-boxes"
+            // iterate through all the events in this day, this constructs the actual 'event-boxes'
             var eventGroups = groupByOverlapping(events[d]);
             var minutesCounter = gridStart;
             for (var groupId in eventGroups) {
@@ -127,25 +127,21 @@ angular.module('wuw.czWeekView', [])
 
                 // construct seperators
                 var emptyMinutes = getMinutesOfDay(group.firstEvent.startTime) - minutesCounter;
-                var isShiftedEventGroup = false;
-                if (group.events.length > 1) {
-                    // TODO: detect real shift by comparing if all event startTimes in this event group are not equal to each other
-                    isShiftedEventGroup = true;
-                }
-                constructSeperators(minutesCounter, emptyMinutes, dayColumn, isShiftedEventGroup);
+                var filler = getFiller(emptyMinutes);
+                dayColumn.appendChild(filler);    
 
 
                 // build the actual event group div
                 var eventGroupMinutes = getMinutesOfDay(group.lastEvent.endTime) - getMinutesOfDay(group.firstEvent.startTime);
                 var eventGroupDistance = eventGroupMinutes * pixelPerMinute;
                 var eventGroupDiv = document.createElement('div');
-                eventGroupDiv.style.height = eventGroupDistance + "px";
+                eventGroupDiv.style.height = eventGroupDistance + 'px';
 
                 eventGroupDiv.className += ' weekViewGroup';
 
                 // render the various overlapping events in the event group
                 var eventsSplitter = document.createElement('div')
-                eventsSplitter.className += " row no-margin no-padding";
+                eventsSplitter.className += ' row no-margin no-padding';
                 for (var i = 0; i < group.events.length; i++) {
                     var event = group.events[i];
                     var groupStartMinutes = getMinutesOfDay(group.firstEvent.startTime);
@@ -156,58 +152,48 @@ angular.module('wuw.czWeekView', [])
                     var minutesAfterEvent = groupEndMinutes - eventEndMinutes;
                     var eventEmptyMinutes = eventStartMinutes - groupStartMinutes;
                     var eventCol = document.createElement('div');
-                    eventCol.style.wordWrap = "break-word";
+                    eventCol.style.wordWrap = 'break-word';
+
+                    // construct preeceding fillers
+                    var filler = getFiller(eventEmptyMinutes);
                     
-                    // distinguish inner and outer column
+                    // distinguish inner and outer columns
+                    eventCol.setAttribute('class', 'col weekViewEventCol no-padding no-margin');    
                     if (i != group.events.length - 1) {
-                        eventCol.setAttribute('class', 'col weekViewEventCol weekViewEventColWithin no-padding no-margin');    
-                    } else {
-                        eventCol.setAttribute('class', 'col weekViewEventCol no-padding no-margin');    
+                        filler.className += ' weekViewEventColWithin';
+                        eventCol.className += ' weekViewEventColWithin';
                     }
 
-                    // construct preeceding seperators
-                    constructSeperators(groupStartMinutes, eventEmptyMinutes, eventCol);
+                    eventCol.appendChild(filler);    
+
+
 
                     // finally the actual event div
                     var eventDiv = document.createElement('div');
-                    eventDiv.className += " weekViewEvent";
-                    eventDiv.style.height = eventMinutes * pixelPerMinute + "px";
+                    eventDiv.className += ' weekViewEvent';
+                    eventDiv.style.height = eventMinutes * pixelPerMinute + 'px';
 
                     // place text inside the eventContentDiv
                     var eventContentDiv = document.createElement('div');
-                    eventContentDiv.className += " weekViewEventContent";
-                    eventContentDiv.innerHTML = moment(event.startTime).format("HH:mm") + " - " + moment(event.endTime).format("HH:mm")
+                    eventContentDiv.className += ' weekViewEventContent';
+                    eventContentDiv.innerHTML = moment(event.startTime).format('HH:mm') + ' - ' + moment(event.endTime).format('HH:mm')
                     eventContentDiv.innerHTML += '<br>';
                     eventContentDiv.innerHTML += event.title;
                     eventDiv.appendChild(eventContentDiv);
 
                     // add event to the column
                     eventCol.appendChild(eventDiv);
-
-                    // construct afterwards seperators
-                    if (isShiftedEventGroup) {
-                        constructSeperators(eventEndMinutes, minutesAfterEvent, eventCol, isShiftedEventGroup);    
-                    }
                     eventsSplitter.appendChild(eventCol);
                 }
                 eventGroupDiv.appendChild(eventsSplitter);
                 dayColumn.appendChild(eventGroupDiv);
                 minutesCounter = getMinutesOfDay(group.lastEvent.endTime);
             }
-            // construct seperators till end of day
-            constructSeperators(minutesCounter, gridEnd-minutesCounter, dayColumn)
+            // construct filler till end of day
+            var filler = getFiller(gridEnd-minutesCounter);
+            dayColumn.appendChild(filler);    
             weekViewContainer.appendChild(dayColumn);
         }
-    }
-
-    /*
-     * Constructs seperators for a specific column.
-     * duration: the distance to the next event
-     */
-    function constructSeperators(minutesCounter, duration, column, isShiftedEventGroup) {
-        // check if distance to next event is large enough for placing a seperator
-        var filler = getFiller(duration);
-        column.appendChild(filler);    
     }
 
     /*
@@ -215,23 +201,12 @@ angular.module('wuw.czWeekView', [])
      */
     function getFiller(minutes) {
         var filler = document.createElement('div');
-        filler.style.height = minutes * pixelPerMinute + "px";
-        filler.style.overflow = "none";    
-        filler.className += " weekViewFiller";
+        filler.style.height = minutes * pixelPerMinute + 'px';
+        filler.style.overflow = 'none';    
+        filler.className += ' weekViewFiller';
         return filler;
     }
-
-    /*
-     * Returns a seperator div
-     */
-    function getSeperator(minutes) {
-        var seperator = document.createElement('div');
-        seperator.style.height = minutes * pixelPerMinute + "px";
-        seperator.style.overflow = "none";    
-        seperator.className += " weekViewSep";
-        return seperator;
-    }
-
+    
     /*
      * Returns how many minutes today already passed.
      * eg: a date with hour=2 and minutes=10 would return 2*60+10=130
@@ -372,16 +347,14 @@ angular.module('wuw.czWeekView', [])
         var hours = Math.floor(m / 60);          
         var minutes = m % 60;
         if (hours.toString().length == 1) {
-            hours = "0" + hours;
+            hours = '0' + hours;
         }
         if (minutes.toString().length == 1) {
-            minutes = "0" + minutes;
+            minutes = '0' + minutes;
         }
         
-        return hours + ":" + minutes;
+        return hours + ':' + minutes;
     }
-
-    
 }])
 
 .directive('czWeekView', function () {
