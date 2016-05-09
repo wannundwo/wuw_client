@@ -8,7 +8,6 @@ angular.module('wuw.czWeekView', [])
     var events = $scope.events;
 
     $scope.$watch('events', function(newEvents, oldEvents) {
-        console.log('new data');
         if (newEvents) {
             events = newEvents; 
             renderWeekView();
@@ -206,7 +205,7 @@ angular.module('wuw.czWeekView', [])
         filler.className += ' weekViewFiller';
         return filler;
     }
-    
+
     /*
      * Returns how many minutes today already passed.
      * eg: a date with hour=2 and minutes=10 would return 2*60+10=130
