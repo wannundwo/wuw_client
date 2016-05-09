@@ -34,10 +34,9 @@ angular.module("wuw.controllers")
         var hasWeekendLectures = false;
         for (var i = 0; i < lectures.length; i++) {
             var lecture = lectures[i];
-            lecture.startTime = moment.utc(lecture.startTime, moment.ISO_8601);
-            lecture.endTime = moment.utc(lecture.endTime, moment.ISO_8601);
+            lecture.startTime = moment(lecture.startTime, moment.ISO_8601);
+            lecture.endTime = moment(lecture.endTime, moment.ISO_8601);
             lecture.title = lecture.lectureName;
-            lecture.startTime = moment.utc(lecture.startTime, moment.ISO_8601);
             if (lecture.startTime.isoWeekday() > 5) {
                 hasWeekendLectures = true;
             }
@@ -54,11 +53,8 @@ angular.module("wuw.controllers")
                     grouped[weekIdentifier].push([]);
                 } 
             }
-            var dayNumber = lecture.startTime.isoWeekday()-1;
-            var utcHoursOffset = lecture.startTime.toDate().getTimezoneOffset()/60;
-            lecture.startTime = lecture.startTime.add(utcHoursOffset, "hours");
+            var dayNumber = lecture.startTime.isoWeekday()-1; // 0 - 6
             lecture.startTime = lecture.startTime.toDate();
-            lecture.endTime = lecture.endTime.add(utcHoursOffset, "hours");
             lecture.endTime = lecture.endTime.utc().toDate();
             grouped[weekIdentifier][dayNumber].push(lecture);
         }
