@@ -53,15 +53,14 @@ angular.module("wuw.controllers")
                 for (var j = 0; j < days; j++) {
                     grouped[weekIdentifier].push([]);
                 } 
-            } else {
-                var dayNumber = lecture.startTime.isoWeekday()-1;
-                var utcHoursOffset = lecture.startTime.toDate().getTimezoneOffset()/60;
-                lecture.startTime = lecture.startTime.add(utcHoursOffset, "hours");
-                lecture.startTime = lecture.startTime.toDate();
-                lecture.endTime = lecture.endTime.add(utcHoursOffset, "hours");
-                lecture.endTime = lecture.endTime.utc().toDate();
-                grouped[weekIdentifier][dayNumber].push(lecture);
             }
+            var dayNumber = lecture.startTime.isoWeekday()-1;
+            var utcHoursOffset = lecture.startTime.toDate().getTimezoneOffset()/60;
+            lecture.startTime = lecture.startTime.add(utcHoursOffset, "hours");
+            lecture.startTime = lecture.startTime.toDate();
+            lecture.endTime = lecture.endTime.add(utcHoursOffset, "hours");
+            lecture.endTime = lecture.endTime.utc().toDate();
+            grouped[weekIdentifier][dayNumber].push(lecture);
         }
         return grouped;
     }
