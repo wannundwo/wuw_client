@@ -50,7 +50,7 @@ angular.module('wuw.czWeekView', [])
 
         // initialization
         days = events.length;
-        monday = getMonday(new Date());
+        monday = getMonday(getFirstEvent(events).startTime);
         pixelPerMinute = 1;
         seperatorGran = 60;
 
@@ -254,6 +254,18 @@ angular.module('wuw.czWeekView', [])
         }
 
         return {earliestBird: earliestBird, latestBird: latestBird};
+    }
+
+    /*
+     * Returns the first event from the events array.
+     */
+    function getFirstEvent(events) {
+        for (var i = 0; i < events.length; i++) {
+            var day = events[i];
+            if (day.length > 0) {
+                return day[0];
+            }
+        }
     }
 
     /*
