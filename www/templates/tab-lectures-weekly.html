@@ -5,10 +5,16 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-refresher
+            ng-if="canRefresh"
             pulling-text="Pull to refresh..."
             on-refresh="doRefresh()">
         </ion-refresher>
-        <ion-slide-box style="height: 100%" on-slide-changed="slideHasChanged($index)">
+        <ion-slide-box 
+            on-drag-right="onDragHorizontally()" 
+            on-drag-left="onDragHorizontally()" 
+            on-release="onRelease()"
+            style="height: 100%" 
+            on-slide-changed="slideHasChanged($index)">
             <ion-slide>
                 <cz-week-view events="eventsWeekly[0]"></cz-week-view>        
             </ion-slide>

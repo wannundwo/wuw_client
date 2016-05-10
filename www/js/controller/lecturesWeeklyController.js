@@ -7,6 +7,17 @@ angular.module("wuw.controllers")
     $scope.events = [];
 
     /*
+     * Prevent diogonal scrolling.
+     */
+    $scope.onDragHorizontally = function() {
+        $scope.canRefresh = false;
+    }
+
+    $scope.onRelease = function() {
+        $scope.canRefresh = true;
+    }
+
+    /*
      * Navigates to the list view of the lectures and remembers this,
      * so when the user opens the lectures tab again, he will automatically
      * see the last choosen type of view.
