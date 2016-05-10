@@ -3,9 +3,12 @@
 angular.module('wuw.czWeekView', [])
 
 .controller('czWeekViewCtrl', ['$scope', '$ionicSlideBoxDelegate', '$ionicSideMenuDelegate', '$timeout', function($scope, $ionicSlideBoxDelegate, $ionicSideMenuDelegate, $timeout) {
-    var el;
-
+    
     var events = $scope.events;
+    var uniqueId;
+    var weekViewContainer;
+    var dayHeadersContainer;
+    var weekViewScrollContainer;
 
     $scope.$watch('events', function(newEvents, oldEvents) {
         if (newEvents) {
@@ -14,14 +17,13 @@ angular.module('wuw.czWeekView', [])
         }
     }, true);
 
-    this.init = function(element, events) {
-        el = angular.element(element);
+    this.init = function(pdayHeadersContainer, pweekViewScrollContainer, pweekViewContainer) {
+        dayHeadersContainer = pdayHeadersContainer;
+        weekViewScrollContainer = pweekViewScrollContainer;
+        weekViewContainer = pweekViewContainer;
         renderWeekView();
     };
-
-    var weekViewContainer = document.getElementById('weekViewContainer');
-    var dayHeadersContainer = document.getElementById('weekViewDayHeaderContainer');
-
+    
     // the number of rendered days
     var days;
     
@@ -357,13 +359,14 @@ angular.module('wuw.czWeekView', [])
 }])
 
 .directive('czWeekView', function () {
+    var uniqueId = 1;
     return {
         restrict: 'E',
         controller: 'czWeekViewCtrl',
         template:
-                '<div id="weekViewDayHeaderContainer" class="row no-padding no-margin"></div>' +
-                '<ion-content>' +
-                    '<div id="weekViewContainer" class="row no-padding no-margin">' +
+                '<div id="weekViewDayHeaderContainer{{::uniqueId}}" class="row no-padding no-margin"></div>' +
+                '<ion-content id="weekViewScrollContainer{{::uniqueId}}">' +
+                    '<div id="weekViewContainer{{::uniqueId}}" class="row no-padding no-margin">' +
                     '</div>' +
                 '</ion-content>',
         transclude: true,
@@ -371,7 +374,11 @@ angular.module('wuw.czWeekView', [])
             events: '='
         },
         link: function(scope, element, attrs, czWeekViewCtrl) {
-            czWeekViewCtrl.init(element[0].children[0]);
+            var dayHeadersContainer = element[0].children[0];
+            var weekViewScrollContainer = element[0].children[1];
+            var weekViewContainer =weekViewScrollContainer.children[0].children[0];
+            scope.uniqueId = uniqueId;
+            czWeekViewCtrl.init(dayHeadersContainer, weekViewScrollContainer, weekViewContainer, uniqueId);
         }
     };
 });

@@ -20,12 +20,40 @@ angular.module("wuw.controllers")
         $state.go("tab.lecturesList", {location: "replace"});
     };
 
+    $scope.loadLectures = function() {
+        Lectures.lecturesForUser().then(function(lectures){
+            $scope.lectures = lectures;
+            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
+        }, function(error) {
+            if (error === "httpFailed") {
+                // show the error message with some delay to prevent flickering
+                $timeout(function() {
+                    $scope.$broadcast("czErrorMessage.show");
+                }, 300);
+            }
+        }).finally(function () {
+           $scope.$broadcast("scroll.refreshComplete");
+        });
+    };
+
+    $scope.doRefresh = function() {
+        $scope.loadLectures();
+    };
+
     $scope.$on('$ionicView.afterEnter', function(){
         var cachedLectures = Lectures.fromCache();
         var grouped = groupLecturesForWeek(cachedLectures);
-        var thisWeekIdentifier = moment().format('YYYY_WW');
-        $scope.events = grouped[thisWeekIdentifier];
+        assignEvents(grouped);
     });
+
+    function assignEvents(groupedLectures) {
+        var groupedArray = [];
+        for (var weekIdentifier in groupedLectures) {
+            
+            groupedArray.push(groupedLectures[weekIdentifier]);
+        }
+        $scope.eventsWeekly = groupedArray;
+    }
     
     function groupLecturesForWeek(lectures) {
         var grouped = {};
