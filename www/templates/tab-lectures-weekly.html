@@ -3,44 +3,21 @@
         <ion-spinner ng-show="loading"></ion-spinner>
         <a class="button button-icon icon ion-ios-paper-outline" ng-click="switchToList()"></a>
     </ion-nav-buttons>
-    <ion-content class="">
-        <cz-error-message visible="errorVisible">
-            <div scroll="false" class="card">
-                <div class="item item-text-wrap error-message">
-                    {{'lectures.cantload' | translate}}
-                </div>
-            </div>
-        </cz-error-message>
-
-        <!-- :( -->
-        <ion-item collection-repeat="item in []">
-            {{item}}
-        </ion-item>
-
-        <ion-item ng-if="selectedLectures === 0" class="item-text-wrap">
-            {{'lectures.noCoursesSelectedMessage' | translate}}
-            <a class="button button-outline button-block button-positive" href="#/setup">
-                {{'settings.selectSemesterAndGroups' | translate}}
-            </a>
-        </ion-item>
+    <ion-content>
         <ion-refresher
-            pulling-text="{{'global.pullToRefresh' | translate}}"
+            pulling-text="Pull to refresh..."
             on-refresh="doRefresh()">
         </ion-refresher>
-
-        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+        <ion-slide-box style="height: 100%" on-slide-changed="slideHasChanged($index)">
             <ion-slide>
-                <div ng-if="visibles[0]" id="myCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
+                <cz-week-view events="eventsWeekly[0]"></cz-week-view>        
             </ion-slide>
             <ion-slide>
-                <ion-item ng-if="!visibles[1]">swipe to show next week</ion-item>
-                <div ng-if="visibles[1]" id="myCalendar2" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar2"></div>
+                <cz-week-view events="eventsWeekly[1]"></cz-week-view>
             </ion-slide>
             <ion-slide>
-                <ion-item ng-if="!visibles[2]">swipe to show next week</ion-item>
-                <div ng-if="visibles[2]" id="myCalendar3" ui-calendar="uiConfig.calendar" ng-model="eventSource" calendar="myCalendar"></div>
+                <cz-week-view events="eventsWeekly[2]"></cz-week-view>
             </ion-slide>
         </ion-slide-box>
-
     </ion-content>
 </ion-view>

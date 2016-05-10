@@ -103,6 +103,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding: 0px !important;
 }
 
+.no-padding {
+    padding: 0px !important;
+}
+
 .no-margin {
     margin: 0 !important;
 }
@@ -143,11 +147,6 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     background-color: #C75754 !important;
     border-color: #AC2925 !important;
     font-size: 1em;
-}
-
-/************ Calendar *******************/
-#myCalendar {
-    margin-top: -2px;
 }
 
 /************ div tables *****************/
