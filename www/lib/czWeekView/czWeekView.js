@@ -4,7 +4,7 @@ angular.module('wuw.czWeekView', [])
 
 .controller('czWeekViewCtrl', ['$scope', '$ionicSlideBoxDelegate', '$ionicSideMenuDelegate', '$timeout', function($scope, $ionicSlideBoxDelegate, $ionicSideMenuDelegate, $timeout) {
     
-    var events = $scope.events;
+    var events = [];
     var uniqueId;
     var weekViewContainer;
     var dayHeadersContainer;

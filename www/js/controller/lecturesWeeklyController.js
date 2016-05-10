@@ -4,18 +4,7 @@ angular.module("wuw.controllers")
 
 .controller("LecturesWeeklyCtrl", function($scope, $locale, $ionicHistory, $translate, $ionicPopover, $state, $ionicPopup, Lectures, Settings) {
     
-    $scope.events = [];
-
-    /*
-     * Prevent diogonal scrolling.
-     */
-    $scope.onDragHorizontally = function() {
-        $scope.canRefresh = false;
-    }
-
-    $scope.onRelease = function() {
-        $scope.canRefresh = true;
-    }
+    $scope.events = [[],[],[]];
 
     /*
      * Navigates to the list view of the lectures and remembers this,

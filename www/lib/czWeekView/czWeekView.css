@@ -4,7 +4,7 @@
     border-top: 1px solid #E6E5E6;
     position: absolute;
     margin-left: 25px;
-    z-index: 9;
+    z-index: -100;
 }
 
 .weekViewDayCol {
@@ -26,20 +26,20 @@
 
 #weekViewDayHeaderContainer {
     border-bottom: 1px solid #E6E5E6;
-    background: #fff;
+    background: #F8F8F8;
 }
 
 .weekViewDayHeaderCell {
     font-size: 10px;
     text-align: center; 
     line-height: normal;
-    background: #fff;
+    background: #F8F8F8;
     z-index: 999999;
 }
 
 .weekViewTimeColumn {
     margin-top: -10px;
-    font-size: 8px;
+    font-size: 10px;
     margin-left: 4px;
     margin-right: 4px;
     color: #66666;
@@ -51,7 +51,7 @@
 
 .weekViewEventCol {
     overflow: hidden;
-    font-size: 8px;
+    font-size: 10px;
     z-index: 99;
 }
 
