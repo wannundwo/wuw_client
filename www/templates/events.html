@@ -1,0 +1,39 @@
+<ion-view view-title="{{'global.events' | translate}}">
+    <ion-nav-buttons side="secondary">
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+            pulling-text="{{'global.pullToRefresh' | translate}}"
+            on-refresh="loadEvents()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item ng-show="initialLoading" style="test-align: center;">
+                <div style="margin: 0 auto; width:28px">
+                    <ion-spinner></ion-spinner>
+                </div>
+            </ion-item>
+            <ion-item ng-class="{'prevent-activated': !item.url}" ng-click="openEvent('{{item.url}}')" ng-repeat="item in events" class="item-text-wrap">
+                <div class="table">
+                    <div class="tr">
+                        <div class="td">
+                            <p>{{item.contact}}</p>
+                            <h2 class="clear-float">
+                                <b>{{item.title}}</b>
+                            </h2>
+                            <p>
+                                <!--  date -->
+                                <span ng-bind-html="item.dateString"></span>
+                            </p>
+                            <p>{{item.location}}</p>
+                            <p>{{item.descr}}</p>
+                            <div ng-bind-html="item.text"></div>
+                        </div>
+                        <div style="vertical-align: middle; width: 20px;" class="td">
+                            <i style="font-size: 1.5em" ng-if="item.url" class="ion-icon ion-share"></i>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

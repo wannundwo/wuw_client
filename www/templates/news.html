@@ -1,0 +1,38 @@
+<ion-view view-title="{{'global.news' | translate}}">
+    <ion-nav-buttons side="secondary">
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+            pulling-text="{{'global.pullToRefresh' | translate}}"
+            on-refresh="loadNews()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item ng-show="initialLoading" style="test-align: center;">
+                <div style="margin: 0 auto; width:28px">
+                    <ion-spinner></ion-spinner>
+                </div>
+            </ion-item>
+
+            <ion-item ng-if="news.length === 0">
+                {{'news.noNews' | translate}}
+            </ion-item>
+
+            <ion-item ng-click="openNews('{{item.url}}')" ng-repeat="item in news" class="item-text-wrap">
+
+                <div class="table">
+                    <div class="tr">
+                        <div class="td">
+                            <h2 class="clear-float">
+                                <b>{{item.title}}</b>
+                                <p>{{item.descr}}</p>
+                            </h2>
+                        </div>
+                        <div style="vertical-align: middle; width: 20px;" class="td">
+                            <i style="font-size: 1.5em" class="ion-icon ion-share"></i>
+                        </div>
+                    </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

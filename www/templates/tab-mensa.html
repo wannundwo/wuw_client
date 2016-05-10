@@ -1,6 +1,7 @@
 <ion-view view-title="{{'global.mensa' | translate}}">
     <ion-nav-buttons side="secondary">
-        <a class="button button-icon icon ion-ios-refresh-empty" ng-click="doRefresh()"></a>
+        <ion-spinner ng-show="loading"></ion-spinner>
+        <a class="button button-icon icon ion-ios-information-outline" ng-click="toggleInfoVisible()"></a>
     </ion-nav-buttons>
     <ion-content>
         <ion-refresher
@@ -19,9 +20,9 @@
             <!-- group the dishes by its date -->
             <div ng-repeat="(key, value) in dishes | groupBy: 'date'">
                 <div class="item item-divider">
-                    {{key | date: 'EEE, dd.MM.yyyy'}}
+                    {{key | date: 'EEEE, dd.MM.yyyy'}}
                 </div>
-                <ion-item style="border-left: 10px solid {{dish.color}};" class="color-indicator item-text-wrap" ng-repeat="dish in value">
+                <ion-item class="item-text-wrap" ng-repeat="dish in value">
                     <h3 class="float-left">{{dish.category}}</h3> <b class="float-right">{{dish.priceInternal | number: 2}}€ / {{dish.priceExternal | number: 2}}€</b>
                     <h2 class="clear-float">
                         <b>{{dish.dishName}}</b>
@@ -35,5 +36,9 @@
 
             </ion-item>
         </ion-list>
+        <!--<ion-infinite-scroll
+            on-infinite="loadMore()"
+            distance="50%">
+        </ion-infinite-scroll>-->
     </ion-content>
 </ion-view>

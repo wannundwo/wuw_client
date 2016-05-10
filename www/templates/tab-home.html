@@ -1,4 +1,7 @@
 <ion-view view-title="{{'global.home' | translate}}">
+    <ion-nav-buttons side="secondary">
+        <ion-spinner ng-show="loading"></ion-spinner>
+    </ion-nav-buttons>
     <ion-content>
         <ion-refresher
           pulling-text="{{'global.pullToRefresh' | translate}}"
@@ -7,34 +10,64 @@
         <ion-list>
             <div class="list card">
                 <div class="item item-divider">{{'home.current' | translate}}</div>
-                    <div style="border-left: 10px solid {{currLecture.color}};" class="lectureItem item item-body">
-                        <div ng-if="currLecture">
-                            <b>{{currLecture.lectureName}}</b> in <b>{{currLecture.rooms | join: ', '}}</b> <br>
-                            {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
-                        </div>
-                    <div ng-if="!currLecture">
-                        {{'home.noLecture' | translate}}
-                    </div>
+                <div ng-repeat="currLecture in currLectures" class="lectureItem item item-body">
+                        <table>
+                            <tr class="lecture-list-item">
+                                <td class="lecture-list-item-circle">
+                                    <div style="background-color: {{currLecture.color}}" class="circle-with-content">
+                                        {{currLecture.lectureName | limitTo: 1}}
+                                    </div>
+                                </td>
+                                <td class="lecture-list-item-details">
+                                    <p class="no-margin"><b>{{currLecture.startTime | date: 'EEE dd.MM.yyyy'}}</b></p>
+                                    <b>{{currLecture.lectureName}}</b>
+                                    <p class="no-margin">
+                                        <b>
+                                            {{currLecture.startTime | date: 'HH:mm'}} - {{currLecture.endTime | date: 'HH:mm'}}
+                                        </b>
+                                        <span ng-if="currLecture.rooms.length > 0">
+                                            in
+                                            <b>{{currLecture.rooms | join: ', '}}</b>
+                                        </span>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                </div>
+                <div ng-if="currLectures.length == 0" class="lectureItem item item-body">
+                    {{'home.noLecture' | translate}}
                 </div>
             </div>
             <div class="list card">
                 <div class="item item-divider">{{'home.next' | translate}}</div>
-                    <div style="border-left: 10px solid {{nextLecture.color}};" class="item item-body">
-                        <div ng-if="nextLecture">
-                            <b>{{nextLecture.lectureName}}</b> in <b>{{nextLecture.rooms | join: ', '}}</b> <br>
-                            {{nextLecture.startTime | date: 'EEE, HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
-                        </div>
-                    <div ng-if="!nextLecture">
-                        {{'home.noLecture' | translate}}
-                    </div>
+                <div ng-repeat="nextLecture in nextLectures" class="item item-body">
+                    <table>
+                        <tr class="lecture-list-item">
+                            <td class="lecture-list-item-circle">
+                                <div style="background-color: {{nextLecture.color}}" class="circle-with-content">
+                                    {{nextLecture.lectureName | limitTo: 1}}
+                                </div>
+                            </td>
+                            <td class="lecture-list-item-details">
+                                <p class="no-margin"><b>{{nextLecture.startTime | date: 'EEE dd.MM.yyyy'}}</b></p>
+                                <b>{{nextLecture.lectureName}}</b>
+                                <p class="no-margin">
+                                    <b>
+                                        {{nextLecture.startTime | date: 'HH:mm'}} - {{nextLecture.endTime | date: 'HH:mm'}}
+                                    </b>
+                                    <span ng-if="nextLecture.rooms.length > 0">
+                                        in
+                                        <b>{{nextLecture.rooms | join: ', '}}</b>
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div ng-if="nextLectures.length == 0" class="lectureItem item item-body">
+                    {{'home.noLecture' | translate}}
                 </div>
             </div>
-          <ion-item ng-if="loading">
-            <div class="center">
-                <ion-spinner></ion-spinner>
-              </div>
-            </div>
-          </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

@@ -1,34 +1,61 @@
 "use strict";
 
-angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage', 'ui.calendar'])
+angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage', 'ngIOS9UIWebViewPatch'])
 
-.run(function($ionicPlatform, $state, $rootScope, Settings) {
+.run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
-    var apiUrl = "https://wuw.benleb.de:4342/api/v0";
-    var versionNumber = "0.3.0";
+    var apiUrl = "https://app.hft-stuttgart.de:4342/api/v0";
+    var versionNumber = "0.6.5";
 
     // predefined settings
     Settings.setSetting('version', versionNumber);
     Settings.setSetting('apiUrl', apiUrl);
+    Settings.setSetting('cacheDeadline', 300);
+    Settings.setSetting('cacheLectures', 300);
+    Settings.setSetting('cacheMensa', 86400);
 
+    $ionicPlatform.ready(function() {
 
-    if (typeof Settings.getSetting('uuid') === "undefined") {
-        // We currently use, for simplity, just a timestamp as uuid.
-        // TODO: Use real uuid.
-        Settings.setSetting('uuid', new Date().getTime());
-    }
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
 
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+        if (window.StatusBar && window.StatusBarManager) {
+            if (ionic.Platform.isIOS()) {
+                // iOS specific settings
+            } else if (ionic.Platform.isAndroid()) {
+                // Android specific settings
+                StatusBar.backgroundColorByHexString("#8F4823");
+            }
+
+        }
+
+        if (window.cordova && typeof Settings.getSetting('uuid') === "undefined") {
+            Settings.setSetting('uuid', device.uuid);
+        }
+
+        var push = PushNotification.init({
+            android: {
+                senderID: "722709796555"
+            },
+            ios: {
+                alert: "true",
+                badge: "true",
+                sound: "true"
+            }
+        });
+
+        push.on('registration', function(data) {
+            console.log(data.registrationId);
+            Settings.setSetting('pushToken', data.registrationId);
+            Users.ping();
+        });
+
+        // ping home
+        Users.ping();
+    });
 })
 
 .config(function($stateProvider, $urlRouterProvider, $translateProvider, $ionicConfigProvider) {
@@ -36,6 +63,8 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
     // enable native scrolling on Android
     if (ionic.Platform.isAndroid()) {
         $ionicConfigProvider.scrolling.jsScrolling(false);
+        $ionicConfigProvider.tabs.position('bottom');
+        $ionicConfigProvider.tabs.style('standard');
     }
 
     // Ionic uses AngularUI Router which uses the concept of states
@@ -56,7 +85,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         templateUrl: "templates/tabs.html",
         controller: function($scope, Settings) {
             $scope.lecturesUrl = Settings.getSetting("lecturesView") || "lecturesWeekly";
-            console.log($scope.lecturesUrl);
         }
     })
 
@@ -80,27 +108,18 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
-    .state('tab.deadline-detail', {
-        url: '/deadlines/:deadlineId',
-        views: {
-            'tab-deadlines': {
-            templateUrl: 'templates/tab-deadline-detail.html',
-            controller: 'DeadlinesDetailCtrl'
-        }
-      }
-    })
     .state('tab.deadline-create', {
         url: '/createDeadline',
         views: {
             'tab-deadlines': {
-            templateUrl: 'templates/tab-create-deadline.html',
+            templateUrl: 'templates/tab-deadline-create.html',
             controller: 'DeadlinesCreateCtrl'
         }
       }
     })
 
     .state('tab.lecturesList', {
-        url: '/lectures',
+        url: '/lecturesList',
         views: {
             'tab-lectures': {
             templateUrl: 'templates/tab-lectures-list.html',
@@ -108,7 +127,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
         }
       }
     })
-    
+
     .state('tab.lecturesWeekly', {
         url: '/lecturesWeekly',
         views: {
@@ -135,14 +154,66 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             'tab-settings': {
             templateUrl: 'templates/tab-settings.html',
             controller: 'SettingsCtrl'
+            }
         }
-      }
+    })
+    .state('setup', {
+        url: '/setup?showBackButton',
+        views: {
+            'view-setup': {
+                templateUrl: 'templates/setup.html',
+                controller: 'SetupCtrl'
+            }
+        }
+    })
+    .state('setupDetail', {
+        url: '/setupDetail/:group',
+        views: {
+            'view-setup': {
+                templateUrl: 'templates/setup-detail.html',
+                controller: 'SetupDetailCtrl'
+            }
+        }
     })
 
-    .state('setup', {
-        url: '/setup',
-        templateUrl: 'templates/setup.html',
-        controller: 'SetupCtrl'
+    .state('tab.news', {
+        url: '/news',
+        views: {
+            'tab-news': {
+                templateUrl: 'templates/news.html',
+                controller: 'NewsCtrl'
+            }
+        }
+    })
+
+    .state('tab.events', {
+        url: '/events',
+        views: {
+            'tab-events': {
+                templateUrl: 'templates/events.html',
+                controller: 'EventsCtrl'
+            }
+        }
+    })
+
+    .state('tab.printers', {
+        url: '/printers',
+        views: {
+            'tab-printers': {
+                templateUrl: 'templates/printers.html',
+                controller: 'PrintersCtrl'
+            }
+        }
+    })
+
+    .state('tab.freeRooms', {
+        url: '/freeRooms',
+        views: {
+            'tab-freeRooms': {
+                templateUrl: 'templates/freeRooms.html',
+                controller: 'FreeRoomsCtrl'
+            }
+        }
     });
 
     // if none of the above states are matched, use this as the fallback

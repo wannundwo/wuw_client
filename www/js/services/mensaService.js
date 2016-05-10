@@ -6,10 +6,10 @@ angular.module("wuw.services")
 
 .factory("Dishes", function($http, $q, Settings) {
     var dishes = JSON.parse(Settings.getSetting('dishesCache') || '[]');
+    var numberOfDishes = 18;
 
     var getDishes = function() {
         var deferred = $q.defer();
-        var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
 
         $http.get(Settings.getSetting("apiUrl") + "/dishes")
         .success(function(data, status, headers, config) {
@@ -24,6 +24,10 @@ angular.module("wuw.services")
             deferred.reject(data);
         });
         return deferred.promise;
+    };
+
+    var getMoreDishes = function(i) {
+        return dishes.slice(0, (numberOfDishes * i) + numberOfDishes);
     };
 
     var fromCache = function() {
@@ -42,6 +46,7 @@ angular.module("wuw.services")
     return {
         dishes: dishes,
         getDishes: getDishes,
+        getMoreDishes: getMoreDishes,
         fromCache: fromCache,
         secondsSinceCache: secondsSinceCache
     };

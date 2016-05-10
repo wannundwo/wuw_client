@@ -1,0 +1,35 @@
+<ion-view view-title="{{'global.printers' | translate}}">
+    <ion-nav-buttons side="secondary">
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+            pulling-text="{{'global.pullToRefresh' | translate}}"
+            on-refresh="loadPrinters()">
+        </ion-refresher>
+        <ion-list>
+            <ion-item ng-show="initialLoading" style="test-align: center;">
+                <div style="margin: 0 auto; width:28px">
+                    <ion-spinner></ion-spinner>
+                </div>
+            </ion-item>
+            <ion-item ng-repeat="printer in printers">
+                <h3 class="float-left">
+                    <b>{{printer.Modell}}</b> {{'printers.inRoom' | translate}} <b>{{printer.Raum}}</b>
+                </h3><br>
+
+                <div class="row noPadding">
+                    <div class="col noPadding">
+                        <p>Format: {{printer.Format}}</p>
+                    </div>
+                    <div class="col noPadding">
+                        <p>Duplex: {{printer.Duplex}}</p>
+                    </div>
+                    <div class="col noPadding">
+                        <p>Farbe: {{printer.Farbe}}</p>
+                    </div>
+                </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

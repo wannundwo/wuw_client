@@ -4,6 +4,10 @@
         "lectures": "Lectures",
         "deadlines": "Deadlines",
         "mensa": "Mensa",
+        "news": "News",
+        "events": "Events",
+        "printers": "Printers",
+        "freeRooms": "Free Rooms",
         "settings": "Settings",
         "group": "Course",
         "semGroup": "Semester and Courses",
@@ -11,7 +15,10 @@
         "save": "save",
         "pullToRefresh": "Pull to refresh...",
         "error": "Error",
-        "done": "Done"
+        "done": "Done",
+        "close": "Close",
+        "back": "Back",
+        "add": "Add"
     },
     "home": {
         "current": "Current lecture",
@@ -23,6 +30,7 @@
         "startTime": "Starts at",
         "endTime": "Ends at",
         "cantload": "Can't load lectures. Please make sure that you are connected to the internet.",
+        "noLectures": "Currently are no lectures available.",
         "noCoursesSelectedMessage": "You have no courses selected. Before we can display your timetable, please select your courses."
     },
     "deadlines": {
@@ -31,18 +39,25 @@
         "done": "Done",
         "to": "by",
         "date": "Due Date",
-        "delete": "delete",
+        "delete": "Delete",
         "create": "Create Deadline",
         "exampleInfo": "get Book XY from Lib",
-        "noDeadlines": "Currently no Deadlines listed",
-        "cantload": "Can't load deadlines. Please make sure that you are connected to the internet."
+        "noDeadlines": "Currently no deadlines listed",
+        "cantload": "Can't load deadlines. Please make sure that you are connected to the internet.",
+        "infoTitle": "Deadlines / Todos",
+        "infoText": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.<br /><br />Added items will be visible for all others members of the course!<br /><br />Deleting something or mark as done will just happen on your device.<br /><br />Try it! Deadlines named \"Test123\" will be deleted periodically.",
+        "infoTextiOS": "Course-wide Deadline (Projects, Worksheets, Seminar Papers, ...) management.\n\nAdded items will be visible for all others members of the course!\n\nDeleting something or mark as done will just happen on your device.\n\nTry it! Deadlines named \"Test123\" will be deleted periodically."
     },
     "mensa": {
-        "cantload": "Can't load dishes. Please make sure that you are connected to the internet."
+        "cantload": "Can't load dishes. Please make sure that you are connected to the internet.",
+        "infoTitle": "Mensa I (Stuttgart-Mitte)",
+        "infoText": "Holzgartenstraße 11<br />Monday - Friday, 11:15 - 14:15",
+        "infoTextiOS": "Holzgartenstraße 11\nMonday - Friday, 11:15 - 14:15"
     },
     "settings": {
-        "version": "Version",
+        "version": "App Version",
         "apiUrl": "API URL",
+        "about": "About",
         "semGroupHelp": "Please choose you Semester and/or single Courses here.",
         "selectSemesterAndGroups" : "Select Courses"
     },
@@ -51,6 +66,13 @@
         "error": "Error",
         "retry": "Retry",
         "loading": "Loading available courses...",
-        "info": "Choose the lectures, which you want to see in your timetable. Tap on an Semester to look at the course in it."
+        "info": "Choose the lectures, which you want to see in your timetable. Tap on an Semester to look at the course in it.",
+        "chooselectures": "Choose Lectures"
+    },
+    "printers": {
+        "inRoom": "in room"
+    },
+    "news": {
+        "noNews": "Currently there are no news"
     }
 }

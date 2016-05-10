@@ -2,38 +2,13 @@
 
 angular.module("wuw.controllers")
 
+/*
+ * Lectures list controller.
+ */
 .controller("LecturesListCtrl", function($scope, $state, $ionicHistory, $ionicPopup, $timeout, $filter, Lectures, Settings) {
-    
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
-    /* config object */
-    $scope.uiConfig = {
-      calendar:{
-        height: "auto",
-        editable: false,
-        //defaultView: "agendaWeek",
-        defaultView: "month",
-        header: false,
-        dayClick: $scope.alertEventOnClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize
-      }
-    };
-    
-    $scope.events = [
-      {title: 'Long Event', start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-    ];
-    
-    $scope.eventSource = [$scope.events];
 
     $scope.loadLectures = function() {
-        Lectures.lecturesForGroups().then(function(lectures){
+        Lectures.lecturesForUser().then(function(lectures){
             $scope.lectures = lectures;
             $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
         }, function(error) {
@@ -46,6 +21,7 @@ angular.module("wuw.controllers")
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
+                $scope.loading = false;
                 $scope.$broadcast("scroll.refreshComplete");
             }, 400);
         });
@@ -54,7 +30,7 @@ angular.module("wuw.controllers")
     $scope.doRefresh = function() {
         $scope.loadLectures();
     };
-    
+
     $scope.switchToCalendar = function() {
         Settings.setSetting("lecturesView", "lecturesWeekly");
         $ionicHistory.nextViewOptions({
@@ -64,13 +40,17 @@ angular.module("wuw.controllers")
         $state.go("tab.lecturesWeekly", {location: "replace"});
     };
 
-    $scope.$on('$ionicView.enter', function(){
-        // get the number of selected lectures, if its zero, we display a message to select courses
-        $scope.selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
-
-        // get lectures from cache, and if the cache is older then 10 seconds load from the API
+    $scope.$on('$ionicView.loaded', function(){
         $scope.lectures = Lectures.fromCache();
-        if (Lectures.secondsSinceCache() > 10) {
+    });
+
+    $scope.$on('$ionicView.afterEnter', function(){
+        // If the user hasn't selected any lectures, we give him an message on that.
+        $scope.selectedLectures = Lectures.getSelectedLecturesLength();
+
+        // If the cache is older then 'cacheLectures' seconds, load new data from API.
+        if (Lectures.secondsSinceCache() > Settings.getSetting('cacheLectures')) {
+            $scope.loading = true;
             $scope.loadLectures();
         }
     });

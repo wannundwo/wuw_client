@@ -2,8 +2,12 @@
     "global": {
         "home": "Home",
         "lectures": "Vorlesungen",
-        "deadlines": "Deadlines",
+        "deadlines": "Abgaben",
         "mensa": "Mensa",
+        "news": "Neuigkeiten",
+        "events": "Veranstaltungen",
+        "printers": "Drucker",
+        "freeRooms": "Freie Räume",
         "settings": "Einstellungen",
         "group": "Kurs",
         "semGroup": "Semester und Kurse",
@@ -11,7 +15,10 @@
         "save": "Speichern",
         "pullToRefresh": "Ziehen zum aktualisieren...",
         "error": "Fehler",
-        "done": "Fertig"
+        "done": "Fertig",
+        "close": "Schließen",
+        "back": "Zurück",
+        "add": "Neu"
     },
     "home": {
         "current": "Momentan läuft",
@@ -23,6 +30,7 @@
         "startTime": "Beginnt am",
         "endTime": "Endet am",
         "cantload": "Die Vorlesungen konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
+        "noLectures": "Momentan sind keine Vorlesungen vorhanden.",
         "noCoursesSelectedMessage": "Um deinen Stundenplan anzuzeigen, musst du erst deine gewünschten Kurse auswählen."
     },
     "deadlines": {
@@ -31,18 +39,25 @@
         "done": "Erledigt",
         "to": "bis",
         "date": "Termin",
-        "delete": "löschen",
-        "create": "Deadline anlegen",
+        "delete": "Löschen",
+        "create": "Neue Abgabe",
         "exampleInfo": "Buch XY in Bib ausleihen",
         "noDeadlines": "Zur Zeit gibt es keine Abgaben.",
-        "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
+        "cantload": "Die Deadlines konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
+        "infoTitle": "Abgaben / Todos",
+        "infoText": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.<br /><br />Abgaben die hinzugefügt werden, sind auch für alle anderen des Kurses sichtbar!<br /><br />Wenn du etws als erledigt markierst oder löscht, passiert dies nur auf deinem Gerät.<br /><br />Teste es! Abgaben die \"Test123\" heißen werden regelmäßig gelöscht.",
+        "infoTextiOS": "Hier können Abgaben (Projekte, Aufgabenblätter, Seminararbeiten, ...) kursweit bequem verwaltet werden.\n\nAbgaben die hinzugefügt werden, sind auch für alle anderen des Kurses sichtbar!\n\nWenn du etws als erledigt markierst oder löscht, passiert dies nur auf deinem Gerät.\n\nTeste es! Abgaben die \"Test123\" heißen werden regelmäßig gelöscht."
     },
     "mensa": {
-        "cantload": "Die Gerichte konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind."
+        "cantload": "Die Gerichte konnten nicht geladen werden. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind.",
+        "infoTitle": "Mensa I (Stuttgart-Mitte)",
+        "infoText": "Holzgartenstraße 11<br />Montag - Freitag, 11:15 - 14:15 Uhr",
+        "infoTextiOS": "Holzgartenstraße 11\nMontag - Freitag, 11:15 - 14:15 Uhr"
     },
     "settings": {
-        "version": "Version",
+        "version": "App Version",
         "apiUrl": "API URL",
+        "about": "Über",
         "semGroupHelp": "Bitte hier deine Semestergruppe und/oder einzelne Kurse auswählen.",
         "selectSemesterAndGroups" : "Kurse auswählen"
     },
@@ -51,6 +66,13 @@
         "error": "Fehler",
         "retry": "Erneut laden",
         "loading": "Kurse werden geladen...",
-        "info": "Wähle deine Vorlesungen, welche dann in deinem Stundenplan angezeigt werden. Berühre ein Semester, um die Kurse darin zu sehen."
+        "info": "Wähle deine Vorlesungen, welche dann in deinem Stundenplan angezeigt werden. Berühre ein Semester, um die Kurse darin zu sehen.",
+        "chooselectures": "Vorlesungen wählen"
+    },
+    "printers": {
+        "inRoom": "in Raum"
+    },
+    "news": {
+        "noNews": "Momentan gibts es keine News"
     }
 }

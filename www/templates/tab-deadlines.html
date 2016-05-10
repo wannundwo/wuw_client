@@ -1,6 +1,8 @@
 <ion-view view-title="{{'global.deadlines' | translate}}">
     <ion-nav-buttons side="secondary">
-        <a class="button button-icon icon ion-ios-plus-outline" href="#/tab/createDeadline"></a>
+        <ion-spinner ng-show="loading"></ion-spinner>
+        <button class="button button-icon icon ion-ios-information-outline" ng-click="toggleInfoVisible()"></button>
+        <button class="button button-clear icon ion-ios-plus-outline" ng-click="go('tab.deadline-create')"></button>
     </ion-nav-buttons>
     <ion-content>
         <ion-refresher
@@ -25,13 +27,29 @@
                     <span ng-if="key === 'false'">{{'deadlines.todo' | translate}} ({{value.length}})</span>
                     <span ng-if="key === 'true'">{{'deadlines.done' | translate}} ({{value.length}})</span>
                 </div>
-                <ion-item style="border-left: 10px solid {{deadline.color}};" class="color-indicator item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'" type="item-text-wrap" href="#/tab/deadlines/{{deadline._id}}">
-                    <h2>
-                        <b>{{deadline.info}}</b> in <b>{{deadline.group}}</b>
-                        <div>
-                            {{'deadlines.to' | translate}} <b>{{deadline.deadline | date: 'EEE, dd.MM.yyyy'}}</b>
-                        </div>
-                    </h2>
+
+                <ion-item click-for-options class="item-text-wrap" ng-repeat="deadline in value | orderBy:'deadline'">
+                    <table>
+                        <tr>
+                            <td class="deadline-list-item-circle">
+                                <div style="background-color: {{deadline.color}}" class="circle-with-content">
+                                    {{deadline.group.lectureName | limitTo: 1}}
+                                </div>
+                            </td>
+                            <td class="deadline-list-item-details">
+                                <h2>
+                                    <b>{{deadline.info}}</b> in <b>{{deadline.group.lectureName}}</b>
+                                    <div>
+                                        {{'deadlines.to' | translate}} <b>{{deadline.deadline | date: 'EEEE, dd.MM.yyyy'}}</b>
+                                    </div>
+                                </h2>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <ion-option-button class="button-balanced" ng-click="doneToggle(deadline)" ng-if="!deadline.done">Done</ion-option-button>
+                    <ion-option-button class="button-energized" ng-click="doneToggle(deadline)" ng-if="deadline.done">Undone</ion-option-button>
+                    <ion-option-button class="button-assertive" ng-click="deleteDeadlineLocal(deadline)">Delete</ion-option-button>
                 </ion-item>
             </div>
         </ion-list>

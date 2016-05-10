@@ -3,31 +3,30 @@
     </ion-nav-buttons>
     <ion-content>
         <ion-list>
-            <ion-item>
-                {{'settings.version' | translate}}: v{{settings.version}}
-            </ion-item>
-
-            <label class="item item-input item-stacked-label" ng-hide="false">
-                <span class="input-label">{{'settings.apiUrl' | translate}}</span>
-                <input type="text" ng-model="settings.apiUrl">
-            </label>
-
 
             <ion-item>
-                <span class="input-label">{{'global.semGroup' | translate}}</span>
+                <span class="input-label h1">{{'global.semGroup' | translate}}</span>
                 <div class="item-text-wrap">
                     <p>{{'settings.semGroupHelp' | translate}}</p>
                 </div>
 
-                <a class="button button-outline button-block button-positive" href="#/setup">
+                <a class="button button-block button-positive" href="#/setup?showBackButton=true">
                     {{'settings.selectSemesterAndGroups' | translate}}
                 </a>
             </ion-item>
 
+            <label class="item item-input item-stacked-label hidden-feature" ng-hide="false">
+                <span class="input-label">{{'settings.apiUrl' | translate}}</span>
+                <input type="text" ng-model="settings.apiUrl" ng-blur="save()">
+            </label>
+
             <ion-item>
-                <button class="button button-outline button-block button-positive" ng-click="save()">
-                    {{'global.save' | translate}}
-                </button>
+                <span class="input-label h1">{{'settings.about' | translate}}</span>
+                <p>{{'settings.version' | translate}}: {{settings.version}}</p>
+                <!-- <p>Feedback & Anregungen: <a class="hft" ng-href="mailto:app@hft-stuttgart.de?subject=Feedback%20HFT%20App%20(Version:%20{{settings.version}})">app@hft-stuttgart.de</a></p>
+                <p>Feedback & Anregungen: <a class="hft" href="mailto:app@hft-stuttgart.de?subject=Feedback%20HFT%20App%20(Version:%20{{settings.version}})">app@hft-stuttgart.de</a></p>-->
+                <p>Feedback & Anregungen: <a class="hft" ng-click="openLink('mailto:app@hft-stuttgart.de?subject=Feedback%20HFT%20App%20(Version:%20{{settings.version}})')">app@hft-stuttgart.de</a></p>
+                <p><a class="hft" ng-click="openLink('http://www.hft-stuttgart.de/Impressum.html')">Impressum</a></p>
             </ion-item>
 
         </ion-list>
