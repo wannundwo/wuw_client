@@ -53,7 +53,7 @@ angular.module('wuw.czWeekView', [])
         // initialization
         days = events.length;
         monday = getMonday(getFirstEvent(events).startTime);
-        pixelPerMinute = 1;
+        pixelPerMinute = 0.75;
         seperatorGran = 60;
 
         // empty all the container divs
