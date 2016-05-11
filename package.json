@@ -35,7 +35,8 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-dialogs",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-crosswalk-webview"
   ],
   "scripts": {},
   "cordovaPlatforms": [
