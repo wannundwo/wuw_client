@@ -63,7 +63,7 @@
 
 .weekViewEventContent {
     height: 100%;
-    border-left: 3px solid #8D4723;
+    padding: 3px;
     background: #ED773C;
     color: #fff;
     line-height: normal;

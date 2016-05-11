@@ -167,14 +167,13 @@ angular.module('wuw.czWeekView', [])
                         eventCol.className += ' weekViewEventColWithin';
                     }
 
-                    eventCol.appendChild(filler);    
-
-
+                    eventCol.appendChild(filler);  
 
                     // finally the actual event div
                     var eventDiv = document.createElement('div');
                     eventDiv.className += ' weekViewEvent';
                     eventDiv.style.height = eventMinutes * pixelPerMinute + 'px';
+                    eventDiv.style.background = event.color;
 
                     // place text inside the eventContentDiv
                     var eventContentDiv = document.createElement('div');
@@ -182,6 +181,7 @@ angular.module('wuw.czWeekView', [])
                     eventContentDiv.innerHTML = moment(event.startTime).format('HH:mm') + ' - ' + moment(event.endTime).format('HH:mm')
                     eventContentDiv.innerHTML += '<br>';
                     eventContentDiv.innerHTML += event.title;
+                    eventContentDiv.style.background = event.color;
                     eventDiv.appendChild(eventContentDiv);
 
                     // add event to the column
