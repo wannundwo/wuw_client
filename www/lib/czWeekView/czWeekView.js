@@ -73,6 +73,7 @@ angular.module('wuw.czWeekView', [])
         /****** Time Column ******/
         var timeColumn = document.createElement('div');
         timeColumn.setAttribute('class', 'weekViewTimeColumn');
+        timeColumn.style.marginTop = (seperatorGran * pixelPerMinute) * (-0.5) + "px";
         var timeHeader = document.createElement('div');
         timeColumn.appendChild(timeHeader);
         
@@ -82,7 +83,8 @@ angular.module('wuw.czWeekView', [])
             var row = document.createElement('div');
             row.setAttribute('class', 'hhmmCell');
             row.style.height = seperatorGran * pixelPerMinute + 'px';
-            //row.style.lineHeight = seperatorGran * pixelPerMinute + 'px';
+            row.style.lineHeight = seperatorGran * pixelPerMinute + 'px';
+
             row.innerHTML = minutesToTime(minutes);
             timeColumn.appendChild(row);
 
@@ -92,7 +94,7 @@ angular.module('wuw.czWeekView', [])
             fwSep.style.width = weekViewContainer.clientWidth - timeColumn.clientWidth + 'px';
             fwSep.style.height = 5 + 'px';
             fwSep.innerHTML = '';
-            fwSep.style.top = (minutes * pixelPerMinute)-gridStart + 'px'
+            fwSep.style.top = (minutes * pixelPerMinute) - (gridStart * pixelPerMinute) + 'px'
             weekViewContainer.appendChild(fwSep);
 
         }

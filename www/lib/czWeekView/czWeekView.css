@@ -3,7 +3,7 @@
 .weekViewFullWidthSeperator {
     border-top: 1px solid #E6E5E6;
     position: absolute;
-    margin-left: 25px;
+    margin-left: 30px;
     z-index: -100;
 }
 
@@ -38,7 +38,6 @@
 }
 
 .weekViewTimeColumn {
-    margin-top: -10px;
     font-size: 10px;
     margin-left: 4px;
     margin-right: 4px;
