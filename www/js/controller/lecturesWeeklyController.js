@@ -20,6 +20,14 @@ angular.module("wuw.controllers")
         $state.go("tab.lecturesList", {location: "replace"});
     };
 
+    $scope.onControllerRefresh = function(){
+        $scope.loadLectures();
+        console.log("onControllerRefresh")
+        setTimeout(function() {
+            $scope.$broadcast("scroll.refreshComplete");
+        }, 1000);
+    };
+
     $scope.loadLectures = function() {
         Lectures.lecturesForUser().then(function(lectures){
             $scope.lectures = lectures;
