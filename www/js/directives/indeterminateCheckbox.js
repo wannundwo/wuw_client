@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.directives', [])
 
@@ -12,10 +12,10 @@ angular.module('wuw.directives', [])
         require: '?ngModel',
         link: function(scope, element, attrs, modelCtrl) {
             attrs.$observe('state', function(newValue){
-                if (attrs.state === "indeterminate") {
+                if (attrs.state === 'indeterminate') {
                     element.prop('checked', false);
                     element.prop('indeterminate', true);
-                } else if (attrs.state === "checked") {
+                } else if (attrs.state === 'checked') {
                     element.prop('checked', true);
                     element.prop('indeterminate', false);
                 } else {

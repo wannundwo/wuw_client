@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
-angular.module("wuw.controllers")
+angular.module('wuw.controllers')
 
 
 /*
  * The mensa controller.
  */
-.controller("MensaCtrl", function($scope, $ionicPopup, $timeout, $filter, Dishes, Settings) {
+.controller('MensaCtrl', function($scope, $ionicPopup, $timeout, $filter, Dishes, Settings) {
 
     var moreCounter = 0;
     $scope.infoVisible = false;
@@ -15,16 +15,16 @@ angular.module("wuw.controllers")
         moreCounter = 0;
         Dishes.getDishes().then(function(dishes){
             $scope.dishes = dishes;
-            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
+            $scope.$broadcast('czErrorMessage.hide'); //hide an eventually shown error message
         }, function() {
             // show the error message with some delay to prevent flickering
             $timeout(function() {
-                $scope.$broadcast("czErrorMessage.show");
+                $scope.$broadcast('czErrorMessage.show');
             }, 300);
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
-                $scope.$broadcast("scroll.refreshComplete");
+                $scope.$broadcast('scroll.refreshComplete');
             }, 400);
         });
     };
@@ -68,6 +68,6 @@ angular.module("wuw.controllers")
     });
 })
 
-.controller("MensaDetailCtrl", function($scope, $stateParams, Dishes) {
+.controller('MensaDetailCtrl', function($scope, $stateParams, Dishes) {
     $scope.dish = Dishes.get($stateParams.dishId);
 });

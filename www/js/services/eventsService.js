@@ -1,14 +1,14 @@
 /*jshint bitwise: false*/
 
-"use strict";
+'use strict';
 
-angular.module("wuw.services")
+angular.module('wuw.services')
 
-.factory("Events", function($http, $q, Settings) {
+.factory('Events', function($http, $q, Settings) {
     var getEvents = function() {
         var deferred = $q.defer();
 
-        $http.get(Settings.getSetting("apiUrl") + "/events")
+        $http.get(Settings.getSetting('apiUrl') + '/events')
         .success(function(data, status, headers, config) {
             deferred.resolve(data);
         })

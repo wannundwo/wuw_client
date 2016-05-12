@@ -1,14 +1,14 @@
 /*jshint bitwise: false*/
 
-"use strict";
+'use strict';
 
-angular.module("wuw.services")
+angular.module('wuw.services')
 
-.factory("Printers", function($http, $q, Settings) {
+.factory('Printers', function($http, $q, Settings) {
     var loadPrinters = function() {
         var deferred = $q.defer();
 
-        $http.get(Settings.getSetting("apiUrl") + "/printers")
+        $http.get(Settings.getSetting('apiUrl') + '/printers')
         .success(function(data, status, headers, config) {
             Settings.setSetting('printersCache', JSON.stringify(data));
             deferred.resolve(data);

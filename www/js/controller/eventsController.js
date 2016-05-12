@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.controllers')
 
@@ -26,13 +26,13 @@ angular.module('wuw.controllers')
                               startDate.getMonth() === endDate.getMonth() &&
                               startDate.getDate() === endDate.getDate();
 
-                // Case: "21.01.2016 Uhr"
+                // Case: '21.01.2016 Uhr'
                 if (exactlySame && startDate.getHours() === 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     continue;
                 }
 
-                // Case: "21.02.2016 19:00"
+                // Case: '21.02.2016 19:00'
                 if (exactlySame && startDate.getHours() !== 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     event.dateString += ', ';
@@ -41,15 +41,15 @@ angular.module('wuw.controllers')
                     continue;
                 }
 
-                // Case: "21.01.2016 - 25.01.2016
+                // Case: '21.01.2016 - 25.01.2016'
                 if (!exactlySame && startDate.getHours() === 1 && endDate.getHours() === 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
-                    event.dateString += " - ";
+                    event.dateString += ' - ';
                     event.dateString += $filter('date')(endDate, 'dd.MM.yyyy');
                     continue;
                 }
 
-                // Case: "19.03.2016, 11:00 - 12:00 Uhr"
+                // Case: '19.03.2016, 11:00 - 12:00 Uhr'
                 if (sameDay && startDate.getHours() !== 1 && endDate.getHours() !== 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     event.dateString += ', ';
@@ -60,8 +60,8 @@ angular.module('wuw.controllers')
                     continue;
                 }
 
-                // Case: "21.01.2016 - 25.01.2016
-                //       "11:00 - 12:00 Uhr"
+                // Case: '21.01.2016 - 25.01.2016
+                //       '11:00 - 12:00 Uhr'
                 if (!sameDay && startDate.getHours() !== 1 && endDate.getHours() !== 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     event.dateString += ' - ';
@@ -78,7 +78,7 @@ angular.module('wuw.controllers')
         }, function(){
         }).finally(function(){
             $scope.initialLoading = false;
-            $scope.$broadcast("scroll.refreshComplete");
+            $scope.$broadcast('scroll.refreshComplete');
         });
     };
 

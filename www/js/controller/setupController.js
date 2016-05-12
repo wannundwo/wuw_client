@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.controllers')
 
 
 /*
  * The setup controller.
- * The "setup" is the process, where the user selects all his courses.
+ * The 'setup' is the process, where the user selects all his courses.
  */
 .controller('SetupDetailCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, Setup, Settings, Users) {
 
@@ -80,7 +80,7 @@ angular.module('wuw.controllers')
     $scope.load = function() {
         $scope.showErrorMessage = false;
         $ionicLoading.show({
-            template: "{{'setup.loading' | translate}}"
+            template: '{{'setup.loading' | translate}}'
         });
 
         Setup.loadAllGroupsWithLectures().then(function(groups) {
@@ -117,25 +117,25 @@ angular.module('wuw.controllers')
             }
         }
 
-        Settings.setSetting("selectedGroups", JSON.stringify(selectedGroups));
-        Settings.setSetting("selectedLectures", JSON.stringify(selectedLectures));
-        Settings.setSetting("selectedLecturesLength", selectedLectures.length);
+        Settings.setSetting('selectedGroups', JSON.stringify(selectedGroups));
+        Settings.setSetting('selectedLectures', JSON.stringify(selectedLectures));
+        Settings.setSetting('selectedLecturesLength', selectedLectures.length);
         Users.ping(selectedLectures);
 
         // Clear the caches.
-        Settings.setSetting("localDeadlines", "");
-        Settings.setSetting("lecturesCache", "");
-        Settings.setSetting("lecturesWeeklyCache", "");
+        Settings.setSetting('localDeadlines', '');
+        Settings.setSetting('lecturesCache', '');
+        Settings.setSetting('lecturesWeeklyCache', '');
 
         // Reset Cache Times
-        Settings.setSetting("dishesCacheTime", "0");
-        Settings.setSetting("lecturesCacheTime", "0");
-        Settings.setSetting("lecturesWeeklyCacheTime", "0");
-        Settings.setSetting("localDeadlinesCacheTime", "0");
+        Settings.setSetting('dishesCacheTime', '0');
+        Settings.setSetting('lecturesCacheTime', '0');
+        Settings.setSetting('lecturesWeeklyCacheTime', '0');
+        Settings.setSetting('localDeadlinesCacheTime', '0');
 
         // Return to home tab
         $ionicHistory.nextViewOptions({ disableBack: true });
-        $state.go("tab.home", {location: "replace"});
+        $state.go('tab.home', {location: 'replace'});
     };
 
     $scope.goBack = function() {

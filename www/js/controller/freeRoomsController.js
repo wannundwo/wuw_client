@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.controllers')
 
@@ -22,7 +22,7 @@ angular.module('wuw.controllers')
                 var building = r.split('/')[0];
 
                 // exclude room 1/113
-                if (r !== "1/113") {
+                if (r !== '1/113') {
                     var roomObject = {
                         building: r.split('/')[0],
                         room: r.split('/')[1]
@@ -33,7 +33,7 @@ angular.module('wuw.controllers')
         }, function(){
         }).finally(function(){
             $scope.initialLoading = false;
-            $scope.$broadcast("scroll.refreshComplete");
+            $scope.$broadcast('scroll.refreshComplete');
         });
     };
 

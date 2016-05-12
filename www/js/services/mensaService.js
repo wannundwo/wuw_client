@@ -1,17 +1,17 @@
 /*jshint bitwise: false*/
 
-"use strict";
+'use strict';
 
-angular.module("wuw.services")
+angular.module('wuw.services')
 
-.factory("Dishes", function($http, $q, Settings) {
+.factory('Dishes', function($http, $q, Settings) {
     var dishes = JSON.parse(Settings.getSetting('dishesCache') || '[]');
     var numberOfDishes = 18;
 
     var getDishes = function() {
         var deferred = $q.defer();
 
-        $http.get(Settings.getSetting("apiUrl") + "/dishes")
+        $http.get(Settings.getSetting('apiUrl') + '/dishes')
         .success(function(data, status, headers, config) {
             var filteredDishes = data;
 

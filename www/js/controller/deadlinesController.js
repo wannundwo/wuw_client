@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.controllers')
 
@@ -10,17 +10,17 @@ angular.module('wuw.controllers')
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
             $scope.deadlines = deadlines;
-            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
+            $scope.$broadcast('czErrorMessage.hide'); //hide an eventually shown error message
         }, function() {
             // show the error message with some delay to prevent flickering
             $timeout(function() {
-                $scope.$broadcast("czErrorMessage.show");
+                $scope.$broadcast('czErrorMessage.show');
             }, 300);
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
                 $scope.loading = false;
-                $scope.$broadcast("scroll.refreshComplete");
+                $scope.$broadcast('scroll.refreshComplete');
             }, 400);
         });
     };
@@ -109,7 +109,7 @@ angular.module('wuw.controllers')
 
         console.log(JSON.stringify($scope.deadline));
         Deadlines.add($scope.deadline).then(function(res){
-            // success, change to loading icon to a "save-success" icon
+            // success, change to loading icon to a 'save-success' icon
             $scope.savingIcon = '<i class="icon ion-android-cloud-done"></i>';
             $scope.savingText = 'Deadline saved!';
 
@@ -119,7 +119,7 @@ angular.module('wuw.controllers')
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
-                $state.go("tab.deadlines");
+                $state.go('tab.deadlines');
             }, 750);
         }, function(res){
             // TODO: handle if the lecture could not be created

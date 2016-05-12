@@ -1,10 +1,10 @@
 /*jshint bitwise: false*/
 
-"use strict";
+'use strict';
 
-angular.module("wuw.services")
+angular.module('wuw.services')
 
-.factory("Lectures", function($http, $q, Settings) {
+.factory('Lectures', function($http, $q, Settings) {
     var lectures = JSON.parse(Settings.getSetting('lecturesCache') || '[]');
     // var lecturesWeekly = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
 
@@ -13,17 +13,17 @@ angular.module("wuw.services")
      */
     var lecturesForUser = function() {
         var deferred = $q.defer();
-        var selectedLectures = JSON.parse(Settings.getSetting("selectedLectures") || "[]");
+        var selectedLectures = JSON.parse(Settings.getSetting('selectedLectures') || '[]');
 
         // if the user hasn't selected courses, reject the request
         if (selectedLectures.length === 0) {
             lectures = [];
             Settings.setSetting('lecturesCache', '[]');
-            deferred.reject("noLecturesSelected");
+            deferred.reject('noLecturesSelected');
             return deferred.promise;
         }
 
-        $http.get(Settings.getSetting("apiUrl") + "/lectures/users/" + Settings.getSetting('uuid'))
+        $http.get(Settings.getSetting('apiUrl') + '/lectures/users/' + Settings.getSetting('uuid'))
         .success(function(data, status, headers, config) {
 
             // add datefield to every lecutre (useable for grouping)
@@ -38,18 +38,18 @@ angular.module("wuw.services")
             deferred.resolve(data);
         }).
         error(function(data, status, headers, config) {
-            deferred.reject("httpFailed");
+            deferred.reject('httpFailed');
         });
         return deferred.promise;
     };
 
     /*
      * Returns lectures from cache.
-     * If mode is "weekly" we provide data for easy use in full calendar.
+     * If mode is 'weekly' we provide data for easy use in full calendar.
     */
     var fromCache = function(mode) {
         var cached;
-        if (mode === "weekly") {
+        if (mode === 'weekly') {
             cached = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
             // convert the date-strings to real JS-Dates
             for (var i = 0; i < cached.length; i++) {
@@ -67,7 +67,7 @@ angular.module("wuw.services")
      */
     var secondsSinceCache = function(mode) {
         var cacheTime;
-        if (mode === "weekly") {
+        if (mode === 'weekly') {
             cacheTime = Settings.getSetting('lecturesWeeklyCacheTime');
         } else {
             cacheTime = Settings.getSetting('lecturesCacheTime');
@@ -86,7 +86,7 @@ angular.module("wuw.services")
      * Returns the title of all lectures in a distinct manner.
      */
     var getAllLectureTitles = function() {
-        return JSON.parse(Settings.getSetting("selectedLectures"));
+        return JSON.parse(Settings.getSetting('selectedLectures'));
     };
 
     /*
@@ -133,9 +133,9 @@ angular.module("wuw.services")
      */
     var getSelectedLecturesLength = function() {
         var selectedLecturesLength = Settings.getSetting('selectedLecturesLength');
-        if (typeof selectedLecturesLength === "undefined") {
-            selectedLecturesLength = JSON.parse(Settings.getSetting("selectedLectures") || "[]").length;
-            Settings.setSetting("selectedLecturesLength", selectedLecturesLength);
+        if (typeof selectedLecturesLength === 'undefined') {
+            selectedLecturesLength = JSON.parse(Settings.getSetting('selectedLectures') || '[]').length;
+            Settings.setSetting('selectedLecturesLength', selectedLecturesLength);
             return selectedLecturesLength;
         } else {
             return parseInt(selectedLecturesLength);

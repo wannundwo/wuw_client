@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.services')
 
@@ -10,8 +10,8 @@ angular.module('wuw.services')
             var deferred = $q.defer();
 
             $http({
-                url: Settings.getSetting("apiUrl") + '/users/' + Settings.getSetting('uuid') + "/lectures",
-                method: "POST",
+                url: Settings.getSetting('apiUrl') + '/users/' + Settings.getSetting('uuid') + '/lectures',
+                method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 data: {
                     appVersion: Settings.getSetting('version'),

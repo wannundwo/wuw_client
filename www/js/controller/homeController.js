@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.controllers')
 
@@ -26,7 +26,7 @@ angular.module('wuw.controllers')
         Lectures.lecturesForUser().then(function(lectures){}).finally(function () {
             $scope.currLectures = Lectures.getCurrentLecture();
             $scope.nextLectures = Lectures.getNextLecture();
-            $scope.$broadcast("scroll.refreshComplete");
+            $scope.$broadcast('scroll.refreshComplete');
         });
     };
 

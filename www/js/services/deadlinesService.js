@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.services')
 
@@ -14,8 +14,8 @@ angular.module('wuw.services')
         newDeadline.group = JSON.parse(newDeadline.group);
         newDeadline.uuid = Settings.getSetting('uuid');
         $http({
-            url: Settings.getSetting("apiUrl") + '/deadlines',
-            method: "POST",
+            url: Settings.getSetting('apiUrl') + '/deadlines',
+            method: 'POST',
             headers: {'Content-Type': 'application/json'},
             data: newDeadline
         })
@@ -51,7 +51,7 @@ angular.module('wuw.services')
         var localDeadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
         var mergedDeadlines = [];
 
-        $http.get(Settings.getSetting("apiUrl") + '/deadlines/user/' + Settings.getSetting('uuid'))
+        $http.get(Settings.getSetting('apiUrl') + '/deadlines/user/' + Settings.getSetting('uuid'))
         .success(function(data, status, headers, config) {
 
             // Iterate over each received deadline and merge it with the local deadlines.

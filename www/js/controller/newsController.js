@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('wuw.controllers')
 
@@ -16,7 +16,7 @@ angular.module('wuw.controllers')
         }, function(){
         }).finally(function(){
             $scope.initialLoading = false;
-            $scope.$broadcast("scroll.refreshComplete");
+            $scope.$broadcast('scroll.refreshComplete');
         });
     };
 

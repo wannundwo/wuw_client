@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
  * This is the controllers module definition, all other controllers
