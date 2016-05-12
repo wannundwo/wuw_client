@@ -80,7 +80,7 @@ angular.module('wuw.controllers')
     $scope.load = function() {
         $scope.showErrorMessage = false;
         $ionicLoading.show({
-            template: '{{'setup.loading' | translate}}'
+            template: '{{"setup.loading" | translate}}'
         });
 
         Setup.loadAllGroupsWithLectures().then(function(groups) {
