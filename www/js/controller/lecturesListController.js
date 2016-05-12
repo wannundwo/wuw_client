@@ -1,28 +1,28 @@
-"use strict";
+'use strict';
 
-angular.module("wuw.controllers")
+angular.module('wuw.controllers')
 
 /*
  * Lectures list controller.
  */
-.controller("LecturesListCtrl", function($scope, $state, $ionicHistory, $ionicPopup, $timeout, $filter, Lectures, Settings) {
+.controller('LecturesListCtrl', function($scope, $state, $ionicHistory, $ionicPopup, $timeout, $filter, Lectures, Settings) {
 
     $scope.loadLectures = function() {
         Lectures.lecturesForUser().then(function(lectures){
             $scope.lectures = lectures;
-            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
+            $scope.$broadcast('czErrorMessage.hide'); //hide an eventually shown error message
         }, function(error) {
-            if (error === "httpFailed") {
+            if (error === 'httpFailed') {
                 // show the error message with some delay to prevent flickering
                 $timeout(function() {
-                    $scope.$broadcast("czErrorMessage.show");
+                    $scope.$broadcast('czErrorMessage.show');
                 }, 300);
             }
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
                 $scope.loading = false;
-                $scope.$broadcast("scroll.refreshComplete");
+                $scope.$broadcast('scroll.refreshComplete');
             }, 400);
         });
     };
@@ -37,12 +37,12 @@ angular.module("wuw.controllers")
      * see the last choosen type of view.
      */
     $scope.switchToCalendar = function() {
-        Settings.setSetting("lecturesView", "lecturesWeekly");
+        Settings.setSetting('lecturesView', 'lecturesWeekly');
         $ionicHistory.nextViewOptions({
             disableAnimate: true,
             disableBack: true
         });
-        $state.go("tab.lecturesWeekly", {location: "replace"});
+        $state.go('tab.lecturesWeekly', {location: 'replace'});
     };
 
     $scope.$on('$ionicView.loaded', function(){
@@ -61,6 +61,6 @@ angular.module("wuw.controllers")
     });
 })
 
-.controller("LecturesDetailCtrl", function($scope, $stateParams, Lectures) {
+.controller('LecturesDetailCtrl', function($scope, $stateParams, Lectures) {
     $scope.lecture = Lectures.get($stateParams.lectureId);
 });
