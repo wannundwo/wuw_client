@@ -98,6 +98,18 @@ angular.module('wuw.czWeekView', [])
             weekViewContainer.appendChild(fwSep);
 
         }
+
+        // draw line for current time
+        var currentTimeDiv = document.createElement('div');
+        var nowMinutes = getMinutesOfDay(new Date());
+        currentTimeDiv.className += ' weekViewFullWidthSeperator weekViewCurrentTimeLine';
+        currentTimeDiv.style.width = weekViewContainer.clientWidth - timeColumn.clientWidth + 'px';
+        currentTimeDiv.style.height = 5 + 'px';
+        currentTimeDiv.innerHTML = '';
+        currentTimeDiv.style.top = (nowMinutes * pixelPerMinute) - (gridStart * pixelPerMinute) + 'px'
+        weekViewContainer.appendChild(currentTimeDiv);
+
+        // append the time column
         weekViewContainer.appendChild(timeColumn);
         
         // calculate some widthes
@@ -106,7 +118,6 @@ angular.module('wuw.czWeekView', [])
         timeColumnOffsetDiv.style.width = timeColumn.clientWidth +'px';
         timeColumnOffsetDiv.setAttribute('class', 'weekViewDayHeaderCell');
         dayHeadersContainer.appendChild(timeColumnOffsetDiv);
-        
 
         /****** Day Columns ******/
         for (var d = 0; d < days; d++) {

@@ -7,6 +7,10 @@
     z-index: -100;
 }
 
+.weekViewCurrentTimeLine {
+    border-top: 1px dotted #FF9D9A;
+}
+
 .weekViewDayCol {
     padding: 0 !important;
 }
