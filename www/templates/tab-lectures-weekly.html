@@ -1,6 +1,6 @@
 <ion-view view-title="{{'global.lectures' | translate}}">
     <ion-nav-buttons side="secondary">
-        <ion-spinner ng-show="loading"></ion-spinner>
+        <a class="button button-icon icon ion-ios-refresh-empty" ng-click="loadLectures()"></a>
         <a class="button button-icon icon ion-ios-paper-outline" ng-click="switchToList()"></a>
     </ion-nav-buttons>
     <ion-content>
@@ -9,19 +9,19 @@
             on-slide-changed="slideHasChanged($index)">
             <ion-slide>
                 <cz-week-view 
-                    on-refresh="onControllerRefresh()" 
+                    on-event-click="onEventClick(eventId)"
                     events="eventsWeekly[0]">
                 </cz-week-view>
             </ion-slide>
             <ion-slide>
                 <cz-week-view 
-                    on-refresh="onControllerRefresh()" 
+                    on-event-click="onEventClick(eventId)" 
                     events="eventsWeekly[1]">
                 </cz-week-view>
             </ion-slide>
             <ion-slide>
                 <cz-week-view 
-                    on-refresh="onControllerRefresh()" 
+                    on-event-click="onEventClick(eventId)"
                     events="eventsWeekly[2]">
                 </cz-week-view>
             </ion-slide>

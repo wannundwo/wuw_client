@@ -20,12 +20,8 @@ angular.module('wuw.controllers')
         $state.go('tab.lecturesList', {location: 'replace'});
     };
 
-    $scope.onControllerRefresh = function(){
-        $scope.loadLectures();
-        console.log('onControllerRefresh')
-        setTimeout(function() {
-            $scope.$broadcast('scroll.refreshComplete');
-        }, 1000);
+    $scope.onEventClick = function(eventId){
+        console.log("lecturesWeeklyCtrl", eventId);
     };
 
     $scope.loadLectures = function() {

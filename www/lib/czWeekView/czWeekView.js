@@ -197,6 +197,11 @@ angular.module('wuw.czWeekView', [])
 
                     // place text inside the eventContentDiv
                     var eventContentDiv = document.createElement('div');
+                    eventContentDiv.setAttribute('data-eventId', event.id);
+                    eventContentDiv.addEventListener("click", function(e){
+                        var eventId = e.srcElement.getAttribute('data-eventId');
+                        $scope.onEventClick({eventId: eventId});
+                    });
                     eventContentDiv.className += ' weekViewEventContent';
                     eventContentDiv.innerHTML = moment(event.startTime).format('HH:mm') + ' - ' + moment(event.endTime).format('HH:mm')
                     eventContentDiv.innerHTML += '<br>';
@@ -415,11 +420,6 @@ angular.module('wuw.czWeekView', [])
         
         return hours + ':' + minutes;
     }
-
-    $scope.doRefresh = function() {
-        
-        $scope.onRefresh();
-    }
 }])
 
 .directive('czWeekView', function () {
@@ -430,19 +430,18 @@ angular.module('wuw.czWeekView', [])
         template:
                 '<div id="weekViewDayHeaderContainer{{::uniqueId}}" class="row no-padding no-margin"></div>' +
                 '<ion-content style="padding-top: 30px;" id="weekViewScrollContainer{{::uniqueId}}">' +
-                    '<ion-refresher on-refresh="doRefresh()" style=""></ion-refresher>' +
                     '<div id="weekViewContainer{{::uniqueId}}" class="row no-padding no-margin">' +
                     '</div>' +
                 '</ion-content>',
         transclude: true,
         scope: {
             events: '=',
-            onRefresh: '&'
+            onEventClick: '&'
         },
         link: function(scope, element, attrs, czWeekViewCtrl) {
             var dayHeadersContainer = element[0].children[0];
             var weekViewScrollContainer = element[0].children[1];
-            var weekViewContainer = weekViewScrollContainer.children[0].children[1];
+            var weekViewContainer = weekViewScrollContainer.children[0].children[0];
             scope.uniqueId = uniqueId;
             czWeekViewCtrl.init(attrs, dayHeadersContainer, weekViewScrollContainer, weekViewContainer, uniqueId);
         }
