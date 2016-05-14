@@ -44,6 +44,9 @@ angular.module('wuw.czWeekView', [])
     // seperator distance (in minutes)
     var seperatorGran;
 
+    // first event in this week
+    var firstEvent;
+
     function renderWeekView() {
         // if no events are given, abort the rendering
         if (events.length === 0) {
@@ -52,7 +55,8 @@ angular.module('wuw.czWeekView', [])
 
         // initialization
         days = events.length;
-        monday = getMonday(getFirstEvent(events).startTime);
+        firstEvent = getFirstEvent(events);
+        monday = getMonday(firstEvent.startTime);
         pixelPerMinute = 0.75;
         seperatorGran = 60;
 
@@ -100,14 +104,16 @@ angular.module('wuw.czWeekView', [])
         }
 
         // draw line for current time
-        var currentTimeDiv = document.createElement('div');
-        var nowMinutes = getMinutesOfDay(new Date());
-        currentTimeDiv.className += ' weekViewFullWidthSeperator weekViewCurrentTimeLine';
-        currentTimeDiv.style.width = weekViewContainer.clientWidth - timeColumn.clientWidth + 'px';
-        currentTimeDiv.style.height = 5 + 'px';
-        currentTimeDiv.innerHTML = '';
-        currentTimeDiv.style.top = (nowMinutes * pixelPerMinute) - (gridStart * pixelPerMinute) + 'px'
-        weekViewContainer.appendChild(currentTimeDiv);
+        if (isInCurrentWeek(firstEvent.startTime)) {
+            var currentTimeDiv = document.createElement('div');
+            var nowMinutes = getMinutesOfDay(new Date());
+            currentTimeDiv.className += ' weekViewFullWidthSeperator weekViewCurrentTimeLine';
+            currentTimeDiv.style.width = weekViewContainer.clientWidth - timeColumn.clientWidth + 'px';
+            currentTimeDiv.style.height = 5 + 'px';
+            currentTimeDiv.innerHTML = '';
+            currentTimeDiv.style.top = (nowMinutes * pixelPerMinute) - (gridStart * pixelPerMinute) + 'px'
+            weekViewContainer.appendChild(currentTimeDiv);
+        }
 
         // append the time column
         weekViewContainer.appendChild(timeColumn);
@@ -366,7 +372,24 @@ angular.module('wuw.czWeekView', [])
         d = new Date(d);
         var day = d.getDay();
         var diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
-        return new Date(d.setDate(diff));
+        var monday =  new Date(d.setDate(diff));
+        monday.setHours(0, 0, 0, 0);
+        return monday;
+    }
+
+    /*
+     * Return true if the date is in the current week
+     */
+    function isInCurrentWeek(date) {
+        var weekStart = getMonday(new Date());
+        var weekEnd = new Date(weekStart.getTime() + 6*24*60*60*1000);
+        weekEnd.setHours(23, 59, 59, 999);
+
+        if (weekStart < date && date < weekEnd) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /*
