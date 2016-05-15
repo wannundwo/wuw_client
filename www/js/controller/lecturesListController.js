@@ -49,6 +49,14 @@ angular.module('wuw.controllers')
         $scope.lectures = Lectures.fromCache();
     });
 
+    $scope.$on("$ionicView.beforeEnter", function(event, data) {
+        // eventuall redirect user to its preferred lecture view
+        if (Settings.getSetting('lecturesView') === 'lecturesWeekly') {
+            $ionicHistory.nextViewOptions({ disableAnimate: true, disableBack: true });
+            $state.go('tab.lecturesWeekly', {location: 'replace'});      
+        }
+    });
+
     $scope.$on('$ionicView.afterEnter', function(){
         // If the user hasn't selected any lectures, we give him an message on that.
         $scope.selectedLectures = Lectures.getSelectedLecturesLength();
