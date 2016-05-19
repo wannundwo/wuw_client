@@ -200,7 +200,7 @@ angular.module('wuw.czWeekView', [])
                     eventContentDiv.setAttribute('data-eventId', event.id);
                     eventContentDiv.addEventListener("click", function(e){
                         var eventId = e.srcElement.getAttribute('data-eventId');
-                        $scope.onEventClick({eventId: eventId});
+                        $scope.onEventClick({data: {clickEvent: e, eventId: eventId}});
                     });
                     eventContentDiv.className += ' weekViewEventContent';
                     eventContentDiv.innerHTML = moment(event.startTime).format('HH:mm') + ' - ' + moment(event.endTime).format('HH:mm')
