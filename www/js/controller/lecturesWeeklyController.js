@@ -35,7 +35,7 @@ angular.module('wuw.controllers')
     };
 
     $scope.loadLectures = function() {
-        Lectures.lecturesForUser().then(function(lectures){
+        Lectures.lecturesForUser(true).then(function(lectures){
             lectures = lectures;
             var grouped = groupLecturesForWeek(lectures);
             assignEvents(grouped);
@@ -48,12 +48,6 @@ angular.module('wuw.controllers')
            $scope.$broadcast('scroll.refreshComplete');
         });
     };
-
-    $scope.$on('$ionicView.afterEnter', function(){
-        var cachedLectures = Lectures.fromCache();
-        var grouped = groupLecturesForWeek(cachedLectures);
-        assignEvents(grouped);
-    });
 
     function assignEvents(groupedLectures) {
         var groupedArray = [];
@@ -111,6 +105,12 @@ angular.module('wuw.controllers')
         });
         $state.go('tab.lecturesList', {location: 'replace'});
     };
+
+     $scope.$on('$ionicView.afterEnter', function(){
+        var cachedLectures = Lectures.fromCache(true);
+        var grouped = groupLecturesForWeek(cachedLectures);
+        assignEvents(grouped);
+    });
 
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
         // eventuall redirect user to its preferred lecture view

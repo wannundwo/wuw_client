@@ -11,7 +11,7 @@ angular.module('wuw.services')
     /*
      * Return lectures of the current user for the use in the lectures-listview
      */
-    var lecturesForUser = function() {
+    var lecturesForUser = function(weekly) {
         var deferred = $q.defer();
         var selectedLectures = JSON.parse(Settings.getSetting('selectedLectures') || '[]');
 
@@ -23,7 +23,7 @@ angular.module('wuw.services')
             return deferred.promise;
         }
 
-        $http.get(Settings.getSetting('apiUrl') + '/lectures/users/' + Settings.getSetting('uuid'))
+        $http.get(Settings.getSetting('apiUrl') + '/lectures/users/' + Settings.getSetting('uuid') + "/?weekly=" + weekly)
         .success(function(data, status, headers, config) {
 
             // add datefield to every lecutre (useable for grouping)
@@ -32,8 +32,14 @@ angular.module('wuw.services')
                 data[i].date = new Date(d).setMinutes(0);
             }
 
-            Settings.setSetting('lecturesCache', JSON.stringify(data));
-            Settings.setSetting('lecturesCacheTime', new Date().getTime());
+            if (weekly) {
+                Settings.setSetting('lecturesWeeklyCache', JSON.stringify(data));
+                Settings.setSetting('lecturesWeeklyCacheTime', new Date().getTime());    
+            } else {
+                Settings.setSetting('lecturesCache', JSON.stringify(data));
+                Settings.setSetting('lecturesCacheTime', new Date().getTime());    
+            }
+
             lectures = data;
             deferred.resolve(data);
         }).
@@ -45,11 +51,11 @@ angular.module('wuw.services')
 
     /*
      * Returns lectures from cache.
-     * If mode is 'weekly' we provide data for easy use in full calendar.
+     * If weekly is true we provide data for easy use in calendar.
     */
-    var fromCache = function(mode) {
+    var fromCache = function(weekly) {
         var cached;
-        if (mode === 'weekly') {
+        if (weekly) {
             cached = JSON.parse(Settings.getSetting('lecturesWeeklyCache') || '[]');
             // convert the date-strings to real JS-Dates
             for (var i = 0; i < cached.length; i++) {
@@ -65,9 +71,9 @@ angular.module('wuw.services')
     /*
      *Returns how many seconds has passed since we cached the lectures.
      */
-    var secondsSinceCache = function(mode) {
+    var secondsSinceCache = function(weekly) {
         var cacheTime;
-        if (mode === 'weekly') {
+        if (weekly) {
             cacheTime = Settings.getSetting('lecturesWeeklyCacheTime');
         } else {
             cacheTime = Settings.getSetting('lecturesCacheTime');
