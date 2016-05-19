@@ -3,13 +3,13 @@
     <ion-content>
         <ion-item class="item-text-wrap">
             <table>
-                <tr>
+                <tr valign="middle">
                     <td class="lecture-list-item-circle">
-                        <div style="margin-right: 5px; background-color: {{clickedLecture.color}}" class="circle-with-content">
+                        <div style="margin-right: 10px; background-color: {{clickedLecture.color}}" class="circle-with-content">
                             {{clickedLecture.lectureName | limitTo: 1 | uppercase}}
                         </div>
                     </td>
-                    <td>
+                    <td class="lecture-list-item-circle">
                         <b>{{clickedLecture.lectureName}}</b>
                     </td>
                 </tr>
