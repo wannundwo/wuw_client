@@ -15,18 +15,18 @@ logb() {
 readd_platform() {
     # remove...
     logb 7 "running '$ionic_bin platform rm $platform' & deleting folder..."
-    $ionic_bin platform rm $platform
-    rm -rf platforms/$platform
+    $ionic_bin platform rm "$platform"
+    rm -rf platforms/"$platform"
 
     #  ...and readd ionic platform
     logb 7 "running '$ionic_bin platform add $platform'..."
-    $ionic_bin platform add $platform
+    $ionic_bin platform add "$platform"
 }
 
 build_release() {
     # build release package
     logb 7 "running '$ionic_bin build --release $platform'..."
-    $ionic_bin build --release $platform
+    $ionic_bin build --release "$platform"
 }
 
 join() { local IFS='|'; declare -a arr=("${!1}"); echo "${arr[*]}"; }
@@ -84,7 +84,7 @@ build_ios () {
 
 ## build
 if [[ "${platforms[@]}" =~ ${platform} ]]; then
-    build_${platform}
+    build_"${platform}"
 else
     echo; logb 7 "usage: $(basename "$0") <$(join platforms[*])>"; echo;
     exit 1
