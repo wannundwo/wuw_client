@@ -2,7 +2,7 @@
 
 angular.module('wuw.controllers')
 
-.controller('LecturesWeeklyCtrl', function($scope, $locale, $ionicHistory, $translate, $ionicPopover, $state, $ionicPopup, Lectures, Settings) {
+.controller('LecturesWeeklyCtrl', function($scope, $locale, $ionicHistory, $translate, $ionicPopover, $timeout, $state, $ionicPopup, Lectures, Settings) {
     
     var lectures = [];
     $scope.events = [[],[],[]];
@@ -18,7 +18,6 @@ angular.module('wuw.controllers')
         // find lecture by event id
         var eventId = data.eventId;
         var clickEvent = data.clickEvent;
-        var lectures = Lectures.fromCache();
         for (var i = 0; i < lectures.length; i++) {
             var lecture = lectures[i];
             if (lecture.id == eventId) {
@@ -107,8 +106,9 @@ angular.module('wuw.controllers')
     };
 
      $scope.$on('$ionicView.afterEnter', function(){
-        var cachedLectures = Lectures.fromCache(true);
-        var grouped = groupLecturesForWeek(cachedLectures);
+        $scope.loadLectures()
+        lectures = Lectures.fromCache(true);
+        var grouped = groupLecturesForWeek(lectures);
         assignEvents(grouped);
     });
 
