@@ -40,7 +40,7 @@
   ],
   "scripts": {},
   "cordovaPlatforms": [
-    "ios",
-    "android"
+    "android",
+    "ios"
   ]
 }
