@@ -4,7 +4,7 @@ angular.module('wuw.controllers')
 
 .controller('LecturesWeeklyCtrl', function($scope, $locale, $ionicHistory, $translate, $ionicPopover, $timeout, $state, $ionicPopup, Lectures, Settings) {
     
-    var lectures = [];
+    $scope.lectures = [];
     $scope.events = [[],[],[]];
 
     $ionicPopover.fromTemplateUrl('templates/lecturePopover.html', {
@@ -18,15 +18,17 @@ angular.module('wuw.controllers')
         // find lecture by event id
         var eventId = data.eventId;
         var clickEvent = data.clickEvent;
-        for (var i = 0; i < lectures.length; i++) {
-            var lecture = lectures[i];
+        for (var i = 0; i < $scope.lectures.length; i++) {
+            var lecture = $scope.lectures[i];
             if (lecture.id == eventId) {
                 $scope.clickedLecture = lecture;
                 break;
             }
         }
         
-        $scope.popover.show(clickEvent);
+        if ($scope.clickedLecture) {
+            $scope.popover.show(clickEvent);    
+        }
     };
 
     $scope.closePopover = function() {
@@ -35,7 +37,7 @@ angular.module('wuw.controllers')
 
     $scope.loadLectures = function() {
         Lectures.lecturesForUser(true).then(function(lectures){
-            lectures = lectures;
+            $scope.lectures = lectures;
             var grouped = groupLecturesForWeek(lectures);
             assignEvents(grouped);
             $scope.$broadcast('czErrorMessage.hide'); //hide an eventually shown error message
@@ -107,8 +109,8 @@ angular.module('wuw.controllers')
 
      $scope.$on('$ionicView.afterEnter', function(){
         $scope.loadLectures()
-        lectures = Lectures.fromCache(true);
-        var grouped = groupLecturesForWeek(lectures);
+        $scope.lectures = Lectures.fromCache(true);
+        var grouped = groupLecturesForWeek($scope.lectures);
         assignEvents(grouped);
     });
 
