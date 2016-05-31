@@ -22,7 +22,7 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
 
-        if (window.StatusBar && window.StatusBarManager) {
+        if (window.StatusBar) {
             if (ionic.Platform.isIOS()) {
                 // iOS specific settings
             } else if (ionic.Platform.isAndroid()) {
