@@ -1,7 +1,7 @@
 <ion-view view-title="{{'global.grades' | translate}}">
     <ion-nav-buttons side="secondary">
         <ion-spinner ng-show="loading"></ion-spinner>
-        <a class="button button-icon icon ion-ios-information-outline" ng-click="toggleInfoVisible()"></a>
+        <!-- <a class="button button-icon icon ion-ios-information-outline" ng-click="toggleInfoVisible()"></a> -->
     </ion-nav-buttons>
     <ion-content>
         <!-- <ion-refresher
@@ -29,11 +29,16 @@
                         <input ng-model="creds.password" type="password" placeholder="HFT Password" autocomplete="off">
                     </label>
                     <button type="submit" class="button button-block button-positive" ng-click="get()">Go!</button>
+                    <div class="card">
+                        <div class="item item-text-wrap">
+                            Username und Passwort werden nicht gespeichert und über eine verschlüsselte Verbindung an die HFT übertragen 🔒✌
+                        </div>
+                    </div>
                 </form>
             </div>
 
             <!-- group the grades by season-->
-            <div ng-show="grades !== 0" ng-repeat="(key, value) in grades | groupBy: 'season'">
+            <div ng-show="grades !== 0" ng-repeat="(key, value) in grades.slice().reverse() | groupBy: 'season'">
                 <div class="item item-divider">{{key}}</div>
                 <ion-item class="item-text-wrap grades" ng-repeat="grade in value">
                     <b class="float-left grade">{{grade.name}}</b> <b class="float-right grade">{{ grade.grade }}</b>
