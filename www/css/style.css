@@ -103,13 +103,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding: 0px !important;
 }
 
-<<<<<<< HEAD
 .no-padding {
     padding: 0px !important;
 }
 
-=======
->>>>>>> feat-grades
 .no-margin {
     margin: 0 !important;
 }
@@ -173,14 +170,6 @@ ion-item.grades {
     font-size: 1em;
 }
 
-<<<<<<< HEAD
-=======
-/************ Calendar *******************/
-#myCalendar {
-    margin-top: -2px;
-}
-
->>>>>>> feat-grades
 /************ div tables *****************/
 div.table {
     width: 100%;

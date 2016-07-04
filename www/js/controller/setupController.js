@@ -6,11 +6,7 @@ angular.module('wuw.controllers')
 
 /*
  * The setup controller.
-<<<<<<< HEAD
  * The 'setup' is the process, where the user selects all his courses.
-=======
- * The "setup" is the process, where the user selects all his courses.
->>>>>>> feat-grades
  */
 .controller('SetupDetailCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, Setup, Settings, Users) {
 
