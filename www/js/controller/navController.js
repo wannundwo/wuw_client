@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.controllers')
 
 /*
  * The navigation controller.
  */
+<<<<<<< HEAD
 .controller('NavCtrl', function($scope, $ionicSideMenuDelegate, Settings) {
     $scope.showMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -15,4 +20,10 @@ angular.module('wuw.controllers')
     if (Settings.getSetting('lecturesView') === 'lecturesWeekly') {
         $scope.lecturesViewUrl = '#/tab/lecturesWeekly';
     }
+=======
+.controller('NavCtrl', function($scope, $ionicSideMenuDelegate) {
+    $scope.showMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+>>>>>>> feat-grades
 });

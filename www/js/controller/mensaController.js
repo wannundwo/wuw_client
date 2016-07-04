@@ -1,12 +1,22 @@
+<<<<<<< HEAD
 'use strict';
 
 angular.module('wuw.controllers')
+=======
+"use strict";
+
+angular.module("wuw.controllers")
+>>>>>>> feat-grades
 
 
 /*
  * The mensa controller.
  */
+<<<<<<< HEAD
 .controller('MensaCtrl', function($scope, $ionicPopup, $timeout, $filter, Dishes, Settings) {
+=======
+.controller("MensaCtrl", function($scope, $ionicPopup, $timeout, $filter, Dishes, Settings) {
+>>>>>>> feat-grades
 
     var moreCounter = 0;
     $scope.infoVisible = false;
@@ -15,16 +25,28 @@ angular.module('wuw.controllers')
         moreCounter = 0;
         Dishes.getDishes().then(function(dishes){
             $scope.dishes = dishes;
+<<<<<<< HEAD
             $scope.$broadcast('czErrorMessage.hide'); //hide an eventually shown error message
         }, function() {
             // show the error message with some delay to prevent flickering
             $timeout(function() {
                 $scope.$broadcast('czErrorMessage.show');
+=======
+            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
+        }, function() {
+            // show the error message with some delay to prevent flickering
+            $timeout(function() {
+                $scope.$broadcast("czErrorMessage.show");
+>>>>>>> feat-grades
             }, 300);
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
+<<<<<<< HEAD
                 $scope.$broadcast('scroll.refreshComplete');
+=======
+                $scope.$broadcast("scroll.refreshComplete");
+>>>>>>> feat-grades
             }, 400);
         });
     };
@@ -68,6 +90,10 @@ angular.module('wuw.controllers')
     });
 })
 
+<<<<<<< HEAD
 .controller('MensaDetailCtrl', function($scope, $stateParams, Dishes) {
+=======
+.controller("MensaDetailCtrl", function($scope, $stateParams, Dishes) {
+>>>>>>> feat-grades
     $scope.dish = Dishes.get($stateParams.dishId);
 });

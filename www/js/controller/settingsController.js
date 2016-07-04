@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.controllers')
 
@@ -19,7 +23,11 @@ angular.module('wuw.controllers')
         if (url) {
             window.open(url, '_system', 'location=yes');
 
+<<<<<<< HEAD
             // if(url.substring(0, 6) === 'mailto') {
+=======
+            // if(url.substring(0, 6) === "mailto") {
+>>>>>>> feat-grades
             //     window.location.href = url;
             // } else {
             //     window.open(url, '_system', 'location=yes');

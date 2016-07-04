@@ -103,10 +103,13 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding: 0px !important;
 }
 
+<<<<<<< HEAD
 .no-padding {
     padding: 0px !important;
 }
 
+=======
+>>>>>>> feat-grades
 .no-margin {
     margin: 0 !important;
 }
@@ -134,6 +137,28 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding-left: 25px;
 }
 
+<<<<<<< HEAD
+=======
+/************ GRADES **********************/
+.grade {
+    line-height: 1.1 !important;
+    font-size: 20px !important;
+    margin-top: 0px;
+}
+
+.grades span {
+    line-height: 1.2;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+ion-item.grades {
+    padding: 10px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+>>>>>>> feat-grades
 /************ MENSA **********************/
 .dishes-allergens-additives p {
     line-height: 1.2;
@@ -149,6 +174,14 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     font-size: 1em;
 }
 
+<<<<<<< HEAD
+=======
+/************ Calendar *******************/
+#myCalendar {
+    margin-top: -2px;
+}
+
+>>>>>>> feat-grades
 /************ div tables *****************/
 div.table {
     width: 100%;

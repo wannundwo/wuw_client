@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.controllers')
 
@@ -26,7 +30,11 @@ angular.module('wuw.controllers')
         Lectures.lecturesForUser().then(function(lectures){}).finally(function () {
             $scope.currLectures = Lectures.getCurrentLecture();
             $scope.nextLectures = Lectures.getNextLecture();
+<<<<<<< HEAD
             $scope.$broadcast('scroll.refreshComplete');
+=======
+            $scope.$broadcast("scroll.refreshComplete");
+>>>>>>> feat-grades
         });
     };
 

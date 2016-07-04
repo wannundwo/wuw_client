@@ -1,5 +1,6 @@
 /*jshint bitwise: false*/
 
+<<<<<<< HEAD
 'use strict';
 
 angular.module('wuw.services')
@@ -9,6 +10,17 @@ angular.module('wuw.services')
         var deferred = $q.defer();
 
         $http.get(Settings.getSetting('apiUrl') + '/events')
+=======
+"use strict";
+
+angular.module("wuw.services")
+
+.factory("Events", function($http, $q, Settings) {
+    var getEvents = function() {
+        var deferred = $q.defer();
+
+        $http.get(Settings.getSetting("apiUrl") + "/events")
+>>>>>>> feat-grades
         .success(function(data, status, headers, config) {
             deferred.resolve(data);
         })

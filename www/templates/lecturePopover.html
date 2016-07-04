@@ -1,4 +1,5 @@
 <ion-popover-view style="min-height: 180px; height: auto;">
+<<<<<<< HEAD
     
     <ion-content>
         <ion-item class="item-text-wrap">
@@ -24,6 +25,21 @@
             <!--<button class="button button-small button-outline button-block button-positive" ng-click="popover.hide();">
                 {{'global.close' | translate}}
             </button> -->
+=======
+    <ion-header-bar>
+        <h1 class="title">{{currEvent.title}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-item class="item-text-wrap">
+            in  <b>{{currEvent.rooms | join: ", "}} </b>
+            von <b>{{currEvent.start | date: "shortTime"}} </b>
+            bis <b>{{currEvent.end | date: "shortTime"}} </b>
+            bei <b>{{currEvent.docents | join: ", "}} </b>
+            
+            <button class="button button-small button-outline button-block button-positive" ng-click="popover.hide();">
+                {{'global.close' | translate}}
+            </button>
+>>>>>>> feat-grades
         </ion-item>
     </ion-content>
 </ion-popover-view>

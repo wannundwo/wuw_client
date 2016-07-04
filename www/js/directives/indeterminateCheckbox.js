@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.directives', [])
 
@@ -12,10 +16,17 @@ angular.module('wuw.directives', [])
         require: '?ngModel',
         link: function(scope, element, attrs, modelCtrl) {
             attrs.$observe('state', function(newValue){
+<<<<<<< HEAD
                 if (attrs.state === 'indeterminate') {
                     element.prop('checked', false);
                     element.prop('indeterminate', true);
                 } else if (attrs.state === 'checked') {
+=======
+                if (attrs.state === "indeterminate") {
+                    element.prop('checked', false);
+                    element.prop('indeterminate', true);
+                } else if (attrs.state === "checked") {
+>>>>>>> feat-grades
                     element.prop('checked', true);
                     element.prop('indeterminate', false);
                 } else {

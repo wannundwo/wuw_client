@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<<<<<<< HEAD
 <widget id="de.hft-stuttgart.app-cb" version="0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+=======
+<widget id="de.hft-stuttgart.app-cb" version="0.6.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+>>>>>>> feat-grades
   <name>HFT App</name>
   <description>
         HFT App
@@ -9,8 +13,13 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+<<<<<<< HEAD
   <access launch-external="yes" origin="mailto:*"/>
   <preference name="deployment-target" value="8.3"/>
+=======
+  <access origin="mailto:*" launch-external="yes"/>
+  <preference name="deployment-target" value="8.3" />
+>>>>>>> feat-grades
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -19,7 +28,11 @@
   <preference name="SplashScreenDelay" value="1500"/>
   <preference name="FadeSplashScreenDuration" value="500"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
+<<<<<<< HEAD
   <preference name="xwalkVersion" value="xwalk_core_library_beta:18+"/>
+=======
+  <preference name="xwalkVersion" value="15+"/>
+>>>>>>> feat-grades
   <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect"/>
   <preference name="xwalkMode" value="embedded"/>
   <preference name="xwalkMultipleApk" value="true"/>
@@ -51,7 +64,10 @@
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="resources/ios/icon/icon-40.png" width="40" height="40"/>
     <icon src="resources/ios/icon/icon-40@2x.png" width="80" height="80"/>
+<<<<<<< HEAD
     <icon src="resources/ios/icon/icon-40@3x.png" width="120" height="120"/>
+=======
+>>>>>>> feat-grades
     <icon src="resources/ios/icon/icon-50.png" width="50" height="50"/>
     <icon src="resources/ios/icon/icon-50@2x.png" width="100" height="100"/>
     <icon src="resources/ios/icon/icon-60.png" width="60" height="60"/>
@@ -61,7 +77,11 @@
     <icon src="resources/ios/icon/icon-72@2x.png" width="144" height="144"/>
     <icon src="resources/ios/icon/icon-76.png" width="76" height="76"/>
     <icon src="resources/ios/icon/icon-76@2x.png" width="152" height="152"/>
+<<<<<<< HEAD
     <icon src="resources/ios/icon/icon-83.5@2x.png" width="167" height="167"/>
+=======
+    <icon src="resources/ios/icon/icon-83.5@2x.png" width="83.5" height="83.5"/>
+>>>>>>> feat-grades
     <icon src="resources/ios/icon/icon-small.png" width="29" height="29"/>
     <icon src="resources/ios/icon/icon-small@2x.png" width="58" height="58"/>
     <icon src="resources/ios/icon/icon-small@3x.png" width="87" height="87"/>
@@ -76,5 +96,13 @@
     <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
     <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
   </platform>
+<<<<<<< HEAD
   <icon src="resources/ios/icon/icon-small@3x.png"/>
 </widget>
+=======
+  <plugin name="phonegap-plugin-push" spec="1.6.0">
+    <variable name="SENDER_ID" value="722709796555" />
+  </plugin>
+  <!-- <icon src="resources/ios/icon/icon-small@3x.png"/> -->
+</widget>
+>>>>>>> feat-grades

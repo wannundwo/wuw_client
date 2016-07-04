@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.controllers')
 
@@ -10,17 +14,29 @@ angular.module('wuw.controllers')
     $scope.loadDeadlines = function() {
         Deadlines.all().then(function(deadlines){
             $scope.deadlines = deadlines;
+<<<<<<< HEAD
             $scope.$broadcast('czErrorMessage.hide'); //hide an eventually shown error message
         }, function() {
             // show the error message with some delay to prevent flickering
             $timeout(function() {
                 $scope.$broadcast('czErrorMessage.show');
+=======
+            $scope.$broadcast("czErrorMessage.hide"); //hide an eventually shown error message
+        }, function() {
+            // show the error message with some delay to prevent flickering
+            $timeout(function() {
+                $scope.$broadcast("czErrorMessage.show");
+>>>>>>> feat-grades
             }, 300);
         }).finally(function () {
             // remove the refresh spinner a little bit later to prevent flickering
             $timeout(function() {
                 $scope.loading = false;
+<<<<<<< HEAD
                 $scope.$broadcast('scroll.refreshComplete');
+=======
+                $scope.$broadcast("scroll.refreshComplete");
+>>>>>>> feat-grades
             }, 400);
         });
     };
@@ -109,7 +125,11 @@ angular.module('wuw.controllers')
 
         console.log(JSON.stringify($scope.deadline));
         Deadlines.add($scope.deadline).then(function(res){
+<<<<<<< HEAD
             // success, change to loading icon to a 'save-success' icon
+=======
+            // success, change to loading icon to a "save-success" icon
+>>>>>>> feat-grades
             $scope.savingIcon = '<i class="icon ion-android-cloud-done"></i>';
             $scope.savingText = 'Deadline saved!';
 
@@ -119,7 +139,11 @@ angular.module('wuw.controllers')
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
+<<<<<<< HEAD
                 $state.go('tab.deadlines');
+=======
+                $state.go("tab.deadlines");
+>>>>>>> feat-grades
             }, 750);
         }, function(res){
             // TODO: handle if the lecture could not be created

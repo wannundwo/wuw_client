@@ -11,7 +11,11 @@ navigation history that also transitions its views in and out.
 
     <!-- Lectures Tab -->
     <!--<ion-tab title="Lectures" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="#/tab/{{lecturesUrl}}">-->
+<<<<<<< HEAD
     <ion-tab title="{{'global.lectures' | translate}}" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="{{lecturesViewUrl}}">
+=======
+    <ion-tab title="{{'global.lectures' | translate}}" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="#/tab/lecturesList">
+>>>>>>> feat-grades
         <ion-nav-view name="tab-lectures"></ion-nav-view>
     </ion-tab>
 
@@ -20,6 +24,14 @@ navigation history that also transitions its views in and out.
         <ion-nav-view name="tab-deadlines"></ion-nav-view>
     </ion-tab>
 
+<<<<<<< HEAD
+=======
+    <!-- Grades Tab -->
+    <ion-tab  hidden="true" title="{{'global.grades' | translate}}" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/grades">
+        <ion-nav-view name="tab-grades"></ion-nav-view>
+    </ion-tab>
+
+>>>>>>> feat-grades
     <!-- Mensa Tab -->
     <ion-tab title="{{'global.mensa' | translate}}" icon-off="ion-pizza" icon-on="ion-pizza" href="#/tab/mensa">
         <ion-nav-view name="tab-mensa"></ion-nav-view>

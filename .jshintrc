@@ -97,6 +97,11 @@
         "cordova": true,
         "StatusBar": true,
         "describe": true,
+<<<<<<< HEAD
         "it": true
+=======
+        "it": true,
+        "xml2json": true
+>>>>>>> feat-grades
     }
 }

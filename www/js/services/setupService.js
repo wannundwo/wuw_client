@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.services')
 .service('Setup', ['$window', '$http', '$q', 'Settings', function($window, $http, $q, Settings) {

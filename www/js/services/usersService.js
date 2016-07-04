@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.services')
 
@@ -10,8 +14,13 @@ angular.module('wuw.services')
             var deferred = $q.defer();
 
             $http({
+<<<<<<< HEAD
                 url: Settings.getSetting('apiUrl') + '/users/' + Settings.getSetting('uuid') + '/lectures',
                 method: 'POST',
+=======
+                url: Settings.getSetting("apiUrl") + '/users/' + Settings.getSetting('uuid') + "/lectures",
+                method: "POST",
+>>>>>>> feat-grades
                 headers: {'Content-Type': 'application/json'},
                 data: {
                     appVersion: Settings.getSetting('version'),

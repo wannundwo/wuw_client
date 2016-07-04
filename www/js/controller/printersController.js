@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use strict';
+=======
+"use strict";
+>>>>>>> feat-grades
 
 angular.module('wuw.controllers')
 
@@ -20,7 +24,11 @@ angular.module('wuw.controllers')
             // error handling
         }).finally(function(){
             $scope.initialLoading = false;
+<<<<<<< HEAD
             $scope.$broadcast('scroll.refreshComplete');
+=======
+            $scope.$broadcast("scroll.refreshComplete");
+>>>>>>> feat-grades
         });
     };
 

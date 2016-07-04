@@ -3,6 +3,10 @@
         "home": "Home",
         "lectures": "Vorlesungen",
         "deadlines": "Abgaben",
+<<<<<<< HEAD
+=======
+        "grades": "Noten",
+>>>>>>> feat-grades
         "mensa": "Mensa",
         "news": "Neuigkeiten",
         "events": "Veranstaltungen",
@@ -74,5 +78,11 @@
     },
     "news": {
         "noNews": "Momentan gibts es keine News"
+<<<<<<< HEAD
+=======
+    },
+    "grades": {
+        "cantload": "Verbindung zum HFT Notenserver momentan nicht möglich."
+>>>>>>> feat-grades
     }
 }
