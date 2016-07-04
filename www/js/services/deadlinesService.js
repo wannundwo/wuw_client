@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 'use strict';
-=======
-"use strict";
->>>>>>> feat-grades
 
 angular.module('wuw.services')
 
@@ -18,13 +14,8 @@ angular.module('wuw.services')
         newDeadline.group = JSON.parse(newDeadline.group);
         newDeadline.uuid = Settings.getSetting('uuid');
         $http({
-<<<<<<< HEAD
             url: Settings.getSetting('apiUrl') + '/deadlines',
             method: 'POST',
-=======
-            url: Settings.getSetting("apiUrl") + '/deadlines',
-            method: "POST",
->>>>>>> feat-grades
             headers: {'Content-Type': 'application/json'},
             data: newDeadline
         })
@@ -60,11 +51,7 @@ angular.module('wuw.services')
         var localDeadlines = JSON.parse(Settings.getSetting('localDeadlines') || '[]');
         var mergedDeadlines = [];
 
-<<<<<<< HEAD
         $http.get(Settings.getSetting('apiUrl') + '/deadlines/user/' + Settings.getSetting('uuid'))
-=======
-        $http.get(Settings.getSetting("apiUrl") + '/deadlines/user/' + Settings.getSetting('uuid'))
->>>>>>> feat-grades
         .success(function(data, status, headers, config) {
 
             // Iterate over each received deadline and merge it with the local deadlines.

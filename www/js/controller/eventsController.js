@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 'use strict';
-=======
-"use strict";
->>>>>>> feat-grades
+
 
 angular.module('wuw.controllers')
 
@@ -30,21 +27,14 @@ angular.module('wuw.controllers')
                               startDate.getMonth() === endDate.getMonth() &&
                               startDate.getDate() === endDate.getDate();
 
-<<<<<<< HEAD
+
                 // Case: '21.01.2016 Uhr'
-=======
-                // Case: "21.01.2016 Uhr"
->>>>>>> feat-grades
                 if (exactlySame && startDate.getHours() === 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     continue;
                 }
 
-<<<<<<< HEAD
                 // Case: '21.02.2016 19:00'
-=======
-                // Case: "21.02.2016 19:00"
->>>>>>> feat-grades
                 if (exactlySame && startDate.getHours() !== 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     event.dateString += ', ';
@@ -53,26 +43,15 @@ angular.module('wuw.controllers')
                     continue;
                 }
 
-<<<<<<< HEAD
                 // Case: '21.01.2016 - 25.01.2016'
                 if (!exactlySame && startDate.getHours() === 1 && endDate.getHours() === 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     event.dateString += ' - ';
-=======
-                // Case: "21.01.2016 - 25.01.2016
-                if (!exactlySame && startDate.getHours() === 1 && endDate.getHours() === 1) {
-                    event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
-                    event.dateString += " - ";
->>>>>>> feat-grades
                     event.dateString += $filter('date')(endDate, 'dd.MM.yyyy');
                     continue;
                 }
 
-<<<<<<< HEAD
                 // Case: '19.03.2016, 11:00 - 12:00 Uhr'
-=======
-                // Case: "19.03.2016, 11:00 - 12:00 Uhr"
->>>>>>> feat-grades
                 if (sameDay && startDate.getHours() !== 1 && endDate.getHours() !== 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     event.dateString += ', ';
@@ -83,13 +62,8 @@ angular.module('wuw.controllers')
                     continue;
                 }
 
-<<<<<<< HEAD
                 // Case: '21.01.2016 - 25.01.2016
                 //       '11:00 - 12:00 Uhr'
-=======
-                // Case: "21.01.2016 - 25.01.2016
-                //       "11:00 - 12:00 Uhr"
->>>>>>> feat-grades
                 if (!sameDay && startDate.getHours() !== 1 && endDate.getHours() !== 1) {
                     event.dateString = $filter('date')(startDate, 'dd.MM.yyyy');
                     event.dateString += ' - ';
@@ -106,11 +80,7 @@ angular.module('wuw.controllers')
         }, function(){
         }).finally(function(){
             $scope.initialLoading = false;
-<<<<<<< HEAD
             $scope.$broadcast('scroll.refreshComplete');
-=======
-            $scope.$broadcast("scroll.refreshComplete");
->>>>>>> feat-grades
         });
     };
 

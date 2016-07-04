@@ -137,8 +137,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, .tab-item.activat
     padding-left: 25px;
 }
 
-<<<<<<< HEAD
-=======
+
 /************ GRADES **********************/
 .grade {
     line-height: 1.1 !important;
@@ -158,7 +157,7 @@ ion-item.grades {
     padding-right: 16px !important;
 }
 
->>>>>>> feat-grades
+
 /************ MENSA **********************/
 .dishes-allergens-additives p {
     line-height: 1.2;

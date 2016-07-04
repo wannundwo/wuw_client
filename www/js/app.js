@@ -1,19 +1,11 @@
 "use strict";
 
-<<<<<<< HEAD
 angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage', 'wuw.czErrorMessage', 'wuw.czWeekView', 'ngIOS9UIWebViewPatch'])
-=======
-angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directives', 'wuw.filters', 'angular.filter', 'pascalprecht.translate', 'wuw.czErrorMessage', 'ngIOS9UIWebViewPatch'])
->>>>>>> feat-grades
 
 .run(function($ionicPlatform, $state, $rootScope, Settings, Users) {
 
     var apiUrl = "https://app.hft-stuttgart.de:4342/api/v0";
-<<<<<<< HEAD
-    var versionNumber = "0.7";
-=======
-    var versionNumber = "0.6.5";
->>>>>>> feat-grades
+    var versionNumber = "0.8";
 
     // predefined settings
     Settings.setSetting('version', versionNumber);
@@ -30,11 +22,8 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
 
-<<<<<<< HEAD
+
         if (window.StatusBar) {
-=======
-        if (window.StatusBar && window.StatusBarManager) {
->>>>>>> feat-grades
             if (ionic.Platform.isIOS()) {
                 // iOS specific settings
             } else if (ionic.Platform.isAndroid()) {
@@ -133,8 +122,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
 
-<<<<<<< HEAD
-=======
     .state('tab.grades', {
         url: '/grades',
         views: {
@@ -145,7 +132,6 @@ angular.module('wuw', ['ionic', 'wuw.controllers', 'wuw.services', 'wuw.directiv
       }
     })
 
->>>>>>> feat-grades
     .state('tab.mensa', {
         url: '/mensa',
         views: {

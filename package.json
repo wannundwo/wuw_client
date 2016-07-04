@@ -36,7 +36,6 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-dialogs",
     "cordova-plugin-inappbrowser",
-<<<<<<< HEAD
     "cordova-plugin-crosswalk-webview"
   ],
   "scripts": {},
@@ -45,13 +44,3 @@
     "ios"
   ]
 }
-=======
-    "phonegap-plugin-push",
-    "phonegap-plugin-push@1.6.0"
-  ],
-  "scripts": {},
-  "cordovaPlatforms": [
-    "ios"
-  ]
-}
->>>>>>> feat-grades

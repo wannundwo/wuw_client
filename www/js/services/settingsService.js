@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 'use strict';
-=======
-"use strict";
->>>>>>> feat-grades
 
 angular.module('wuw.services')
 

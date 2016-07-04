@@ -3,10 +3,7 @@
         "home": "Home",
         "lectures": "Lectures",
         "deadlines": "Deadlines",
-<<<<<<< HEAD
-=======
         "grades": "Grades",
->>>>>>> feat-grades
         "mensa": "Mensa",
         "news": "News",
         "events": "Events",
@@ -78,11 +75,8 @@
     },
     "news": {
         "noNews": "Currently there are no news"
-<<<<<<< HEAD
-=======
     },
     "grades": {
         "cantload": "Connection to the HFT Grade-Server currently unavailable."
->>>>>>> feat-grades
     }
 }

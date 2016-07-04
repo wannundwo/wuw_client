@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 'use strict';
-=======
-"use strict";
->>>>>>> feat-grades
+
 
 angular.module('wuw.controllers')
 
@@ -88,11 +85,7 @@ angular.module('wuw.controllers')
     $scope.load = function() {
         $scope.showErrorMessage = false;
         $ionicLoading.show({
-<<<<<<< HEAD
             template: '{{"setup.loading" | translate}}'
-=======
-            template: "{{'setup.loading' | translate}}"
->>>>>>> feat-grades
         });
 
         Setup.loadAllGroupsWithLectures().then(function(groups) {
@@ -129,7 +122,6 @@ angular.module('wuw.controllers')
             }
         }
 
-<<<<<<< HEAD
         Settings.setSetting('selectedGroups', JSON.stringify(selectedGroups));
         Settings.setSetting('selectedLectures', JSON.stringify(selectedLectures));
         Settings.setSetting('selectedLecturesLength', selectedLectures.length);
@@ -149,27 +141,6 @@ angular.module('wuw.controllers')
         // Return to home tab
         $ionicHistory.nextViewOptions({ disableBack: true });
         $state.go('tab.home', {location: 'replace'});
-=======
-        Settings.setSetting("selectedGroups", JSON.stringify(selectedGroups));
-        Settings.setSetting("selectedLectures", JSON.stringify(selectedLectures));
-        Settings.setSetting("selectedLecturesLength", selectedLectures.length);
-        Users.ping(selectedLectures);
-
-        // Clear the caches.
-        Settings.setSetting("localDeadlines", "");
-        Settings.setSetting("lecturesCache", "");
-        Settings.setSetting("lecturesWeeklyCache", "");
-
-        // Reset Cache Times
-        Settings.setSetting("dishesCacheTime", "0");
-        Settings.setSetting("lecturesCacheTime", "0");
-        Settings.setSetting("lecturesWeeklyCacheTime", "0");
-        Settings.setSetting("localDeadlinesCacheTime", "0");
-
-        // Return to home tab
-        $ionicHistory.nextViewOptions({ disableBack: true });
-        $state.go("tab.home", {location: "replace"});
->>>>>>> feat-grades
     };
 
     $scope.goBack = function() {

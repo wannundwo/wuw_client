@@ -1,6 +1,4 @@
 /*jshint bitwise: false*/
-
-<<<<<<< HEAD
 'use strict';
 
 angular.module('wuw.services')
@@ -10,17 +8,6 @@ angular.module('wuw.services')
         var deferred = $q.defer();
 
         $http.get(Settings.getSetting('apiUrl') + '/printers')
-=======
-"use strict";
-
-angular.module("wuw.services")
-
-.factory("Printers", function($http, $q, Settings) {
-    var loadPrinters = function() {
-        var deferred = $q.defer();
-
-        $http.get(Settings.getSetting("apiUrl") + "/printers")
->>>>>>> feat-grades
         .success(function(data, status, headers, config) {
             Settings.setSetting('printersCache', JSON.stringify(data));
             deferred.resolve(data);
@@ -34,7 +21,7 @@ angular.module("wuw.services")
     var fromCache = function() {
         var cached = JSON.parse(Settings.getSetting('printersCache') || '[]');
         return cached;
-    }
+    };
 
     return {
         loadPrinters: loadPrinters,
